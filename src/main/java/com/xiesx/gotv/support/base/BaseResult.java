@@ -16,18 +16,18 @@ import com.alibaba.fastjson.annotation.JSONField;
 @Builder
 public class BaseResult {
 
-	private static final String OP_MSG_SUCC = "操作成功";
+	public static String OP_MSG_SUCC = "操作成功";
 
-	private static final String OP_MSG_FAIL = "操作失败";
+	public static String OP_MSG_FAIL = "操作失败";
 
 	// 返回值
-	private static final Integer SUCCESS = 0; //成功
+	public static Integer SUCCESS = 0; // 成功
 
-	private static final Integer FAIL = -1;//失败
+	public static Integer FAIL = -1;// 失败
 
-	private static final Integer ERROR = -2;//异常
-	
-	public static final Integer ERROR_RETRY = -3;//重试
+	public static Integer ERROR = -2;// 异常
+
+	public static Integer ERROR_RETRY = -3;// 重试
 
 	// 状态
 	// 状态

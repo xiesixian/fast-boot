@@ -1,6 +1,7 @@
 package com.xiesx.gotv.core.context;
 
 import org.springframework.beans.factory.annotation.BeanFactoryAnnotationUtils;
+import org.springframework.context.ApplicationContext;
 
 /**
  * spring工具类，静态工具方法获取bean
@@ -17,7 +18,11 @@ public class SpringHelper {
 	 * @return
 	 */
 	public static Object getBean(String name) {
-		return SpringApplicationContextAware.getApplicationContext().getBean(name);
+		ApplicationContext applicationContext = SpringApplicationContextAware.getApplicationContext();
+		if (applicationContext != null) {
+			applicationContext.getBean(name);
+		}
+		return null;
 	}
 
 	/**
@@ -27,7 +32,11 @@ public class SpringHelper {
 	 * @return
 	 */
 	public static <T> T getBean(Class<T> clazz) {
-		return SpringApplicationContextAware.getApplicationContext().getBean(clazz);
+		ApplicationContext applicationContext = SpringApplicationContextAware.getApplicationContext();
+		if (applicationContext != null) {
+			applicationContext.getBean(clazz);
+		}
+		return null;
 	}
 
 	/**
@@ -38,7 +47,11 @@ public class SpringHelper {
 	 * @return
 	 */
 	public static <T> T getBean(String name, Class<T> clazz) {
-		return SpringApplicationContextAware.getApplicationContext().getBean(name, clazz);
+		ApplicationContext applicationContext = SpringApplicationContextAware.getApplicationContext();
+		if (applicationContext != null) {
+			applicationContext.getBean(name, clazz);
+		}
+		return null;
 	}
 
 	/**
@@ -49,6 +62,10 @@ public class SpringHelper {
 	 * @return
 	 */
 	public static <T> T getBean(Class<T> clazz, String qualifier) {
-		return BeanFactoryAnnotationUtils.qualifiedBeanOfType(SpringApplicationContextAware.getApplicationContext().getAutowireCapableBeanFactory(), clazz, qualifier);
+		ApplicationContext applicationContext = SpringApplicationContextAware.getApplicationContext();
+		if (applicationContext != null) {
+			return BeanFactoryAnnotationUtils.qualifiedBeanOfType(applicationContext.getAutowireCapableBeanFactory(), clazz, qualifier);
+		}
+		return null;
 	}
 }

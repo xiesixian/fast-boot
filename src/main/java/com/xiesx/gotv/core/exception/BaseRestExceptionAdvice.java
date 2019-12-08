@@ -26,7 +26,7 @@ import com.alibaba.fastjson.JSONException;
 import com.github.rholder.retry.RetryException;
 import com.xiesx.gotv.base.result.BaseResult;
 import com.xiesx.gotv.base.result.R;
-import com.xiesx.gotv.support.validator.ValidatorHelper;
+import com.xiesx.gotv.core.validate.ValidatorHelper;
 
 /**
  * @title GlobalExceptionHandle.java

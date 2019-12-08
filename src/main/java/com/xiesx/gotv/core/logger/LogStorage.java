@@ -11,7 +11,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
-import com.xiesx.gotv.support.datebase.jdbc.base.BaseEntity;
+import com.xiesx.gotv.core.jdbc.JdbcEntity;
 
 /**
  * @title APILog.java (generator)
@@ -23,7 +23,7 @@ import com.xiesx.gotv.support.datebase.jdbc.base.BaseEntity;
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
 @Table(name = LogStorage.TABLE.GO_LOG)
-public class LogStorage extends BaseEntity<LogStorage> {
+public class LogStorage extends JdbcEntity<LogStorage> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -31,8 +31,8 @@ public class LogStorage extends BaseEntity<LogStorage> {
 	@Column(name = "id")
 	private Long id;
 
-	@Column(name = "create_time")
-	private Date createTime;
+	@Column(name = "create_date")
+	private Date createDate;
 
 	@Column
 	private String ip;
@@ -67,17 +67,19 @@ public class LogStorage extends BaseEntity<LogStorage> {
 
 		public static final String CREATE_DATE = "create_date";
 
-		public static final String MODIFY_DATE = "modify_date";
+		public static final String IP = "ip";
 
-		public static final String REQUEST_PARAM = "request_param";
+		public static final String METHOD = "method";
 
-		public static final String RESPONSE_PARAM = "response_param";
+		public static final String TYPE = "type";
 
-		public static final String EXECUTE_TIME = "execute_time";
+		public static final String URL = "url";
 
-		public static final String TARGET = "target";
+		public static final String REQ = "req";
 
-		public static final String REMARK = "remark";
+		public static final String RES = "res";
+
+		public static final String T = "t";
 	}
 
 	/** 主键值 */

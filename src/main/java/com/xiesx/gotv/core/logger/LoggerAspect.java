@@ -14,10 +14,7 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
-import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -38,9 +35,6 @@ import com.xiesx.gotv.core.logger.annotation.GoLoggerStorage;
 @Aspect
 @Order(1)
 public class LoggerAspect {
-
-	@Autowired
-	private JdbcTemplate jdbcTemplate;
 
 	@Pointcut("@annotation(org.springframework.web.bind.annotation.GetMapping) || @annotation(org.springframework.web.bind.annotation.PostMapping) || @annotation(org.springframework.web.bind.annotation.RequestMapping)")
 	public void logPointcut() {
@@ -90,7 +84,7 @@ public class LoggerAspect {
 			try {
 				LogStorage log = new LogStorage();
 				log.setId(Long.valueOf(IdWorker.getId(log)));
-				log.setCreateTime(new Date());
+				log.setCreateDate(new Date());
 				log.setIp(ip);
 				log.setMethod(methodName);
 				log.setType(type);
@@ -100,37 +94,10 @@ public class LoggerAspect {
 				log.setT(Long.valueOf(t));
 				log.insert();
 			} catch (Exception e) {
-				isExist();
+				log.error("=========request err {}", e);
 			}
 		}
 		return ret;
-	}
-
-	public Boolean isExist() {
-		String sql = "SELECT * FROM information_schema.TABLES WHERE TABLE_SCHEMA=(SELECT DATABASE()) AND `table_name` =? ";
-		try {
-			this.jdbcTemplate.queryForMap(sql, new Object[] { LogStorage.TABLE.GO_LOG });
-		} catch (Exception e) {
-			if (e instanceof EmptyResultDataAccessException) {
-				StringBuilder sb = new StringBuilder();
-				sb.append("CREATE TABLE " + LogStorage.TABLE.GO_LOG + " ( ");
-				sb.append("id VARCHAR(255) NOT NULL COMMENT '主键',");
-				sb.append("create_time DATETIME NOT NULL COMMENT '创建时间',");
-				sb.append("ip VARCHAR(255) COMMENT '请求IP',");
-				sb.append("method VARCHAR(255) NOT NULL COMMENT '方法',");
-				sb.append("TYPE VARCHAR(255) NOT NULL COMMENT '方式',");
-				sb.append("url VARCHAR(1000) NOT NULL COMMENT '地址',");
-				sb.append("req LONGTEXT NOT NULL COMMENT '请求',");
-				sb.append("res LONGTEXT NOT NULL COMMENT '响应',");
-				sb.append("t INT(11) DEFAULT 0 COMMENT '执行时间（毫秒）'");
-				sb.append(")");
-				sb.append("COMMENT='日志存储表';");
-
-				this.jdbcTemplate.execute(sb.toString());
-			}
-			return false;
-		}
-		return true;
 	}
 
 	private String getIpAddr(HttpServletRequest request) {

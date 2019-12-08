@@ -20,7 +20,8 @@ public class SpringApplicationContextAware implements ApplicationContextAware {
 	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
 		if (SpringApplicationContextAware.applicationContext == null) {
 			SpringApplicationContextAware.applicationContext = applicationContext;
-			GotvStartup.startup();
+			GotvStartup.init();
+			GotvStartup.schedule();
 		}
 	}
 }

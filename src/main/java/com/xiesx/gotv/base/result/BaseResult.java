@@ -2,7 +2,6 @@ package com.xiesx.gotv.base.result;
 
 import lombok.Builder;
 import lombok.Data;
-import lombok.NonNull;
 
 import com.alibaba.fastjson.annotation.JSONField;
 
@@ -83,7 +82,7 @@ public class BaseResult {
 
 	/**
 	 * 成功
-	 */
+	 *//*
 	public static BaseResult success() {
 		return BaseResult.builder().code(SUCCESS).msg(OP_MSG_SUCC).build();
 	}
@@ -108,9 +107,9 @@ public class BaseResult {
 		return BaseResult.builder().code(code).msg(msg).data(data).build();
 	}
 
-	/**
+	*//**
 	 * 失败
-	 */
+	 *//*
 	public static BaseResult fail() {
 		return BaseResult.builder().code(FAIL).msg(OP_MSG_FAIL).build();
 	}
@@ -135,9 +134,9 @@ public class BaseResult {
 		return BaseResult.builder().code(code).msg(msg).data(data).build();
 	}
 
-	/**
+	*//**
 	 * 异常
-	 */
+	 *//*
 	public static BaseResult error() {
 		return BaseResult.builder().code(ERROR).msg(OP_MSG_FAIL).build();
 	}
@@ -160,5 +159,5 @@ public class BaseResult {
 
 	public static BaseResult error(@NonNull Integer code, @NonNull String msg, Object data) {
 		return BaseResult.builder().code(code).msg(msg).data(data).build();
-	}
+	}*/
 }

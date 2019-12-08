@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="30">
+	<Properties>
+		<!-- 日志文件存放目录 -->
+		<Property name="path">../logs</Property>
+		<Property name="log_pattern_file">[GOTV-API][%5p][%-d{yyyy-MM-dd HH:mm:ss}]-->[%t:%5r][%M(%F:%L)] | - %m%n</Property>
+		<Property name="log_pattern_console">[GOTV-API][%5p][%-d{yyyy-MM-dd HH:mm:ss}]-->[%t:%5r][%M(%F:%L)] | - %m%n</Property>
+	</Properties>
+
+	<Appenders>
+		<!-- 控制台输出日志 -->
+		<Console name="Console" target="SYSTEM_OUT" follow="true">
+			<PatternLayout pattern="${sys:log_pattern_console}" />
+		</Console>
+
+		<!-- All日志 -->
+		<RollingFile name="All" fileName="${path}/gotv_api.log"
+			filePattern="${path}/gotv_api_%d{MM-dd-yyyy}.log.%i">
+			<PatternLayout pattern="${sys:log_pattern_file}" />
+			<Policies>
+				<SizeBasedTriggeringPolicy size="50 MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="20" fileIndex="min" />
+		</RollingFile>
+
+		<!-- Error日志 -->
+		<RollingFile name="Error" fileName="${path}/gotv_api_error.log"
+			filePattern="${path}/gotv_api_error_%d{MM-dd-yyyy}.log.%i">
+			<Filters>
+				<ThresholdFilter level="error" onMatch="ACCEPT"
+					onMismatch="DENY" />
+			</Filters>
+			<PatternLayout pattern="${sys:log_pattern_file}" />
+			<Policies>
+				<SizeBasedTriggeringPolicy size="50 MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="20" fileIndex="min" />
+		</RollingFile>
+
+	</Appenders>
+
+	<Loggers>
+		<Logger name="org.springframework.web" level="ERROR" />
+		<Logger name="com.gargoylesoftware.htmlunit.javascript" level="OFF" />
+		<Root level="info">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="All" />
+			<AppenderRef ref="Error" />
+		</Root>
+	</Loggers>
+</Configuration>

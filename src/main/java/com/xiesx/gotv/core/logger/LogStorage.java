@@ -11,7 +11,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
-import com.xiesx.gotv.core.jdbc.JdbcEntity;
+import com.xiesx.gotv.support.jdbc.JdbcEntity;
 
 /**
  * @title APILog.java (generator)

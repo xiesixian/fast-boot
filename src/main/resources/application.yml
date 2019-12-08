@@ -1,3 +1,5 @@
 spring:
   profiles:
     active: local
+go:
+  sign: 136305973

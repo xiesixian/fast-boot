@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.xiesx.gotv.support.context.SpringApplicationContextAware
+com.xiesx.gotv.core.context.SpringApplicationContextAware

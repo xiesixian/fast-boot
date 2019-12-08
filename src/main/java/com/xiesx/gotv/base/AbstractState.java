@@ -1,4 +1,4 @@
-package com.xiesx.gotv.support.base;
+package com.xiesx.gotv.base;
 
 /**
  * @title BaseResStateBO.java

@@ -7,7 +7,7 @@ import net.dongliu.requests.RawResponse;
 
 import com.github.rholder.retry.Attempt;
 import com.github.rholder.retry.RetryListener;
-import com.xiesx.gotv.support.base.BaseResult;
+import com.xiesx.gotv.base.BaseResult;
 
 /**
  * @title BaseRetryListener.java

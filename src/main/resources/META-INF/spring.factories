@@ -1,3 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-pers.zhzh.logspringboot.LogForTimeConsumerPointcutAdvisor,\
-pers.zhzh.logspringboot.LogForControllerPointcutAdvisor
+com.xiesx.gotv.support.context.SpringApplicationContextAware

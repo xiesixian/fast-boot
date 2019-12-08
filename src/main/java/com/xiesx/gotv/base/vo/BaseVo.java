@@ -1,4 +1,4 @@
-package com.xiesx.gotv.support.base.vo;
+package com.xiesx.gotv.base.vo;
 
 import lombok.Data;
 

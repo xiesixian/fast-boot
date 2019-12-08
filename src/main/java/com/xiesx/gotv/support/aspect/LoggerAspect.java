@@ -25,7 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
-import com.xiesx.gotv.support.aspect.annotation.EnableLoggerStorage;
+import com.xiesx.gotv.support.aspect.annotation.GoEnableLoggerStorage;
 
 /**
  * @title LoggerAspect.java
@@ -59,7 +59,7 @@ public class LoggerAspect {
 		Method method = signature.getMethod();
 		String methodName = method.getName();
 		// 获取注解信息
-		EnableLoggerStorage annotation = (EnableLoggerStorage) method.getAnnotation(EnableLoggerStorage.class);
+		GoEnableLoggerStorage annotation = (GoEnableLoggerStorage) method.getAnnotation(GoEnableLoggerStorage.class);
 		Boolean isPrint = Boolean.valueOf(annotation == null ? true : annotation.print());
 		Boolean isStorage = Boolean.valueOf(annotation == null ? false : annotation.storage());
 		Boolean isPrettyFormat = Boolean.valueOf(annotation == null ? false : annotation.prettyFormat());

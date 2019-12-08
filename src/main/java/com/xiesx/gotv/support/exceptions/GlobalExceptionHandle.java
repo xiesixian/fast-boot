@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.alibaba.fastjson.JSONException;
 import com.github.rholder.retry.RetryException;
-import com.xiesx.gotv.support.base.BaseResult;
+import com.xiesx.gotv.base.BaseResult;
 import com.xiesx.gotv.support.validator.ValidatorHelper;
 
 /**

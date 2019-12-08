@@ -4,16 +4,10 @@ import java.net.URL;
 
 import lombok.extern.slf4j.Slf4j;
 
-import org.springframework.beans.BeansException;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
-import org.springframework.stereotype.Component;
-
 import com.xiesx.gotv.utils.ObjectUtil;
 
 @Slf4j
-@Component
-public class GotvStartup implements ApplicationContextAware {
+public class GotvStartup  {
 
 	public static String classUrl;
 
@@ -63,9 +57,5 @@ public class GotvStartup implements ApplicationContextAware {
 			log.error("", e);
 			System.exit(1);
 		}
-	}
-
-	public void setApplicationContext(ApplicationContext c) throws BeansException {
-		startup();
 	}
 }

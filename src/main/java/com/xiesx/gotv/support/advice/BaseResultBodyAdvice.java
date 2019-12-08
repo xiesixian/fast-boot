@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 import com.alibaba.fastjson.JSON;
-import com.xiesx.gotv.support.base.BaseResult;
+import com.xiesx.gotv.base.BaseResult;
+import com.xiesx.gotv.base.pagination.bean.PaginationResult;
 
 /**
  * @title BaseResBodyAdvice.java
@@ -37,7 +38,7 @@ public class BaseResultBodyAdvice implements ResponseBodyAdvice<Object> {
 		log.debug("beforeBodyWrite ......");
 		Object res = null;
 		// 按需使用，如果有改动，务必兼容之前代码
-		if (returnValue instanceof BaseResult) {
+		if (returnValue instanceof BaseResult || returnValue instanceof PaginationResult) {
 			res = returnValue;
 		} else if (returnValue instanceof String || returnValue instanceof Boolean) {
 			res = returnValue;

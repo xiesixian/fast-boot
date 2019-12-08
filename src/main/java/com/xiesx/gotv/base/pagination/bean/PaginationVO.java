@@ -1,4 +1,4 @@
-package com.xiesx.gotv.support.base.vo;
+package com.xiesx.gotv.base.pagination.bean;
 
 import lombok.Data;
 
@@ -11,9 +11,12 @@ import lombok.Data;
 @Data
 public class PaginationVO {
 
-	//页码
+	// 页码
 	public Integer page = 1;
 
-	//大小
+	// 大小
+	public Integer limit = 25;
+
+	// 大小
 	public Integer size = 25;
 }

@@ -1,8 +1,8 @@
-package com.xiesx.gotv.support.base.bo;
+package com.xiesx.gotv.base.pagination.bean;
 
 import java.util.List;
 
-import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 
 import com.alibaba.fastjson.annotation.JSONField;
@@ -14,12 +14,12 @@ import com.alibaba.fastjson.annotation.JSONField;
  * @date 2018年12月24日 下午1:15:29
  */
 @Data
-@AllArgsConstructor
-public class PaginationBO<T> {
+@Builder
+public class PaginationResult {
 
 	@JSONField(ordinal = 1)
-	public Integer total;
+	public List<?> data;
 
 	@JSONField(ordinal = 2)
-	public List<T> data;
+	public Integer total;
 }

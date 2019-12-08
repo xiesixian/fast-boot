@@ -1,4 +1,4 @@
-package com.xiesx.gotv.support.base;
+package com.xiesx.gotv.base;
 
 import lombok.Builder;
 import lombok.Data;
@@ -29,7 +29,6 @@ public class BaseResult {
 
 	public static Integer ERROR_RETRY = -3;// 重试
 
-	// 状态
 	// 状态
 	@JSONField(ordinal = 1)
 	private Integer code;

@@ -1,5 +1,8 @@
 package com.xiesx.gotv.core.logger;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -14,44 +17,54 @@ import lombok.experimental.Accessors;
 import com.xiesx.gotv.support.jdbc.JdbcEntity;
 
 /**
- * @title APILog.java (generator)
- * @description
+ * @title Log.java (generator)
+ * @description 日志存储表
  * @author 谢思贤
- * @date 2019-01-25
+ * @date 2019-12-09
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
 @Table(name = LogStorage.TABLE.GO_LOG)
+@ApiModel(value = "Log", description = "日志存储表")
 public class LogStorage extends JdbcEntity<LogStorage> {
 
 	private static final long serialVersionUID = 1L;
 
+	@ApiModelProperty(value = "主键")
 	@Id
 	@Column(name = "id")
-	private Long id;
+	private String id;
 
-	@Column(name = "create_date")
+	@ApiModelProperty(value = "创建时间")
+	@Column
 	private Date createDate;
 
+	@ApiModelProperty(value = "请求IP")
 	@Column
 	private String ip;
 
+	@ApiModelProperty(value = "方法")
 	@Column
 	private String method;
 
-	@Column
+	@ApiModelProperty(value = "方式")
+	@Column(name = "TYPE")
 	private String type;
 
+	@ApiModelProperty(value = "地址")
 	@Column
 	private String url;
 
+	@ApiModelProperty(value = "请求")
 	@Column
 	private String req;
 
+	@ApiModelProperty(value = "响应")
 	@Column
 	private String res;
 
+	@ApiModelProperty(value = "执行时间（毫秒）")
 	@Column
 	private Long t;
 
@@ -65,13 +78,13 @@ public class LogStorage extends JdbcEntity<LogStorage> {
 
 		public static final String ID = "id";
 
-		public static final String CREATE_DATE = "create_date";
+		public static final String CREATE_TIME = "create_time";
 
 		public static final String IP = "ip";
 
 		public static final String METHOD = "method";
 
-		public static final String TYPE = "type";
+		public static final String TYPE = "TYPE";
 
 		public static final String URL = "url";
 
@@ -82,9 +95,7 @@ public class LogStorage extends JdbcEntity<LogStorage> {
 		public static final String T = "t";
 	}
 
-	/** 主键值 */
 	protected Serializable pkVal() {
 		return this.id;
 	}
-
 }

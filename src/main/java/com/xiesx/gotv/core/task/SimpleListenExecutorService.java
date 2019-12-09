@@ -11,7 +11,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import com.google.common.util.concurrent.FutureCallback;
-import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.common.util.concurrent.MoreExecutors;
@@ -75,7 +74,7 @@ public class SimpleListenExecutorService {
 	public <T> ListenableFuture<T> submit(Callable<T> task, FutureCallback<T> callback) {
 		ListenableFuture<T> future = service.submit(task);
 		if (callback != null) {
-			Futures.addCallback(future, callback);
+			//Futures.addCallback(future, callback);
 		}
 		return future;
 	}

@@ -13,6 +13,8 @@ import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
+import springfox.documentation.spring.web.json.Json;
+
 import com.alibaba.fastjson.JSON;
 import com.xiesx.gotv.base.pagination.bean.PaginationResult;
 import com.xiesx.gotv.base.result.BaseResult;
@@ -45,7 +47,7 @@ public class BaseResultBodyAdvice implements ResponseBodyAdvice<Object> {
 			res = returnValue;
 		} else if (returnValue instanceof Map<?, ?> || returnValue instanceof List<?>) {
 			res = returnValue;
-		} else if (returnValue instanceof JSON) {
+		} else if (returnValue instanceof JSON || returnValue instanceof Json) {
 			res = returnValue;
 		} else {
 			res = R.succ(returnValue);

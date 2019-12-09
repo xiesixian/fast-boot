@@ -61,8 +61,10 @@ public class LoggerAspect {
 		Object[] args = pjp.getArgs();
 		// 请求
 		String req = "unknown";
-		if ((!(args[0] instanceof ServletRequest)) && (!(args[0] instanceof ServletResponse)) && (!(args[0] instanceof MultipartFile))) {
-			req = JSON.toJSONString(args, isPrettyFormat);
+		if (args.length != 0) {
+			if ((!(args[0] instanceof ServletRequest)) && (!(args[0] instanceof ServletResponse)) && (!(args[0] instanceof MultipartFile))) {
+				req = JSON.toJSONString(args, isPrettyFormat);
+			}
 		}
 		// 记录开始时间
 		long beginTime = System.currentTimeMillis();
@@ -83,7 +85,7 @@ public class LoggerAspect {
 		if (isStorage) {
 			try {
 				LogStorage log = new LogStorage();
-				log.setId(Long.valueOf(IdWorker.getId(log)));
+				log.setId(IdWorker.getIdStr(log));
 				log.setCreateDate(new Date());
 				log.setIp(ip);
 				log.setMethod(methodName);
@@ -91,7 +93,7 @@ public class LoggerAspect {
 				log.setUrl(url);
 				log.setReq(req);
 				log.setRes(res);
-				log.setT(Long.valueOf(t));
+				log.setT(t);
 				log.insert();
 			} catch (Exception e) {
 				log.error("=========request err {}", e);

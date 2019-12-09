@@ -8,7 +8,7 @@ import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.xiesx.gotv.base.mpbatis.BmpEntity;
+import com.xiesx.gotv.support.mpbatis.BmpEntity;
 
 /**
  * @title Member.java

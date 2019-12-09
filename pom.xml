@@ -88,31 +88,25 @@
 			<artifactId>persistence-api</artifactId>
 			<version>1.0.2</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.freemarker/freemarker -->
-		<dependency>
-			<groupId>org.freemarker</groupId>
-			<artifactId>freemarker</artifactId>
-		</dependency>
 
 		<!-- ==========================数据库========================== -->
-		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<!-- <version>8.0.16</version> -->
-			<scope>runtime</scope>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-generator -->
-		<dependency>
-			<groupId>com.baomidou</groupId>
-			<artifactId>mybatis-plus-generator</artifactId>
-			<version>3.3.0</version>
-		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.alibaba/druid -->
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>druid</artifactId>
 			<version>1.1.21</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-core -->
+		<dependency>
+			<groupId>com.baomidou</groupId>
+			<artifactId>mybatis-plus-core</artifactId>
+			<version>3.3.0</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-extension -->
+		<dependency>
+			<groupId>com.baomidou</groupId>
+			<artifactId>mybatis-plus-extension</artifactId>
+			<version>3.3.0</version>
 		</dependency>
 
 		<!-- ==========================网络========================== -->

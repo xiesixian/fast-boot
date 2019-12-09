@@ -1,4 +1,4 @@
-package com.xiesx.gotv.base.mpbatis;
+package com.xiesx.gotv.support.mpbatis;
 
 import java.io.Serializable;
 import java.util.Date;

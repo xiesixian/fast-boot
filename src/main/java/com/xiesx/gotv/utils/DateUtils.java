@@ -7,8 +7,6 @@ import java.util.Date;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.baomidou.mybatisplus.core.toolkit.SystemClock;
-
 /**
  * 日期处理
  * 
@@ -65,7 +63,7 @@ public class DateUtils {
 	}
 
 	public static String getUserDate(String sformat) {
-		Date currentTime = new Date(SystemClock.now());
+		Date currentTime = new Date();
 		SimpleDateFormat formatter = new SimpleDateFormat(sformat);
 		String dateString = formatter.format(currentTime);
 		return dateString;

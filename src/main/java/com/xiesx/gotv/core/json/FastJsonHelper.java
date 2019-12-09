@@ -68,7 +68,7 @@ public class FastJsonHelper {
 	 */
 	public static List<MediaType> fastMediaTypes() {
 		List<MediaType> fastMediaTypes = Lists.newArrayList();
-		fastMediaTypes.add(MediaType.APPLICATION_JSON_UTF8);
+		fastMediaTypes.add(MediaType.APPLICATION_JSON);
 		return fastMediaTypes;
 	}
 }

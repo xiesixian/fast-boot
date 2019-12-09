@@ -1,9 +1,0 @@
-logging:
-  config: classpath:log4j2-dev.xml
-  
-spring:
-  datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/ymp_gotv?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&autoReconnect=true&useSSL=false&serverTimezone=UTC
-    username: root
-    password: root

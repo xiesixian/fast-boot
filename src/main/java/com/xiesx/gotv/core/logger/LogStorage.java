@@ -37,7 +37,7 @@ public class LogStorage extends JdbcEntity<LogStorage> {
 	/**
 	 * 创建时间
 	 */
-	@Column
+	@Column(name = "create_date")
 	private Date createDate;
 
 	/**

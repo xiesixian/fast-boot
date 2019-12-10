@@ -95,6 +95,10 @@ public class SQLContext {
 	// ================私有
 
 	private String getSqlToStringFormat(Boolean format) {
-		return SQLUtils.formatMySql(this.sql.toString(), new SQLUtils.FormatOption(false));
+		if (format) {
+			return SQLUtils.formatMySql(this.sql.toString(), new SQLUtils.FormatOption(false));
+		} else {
+			return this.sql.toString();
+		}
 	}
 }

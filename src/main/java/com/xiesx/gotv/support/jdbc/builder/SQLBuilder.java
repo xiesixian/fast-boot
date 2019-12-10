@@ -69,7 +69,7 @@ public class SQLBuilder {
 			if (fields != null) {
 				field = Joiner.on(", ").join(fields);
 			}
-			condition.append("select " + field + " from " + tableName + " where 1=1 ");
+			condition.append("select " + field + " from " + tableName + " where 1=1");
 			List<Object> params = new ArrayList<Object>();
 			int count = 0;
 			for (PropertyDescriptor pd : pds) {
@@ -90,11 +90,7 @@ public class SQLBuilder {
 				count++;
 			}
 			SQLContext sqlContext = new SQLContext(condition, params);
-			if (log.isDebugEnabled()) {
-				log.info(String.format("query %n sql--------------->： %n %s %n par--------------->：%n %s", sqlContext.getSqlFormat(), sqlContext.getParams()));
-			} else {
-				log.info(String.format("query %n sql--------------->： %n %s %n par--------------->：%n %s", sqlContext.getSqlString(), sqlContext.getParams()));
-			}
+			log.info(String.format("query sql------>： %s par------>：%s", sqlContext.getSqlString(), sqlContext.getParams()));
 			return sqlContext;
 		} catch (Exception e) {
 			log.error("select error:{}", e);
@@ -161,11 +157,7 @@ public class SQLBuilder {
 			sql.append(args);
 			//
 			SQLContext sqlContext = new SQLContext(sql, params);
-			if (log.isDebugEnabled()) {
-				log.info(String.format("insert %n sql--------------->： %n %s %n par--------------->：%n %s", sqlContext.getSqlFormat(), sqlContext.getParams()));
-			} else {
-				log.info(String.format("insert %n sql--------------->： %n %s %n par--------------->：%n %s", sqlContext.getSqlString(), sqlContext.getParams()));
-			}
+			log.info(String.format("insert sql------>： %s par------>：%s", sqlContext.getSqlString(), sqlContext.getParams()));
 			return sqlContext;
 		} catch (Exception e) {
 			log.error("insert error:{}", e);
@@ -234,11 +226,7 @@ public class SQLBuilder {
 			params.add(primaryValue);
 			//
 			SQLContext sqlContext = new SQLContext(sql, primaryName, params);
-			if (log.isDebugEnabled()) {
-				log.info(String.format("update %n sql--------------->： %n %s %n par--------------->：%n %s", sqlContext.getSqlFormat(), sqlContext.getParams()));
-			} else {
-				log.info(String.format("update %n sql--------------->： %n %s %n par--------------->：%n %s", sqlContext.getSqlString(), sqlContext.getParams()));
-			}
+			log.info(String.format("update sql------>： %s par------>：%s", sqlContext.getSqlString(), sqlContext.getParams()));
 			return sqlContext;
 		} catch (Exception e) {
 			log.error("update error:{}", e);

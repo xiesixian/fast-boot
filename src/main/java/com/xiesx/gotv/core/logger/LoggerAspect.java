@@ -22,7 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
-import com.xiesx.gotv.core.logger.annotation.GoLoggerStorage;
+import com.xiesx.gotv.core.logger.annotation.LoggerStorage;
 
 /**
  * @title LoggerAspect.java
@@ -53,7 +53,7 @@ public class LoggerAspect {
 		Method method = signature.getMethod();
 		String methodName = method.getName();
 		// 获取注解信息
-		GoLoggerStorage annotation = (GoLoggerStorage) method.getAnnotation(GoLoggerStorage.class);
+		LoggerStorage annotation = (LoggerStorage) method.getAnnotation(LoggerStorage.class);
 		Boolean isPrint = Boolean.valueOf(annotation == null ? true : annotation.print());
 		Boolean isStorage = Boolean.valueOf(annotation == null ? false : annotation.storage());
 		Boolean isPrettyFormat = Boolean.valueOf(annotation == null ? false : annotation.prettyFormat());

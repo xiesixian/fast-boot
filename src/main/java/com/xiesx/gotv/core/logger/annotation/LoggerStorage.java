@@ -12,7 +12,7 @@ import com.xiesx.gotv.core.logger.cfg.LoggerCfg;
 @Target({ ElementType.METHOD })
 @Retention(RetentionPolicy.RUNTIME)
 @Import({ LoggerCfg.class })
-public @interface GoLoggerStorage {
+public @interface LoggerStorage {
 
 	boolean print() default false;
 

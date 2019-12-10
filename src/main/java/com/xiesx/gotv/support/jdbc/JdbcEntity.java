@@ -50,7 +50,7 @@ public abstract class JdbcEntity<T> extends JdbcDaoSupport implements Serializab
 	public T find(List<String> fields) {
 		try {
 			SQLContext sqlContext = SQLBuilder.select(this, fields);
-			return rowMapper.fillToMap(jdbcTemplate.queryForMap(sqlContext.toString(), sqlContext.getSqlParams()));
+			return rowMapper.fillToMap(jdbcTemplate.queryForMap(sqlContext.getSqlString(), sqlContext.getSqlParams()));
 		} catch (Exception e) {}
 		return null;
 	}

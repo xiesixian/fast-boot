@@ -14,7 +14,7 @@ import net.dongliu.requests.Requests;
 import net.dongliu.requests.Session;
 
 import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import com.alibaba.fastjson.JSON;
 import com.github.rholder.retry.RetryException;
@@ -36,7 +36,7 @@ import com.xiesx.gotv.utils.ObjectUtil;
  */
 @Slf4j
 @Scope("prototype")
-@Service("httpCilentRetryImplRe")
+@Component("httpCilentRetryImplRe")
 public class HttpCilentRetryImplRe extends BaseHttpRetryCilent implements IHttpCilentRetry<RawResponse>, IHttpCallable<RawResponse> {
 
 	/**

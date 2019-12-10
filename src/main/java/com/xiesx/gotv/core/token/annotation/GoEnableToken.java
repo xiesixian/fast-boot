@@ -1,4 +1,4 @@
-package com.xiesx.gotv.core.exception.annotation;
+package com.xiesx.gotv.core.token.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,10 +7,10 @@ import java.lang.annotation.Target;
 
 import org.springframework.context.annotation.Import;
 
-import com.xiesx.gotv.core.exception.BaseRestExceptionAdvice;
+import com.xiesx.gotv.core.token.cfg.TokenCfg;
 
 @Target({ ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
-@Import({ BaseRestExceptionAdvice.class })
-public @interface GoEnableRestExcAdvice {
+@Import({ TokenCfg.class})
+public @interface GoEnableToken {
 }

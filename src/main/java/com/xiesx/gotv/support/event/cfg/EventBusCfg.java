@@ -1,4 +1,4 @@
-package com.xiesx.gotv.core.event.cfg;
+package com.xiesx.gotv.support.event.cfg;
 
 import java.util.Map;
 
@@ -6,13 +6,12 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Configuration;
 
 import com.google.common.collect.Maps;
-import com.xiesx.gotv.core.event.EventBusHelper;
-import com.xiesx.gotv.core.event.base.AbstractEventBus;
+import com.xiesx.gotv.core.context.SpringApplicationContextAware;
+import com.xiesx.gotv.support.event.EventBusHelper;
+import com.xiesx.gotv.support.event.base.AbstractEventBus;
 
 /**
  * @title EventBusCfg.java
@@ -24,9 +23,6 @@ import com.xiesx.gotv.core.event.base.AbstractEventBus;
 @Configuration
 public class EventBusCfg implements InitializingBean, DisposableBean {
 
-	@Autowired
-	private ApplicationContext applicationContext;
-
 	@SuppressWarnings("rawtypes")
 	private Map<String, AbstractEventBus> beans = Maps.newConcurrentMap();
 
@@ -35,7 +31,7 @@ public class EventBusCfg implements InitializingBean, DisposableBean {
 	 */
 	@Override
 	public void afterPropertiesSet() throws Exception {
-		beans = applicationContext.getBeansOfType(AbstractEventBus.class);
+		beans = SpringApplicationContextAware.getApplicationContext().getBeansOfType(AbstractEventBus.class);
 		if (beans != null) {
 			for (AbstractEventBus<?> eventAbstract : beans.values()) {
 				EventBusHelper.register(eventAbstract);

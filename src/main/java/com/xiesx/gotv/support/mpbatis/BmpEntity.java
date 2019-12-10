@@ -1,7 +1,5 @@
 package com.xiesx.gotv.support.mpbatis;
 
-import io.swagger.annotations.ApiModelProperty;
-
 import java.io.Serializable;
 import java.util.Date;
 
@@ -29,20 +27,36 @@ public class BmpEntity<T extends Model<T>> extends Model<T> {
 
 	private static final long serialVersionUID = 1L;
 
-	@ApiModelProperty(value = "主键")
+	/**
+	 * 主键
+	 */
 	@JSONField(ordinal = 1)
 	@TableId(type = IdType.ASSIGN_ID)
 	public String id;
 
-	@ApiModelProperty(value = "创建时间")
+	/**
+	 * 创建时间
+	 */
 	@JSONField(ordinal = 2)
 	@TableField(value = "create_date", fill = FieldFill.INSERT, insertStrategy = FieldStrategy.NOT_EMPTY)
 	public Date createDate;
 
-	@ApiModelProperty(value = "更新时间")
+	/**
+	 * 更新时间
+	 */
 	@JSONField(ordinal = 3)
 	@TableField(value = "modify_date", fill = FieldFill.INSERT_UPDATE, updateStrategy = FieldStrategy.NOT_EMPTY)
 	public Date modifyDate;
+
+	/** 常量 */
+	public class FIELDS {
+
+		public static final String ID = "id";
+
+		public static final String CREATE_DATE = "create_date";
+
+		public static final String MODIFY_DATE = "modify_date";
+	}
 
 	@Override
 	protected Serializable pkVal() {

@@ -20,7 +20,7 @@ public class SpringHelper {
 	public static Object getBean(String name) {
 		ApplicationContext applicationContext = SpringApplicationContextAware.getApplicationContext();
 		if (applicationContext != null) {
-			applicationContext.getBean(name);
+			return applicationContext.getBean(name);
 		}
 		return null;
 	}
@@ -34,7 +34,7 @@ public class SpringHelper {
 	public static <T> T getBean(Class<T> clazz) {
 		ApplicationContext applicationContext = SpringApplicationContextAware.getApplicationContext();
 		if (applicationContext != null) {
-			applicationContext.getBean(clazz);
+			return applicationContext.getBean(clazz);
 		}
 		return null;
 	}
@@ -49,7 +49,7 @@ public class SpringHelper {
 	public static <T> T getBean(String name, Class<T> clazz) {
 		ApplicationContext applicationContext = SpringApplicationContextAware.getApplicationContext();
 		if (applicationContext != null) {
-			applicationContext.getBean(name, clazz);
+			return applicationContext.getBean(name, clazz);
 		}
 		return null;
 	}

@@ -1,6 +1,11 @@
 package com.xiesx.gotv.base.result;
 
+import java.util.List;
+
 import lombok.NonNull;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.parser.Feature;
 
 public class R {
 
@@ -83,5 +88,23 @@ public class R {
 
 	public static BaseResult error(@NonNull Integer code, @NonNull String msg, Object data) {
 		return BaseResult.builder().code(code).msg(msg).data(data).build();
+	}
+
+	/**
+	 * str 转 jsonObject
+	 */
+	public static <T> T parseObject(String text, Class<T> clazz) {
+		return JSON.parseObject(text, clazz, new Feature[0]);
+	}
+
+	/**
+	 * str 转 jsonArray
+	 * 
+	 * @param text
+	 * @param clazz
+	 * @return
+	 */
+	public static <T> List<T> parseArray(String text, Class<T> clazz) {
+		return JSON.parseArray(text, clazz);
 	}
 }

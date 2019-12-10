@@ -23,7 +23,7 @@ import com.xiesx.gotv.support.jdbc.JdbcEntity;
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
 @Table(name = "api_token")
-public class AuthToken extends JdbcEntity<AuthToken> {
+public class TokenStorage extends JdbcEntity<TokenStorage> {
 
 	private static final long serialVersionUID = 1L;
 

@@ -41,10 +41,7 @@ public class BmpMetaObjectHandler implements MetaObjectHandler {
 	public void updateFill(MetaObject metaObject) {
 		// 修改时间
 		try {
-			Object modifyDate = metaObject.getValue("modifyDate");
-			if (null == modifyDate) {
-				metaObject.setValue("modifyDate", new Date());
-			}
+			metaObject.setValue("modifyDate", new Date());
 		} catch (Exception e) {
 			log.debug("updateFill : " + e.getMessage());
 		}

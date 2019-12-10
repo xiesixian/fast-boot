@@ -1,13 +1,13 @@
-package com.xiesx.gotv;
+package com.xiesx.gotv.core.context;
 
 import java.net.URL;
+import java.util.Map;
 
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import com.xiesx.gotv.core.context.SpringHelper;
 import com.xiesx.gotv.core.logger.LogStorage;
 import com.xiesx.gotv.support.schedule.ScheduleHelper;
 import com.xiesx.gotv.support.schedule.decorator.DefaultDecorator;
@@ -16,7 +16,7 @@ import com.xiesx.gotv.support.schedule.impl.ISchedule;
 import com.xiesx.gotv.utils.ObjectUtil;
 
 @Slf4j
-public class GotvStartup {
+public class SpringStartup {
 
 	public static String classUrl;
 
@@ -34,7 +34,7 @@ public class GotvStartup {
 
 	public static void init() {
 		try {
-			URL url = GotvStartup.class.getResource("/");
+			URL url = SpringStartup.class.getResource("/");
 			classUrl = url.getPath();
 			log.info("Startup classpath url " + classUrl);
 			// /home/gtgj/tomcat-loco/webapps/trainnet/WEB-INF/classes/
@@ -62,21 +62,23 @@ public class GotvStartup {
 			log.info("Startup tomcat-name " + gtgjxname + ", index " + gtgjxIndex + ", path " + gtgjxpath + ", projectname " + projectname + ", projectPath " + projectPath);
 		} catch (Exception e) {
 			log.error("", e);
-			System.exit(1);
 		}
 	}
 
 	public static void logger() {
 		//
+		log.info("Startup logger Storage init Starting...");
+		//
 		JdbcTemplate jdbcTemplate = SpringHelper.getBean(JdbcTemplate.class);
 		//
 		String sql = "SELECT * FROM information_schema.TABLES WHERE TABLE_SCHEMA=(SELECT DATABASE()) AND `table_name` =? ";
 		try {
-			SpringHelper.getBean(JdbcTemplate.class).queryForMap(sql, new Object[] { LogStorage.TABLE.GO_LOG });
+			Map<String, Object> map = SpringHelper.getBean(JdbcTemplate.class).queryForMap(sql, new Object[] { LogStorage.TABLE.API_LOG });
+			log.info("Startup Logger Storage {}", map.isEmpty() == false);
 		} catch (Exception e) {
 			if (e instanceof EmptyResultDataAccessException) {
 				StringBuilder sb = new StringBuilder();
-				sb.append("CREATE TABLE " + LogStorage.TABLE.GO_LOG + " ( ");
+				sb.append("CREATE TABLE " + LogStorage.TABLE.API_LOG + " ( ");
 				sb.append("id VARCHAR(255) NOT NULL COMMENT '主键',");
 				sb.append("create_date DATETIME NOT NULL COMMENT '创建时间',");
 				sb.append("ip VARCHAR(255) COMMENT '请求IP',");
@@ -90,23 +92,27 @@ public class GotvStartup {
 				sb.append("COMMENT='日志存储表';");
 				//
 				jdbcTemplate.execute(sb.toString());
+				log.info("Startup Logger Storage init completed.");
+			} else {
+				log.error("Startup Logger {}", e);
 			}
 		}
 	}
 
 	public static void schedule() {
+		//
+		log.info("Startup Schedule Schedule init Starting...");
+		//
 		try {
-			log.info("服务器: 【{}】", GotvStartup.gtgjxname.trim());
-			log.info("定时任务启动项-start");
 			// 默认实现
 			ISchedule job = new DefaultSchedule();
 			// 默认装饰追加
 			ISchedule job2 = new DefaultDecorator(job);
 			// 开始初始化....
 			job2.init();
-			log.info("定时任务启动项:-end-:{}", ScheduleHelper.getJobsName().size());
+			log.info("Startup Schedule {} init completed.", ScheduleHelper.getJobsName().size());
 		} catch (Exception e) {
-			log.info("定时任务启动项-error", e);
+			log.error("Startup Schedule {}", e);
 		}
 	}
 }

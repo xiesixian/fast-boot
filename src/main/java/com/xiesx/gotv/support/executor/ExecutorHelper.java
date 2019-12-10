@@ -1,4 +1,4 @@
-package com.xiesx.gotv.core.task;
+package com.xiesx.gotv.support.executor;
 
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -7,8 +7,6 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 import lombok.extern.slf4j.Slf4j;
-
-import org.springframework.stereotype.Service;
 
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.ListenableFuture;
@@ -26,20 +24,19 @@ import com.google.common.util.concurrent.MoreExecutors;
  * @date 2018年7月23日 下午4:30:20
  */
 @Slf4j
-@Service
-public class SimpleListenExecutorService {
+public class ExecutorHelper {
 
-	private static final String TAG = SimpleListenExecutorService.class.getSimpleName();
-
-	/**
-	 * 缓存型线程池
-	 */
-	private ListeningExecutorService service = MoreExecutors.listeningDecorator(Executors.newCachedThreadPool());
+	private static final String TAG = ExecutorHelper.class.getSimpleName();
 
 	/**
 	 * 缓存型线程池
 	 */
-	private ListeningExecutorService service_data = MoreExecutors.listeningDecorator(Executors.newCachedThreadPool());
+	private static ListeningExecutorService service = MoreExecutors.listeningDecorator(Executors.newCachedThreadPool());
+
+	/**
+	 * 缓存型线程池
+	 */
+	private static ListeningExecutorService service_data = MoreExecutors.listeningDecorator(Executors.newCachedThreadPool());
 
 	/**
 	 * 添加异步计算任务
@@ -47,7 +44,7 @@ public class SimpleListenExecutorService {
 	 * @param task
 	 * @return
 	 */
-	public <T> ListenableFuture<T> submit(SimpleListenTask<T> task) {
+	public static <T> ListenableFuture<T> submit(DefaultTask<T> task) {
 		return submit(task, task);
 	}
 
@@ -60,7 +57,7 @@ public class SimpleListenExecutorService {
 	 * @param callback
 	 * @return
 	 */
-	public ListenableFuture<?> submit(Runnable task) {
+	public static ListenableFuture<?> submit(Runnable task) {
 		return service.submit(task);
 	}
 
@@ -71,7 +68,7 @@ public class SimpleListenExecutorService {
 	 * @param callback
 	 * @return
 	 */
-	public <T> ListenableFuture<T> submit(Callable<T> task, FutureCallback<T> callback) {
+	public static <T> ListenableFuture<T> submit(Callable<T> task, FutureCallback<T> callback) {
 		ListenableFuture<T> future = service.submit(task);
 		if (callback != null) {
 			//Futures.addCallback(future, callback);
@@ -88,7 +85,7 @@ public class SimpleListenExecutorService {
 	 * @throws InterruptedException
 	 * @throws ExecutionException
 	 */
-	public <T> List<Future<T>> invokeAll(List<SimpleListenTask<T>> tasks) {
+	public static <T> List<Future<T>> invokeAll(List<DefaultTask<T>> tasks) {
 		try {
 			return service.invokeAll(tasks);
 		} catch (InterruptedException e) {
@@ -102,13 +99,13 @@ public class SimpleListenExecutorService {
 	/**
 	 * 停止
 	 */
-	public void shutdownNow2() {
+	public static void shutdownNow2() {
 		//shutdown，执行后不再接收新任务，如果里面有任务，就执行完
 		//shutdownNow，执行后不再接受新任务，如果有等待任务，移出队列；有正在执行的，尝试停止service_data.shutdownNow();
 		service_data.shutdownNow();
 	}
 
-	public ListeningExecutorService getService2() {
+	public static ListeningExecutorService getService2() {
 		if (service_data.isShutdown()) {
 			service_data = MoreExecutors.listeningDecorator(Executors.newCachedThreadPool());
 		}

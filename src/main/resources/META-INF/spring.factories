@@ -1,3 +1,4 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 com.xiesx.gotv.core.context.SpringApplicationContextAware,\
+com.xiesx.gotv.support.validate.cfg.ValidatorCfg,\
 com.xiesx.gotv.support.request.cfg.HttpCilentRetryCfg

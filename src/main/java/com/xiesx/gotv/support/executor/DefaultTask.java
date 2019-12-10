@@ -1,4 +1,4 @@
-package com.xiesx.gotv.core.task;
+package com.xiesx.gotv.support.executor;
 
 import java.util.concurrent.Callable;
 
@@ -13,7 +13,7 @@ import com.google.common.util.concurrent.FutureCallback;
  * @date 2019年1月3日 下午2:38:12
  */
 @Slf4j
-public class SimpleListenTask<T> implements Callable<T>, FutureCallback<T> {
+public class DefaultTask<T> implements Callable<T>, FutureCallback<T> {
 
 	/**
 	 * 执行

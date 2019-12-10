@@ -24,7 +24,7 @@ public class SimpleJobSchedule implements Job {
 
 	public static final String simple_job_name = "SimpleJob";
 
-	public static final String simple_job_cron = "0/10 * * * * ?";
+	public static final String simple_job_cron = "0/30 * * * * ?";
 
 	@Override
 	public void execute(JobExecutionContext context) throws JobExecutionException {

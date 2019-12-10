@@ -1,8 +1,5 @@
 package com.xiesx.gotv.core.logger;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-
 import java.io.Serializable;
 import java.util.Date;
 
@@ -25,53 +22,70 @@ import com.xiesx.gotv.support.jdbc.JdbcEntity;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
-@Table(name = LogStorage.TABLE.GO_LOG)
-@ApiModel(value = "Log", description = "日志存储表")
+@Table(name = LogStorage.TABLE.API_LOG)
 public class LogStorage extends JdbcEntity<LogStorage> {
 
 	private static final long serialVersionUID = 1L;
 
-	@ApiModelProperty(value = "主键")
+	/**
+	 * 主键
+	 */
 	@Id
 	@Column(name = "id")
 	private String id;
 
-	@ApiModelProperty(value = "创建时间")
+	/**
+	 * 创建时间
+	 */
 	@Column
 	private Date createDate;
 
-	@ApiModelProperty(value = "请求IP")
+	/**
+	 * 请求IP
+	 */
 	@Column
 	private String ip;
 
-	@ApiModelProperty(value = "方法")
+	/**
+	 * 方法
+	 */
 	@Column
 	private String method;
 
-	@ApiModelProperty(value = "方式")
+	/**
+	 * 方式
+	 */
 	@Column(name = "TYPE")
 	private String type;
 
-	@ApiModelProperty(value = "地址")
+	/**
+	 * 地址
+	 */
 	@Column
 	private String url;
 
-	@ApiModelProperty(value = "请求")
+	/**
+	 * 请求
+	 */
 	@Column
 	private String req;
 
-	@ApiModelProperty(value = "响应")
+	/**
+	 * 响应
+	 */
 	@Column
 	private String res;
 
-	@ApiModelProperty(value = "执行时间（毫秒）")
+	/**
+	 * 执行时间（毫秒）
+	 */
 	@Column
 	private Long t;
 
 	/** 常量 */
 	public class TABLE {
 
-		public static final String GO_LOG = "go_log";
+		public static final String API_LOG = "api_log";
 	}
 
 	public class FIELDS {

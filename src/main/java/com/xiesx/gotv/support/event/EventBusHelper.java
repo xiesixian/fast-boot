@@ -1,10 +1,10 @@
-package com.xiesx.gotv.core.event;
+package com.xiesx.gotv.support.event;
 
 import lombok.extern.slf4j.Slf4j;
 
 import com.google.common.eventbus.EventBus;
-import com.xiesx.gotv.core.event.base.AbstractEventBus;
-import com.xiesx.gotv.core.event.base.EventBusInterface;
+import com.xiesx.gotv.support.event.base.AbstractEventBus;
+import com.xiesx.gotv.support.event.base.EventBusInterface;
 
 /**
  * @title SimpleEventBusUtils.java

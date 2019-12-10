@@ -1,4 +1,4 @@
-package com.xiesx.gotv.core.event.base;
+package com.xiesx.gotv.support.event.base;
 
 import lombok.extern.slf4j.Slf4j;
 

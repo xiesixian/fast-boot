@@ -1,4 +1,4 @@
-package com.xiesx.gotv.core.event.annotation;
+package com.xiesx.gotv.support.event.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
-import com.xiesx.gotv.core.event.cfg.EventBusCfg;
+import com.xiesx.gotv.support.event.cfg.EventBusCfg;
 
 /**
  * @title EnableEventBus.java

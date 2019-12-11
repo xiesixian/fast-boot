@@ -26,7 +26,7 @@ public class EventBusHelper {
 		if (event == null) {
 			return;
 		}
-		log.info("post : {}", event.getClass());
+		log.info("post : {}", event.getClass().getName());
 		eventBus.post(event);
 	}
 
@@ -39,7 +39,7 @@ public class EventBusHelper {
 		if (handler == null) {
 			return;
 		}
-		log.info("register : {}", handler.getClass());
+		log.info("register : {}", handler.getClass().getName());
 		eventBus.register(handler);
 	}
 
@@ -52,7 +52,7 @@ public class EventBusHelper {
 		if (handler == null) {
 			return;
 		}
-		log.info("unregister : {}", handler.getClass());
+		log.info("unregister : {}", handler.getClass().getName());
 		eventBus.unregister(handler);
 	}
 }

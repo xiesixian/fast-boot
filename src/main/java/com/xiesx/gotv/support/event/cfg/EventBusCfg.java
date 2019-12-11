@@ -37,7 +37,7 @@ public class EventBusCfg implements InitializingBean, DisposableBean {
 				EventBusHelper.register(eventAbstract);
 			}
 		}
-		log.info("afterPropertiesSet:{}", beans);
+		log.info("Startup EventBus {} register completed.", beans.size());
 	}
 
 	/**
@@ -50,6 +50,6 @@ public class EventBusCfg implements InitializingBean, DisposableBean {
 				EventBusHelper.unregister(eventAbstract);
 			}
 		}
-		log.info("destroy:{}", beans);
+		log.info("Startup EventBus {} destroy", beans.size());
 	}
 }

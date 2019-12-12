@@ -15,7 +15,7 @@ import com.github.rholder.retry.RetryException;
 public interface IHttpRetry<T> {
 
 	// ========get========
- 
+
 	/**
 	 * get_try
 	 * 
@@ -61,7 +61,7 @@ public interface IHttpRetry<T> {
 	T get_try(String url, Map<String, Object> params, Proxy proxy) throws ExecutionException, RetryException;
 
 	// ========post========
- 
+
 	/**
 	 * post_try
 	 * 

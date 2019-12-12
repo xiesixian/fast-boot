@@ -11,6 +11,6 @@ import com.xiesx.gotv.core.token.cfg.TokenCfg;
 
 @Target({ ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
-@Import({ TokenCfg.class})
+@Import({ TokenCfg.class })
 public @interface GoEnableToken {
 }

@@ -6,7 +6,6 @@ import java.util.Map;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Lists;
-import com.xiesx.gotv.utils.ObjectUtil;
 
 /**
  * @title DefaultRowMappler.java
@@ -37,7 +36,7 @@ public class DefaultRowMappler<T> {
 	 * @return
 	 */
 	public T fillToMap(Map<String, Object> map) {
-		if (ObjectUtil.isNull(map)) {
+		if (map == null) {
 			return null;
 		}
 		return JSON.toJavaObject(new JSONObject(map), clazz);

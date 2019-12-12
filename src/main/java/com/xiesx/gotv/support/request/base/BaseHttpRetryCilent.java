@@ -30,9 +30,9 @@ public class BaseHttpRetryCilent {
 	protected Predicate<RawResponse> reRetryPredicate = new Predicate<RawResponse>() {
 
 		public boolean apply(RawResponse raw) {
-			if (raw == null) {//当返回null
+			if (raw == null) {// 当返回null
 				return true;
-			} else if (raw.statusCode() != 200) {//当返回不等于200时重试
+			} else if (raw.statusCode() != 200) {// 当返回不等于200时重试
 				return true;
 			}
 			return false;
@@ -50,7 +50,7 @@ public class BaseHttpRetryCilent {
 	 * 初始化 proxy
 	 */
 	private static void init_header() {
-		//强制所有请求
+		// 强制所有请求
 		headers = Maps.newConcurrentMap();
 		headers.put("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
 	}

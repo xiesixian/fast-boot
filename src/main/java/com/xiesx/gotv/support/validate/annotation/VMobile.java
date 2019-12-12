@@ -21,15 +21,15 @@ import javax.validation.constraints.NotEmpty;
  * @author Sixian.xie
  * @date 2019年3月6日 下午6:24:22
  */
-//申明注解的作用位置
+// 申明注解的作用位置
 @Target({ ANNOTATION_TYPE, FIELD, METHOD, PARAMETER })
-//运行时机
+// 运行时机
 @Retention(RUNTIME)
-//定义对应的校验器,自定义注解必须指定
+// 定义对应的校验器,自定义注解必须指定
 @Constraint(validatedBy = {})
-//定义不能为空
+// 定义不能为空
 @NotEmpty(message = "{go.empty}")
-//定义长度验证
+// 定义长度验证
 @Length(min = 11, max = 11, message = "{go.mobile}")
 public @interface VMobile {
 

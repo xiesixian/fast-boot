@@ -43,11 +43,11 @@ public class ScheduleHelper {
 	 * 添加一个定时任务，使用默认的任务组名，触发器名，触发器组名
 	 * 
 	 * @param jobName
-	 *        任务名
+	 *            任务名
 	 * @param cls
-	 *        任务
+	 *            任务
 	 * @param cron
-	 *        时间设置，参考quartz说明文档
+	 *            时间设置，参考quartz说明文档
 	 * @throws SchedulerException
 	 */
 	public static void addJob(String jobName, Class<? extends Job> cls, String cron, JobDataMap map) throws SchedulerException {
@@ -77,17 +77,17 @@ public class ScheduleHelper {
 	 * 添加一个定时任务
 	 * 
 	 * @param jobName
-	 *        任务名
+	 *            任务名
 	 * @param jobGroupName
-	 *        任务组名
+	 *            任务组名
 	 * @param triggerName
-	 *        触发器名
+	 *            触发器名
 	 * @param triggerGroupName
-	 *        触发器组名
+	 *            触发器组名
 	 * @param jobClass
-	 *        任务
+	 *            任务
 	 * @param cron
-	 *        时间设置，参考quartz说明文档
+	 *            时间设置，参考quartz说明文档
 	 */
 	public static void addJob(String jobName, String jobGroupName, String triggerName, String triggerGroupName, Class<? extends Job> cls, String cron, JobDataMap map) throws SchedulerException {
 

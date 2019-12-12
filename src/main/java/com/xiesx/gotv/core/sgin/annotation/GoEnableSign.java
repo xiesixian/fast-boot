@@ -11,6 +11,6 @@ import com.xiesx.gotv.core.sgin.cfg.SignCfg;
 
 @Target({ ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
-@Import({ SignCfg.class})
+@Import({ SignCfg.class })
 public @interface GoEnableSign {
 }

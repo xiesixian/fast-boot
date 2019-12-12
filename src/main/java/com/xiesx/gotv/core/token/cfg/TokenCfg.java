@@ -22,10 +22,10 @@ public class TokenCfg implements WebMvcConfigurer {
 	public static final String USER_KEY = "user_id";
 
 	@Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new TokenInterceptorHandler()).addPathPatterns("/**");
-    }
-	
+	public void addInterceptors(InterceptorRegistry registry) {
+		registry.addInterceptor(new TokenInterceptorHandler()).addPathPatterns("/**");
+	}
+
 	@Override
 	public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
 		resolvers.add(new TokenMethodArgumentResolverHandler());

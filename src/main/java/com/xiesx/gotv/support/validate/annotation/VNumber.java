@@ -21,11 +21,11 @@ import com.xiesx.gotv.support.validate.rule.VNumberRule;
  * @author Sixian.xie
  * @date 2018年12月21日 下午6:15:48
  */
-//申明注解的作用位置
+// 申明注解的作用位置
 @Target({ ANNOTATION_TYPE, FIELD, METHOD, PARAMETER })
-//运行时机
+// 运行时机
 @Retention(RUNTIME)
-//定义对应的校验器,自定义注解必须指定
+// 定义对应的校验器,自定义注解必须指定
 @Constraint(validatedBy = { VNumberRule.class })
 // 附带不能为空
 @NotEmpty(message = "{go.empty}")

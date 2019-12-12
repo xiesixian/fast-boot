@@ -84,7 +84,7 @@ public final class Fields {
 	public List<String> fields() {
 		return this.fields;
 	}
-	
+
 	public String[] toArray() {
 		return fields.toArray(new String[0]);
 	}

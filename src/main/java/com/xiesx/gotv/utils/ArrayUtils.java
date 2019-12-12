@@ -57,14 +57,14 @@ public class ArrayUtils {
 	}
 
 	public static void main(String[] args) throws UnsupportedEncodingException, IllegalAccessException {
-		//按照,号分割
+		// 按照,号分割
 		List<String> list1 = splitToList(",1,2,3, ,4,");
 		System.out.println(list1);
 		System.out.println(joinTolist(list1));
-		//按照|号分割
+		// 按照|号分割
 		List<String> list2 = splitToList("|4|5|6| |7", "|");
 		System.out.println(list2);
-		//按照,号拼接
+		// 按照,号拼接
 		System.out.println(joinTolist(list2, ","));
 	}
 }

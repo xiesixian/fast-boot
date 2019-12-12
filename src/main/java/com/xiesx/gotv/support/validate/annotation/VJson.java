@@ -21,13 +21,13 @@ import com.xiesx.gotv.support.validate.rule.VJsonRule;
  * @author Sixian.xie
  * @date 2019年3月6日 下午6:24:22
  */
-//申明注解的作用位置
+// 申明注解的作用位置
 @Target({ ANNOTATION_TYPE, FIELD, METHOD, PARAMETER })
-//运行时机
+// 运行时机
 @Retention(RUNTIME)
-//定义对应的校验器,自定义注解必须指定
+// 定义对应的校验器,自定义注解必须指定
 @Constraint(validatedBy = { VJsonRule.class })
-//附带不能为空
+// 附带不能为空
 @NotEmpty(message = "{go.empty}")
 public @interface VJson {
 

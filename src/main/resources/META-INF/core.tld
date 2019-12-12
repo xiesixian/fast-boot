@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+	version="2.0">
+
+	<short-name>gtld</short-name>
+	<tlib-version>1.0</tlib-version>
+	<uri>http://go168.xyz/jsp/jstl/core</uri>
+
+	<display-name>GotvWebTagLib</display-name>
+	<description>GotvWebTagLib Core Tag Library 1.0</description>
+
+	<!-- ui -->
+	<!-- UITag -->
+	<tag>
+		<display-name>UITag</display-name>
+		<name>ui</name>
+		<tag-class>com.xiesx.gotv.tld.UITag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>src</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>cleanup</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+	</tag>
+
+	<!-- LayoutTag -->
+	<tag>
+		<display-name>LayoutTag</display-name>
+		<name>layout</name>
+		<tag-class>com.xiesx.gotv.tld.LayoutTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>name</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>src</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>cleanup</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+	</tag>
+
+	<!-- body -->
+	<!-- PropertyTag -->
+	<tag>
+		<display-name>PropertyTag</display-name>
+		<name>property</name>
+		<tag-class>com.xiesx.gotv.tld.body.PropertyTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>name</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>value</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+	</tag>
+
+	<!-- ScriptTag -->
+	<tag>
+		<display-name>ScriptTag</display-name>
+		<name>script</name>
+		<tag-class>com.xiesx.gotv.tld.body.ScriptTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>id</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>src</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>value</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>wrapper</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+	</tag>
+
+	<!-- MetaTag -->
+	<tag>
+		<display-name>MetaTag</display-name>
+		<name>meta</name>
+		<tag-class>com.xiesx.gotv.tld.body.MetaTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>attrKey</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>attrValue</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+	</tag>
+
+	<!-- CssTag -->
+	<tag>
+		<display-name>CssTag</display-name>
+		<name>css</name>
+		<tag-class>com.xiesx.gotv.tld.body.CssTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<name>href</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>rel</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>media</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+	</tag>
+
+</taglib>

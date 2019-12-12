@@ -2,8 +2,6 @@ package com.xiesx.gotv.support.jdbc.builder;
 
 import java.util.List;
 
-import com.alibaba.druid.sql.SQLUtils;
-
 /**
  * @title SQLContext.java
  * @description SQL信息
@@ -96,7 +94,8 @@ public class SQLContext {
 
 	private String getSqlToStringFormat(Boolean format) {
 		if (format) {
-			return SQLUtils.formatMySql(this.sql.toString(), new SQLUtils.FormatOption(false));
+			//return SQLUtils.formatMySql(this.sql.toString(), new SQLUtils.FormatOption(false));
+			return this.sql.toString();
 		} else {
 			return this.sql.toString();
 		}

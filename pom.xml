@@ -41,6 +41,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+			<scope>provided</scope>
 			<exclusions><!-- 去掉默认配置 -->
 				<exclusion>
 					<groupId>org.springframework.boot</groupId>
@@ -52,23 +53,21 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-aop</artifactId>
+			<scope>provided</scope>
 		</dependency>
 		<!-- jdbc -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-jdbc</artifactId>
+			<scope>provided</scope>
 		</dependency>
 		<!-- log4j2 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-log4j2</artifactId>
+			<scope>provided</scope>
 		</dependency>
-		<!-- test -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-		</dependency>
-		 
+
 		<!-- ==========================build========================== -->
 		<!-- lombok -->
 		<dependency>
@@ -96,34 +95,28 @@
 		</dependency>
 
 		<!-- ==========================数据库========================== -->
-		<!-- https://mvnrepository.com/artifact/com.alibaba/druid -->
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>druid</artifactId>
-			<version>1.1.21</version>
-		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-core -->
 		<dependency>
 			<groupId>com.baomidou</groupId>
 			<artifactId>mybatis-plus-core</artifactId>
 			<version>3.3.0</version>
+			<scope>provided</scope>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-extension -->
 		<dependency>
 			<groupId>com.baomidou</groupId>
 			<artifactId>mybatis-plus-extension</artifactId>
 			<version>3.3.0</version>
+			<scope>provided</scope>
 		</dependency>
 
-		<!-- ==========================网络========================== -->
+		<!-- ==========================工具========================== -->
 		<!-- https://mvnrepository.com/artifact/net.dongliu/requests -->
 		<dependency>
 			<groupId>net.dongliu</groupId>
 			<artifactId>requests</artifactId>
 			<version>5.0.7</version>
 		</dependency>
-
-		<!-- ==========================工具========================== -->
 		<!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
 		<dependency>
 			<groupId>com.alibaba</groupId>
@@ -142,72 +135,29 @@
 			<artifactId>guava-retrying</artifactId>
 			<version>2.0.0</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+		<!-- https://mvnrepository.com/artifact/org.quartz-scheduler/quartz -->
 		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
-			<version>2.4</version>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz</artifactId>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
 		<dependency>
 			<groupId>commons-codec</groupId>
 			<artifactId>commons-codec</artifactId>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils -->
+		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
 		<dependency>
-			<groupId>commons-beanutils</groupId>
-			<artifactId>commons-beanutils</artifactId>
-			<version>1.9.4</version>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.4</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.clojars.cbilson/pinyin4j -->
-		<dependency>
-			<groupId>org.clojars.cbilson</groupId>
-			<artifactId>pinyin4j</artifactId>
-			<version>2.5.0</version>
-		</dependency>
 
 		<!-- ==========================其他========================== -->
-		<!-- https://mvnrepository.com/artifact/org.quartz-scheduler/quartz -->
-		<dependency>
-			<groupId>org.quartz-scheduler</groupId>
-			<artifactId>quartz</artifactId>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.janeluo/ikanalyzer -->
-		<dependency>
-			<groupId>com.janeluo</groupId>
-			<artifactId>ikanalyzer</artifactId>
-			<version>2012_u6</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.clojars.cbilson/pinyin4j -->
-		<dependency>
-			<groupId>org.clojars.cbilson</groupId>
-			<artifactId>pinyin4j</artifactId>
-			<version>2.5.0</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/xml-apis/xml-apis -->
-		<dependency>
-			<groupId>xml-apis</groupId>
-			<artifactId>xml-apis</artifactId>
-			<version>1.4.01</version>
-		</dependency>
-		<!-- ==========================测试========================== -->
-		<!-- https://mvnrepository.com/artifact/junit/junit -->
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.12</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/io.rest-assured/rest-assured -->
-		<dependency>
-			<groupId>io.rest-assured</groupId>
-			<artifactId>rest-assured</artifactId>
-		</dependency>
-
 	</dependencies>
 
 	<!-- 版本管理，不会引入jar -->
@@ -241,11 +191,15 @@
 		<!-- 5、打jar包， maven-jar-plugin:2.6:jar -->
 		<!-- 6、repackage，spring-boot-maven-plugin:1.5.13 -->
 		<finalName>gotv-core</finalName>
-		<!-- <resources> <resource> 加载com里面的配置文件 <directory>${gtgjxcom.path.dev}</directory> 
-			<includes> <include>**/*.*</include> </includes> <filtering>false</filtering> 
-			</resource> <resource> 加载本项目里面的配置文件 <directory>src/main/resources</directory> 
-			<includes> <include>**/*.*</include> </includes> <filtering>false</filtering> 
-			</resource> </resources> -->
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**/*.*</include>
+				</includes>
+				<filtering>false</filtering>
+			</resource>
+		</resources>
 		<plugins>
 			<!-- 追加外部源文件 -->
 			<!-- <plugin> <groupId>org.codehaus.mojo</groupId> <artifactId>build-helper-maven-plugin</artifactId> 

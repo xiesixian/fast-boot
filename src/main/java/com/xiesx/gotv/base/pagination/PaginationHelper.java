@@ -34,6 +34,11 @@ public class PaginationHelper {
 	 * @return
 	 */
 	public static PaginationResult create(@NonNull List<?> data, Integer total) {
-		return PaginationResult.builder().data(Lists.newArrayList(data)).total(total).build();
+		List<?> list = Lists.newArrayList(data);
+		if (list.isEmpty()) {
+			return PaginationResult.builder().code(1).msg("无数据").data(Lists.newArrayList()).count(0).build();
+		} else {
+			return PaginationResult.builder().code(0).data(list).count(total).build();
+		}
 	}
 }

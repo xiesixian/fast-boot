@@ -48,7 +48,7 @@ public class ExecutorHelper {
 		return submit(task, task);
 	}
 
-	//--------------------
+	// --------------------
 
 	/**
 	 * 添加异步任务，当有结果了进行回调
@@ -71,7 +71,7 @@ public class ExecutorHelper {
 	public static <T> ListenableFuture<T> submit(Callable<T> task, FutureCallback<T> callback) {
 		ListenableFuture<T> future = service.submit(task);
 		if (callback != null) {
-			//Futures.addCallback(future, callback);
+			// Futures.addCallback(future, callback);
 		}
 		return future;
 	}
@@ -94,14 +94,14 @@ public class ExecutorHelper {
 		return null;
 	}
 
-	//--------------------
+	// --------------------
 
 	/**
 	 * 停止
 	 */
 	public static void shutdownNow2() {
-		//shutdown，执行后不再接收新任务，如果里面有任务，就执行完
-		//shutdownNow，执行后不再接受新任务，如果有等待任务，移出队列；有正在执行的，尝试停止service_data.shutdownNow();
+		// shutdown，执行后不再接收新任务，如果里面有任务，就执行完
+		// shutdownNow，执行后不再接受新任务，如果有等待任务，移出队列；有正在执行的，尝试停止service_data.shutdownNow();
 		service_data.shutdownNow();
 	}
 

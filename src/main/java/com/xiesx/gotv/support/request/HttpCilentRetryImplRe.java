@@ -26,7 +26,6 @@ import com.xiesx.gotv.support.request.base.BaseHttpRetryCilent;
 import com.xiesx.gotv.support.request.base.BaseHttpRetryListener;
 import com.xiesx.gotv.support.request.config.HttpCilentRetryConfig;
 import com.xiesx.gotv.support.request.impl.IHttpCallable;
-import com.xiesx.gotv.utils.ObjectUtil;
 
 /**
  * @title 自定义Requests网络请求类实现类
@@ -155,7 +154,7 @@ public class HttpCilentRetryImplRe extends BaseHttpRetryCilent implements IHttpC
 		// 请求UA
 		requestBuilder.userAgent(getSingleRandomUserAgent());
 		// 请求参数
-		if (ObjectUtil.isNotNull(params)) {
+		if (params != null) {
 			if (method.equals(Methods.GET)) {
 				requestBuilder.params(params);
 				log.info("{} params: {}", method, JSON.toJSONString(params));
@@ -165,7 +164,7 @@ public class HttpCilentRetryImplRe extends BaseHttpRetryCilent implements IHttpC
 			}
 		}
 		// 动态代理
-		if (HttpCilentRetryConfig.ISPROXY && ObjectUtil.isNotNull(proxy)) {
+		if (HttpCilentRetryConfig.ISPROXY && proxy != null) {
 			requestBuilder.proxy(proxy);
 			log.info("{} proxy: {}", method, proxy);
 		}

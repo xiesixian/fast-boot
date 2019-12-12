@@ -13,20 +13,19 @@ import javax.validation.Constraint;
 import javax.validation.Payload;
 import javax.validation.constraints.NotEmpty;
 
-
 /**
  * @title VEmpty.java
  * @description
  * @author Sixian.xie
  * @date 2019年3月7日 上午11:01:43
  */
-//申明注解的作用位置
+// 申明注解的作用位置
 @Target({ ANNOTATION_TYPE, FIELD, METHOD, PARAMETER })
-//运行时机
+// 运行时机
 @Retention(RUNTIME)
-//定义对应的校验器,自定义注解必须指定
+// 定义对应的校验器,自定义注解必须指定
 @Constraint(validatedBy = {})
-//附带不能为空
+// 附带不能为空
 @NotEmpty(message = "{go.empty}")
 public @interface VEmpty {
 

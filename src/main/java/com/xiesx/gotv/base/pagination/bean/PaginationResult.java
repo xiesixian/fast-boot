@@ -17,9 +17,16 @@ import com.alibaba.fastjson.annotation.JSONField;
 @Builder
 public class PaginationResult {
 
+	// 状态
 	@JSONField(ordinal = 1)
-	public List<?> data;
+	public Integer code;
 
 	@JSONField(ordinal = 2)
-	public Integer total;
+	public String msg;
+
+	@JSONField(ordinal = 3)
+	public List<?> data;
+
+	@JSONField(ordinal = 4)
+	public Integer count;
 }

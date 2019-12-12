@@ -16,13 +16,13 @@ import com.xiesx.gotv.support.event.cfg.EventBusCfg;
  * @author Sixian.xie
  * @date 2019年3月12日 下午6:06:05
  */
-//申明注解的作用位置
+// 申明注解的作用位置
 @Target(ElementType.TYPE)
-//运行时机
+// 运行时机
 @Retention(RetentionPolicy.RUNTIME)
-//初始扫描
+// 初始扫描
 @Configuration
-//动态注入
+// 动态注入
 @Import(EventBusCfg.class)
 public @interface EventBusEnable {
 

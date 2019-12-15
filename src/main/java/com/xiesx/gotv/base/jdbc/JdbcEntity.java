@@ -1,4 +1,4 @@
-package com.xiesx.gotv.support.jdbc;
+package com.xiesx.gotv.base.jdbc;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 
 import com.xiesx.gotv.core.context.SpringHelper;
+import com.xiesx.gotv.support.jdbc.DefaultRowMappler;
 import com.xiesx.gotv.support.jdbc.builder.SQLBuilder;
 import com.xiesx.gotv.support.jdbc.builder.SQLContext;
 

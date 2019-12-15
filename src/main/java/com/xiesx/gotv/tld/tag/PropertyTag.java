@@ -1,27 +1,27 @@
-package com.xiesx.gotv.tld.body;
+package com.xiesx.gotv.tld.tag;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.xiesx.gotv.tld.BaseUITag;
+import com.xiesx.gotv.tld.ui.BaseUITag;
 import com.xiesx.gotv.utils.RuntimeUtils;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
-@EqualsAndHashCode(callSuper = false)
-public class MetaTag extends BodyTagSupport {
-
-	private static final long serialVersionUID = 7014634016889539200L;
+@EqualsAndHashCode(callSuper=false)
+public class PropertyTag extends BodyTagSupport {
+ 
+	private static final long serialVersionUID = -3493408190832765819L;
 
 	private BaseUITag __ui;
 
-	private String attrKey;
+	private String name;
 
-	private String attrValue;
+	private String value;
 
 	@Override
 	public int doStartTag() throws JspException {
@@ -38,7 +38,7 @@ public class MetaTag extends BodyTagSupport {
 			if (this.bodyContent != null) {
 				String _propValue = this.bodyContent.getString();
 				if (StringUtils.isNotBlank(_propValue)) {
-					this.setAttrValue(_propValue);
+					this.setValue(_propValue);
 				}
 				this.bodyContent.clearBody();
 			}
@@ -50,24 +50,13 @@ public class MetaTag extends BodyTagSupport {
 
 	@Override
 	public int doEndTag() throws JspException {
-		StringBuilder _metaTmpl = new StringBuilder("<meta");
-		boolean _isEmpty = true;
-		if (StringUtils.isNotBlank(this.getAttrKey())) {
-			_metaTmpl.append(" ").append(this.getAttrKey());
-			_isEmpty = false;
-		}
-		if (StringUtils.isNotEmpty(this.getAttrValue())) {
-			_metaTmpl.append(" ").append(this.getAttrValue());
-			_isEmpty = false;
-		}
-		_metaTmpl.append(">\n");
-		if (!_isEmpty) {
-			__ui.writerToMetaPart(_metaTmpl.toString());
+		if (StringUtils.isNotBlank(this.getName()) && StringUtils.isNotEmpty(this.getValue())) {
+			__ui.putProperty(this.getName(), this.getValue());
 		}
 		//
 		this.__ui = null;
-		this.attrKey = null;
-		this.attrValue = null;
+		this.name = null;
+		this.value = null;
 		return super.doEndTag();
 	}
 }

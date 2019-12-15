@@ -1,4 +1,4 @@
-package com.xiesx.gotv.tld;
+package com.xiesx.gotv.tld.ui;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

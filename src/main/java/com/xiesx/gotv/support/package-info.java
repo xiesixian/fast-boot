@@ -1,4 +1,4 @@
 /**
- * ======外部拓展（默认开启）
+ * ======外部拓展
  */
 package com.xiesx.gotv.support;

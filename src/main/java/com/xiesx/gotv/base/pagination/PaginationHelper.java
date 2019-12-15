@@ -5,7 +5,6 @@ import java.util.List;
 import lombok.NonNull;
 
 import com.google.common.collect.Lists;
-import com.xiesx.gotv.base.pagination.bean.PaginationResult;
 
 /**
  * @title PaginationVO.java

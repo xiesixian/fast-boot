@@ -1,4 +1,4 @@
-package com.xiesx.gotv.base.pagination.bean;
+package com.xiesx.gotv.base.pagination;
 
 import lombok.Data;
 

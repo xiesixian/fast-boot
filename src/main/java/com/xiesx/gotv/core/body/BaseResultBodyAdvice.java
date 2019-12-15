@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 import com.alibaba.fastjson.JSON;
-import com.xiesx.gotv.base.pagination.bean.PaginationResult;
+import com.xiesx.gotv.base.pagination.PaginationResult;
 import com.xiesx.gotv.base.result.BaseResult;
 import com.xiesx.gotv.base.result.R;
 

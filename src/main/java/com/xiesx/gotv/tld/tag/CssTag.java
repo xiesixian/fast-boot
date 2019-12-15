@@ -1,11 +1,11 @@
-package com.xiesx.gotv.tld.body;
+package com.xiesx.gotv.tld.tag;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.xiesx.gotv.tld.BaseUITag;
+import com.xiesx.gotv.tld.ui.BaseUITag;
 import com.xiesx.gotv.utils.RuntimeUtils;
 
 import lombok.Data;

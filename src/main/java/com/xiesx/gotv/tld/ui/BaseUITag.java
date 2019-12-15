@@ -1,4 +1,4 @@
-package com.xiesx.gotv.tld;
+package com.xiesx.gotv.tld.ui;
 
 import java.util.Collections;
 import java.util.HashMap;

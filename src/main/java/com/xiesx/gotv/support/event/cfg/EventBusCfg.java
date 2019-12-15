@@ -9,7 +9,7 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.annotation.Configuration;
 
 import com.google.common.collect.Maps;
-import com.xiesx.gotv.core.context.SpringApplicationContextAware;
+import com.xiesx.gotv.support.context.SpringApplicationContextAware;
 import com.xiesx.gotv.support.event.EventBusHelper;
 import com.xiesx.gotv.support.event.base.AbstractEventBus;
 

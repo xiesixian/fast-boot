@@ -1,4 +1,4 @@
-package com.xiesx.gotv.core.context;
+package com.xiesx.gotv.support.context;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;

@@ -8,7 +8,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import com.google.common.collect.Maps;
 import com.xiesx.gotv.core.logger.LogStorage;
+import com.xiesx.gotv.support.event.EventBusHelper;
+import com.xiesx.gotv.support.event.base.AbstractEventBus;
 import com.xiesx.gotv.support.schedule.ScheduleHelper;
 import com.xiesx.gotv.support.schedule.decorator.DefaultDecorator;
 import com.xiesx.gotv.support.schedule.decorator.DefaultSchedule;
@@ -16,6 +19,9 @@ import com.xiesx.gotv.support.schedule.impl.ISchedule;
 
 @Slf4j
 public class SpringStartup {
+
+	@SuppressWarnings("rawtypes")
+	public static Map<String, AbstractEventBus> beans = Maps.newConcurrentMap();
 
 	public static String classUrl;
 
@@ -80,6 +86,16 @@ public class SpringStartup {
 				log.error("Startup Logger {}", e);
 			}
 		}
+	}
+
+	public static void event() {
+		beans = SpringApplicationContextAware.getApplicationContext().getBeansOfType(AbstractEventBus.class);
+		if (beans != null) {
+			for (AbstractEventBus<?> eventAbstract : beans.values()) {
+				EventBusHelper.register(eventAbstract);
+			}
+		}
+		log.info("Startup EventBus {} register completed.", beans.size());
 	}
 
 	public static void schedule() {

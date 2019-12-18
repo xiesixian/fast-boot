@@ -1,10 +1,13 @@
 package com.xiesx.gotv.support.context;
 
+import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
+@Slf4j
 @Component
 public class SpringApplicationContextAware implements ApplicationContextAware {
 
@@ -20,7 +23,9 @@ public class SpringApplicationContextAware implements ApplicationContextAware {
 			SpringApplicationContextAware.applicationContext = applicationContext;
 			SpringStartup.init();
 			SpringStartup.logger();
+			SpringStartup.event();
 			SpringStartup.schedule();
+			log.info("Startup ApplicationContext completed.");
 		}
 	}
 }

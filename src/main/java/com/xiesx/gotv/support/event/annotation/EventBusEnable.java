@@ -6,9 +6,6 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
-
-import com.xiesx.gotv.support.event.cfg.EventBusCfg;
 
 /**
  * @title EnableEventBus.java
@@ -20,10 +17,7 @@ import com.xiesx.gotv.support.event.cfg.EventBusCfg;
 @Target(ElementType.TYPE)
 // 运行时机
 @Retention(RetentionPolicy.RUNTIME)
-// 初始扫描
 @Configuration
-// 动态注入
-@Import(EventBusCfg.class)
 public @interface EventBusEnable {
 
 }

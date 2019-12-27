@@ -22,85 +22,71 @@ public class HttpCilentRetryImplOk<T> implements IHttpCilentRetry<T>, IHttpCalla
 
 	@Override
 	public Callable<T> call(String method, String url, Map<String, Object> params, Proxy proxy) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public T get(String url) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public T get(String url, Proxy proxy) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public T get(String url, Map<String, Object> params) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public T get(String url, Map<String, Object> params, Proxy proxy) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public T get_try(String url) throws ExecutionException, RetryException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public T get_try(String url, Proxy proxy) throws ExecutionException, RetryException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public T get_try(String url, Map<String, Object> params) throws ExecutionException, RetryException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public T get_try(String url, Map<String, Object> params, Proxy proxy) throws ExecutionException, RetryException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public T post(String url, Map<String, Object> params) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public T post(String url, Map<String, Object> params, Proxy proxy) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public T post_try(String url, Map<String, Object> params) throws ExecutionException, RetryException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public T post_try(String url, Map<String, Object> params, Proxy proxy) throws ExecutionException, RetryException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public T request(String method, String url, Map<String, Object> params, Proxy proxy) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }

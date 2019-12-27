@@ -59,7 +59,6 @@ public class HttpCilentRetryImplRe extends BaseHttpRetryCilent implements IHttpC
 
 	@Override
 	public RawResponse get(String url, Map<String, Object> params) {
-		// TODO Auto-generated method stub
 		return request(Methods.GET, url, params, null);
 	}
 

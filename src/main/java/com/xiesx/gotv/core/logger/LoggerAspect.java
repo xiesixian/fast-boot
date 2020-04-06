@@ -7,8 +7,6 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
-import lombok.extern.slf4j.Slf4j;
-
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -16,6 +14,7 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
+import org.springframework.ui.Model;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
@@ -23,6 +22,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import com.xiesx.gotv.core.logger.annotation.LoggerStorage;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @title LoggerAspect.java
@@ -44,7 +45,8 @@ public class LoggerAspect {
 	@Around("logPointcut()")
 	public Object logAroundAspect(ProceedingJoinPoint pjp) throws Throwable {
 		// 获取请求信息
-		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
+				.getRequest();
 		String ip = getIpAddr(request);
 		String type = request.getMethod();
 		String url = request.getRequestURI();
@@ -62,8 +64,11 @@ public class LoggerAspect {
 		// 请求
 		String req = "unknown";
 		if (args.length != 0) {
-			if ((!(args[0] instanceof ServletRequest)) && (!(args[0] instanceof ServletResponse)) && (!(args[0] instanceof MultipartFile))) {
-				req = JSON.toJSONString(args, isPrettyFormat);
+			for (Object arg : args) {
+				if ((!(arg instanceof ServletRequest)) && (!(arg instanceof ServletResponse))
+						&& (!(arg instanceof MultipartFile)) && (!(arg instanceof Model))) {
+					req = JSON.toJSONString(arg, isPrettyFormat);
+				}
 			}
 		}
 		// 记录开始时间
@@ -80,7 +85,8 @@ public class LoggerAspect {
 		// 响应
 		String res = JSON.toJSONString(ret, isPrettyFormat);
 		if (isPrint) {
-			log.info("=========request end {} {} {} {}", new Object[] { methodName, Long.valueOf(endTime), res, Long.valueOf(t) });
+			log.info("=========request end {} {} {} {}",
+					new Object[] { methodName, Long.valueOf(endTime), res, Long.valueOf(t) });
 		}
 		if (isStorage) {
 			try {

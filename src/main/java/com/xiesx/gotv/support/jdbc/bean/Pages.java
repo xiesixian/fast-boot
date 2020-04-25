@@ -96,7 +96,7 @@ public final class Pages {
 		return isCount;
 	}
 
-	public String sql() {
+	public String toSqlString() {
 		return String.format(" limit %d,%d", page() * pageSize() - pageSize(), pageSize());
 	}
 }

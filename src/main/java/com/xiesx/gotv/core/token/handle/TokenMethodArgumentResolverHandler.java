@@ -11,10 +11,10 @@ import com.xiesx.gotv.core.token.annotation.Token;
 import com.xiesx.gotv.core.token.cfg.TokenCfg;
 
 /**
- * 有@AuthUser注解的方法参数，注入当前登录用户
- * 
- * @author Sixian.Xie
- * @date 2018-03-19
+ * @title TokenMethodArgumentResolverHandler
+ * @description 
+ * @author XIE
+ * @date 2020年4月25日下午6:15:53
  */
 public class TokenMethodArgumentResolverHandler implements HandlerMethodArgumentResolver {
 

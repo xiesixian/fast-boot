@@ -15,11 +15,10 @@ import com.xiesx.gotv.core.token.annotation.Token;
 import com.xiesx.gotv.core.token.cfg.TokenCfg;
 
 /**
- * 权限(Token)验证
- * 
- * @author theodo
- * @email 36780272@qq.com
- * @date 2017-03-23 15:38
+ * @title TokenInterceptorHandler
+ * @description 
+ * @author XIE
+ * @date 2020年4月25日下午6:17:04
  */
 public class TokenInterceptorHandler extends HandlerInterceptorAdapter {
 

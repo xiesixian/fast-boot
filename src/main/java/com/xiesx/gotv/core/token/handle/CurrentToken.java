@@ -5,10 +5,10 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * @title Member.java
- * @description
- * @author Sixian.xie
- * @date 2018年12月21日 下午6:14:46
+ * @title CurrentToken
+ * @description 
+ * @author XIE
+ * @date 2020年4月25日下午6:15:48
  */
 @Data
 @Builder

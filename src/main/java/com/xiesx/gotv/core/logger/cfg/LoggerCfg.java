@@ -7,4 +7,8 @@ import com.xiesx.gotv.core.logger.LoggerAspect;
 
 @Configuration
 @Import({ LoggerAspect.class })
-public class LoggerCfg {}
+public class LoggerCfg {
+	
+	public static final String NICKNAME = "nickname";
+	
+}

@@ -7,11 +7,11 @@ import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.xiesx.gotv.base.jdbc.JdbcEntity;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
-
-import com.xiesx.gotv.base.jdbc.JdbcEntity;
 
 /**
  * @title Token.java (generator)
@@ -22,7 +22,7 @@ import com.xiesx.gotv.base.jdbc.JdbcEntity;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
-@Table(name = "api_token")
+@Table(name = TokenStorage.TABLE.SYS_TOKEN)
 public class TokenStorage extends JdbcEntity<TokenStorage> {
 
 	private static final long serialVersionUID = 1L;
@@ -43,6 +43,13 @@ public class TokenStorage extends JdbcEntity<TokenStorage> {
 	@Column(name = "expire_time")
 	private Date expireTime;
 
+	/** 常量 */
+	public class TABLE {
+
+		public static final String SYS_TOKEN = "sys_token";
+	}
+
+	
 	/** 常量 */
 	public class FIELDS {
 

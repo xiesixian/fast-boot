@@ -6,6 +6,7 @@ import java.util.Date;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -22,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import com.xiesx.gotv.core.logger.annotation.LoggerStorage;
+import com.xiesx.gotv.core.logger.cfg.LoggerCfg;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -44,25 +46,28 @@ public class LoggerAspect {
 
 	@Around("logPointcut()")
 	public Object logAroundAspect(ProceedingJoinPoint pjp) throws Throwable {
-		// 获取请求信息
-		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
-				.getRequest();
+		// 获取到当前线程绑定的请求对象
+		ServletRequestAttributes servlet = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+		// 获取Request
+		HttpServletRequest request = servlet.getRequest();
 		String ip = getIpAddr(request);
 		String type = request.getMethod();
 		String url = request.getRequestURI();
+		// 获取Session
+		HttpSession session = request.getSession();
 		// 获取方法信息
 		MethodSignature signature = (MethodSignature) pjp.getSignature();
 		Method method = signature.getMethod();
 		String methodName = method.getName();
 		// 获取注解信息
 		LoggerStorage annotation = (LoggerStorage) method.getAnnotation(LoggerStorage.class);
-		Boolean isPrint = Boolean.valueOf(annotation == null ? true : annotation.print());
+		Boolean isPrint = Boolean.valueOf(annotation == null ? false : annotation.print());
 		Boolean isStorage = Boolean.valueOf(annotation == null ? false : annotation.storage());
 		Boolean isPrettyFormat = Boolean.valueOf(annotation == null ? false : annotation.prettyFormat());
 		// 获取入参
 		Object[] args = pjp.getArgs();
 		// 请求
-		String req = "unknown";
+		String req = "";
 		if (args.length != 0) {
 			for (Object arg : args) {
 				if ((!(arg instanceof ServletRequest)) && (!(arg instanceof ServletResponse))
@@ -100,6 +105,7 @@ public class LoggerAspect {
 				log.setReq(req);
 				log.setRes(res);
 				log.setT(t);
+				log.setOpt(session.getAttribute(LoggerCfg.NICKNAME).toString());
 				log.insert();
 			} catch (Exception e) {
 				log.error("=========request err {}", e);

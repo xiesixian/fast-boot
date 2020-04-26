@@ -22,7 +22,7 @@ import com.xiesx.gotv.base.jdbc.JdbcEntity;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
-@Table(name = LogStorage.TABLE.API_LOG)
+@Table(name = LogStorage.TABLE.SYS_LOG)
 public class LogStorage extends JdbcEntity<LogStorage> {
 
 	private static final long serialVersionUID = 1L;
@@ -81,11 +81,17 @@ public class LogStorage extends JdbcEntity<LogStorage> {
 	 */
 	@Column
 	private Long t;
+	
+	/**
+	 * 执行时间（毫秒）
+	 */
+	@Column
+	private String opt;
 
 	/** 常量 */
 	public class TABLE {
 
-		public static final String API_LOG = "api_log";
+		public static final String SYS_LOG = "sys_log";
 	}
 
 	public class FIELDS {
@@ -107,6 +113,8 @@ public class LogStorage extends JdbcEntity<LogStorage> {
 		public static final String RES = "res";
 
 		public static final String T = "t";
+		
+		public static final String OPT = "opt";	
 	}
 
 	protected Serializable pkVal() {

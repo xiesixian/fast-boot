@@ -14,7 +14,7 @@ import com.xiesx.gotv.core.logger.cfg.LoggerCfg;
 @Import({ LoggerCfg.class })
 public @interface LoggerStorage {
 
-	boolean print() default false;
+	boolean print() default true;
 
 	boolean storage() default false;
 

@@ -62,12 +62,12 @@ public class SpringStartup {
 		//
 		String sql = "SELECT * FROM information_schema.TABLES WHERE TABLE_SCHEMA=(SELECT DATABASE()) AND `table_name` =? ";
 		try {
-			Map<String, Object> map = SpringHelper.getBean(JdbcTemplate.class).queryForMap(sql, new Object[] { LogStorage.TABLE.API_LOG });
+			Map<String, Object> map = SpringHelper.getBean(JdbcTemplate.class).queryForMap(sql, new Object[] { LogStorage.TABLE.SYS_LOG });
 			log.info("Startup Logger Storage {}", map.isEmpty() == false);
 		} catch (Exception e) {
 			if (e instanceof EmptyResultDataAccessException) {
 				StringBuilder sb = new StringBuilder();
-				sb.append("CREATE TABLE " + LogStorage.TABLE.API_LOG + " ( ");
+				sb.append("CREATE TABLE " + LogStorage.TABLE.SYS_LOG + " ( ");
 				sb.append("id VARCHAR(255) NOT NULL COMMENT '主键',");
 				sb.append("create_date DATETIME NOT NULL COMMENT '创建时间',");
 				sb.append("ip VARCHAR(255) COMMENT '请求IP',");
@@ -76,7 +76,8 @@ public class SpringStartup {
 				sb.append("url VARCHAR(1000) NOT NULL COMMENT '地址',");
 				sb.append("req LONGTEXT NOT NULL COMMENT '请求',");
 				sb.append("res LONGTEXT NOT NULL COMMENT '响应',");
-				sb.append("t INT(11) DEFAULT 0 COMMENT '执行时间（毫秒）'");
+				sb.append("t INT(11) DEFAULT 0 COMMENT '执行时间（毫秒）',");
+				sb.append("opt varchar(255) DEFAULT NULL COMMENT '操作人'");
 				sb.append(")");
 				sb.append("COMMENT='日志存储表';");
 				//

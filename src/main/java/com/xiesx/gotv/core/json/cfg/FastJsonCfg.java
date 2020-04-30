@@ -44,13 +44,13 @@ public class FastJsonCfg implements WebMvcConfigurer {
 		FastJsonConfig fastJsonConfig = new FastJsonConfig();
 		// 自定义输出配置
 		fastJsonConfig.setSerializerFeatures(
-		// // 输出空置字段
-		// SerializerFeature.WriteMapNullValue,
-		// // list字段如果为null，输出为[]，而不是null
-		// SerializerFeature.WriteNullListAsEmpty,
-		// 输出格式化
-		// SerializerFeature.PrettyFormat
-		// 数值字段如果为null，输出为0，而不是null
+				// // 输出空置字段
+				// SerializerFeature.WriteMapNullValue,
+				// // list字段如果为null，输出为[]，而不是null
+				// SerializerFeature.WriteNullListAsEmpty,
+				// 输出格式化
+				// SerializerFeature.PrettyFormat
+				// 数值字段如果为null，输出为0，而不是null
 				SerializerFeature.WriteNullNumberAsZero,
 				// Boolean字段如果为null，输出为false，而不是null
 				SerializerFeature.WriteNullBooleanAsFalse,
@@ -61,7 +61,9 @@ public class FastJsonCfg implements WebMvcConfigurer {
 				// 输入格式后的日期
 				SerializerFeature.WriteDateUseDateFormat,
 				// 禁用循环引用
-				SerializerFeature.DisableCircularReferenceDetect);
+				SerializerFeature.DisableCircularReferenceDetect,
+				// 大数字写成文本
+				SerializerFeature.WriteBigDecimalAsPlain);
 		// 日期配置
 		fastJsonConfig.setDateFormat("yyyy-MM-dd HH:mm:ss");// 日期配置
 		return fastJsonConfig;

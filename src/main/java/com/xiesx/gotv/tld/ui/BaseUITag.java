@@ -103,7 +103,7 @@ public abstract class BaseUITag extends BodyTagSupport {
 		if (StringUtils.isNotBlank(this.getSrc())) {
 			StringBuilder _url = new StringBuilder();
 			if (!this.getSrc().startsWith("/")) {
-				_url.append("/WEB-INF/templates/");
+				_url.append("/WEB-INF/jsp/");
 			}
 			_url.append(this.getSrc());
 			if (!this.getSrc().endsWith(".jsp")) {

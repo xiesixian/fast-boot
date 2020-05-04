@@ -1,4 +1,4 @@
-package com.xiesx.springboot.core.token.handle;
+package com.xiesx.springboot.support.token.handle;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,4 +1,4 @@
-package com.xiesx.springboot.core.token.handle;
+package com.xiesx.springboot.support.token.handle;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
@@ -10,9 +10,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import com.xiesx.springboot.core.token.TokenStorage;
-import com.xiesx.springboot.core.token.annotation.Token;
-import com.xiesx.springboot.core.token.cfg.TokenCfg;
+import com.xiesx.springboot.support.token.TokenStorage;
+import com.xiesx.springboot.support.token.annotation.Token;
+import com.xiesx.springboot.support.token.cfg.TokenCfg;
 
 /**
  * @title TokenInterceptorHandler

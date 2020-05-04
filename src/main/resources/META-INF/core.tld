@@ -8,8 +8,8 @@
 	<tlib-version>1.0</tlib-version>
 	<uri>http://java.sun.com/jsp/jstl/gcore</uri>
 
-	<display-name>GotvWebTagLib</display-name>
-	<description>GotvWebTagLib Core Tag Library 1.0</description>
+	<display-name>JspWebTagLib</display-name>
+	<description>JspWebTagLib Core Tag Library 1.0</description>
 
 	<!-- ui -->
 	<!-- UITag -->

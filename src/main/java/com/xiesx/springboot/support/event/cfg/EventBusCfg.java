@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.context.annotation.Configuration;
 
-import com.xiesx.springboot.support.context.SpringStartup;
+import com.xiesx.springboot.core.context.SpringStartup;
 import com.xiesx.springboot.support.event.EventBusHelper;
 import com.xiesx.springboot.support.event.base.AbstractEventBus;
 

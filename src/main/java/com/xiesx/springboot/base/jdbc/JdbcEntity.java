@@ -8,7 +8,7 @@ import java.util.List;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 
-import com.xiesx.springboot.support.context.SpringHelper;
+import com.xiesx.springboot.core.context.SpringHelper;
 import com.xiesx.springboot.support.jdbc.DefaultRowMappler;
 import com.xiesx.springboot.support.jdbc.builder.SQLBuilder;
 import com.xiesx.springboot.support.jdbc.builder.SQLContext;

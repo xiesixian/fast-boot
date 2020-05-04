@@ -1,4 +1,4 @@
-package com.xiesx.springboot.core.sgin;
+package com.xiesx.springboot.support.sgin;
 
 import java.lang.reflect.Method;
 import java.util.Enumeration;
@@ -28,7 +28,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.google.common.collect.Maps;
 import com.xiesx.springboot.core.exception.RunException;
-import com.xiesx.springboot.core.sgin.annotation.GoSign;
+import com.xiesx.springboot.support.sgin.annotation.GoSign;
 
 /**
  * @title SignAspect.java

@@ -1,4 +1,4 @@
-package com.xiesx.springboot.support.context;
+package com.xiesx.springboot.core.context;
 
 import org.springframework.beans.factory.annotation.BeanFactoryAnnotationUtils;
 import org.springframework.context.ApplicationContext;

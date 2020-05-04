@@ -1,4 +1,4 @@
-package com.xiesx.springboot.core.token;
+package com.xiesx.springboot.support.token;
 
 import java.io.Serializable;
 import java.util.Date;

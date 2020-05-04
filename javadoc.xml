@@ -3,13 +3,13 @@
 	<target name="javadoc">
 		<javadoc access="public" additionalparam=" -encoding utf-8 -charset utf-8"
 			author="true"
-			destdir="doc" doctitle="Spring Boot Gotv Core Support Doc.xml" 
+			destdir="doc" doctitle="Spring Boot Fast Support Doc.xml" 
 			nodeprecated="false"
 			nodeprecatedlist="false"
 			noindex="false" 
 			nonavbar="false" 
 			notree="false"
-			packagenames="com.xiesx.gotv.*"
+			packagenames="com.xiesx.springboot.*"
 			source="1.8"
 			sourcepath="
 						src/main/java;

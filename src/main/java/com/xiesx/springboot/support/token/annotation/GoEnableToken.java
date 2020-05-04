@@ -1,4 +1,4 @@
-package com.xiesx.springboot.core.token.annotation;
+package com.xiesx.springboot.support.token.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,7 +7,7 @@ import java.lang.annotation.Target;
 
 import org.springframework.context.annotation.Import;
 
-import com.xiesx.springboot.core.token.cfg.TokenCfg;
+import com.xiesx.springboot.support.token.cfg.TokenCfg;
 
 @Target({ ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)

@@ -1,4 +1,4 @@
-package com.xiesx.springboot.core.token.handle;
+package com.xiesx.springboot.support.token.handle;
 
 import org.springframework.core.MethodParameter;
 import org.springframework.web.bind.support.WebDataBinderFactory;
@@ -7,8 +7,8 @@ import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
-import com.xiesx.springboot.core.token.annotation.Token;
-import com.xiesx.springboot.core.token.cfg.TokenCfg;
+import com.xiesx.springboot.support.token.annotation.Token;
+import com.xiesx.springboot.support.token.cfg.TokenCfg;
 
 /**
  * @title TokenMethodArgumentResolverHandler

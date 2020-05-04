@@ -218,7 +218,6 @@ public class ScheduleHelper {
 
 	public static void main(String[] args) {
 		try {
-			//
 			JobDataMap map = new JobDataMap();
 			map.put("type", "1");
 

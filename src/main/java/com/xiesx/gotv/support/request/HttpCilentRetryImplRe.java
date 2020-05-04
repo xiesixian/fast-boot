@@ -139,7 +139,6 @@ public class HttpCilentRetryImplRe extends BaseHttpRetryCilent implements IHttpC
 
 	@Override
 	public RawResponse request(String method, String url, Map<String, Object> params, Proxy proxy) {
-		//
 		log.info("{} cook: {}", method, session.currentCookies().size() + " length");
 		// 请求方式
 		RequestBuilder requestBuilder = session.newRequest(method, url);

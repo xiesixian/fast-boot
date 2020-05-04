@@ -119,7 +119,6 @@ public class SQLBuilder {
 	 */
 	public static SQLContext insert(Object entity, EntityNameHandler nameHandler) {
 		try {
-			//
 			Class<?> clazz = entity.getClass();
 			String tableName = nameHandler.getTableName(clazz);
 			// String primaryName = nameHandler.getPrimaryName(clazz);
@@ -155,7 +154,6 @@ public class SQLBuilder {
 			sql.append(")");
 			sql.append(" values ");
 			sql.append(args);
-			//
 			SQLContext sqlContext = new SQLContext(sql, params);
 			log.info(String.format("insert sql------>： %s par------>：%s", sqlContext.getSqlString(), sqlContext.getParams()));
 			return sqlContext;
@@ -186,7 +184,6 @@ public class SQLBuilder {
 	 */
 	public static SQLContext update(Object entity, EntityNameHandler nameHandler) {
 		try {
-			//
 			Class<?> clazz = entity.getClass();
 			String tableName = nameHandler.getTableName(clazz);
 			String primaryName = nameHandler.getPrimaryName(clazz);
@@ -224,7 +221,6 @@ public class SQLBuilder {
 			sql.append(primaryName);
 			sql.append(" = ?");
 			params.add(primaryValue);
-			//
 			SQLContext sqlContext = new SQLContext(sql, primaryName, params);
 			log.info(String.format("update sql------>： %s par------>：%s", sqlContext.getSqlString(), sqlContext.getParams()));
 			return sqlContext;

@@ -25,9 +25,7 @@ public class DefaultDecorator extends BaseDecorator implements ISchedule {
 
 	@Override
 	public void init() {
-		//
 		decoratedJob.init();
-		//
 		if (isStart()) {
 			JobDataMap map = new JobDataMap();
 			map.put(SimpleJobSchedule.simple_job_key, "time is ");

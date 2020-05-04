@@ -55,11 +55,8 @@ public class SpringStartup {
 	}
 
 	public static void logger() {
-		//
 		log.info("Startup logger Storage init Starting...");
-		//
 		JdbcTemplate jdbcTemplate = SpringHelper.getBean(JdbcTemplate.class);
-		//
 		String sql = "SELECT * FROM information_schema.TABLES WHERE TABLE_SCHEMA=(SELECT DATABASE()) AND `table_name` =? ";
 		try {
 			Map<String, Object> map = SpringHelper.getBean(JdbcTemplate.class).queryForMap(sql, new Object[] { LogStorage.TABLE.SYS_LOG });
@@ -80,7 +77,6 @@ public class SpringStartup {
 				sb.append("opt varchar(255) DEFAULT NULL COMMENT '操作人'");
 				sb.append(")");
 				sb.append("COMMENT='日志存储表';");
-				//
 				jdbcTemplate.execute(sb.toString());
 				log.info("Startup Logger Storage init completed.");
 			} else {
@@ -100,9 +96,7 @@ public class SpringStartup {
 	}
 
 	public static void schedule() {
-		//
 		log.info("Startup Schedule Schedule init Starting...");
-		//
 		try {
 			// 默认实现
 			ISchedule job = new DefaultSchedule();

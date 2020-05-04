@@ -11,8 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 
-import lombok.extern.slf4j.Slf4j;
-
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
@@ -27,6 +26,8 @@ import com.github.rholder.retry.RetryException;
 import com.xiesx.gotv.base.result.BaseResult;
 import com.xiesx.gotv.base.result.R;
 import com.xiesx.gotv.support.validate.ValidatorHelper;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @title GlobalExceptionHandle.java
@@ -45,11 +46,11 @@ public class BaseRestExceptionAdvice {
 	 * @param e
 	 * @return
 	 */
-	@ExceptionHandler({ HttpMessageNotReadableException.class, HttpRequestMethodNotSupportedException.class, HttpMediaTypeNotSupportedException.class })
+	@ExceptionHandler({ HttpMessageNotReadableException.class, HttpRequestMethodNotSupportedException.class,
+			HttpMediaTypeNotSupportedException.class })
 	public BaseResult systemException(HttpServletRequest request, Exception e) {
 		log.error("systemException ......", e);
 		String msg = "";
-		//
 		if (e instanceof HttpMessageNotReadableException) {
 			msg = "当前参数解析失败";// 400 - Bad Request
 		} else if (e instanceof HttpRequestMethodNotSupportedException) {
@@ -82,7 +83,8 @@ public class BaseRestExceptionAdvice {
 			}
 			result.setData(errorMessages);
 		}
-		// 这里走的是Hibernate Violation 验证 --> Java Violation，这里有ConstraintViolationException接收
+		// 这里走的是Hibernate Violation 验证 --> Java
+		// Violation，这里有ConstraintViolationException接收
 		if (e instanceof ConstraintViolationException) {
 			Set<ConstraintViolation<?>> violations = ((ConstraintViolationException) e).getConstraintViolations();
 			List<String> errorMsg = ValidatorHelper.extractPropertyAndMessageAsList(violations);
@@ -92,13 +94,33 @@ public class BaseRestExceptionAdvice {
 	}
 
 	/**
+	 * 数据库
+	 * 
+	 * @param request
+	 * @param e
+	 * @return
+	 */
+	@ExceptionHandler({ EmptyResultDataAccessException.class })
+	public BaseResult jdbcException(HttpServletRequest request, Exception e) {
+		log.error("jdbcException ......", e);
+		String msg = "";
+		if (e instanceof EmptyResultDataAccessException) {
+			msg = "无数据";// 400 - Bad Request
+		} else {
+			msg = "未知数据异常";
+		}
+		return R.error(msg);
+	}
+
+	/**
 	 * 运行
 	 * 
 	 * @param request
 	 * @param e
 	 * @return
 	 */
-	@ExceptionHandler({ RuntimeException.class, IOException.class, JSONException.class, SQLException.class, ExecutionException.class, RetryException.class })
+	@ExceptionHandler({ RuntimeException.class, IOException.class, JSONException.class, SQLException.class,
+			ExecutionException.class, RetryException.class })
 	public BaseResult runtimeException(HttpServletRequest request, Exception e) {
 		log.error("runtimeException ......", e);
 		return R.error(e.getMessage());

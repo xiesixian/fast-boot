@@ -68,7 +68,6 @@ public class LayoutTag extends BaseUITag {
 			__ui.writerToCssPart(this.getCssPartContent());
 			__ui.writerToScriptPart(this.getScriptPartContent());
 			__tmplContent = this.mergeContent(StringUtils.defaultIfEmpty(__tmplContent, ""));
-			//
 			if (StringUtils.isNotBlank(name) && !"body".equalsIgnoreCase(name)) {
 				__ui.putProperty(name, !isCleanup() ? __tmplContent : TagUtils.replaceRegClear(__tmplContent));
 			} else {
@@ -77,7 +76,6 @@ public class LayoutTag extends BaseUITag {
 		} catch (Exception e) {
 			throw new JspException(RuntimeUtils.unwrapThrow(e));
 		}
-		//
 		this.__ui = null;
 		this.__tmplContent = null;
 		this.name = null;

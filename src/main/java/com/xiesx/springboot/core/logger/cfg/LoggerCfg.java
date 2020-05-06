@@ -8,7 +8,7 @@ import com.xiesx.springboot.core.logger.LoggerAspect;
 @Configuration
 @Import({ LoggerAspect.class })
 public class LoggerCfg {
-	
+
 	public static final String NICKNAME = "nickname";
-	
+
 }

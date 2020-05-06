@@ -3,6 +3,8 @@ package com.xiesx.springboot.support.validate.rule;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.alibaba.fastjson.JSONObject;
 import com.xiesx.springboot.support.validate.annotation.VJson;
 
@@ -20,7 +22,7 @@ public class VJsonRule implements ConstraintValidator<VJson, String> {
 
 	public boolean isValid(String s, ConstraintValidatorContext constraintValidatorContext) {
 		try {
-			if (s == null || s.equals("")) {
+			if (StringUtils.isEmpty(s)) {
 				return false;
 			}
 			// 判断是否是json（原理：利用fastjson中str-->jsonOject 如果报错则非不是，反正则是）

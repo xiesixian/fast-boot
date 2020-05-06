@@ -9,11 +9,11 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
-import lombok.extern.slf4j.Slf4j;
-
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.SystemUtils;
+
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class RuntimeUtils {
@@ -54,7 +54,8 @@ public class RuntimeUtils {
 					}
 				}
 			}
-		} catch (IOException ignored) {} finally {
+		} catch (IOException ignored) {
+		} finally {
 			IOUtils.closeQuietly(br);
 			if (p != null) {
 				p.destroy();
@@ -81,7 +82,7 @@ public class RuntimeUtils {
 	 * @return 当指定名称为空或者对应名称环境变量不存在时返回空
 	 */
 	public static String getSystemEnv(String envName) {
-		if (StringUtils.isNotBlank(envName)) {
+		if (StringUtils.isNotEmpty(envName)) {
 			if (SYSTEM_ENV_MAP.isEmpty()) {
 				initSystemEnvs();
 			}
@@ -131,7 +132,8 @@ public class RuntimeUtils {
 				_rootPath = _rootURL.getPath();
 			}
 		} else {
-			_rootPath = StringUtils.removeEnd(StringUtils.substringBefore(_rootURL.getPath(), safe ? "classes/" : "WEB-INF/"), "/");
+			_rootPath = StringUtils
+					.removeEnd(StringUtils.substringBefore(_rootURL.getPath(), safe ? "classes/" : "WEB-INF/"), "/");
 		}
 		if (_rootPath != null) {
 			_rootPath = StringUtils.replace(_rootPath, "%20", " ");
@@ -152,9 +154,11 @@ public class RuntimeUtils {
 			if (StringUtils.contains(origin, "${root}")) {
 				origin = ExpressionUtils.bind(origin).set("root", _defaultPath).getResult();
 			} else if (StringUtils.contains(origin, "${user.dir}")) {
-				origin = ExpressionUtils.bind(origin).set("user.dir", System.getProperty("user.dir", _defaultPath)).getResult();
+				origin = ExpressionUtils.bind(origin).set("user.dir", System.getProperty("user.dir", _defaultPath))
+						.getResult();
 			} else if (StringUtils.contains(origin, "${user.home}")) {
-				origin = ExpressionUtils.bind(origin).set("user.home", System.getProperty("user.home", _defaultPath)).getResult();
+				origin = ExpressionUtils.bind(origin).set("user.home", System.getProperty("user.home", _defaultPath))
+						.getResult();
 			}
 		}
 		return origin;
@@ -164,7 +168,7 @@ public class RuntimeUtils {
 	 * 根据格式化字符串，生成运行时异常
 	 * 
 	 * @param format 格式
-	 * @param args 参数
+	 * @param args   参数
 	 * @return 运行时异常
 	 */
 	public static RuntimeException makeRuntimeThrow(String format, Object... args) {
@@ -174,8 +178,8 @@ public class RuntimeUtils {
 	/**
 	 * 将抛出对象包裹成运行时异常，并增加描述
 	 * 
-	 * @param e 抛出对象
-	 * @param fmt 格式
+	 * @param e    抛出对象
+	 * @param fmt  格式
 	 * @param args 参数
 	 * @return 运行时异常
 	 */

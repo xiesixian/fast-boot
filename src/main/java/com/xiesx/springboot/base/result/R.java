@@ -2,10 +2,10 @@ package com.xiesx.springboot.base.result;
 
 import java.util.List;
 
-import lombok.NonNull;
-
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.parser.Feature;
+
+import lombok.NonNull;
 
 public class R {
 

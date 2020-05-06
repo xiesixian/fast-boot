@@ -1,9 +1,10 @@
-package com.xiesx.springboot.tld.ui;
+package com.xiesx.springboot.tlb.ui;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.JspException;
 
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.xiesx.springboot.utils.RuntimeUtils;
@@ -25,7 +26,7 @@ public class UITag extends BaseUITag {
 	@Override
 	public int doStartTag() throws JspException {
 		try {
-			if (currentUI() == null) {
+			if (ObjectUtils.isEmpty(currentUI())) {
 				__isCurrentUI = true;
 				this.pageContext.setAttribute(UITag.class.getName(), this);
 			}
@@ -54,7 +55,9 @@ public class UITag extends BaseUITag {
 				/* UI模板文件内容 */
 				String __tmplContent = null;
 				if (StringUtils.isNotBlank(this.getSrc())) {
-					__tmplContent = TagUtils.includeJSP((HttpServletRequest) this.pageContext.getRequest(), (HttpServletResponse) this.pageContext.getResponse(), this.buildSrcUrl(), this.getCharsetEncoding());
+					__tmplContent = TagUtils.includeJSP((HttpServletRequest) this.pageContext.getRequest(),
+							(HttpServletResponse) this.pageContext.getResponse(), this.buildSrcUrl(),
+							this.getCharsetEncoding());
 				}
 				__tmplContent = this.mergeContent(StringUtils.defaultIfEmpty(__tmplContent, "@{body}"));
 				this.pageContext.getOut().write(!isCleanup() ? __tmplContent : TagUtils.replaceRegClear(__tmplContent));

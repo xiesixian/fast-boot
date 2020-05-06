@@ -35,7 +35,7 @@ public class Params {
 	 * 
 	 * @param params
 	 */
-	private Params(Object... params){
+	private Params(Object... params) {
 		this.params = new ArrayList<Object>();
 		if (params != null && params.length > 0) {
 			this.params.addAll(Arrays.asList(params));

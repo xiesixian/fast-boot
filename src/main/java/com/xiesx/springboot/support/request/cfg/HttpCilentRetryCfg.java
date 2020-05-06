@@ -7,4 +7,5 @@ import com.xiesx.springboot.support.request.HttpCilentRetryImplRe;
 
 @Configuration
 @Import({ HttpCilentRetryImplRe.class })
-public class HttpCilentRetryCfg {}
+public class HttpCilentRetryCfg {
+}

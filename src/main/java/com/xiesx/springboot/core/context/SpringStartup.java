@@ -3,8 +3,6 @@ package com.xiesx.springboot.core.context;
 import java.net.URL;
 import java.util.Map;
 
-import lombok.extern.slf4j.Slf4j;
-
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -16,6 +14,8 @@ import com.xiesx.springboot.support.schedule.ScheduleHelper;
 import com.xiesx.springboot.support.schedule.decorator.DefaultDecorator;
 import com.xiesx.springboot.support.schedule.decorator.DefaultSchedule;
 import com.xiesx.springboot.support.schedule.impl.ISchedule;
+
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class SpringStartup {
@@ -59,7 +59,8 @@ public class SpringStartup {
 		JdbcTemplate jdbcTemplate = SpringHelper.getBean(JdbcTemplate.class);
 		String sql = "SELECT * FROM information_schema.TABLES WHERE TABLE_SCHEMA=(SELECT DATABASE()) AND `table_name` =? ";
 		try {
-			Map<String, Object> map = SpringHelper.getBean(JdbcTemplate.class).queryForMap(sql, new Object[] { LogStorage.TABLE.SYS_LOG });
+			Map<String, Object> map = SpringHelper.getBean(JdbcTemplate.class).queryForMap(sql,
+					new Object[] { LogStorage.TABLE.SYS_LOG });
 			log.info("Startup Logger Storage {}", map.isEmpty() == false);
 		} catch (Exception e) {
 			if (e instanceof EmptyResultDataAccessException) {

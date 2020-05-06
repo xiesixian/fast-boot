@@ -31,7 +31,7 @@ public abstract class JdbcEntity<T> extends JdbcDaoSupport implements Serializab
 	 * 获取运行时的具体实体对象
 	 */
 	@SuppressWarnings("unchecked")
-	public JdbcEntity(){
+	public JdbcEntity() {
 		Type superclass = getClass().getGenericSuperclass();
 		ParameterizedType type = (ParameterizedType) superclass;
 		entityClass = (Class<T>) type.getActualTypeArguments()[0];
@@ -52,7 +52,8 @@ public abstract class JdbcEntity<T> extends JdbcDaoSupport implements Serializab
 		try {
 			SQLContext sqlContext = SQLBuilder.select(this, fields);
 			return rowMapper.fillToMap(jdbcTemplate.queryForMap(sqlContext.getSqlString(), sqlContext.getSqlParams()));
-		} catch (Exception e) {}
+		} catch (Exception e) {
+		}
 		return null;
 	}
 

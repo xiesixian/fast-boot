@@ -15,14 +15,11 @@ import com.xiesx.springboot.support.schedule.impl.ISchedule;
 public class BaseDecorator implements ISchedule {
 
 	/**
-	 * 调度型线程池
-	 * scheduleWithFixedDelay
-	 * new timeTaskForException() 要执行的任务线程
-	 * initialDelay：延迟多长时间执行
-	 * delay: 每隔多少长时间执行一次
-	 * TimeUnit.MILLISECONDS：时间单位
+	 * 调度型线程池 scheduleWithFixedDelay new timeTaskForException() 要执行的任务线程
+	 * initialDelay：延迟多长时间执行 delay: 每隔多少长时间执行一次 TimeUnit.MILLISECONDS：时间单位
 	 */
-	protected static ListeningScheduledExecutorService scheduled = MoreExecutors.listeningDecorator(Executors.newScheduledThreadPool(10));
+	protected static ListeningScheduledExecutorService scheduled = MoreExecutors
+			.listeningDecorator(Executors.newScheduledThreadPool(10));
 
 	/**
 	 * 被装饰对象
@@ -34,7 +31,7 @@ public class BaseDecorator implements ISchedule {
 	 * 
 	 * @param decoratedJob
 	 */
-	public BaseDecorator(ISchedule decoratedJob){
+	public BaseDecorator(ISchedule decoratedJob) {
 		this.decoratedJob = decoratedJob;
 	}
 

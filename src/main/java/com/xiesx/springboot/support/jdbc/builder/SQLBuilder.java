@@ -7,11 +7,14 @@ import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
 
-import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.ObjectUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.google.common.base.Joiner;
 import com.xiesx.springboot.support.jdbc.utils.EntityClassUtils;
 import com.xiesx.springboot.support.jdbc.utils.EntityNameHandler;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @title SQLBuilder.java
@@ -26,8 +29,7 @@ public class SQLBuilder {
 	 * 构建 select sql
 	 * 
 	 * @param entity
-	 * @return
-	 *         @
+	 * @return @
 	 */
 	public static SQLContext select(Object entity) {
 		return select(entity, null, new EntityNameHandler());
@@ -38,8 +40,7 @@ public class SQLBuilder {
 	 * 
 	 * @param entity
 	 * @param fields
-	 * @return
-	 *         @
+	 * @return @
 	 */
 	public static SQLContext select(Object entity, List<String> fields) {
 		return select(entity, fields, new EntityNameHandler());
@@ -51,8 +52,7 @@ public class SQLBuilder {
 	 * @param entity
 	 * @param fields
 	 * @param nameHandler
-	 * @return
-	 *         @
+	 * @return @
 	 */
 	public static SQLContext select(Object entity, List<String> fields, EntityNameHandler nameHandler) {
 		try {
@@ -74,11 +74,11 @@ public class SQLBuilder {
 			int count = 0;
 			for (PropertyDescriptor pd : pds) {
 				String key = nameHandler.getColumnName(clazz, pd.getName());
-				if (key == null) {
+				if (StringUtils.isEmpty(key)) {
 					continue;
 				}
 				Object value = readMethodValue(pd.getReadMethod(), entity);
-				if (value == null) {
+				if (ObjectUtils.isEmpty(value)) {
 					continue;
 				}
 				if (count >= 0) {
@@ -90,7 +90,8 @@ public class SQLBuilder {
 				count++;
 			}
 			SQLContext sqlContext = new SQLContext(condition, params);
-			log.info(String.format("query sql------>： %s par------>：%s", sqlContext.getSqlString(), sqlContext.getParams()));
+			log.info(String.format("query sql------>： %s par------>：%s", sqlContext.getSqlString(),
+					sqlContext.getParams()));
 			return sqlContext;
 		} catch (Exception e) {
 			log.error("select error:{}", e);
@@ -102,8 +103,7 @@ public class SQLBuilder {
 	 * 构建 insert sql
 	 * 
 	 * @param entity
-	 * @return
-	 *         @
+	 * @return @
 	 */
 	public static SQLContext insert(Object entity) {
 		return insert(entity, new EntityNameHandler());
@@ -114,8 +114,7 @@ public class SQLBuilder {
 	 * 
 	 * @param entity
 	 * @param nameHandler
-	 * @return
-	 *         @
+	 * @return @
 	 */
 	public static SQLContext insert(Object entity, EntityNameHandler nameHandler) {
 		try {
@@ -135,11 +134,11 @@ public class SQLBuilder {
 			PropertyDescriptor[] pds = beanInfo.getPropertyDescriptors();
 			for (PropertyDescriptor pd : pds) {
 				String key = nameHandler.getColumnName(clazz, pd.getName());
-				if (key == null) {
+				if (StringUtils.isEmpty(key)) {
 					continue;
 				}
 				Object value = readMethodValue(pd.getReadMethod(), entity);
-				if (value == null) {
+				if (ObjectUtils.isEmpty(value)) {
 					continue;
 				}
 				sql.append(key);
@@ -155,7 +154,8 @@ public class SQLBuilder {
 			sql.append(" values ");
 			sql.append(args);
 			SQLContext sqlContext = new SQLContext(sql, params);
-			log.info(String.format("insert sql------>： %s par------>：%s", sqlContext.getSqlString(), sqlContext.getParams()));
+			log.info(String.format("insert sql------>： %s par------>：%s", sqlContext.getSqlString(),
+					sqlContext.getParams()));
 			return sqlContext;
 		} catch (Exception e) {
 			log.error("insert error:{}", e);
@@ -167,8 +167,7 @@ public class SQLBuilder {
 	 * 构建 update sql
 	 * 
 	 * @param entity
-	 * @return
-	 *         @
+	 * @return @
 	 */
 	public static SQLContext update(Object entity) {
 		return update(entity, new EntityNameHandler());
@@ -179,8 +178,7 @@ public class SQLBuilder {
 	 * 
 	 * @param entity
 	 * @param nameHandler
-	 * @return
-	 *         @
+	 * @return @
 	 */
 	public static SQLContext update(Object entity, EntityNameHandler nameHandler) {
 		try {
@@ -200,11 +198,11 @@ public class SQLBuilder {
 			Object primaryValue = null;
 			for (PropertyDescriptor pd : pds) {
 				String key = nameHandler.getColumnName(clazz, pd.getName());
-				if (key == null) {
+				if (StringUtils.isEmpty(key)) {
 					continue;
 				}
 				Object value = readMethodValue(pd.getReadMethod(), entity);
-				if (value == null) {
+				if (ObjectUtils.isEmpty(value)) {
 					continue;
 				}
 				if (primaryName.equalsIgnoreCase(key)) {
@@ -222,7 +220,8 @@ public class SQLBuilder {
 			sql.append(" = ?");
 			params.add(primaryValue);
 			SQLContext sqlContext = new SQLContext(sql, primaryName, params);
-			log.info(String.format("update sql------>： %s par------>：%s", sqlContext.getSqlString(), sqlContext.getParams()));
+			log.info(String.format("update sql------>： %s par------>：%s", sqlContext.getSqlString(),
+					sqlContext.getParams()));
 			return sqlContext;
 		} catch (Exception e) {
 			log.error("update error:{}", e);
@@ -235,8 +234,7 @@ public class SQLBuilder {
 	 * 
 	 * @param entity
 	 * @param nameHandler
-	 * @return
-	 *         @
+	 * @return @
 	 */
 	public static SQLContext del(Object entity) {
 		return null;
@@ -248,12 +246,11 @@ public class SQLBuilder {
 	 * 
 	 * @param readMethod
 	 * @param entity
-	 * @return
-	 *         @
+	 * @return @
 	 */
 	private static Object readMethodValue(Method readMethod, Object entity) {
 		try {
-			if (readMethod == null) {
+			if (ObjectUtils.isEmpty(readMethod)) {
 				return null;
 			}
 			if (!Modifier.isPublic(readMethod.getDeclaringClass().getModifiers())) {
@@ -268,14 +265,16 @@ public class SQLBuilder {
 
 	// public static void main(String[] args) {
 	// // 链式构造
-	// LogStorage cipOrderChain = new LogStorage().setId(1L).setIp("0.0.0.0").setCreateDate(new Date());
+	// LogStorage cipOrderChain = new
+	// LogStorage().setId(1L).setIp("0.0.0.0").setCreateDate(new Date());
 	// // 普通构造
 	// LogStorage cipOrder = new LogStorage();
 	// cipOrder.setId(1L);
 	// cipOrder.setIp("0.0.0.0");
 	// cipOrder.setCreateDate(new Date());
 	// // 查询参数构造
-	// Fields common = Fields.create(LogStorage.FIELDS.ID, LogStorage.FIELDS.CREATE_DATE);
+	// Fields common = Fields.create(LogStorage.FIELDS.ID,
+	// LogStorage.FIELDS.CREATE_DATE);
 	// Fields field = Fields.create();
 	// field.add(common);
 	// field.add(LogStorage.FIELDS.METHOD, "q");// 别名
@@ -283,17 +282,23 @@ public class SQLBuilder {
 	// field.add(LogStorage.FIELDS.URL);
 	// // 查询所有
 	// SQLContext queryAllSql = SQLBuilder.select(cipOrderChain);
-	// System.out.println(String.format("查询所有: SQL %s", queryAllSql.getSqlFormat()));
-	// System.out.println(String.format("查询所有: 参数 %s \n\n", queryAllSql.getParams()));
+	// System.out.println(String.format("查询所有: SQL %s",
+	// queryAllSql.getSqlFormat()));
+	// System.out.println(String.format("查询所有: 参数 %s \n\n",
+	// queryAllSql.getParams()));
 	// // 条件查询
 	// SQLContext queryFieldsSql = SQLBuilder.select(cipOrder, field.fields());
-	// System.out.println(String.format("条件查询: SQL %s", queryFieldsSql.getSqlFormat()));
-	// System.out.println(String.format("条件查询: 参数 %s \n\n", queryFieldsSql.getParams()));
+	// System.out.println(String.format("条件查询: SQL %s",
+	// queryFieldsSql.getSqlFormat()));
+	// System.out.println(String.format("条件查询: 参数 %s \n\n",
+	// queryFieldsSql.getParams()));
 	// // 添加
 	// SQLContext insertSql = SQLBuilder.insert(cipOrder);
-	// System.out.println(String.format("添加: SQL %s \n\n 参数:%s \n\n", insertSql.getSqlFormat(), insertSql.getParams()));
+	// System.out.println(String.format("添加: SQL %s \n\n 参数:%s \n\n",
+	// insertSql.getSqlFormat(), insertSql.getParams()));
 	// // 修改
 	// SQLContext updateSql = SQLBuilder.update(cipOrder);
-	// System.out.println(String.format("修改: SQL %s \n\n 参数:%s 主键:%s", updateSql.getSqlFormat(), updateSql.getParams(), updateSql.getPrimaryKey()));
+	// System.out.println(String.format("修改: SQL %s \n\n 参数:%s 主键:%s",
+	// updateSql.getSqlFormat(), updateSql.getParams(), updateSql.getPrimaryKey()));
 	// }
 }

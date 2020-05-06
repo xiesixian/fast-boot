@@ -1,18 +1,19 @@
-package com.xiesx.springboot.tld.tag;
+package com.xiesx.springboot.tlb.body;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import com.xiesx.springboot.tld.ui.BaseUITag;
+import com.xiesx.springboot.tlb.ui.BaseUITag;
 import com.xiesx.springboot.utils.RuntimeUtils;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
-@EqualsAndHashCode(callSuper=false)
+@EqualsAndHashCode(callSuper = false)
 public class ScriptTag extends BodyTagSupport {
 
 	private static final long serialVersionUID = -2774067114541501535L;
@@ -30,7 +31,7 @@ public class ScriptTag extends BodyTagSupport {
 	@Override
 	public int doStartTag() throws JspException {
 		__ui = (BaseUITag) this.getParent();
-		if (__ui == null) {
+		if (ObjectUtils.isEmpty(__ui)) {
 			throw new JspException("Parent UITag or LayoutTag not found.");
 		}
 		return super.doStartTag();
@@ -41,7 +42,7 @@ public class ScriptTag extends BodyTagSupport {
 		try {
 			if (this.bodyContent != null) {
 				String _propValue = this.bodyContent.getString();
-				if (StringUtils.isNotBlank(_propValue)) {
+				if (StringUtils.isNotEmpty(_propValue)) {
 					this.setValue(_propValue);
 				}
 				this.bodyContent.clearBody();
@@ -55,19 +56,21 @@ public class ScriptTag extends BodyTagSupport {
 	@Override
 	public int doEndTag() throws JspException {
 		StringBuilder _scriptTmpl = new StringBuilder("<script");
-		if (StringUtils.isNotBlank(this.getId())) {
+		if (StringUtils.isNotEmpty(this.getId())) {
 			_scriptTmpl.append(" id=\"").append(this.getId()).append("\"");
 		}
 		boolean _isEmpty = true;
-		if (StringUtils.isNotBlank(this.getSrc())) {
+		if (StringUtils.isNotEmpty(this.getSrc())) {
 			_scriptTmpl.append(" src=\"").append(this.getSrc()).append("\"");
 			_isEmpty = false;
 		}
-		_scriptTmpl.append(" type=\"").append(StringUtils.defaultIfBlank(this.getType(), "text/javascript")).append("\">");
+		_scriptTmpl.append(" type=\"").append(StringUtils.defaultIfBlank(this.getType(), "text/javascript"))
+				.append("\">");
 		if (_isEmpty && StringUtils.isNotEmpty(this.getValue())) {
 			String _wrapper = StringUtils.defaultIfBlank(this.getWrapper(), "script");
-			String _content = StringUtils.substringBetween(this.getValue(), "<" + _wrapper + ">", "</" + _wrapper + ">");
-			if (StringUtils.isNotBlank(_content)) {
+			String _content = StringUtils.substringBetween(this.getValue(), "<" + _wrapper + ">",
+					"</" + _wrapper + ">");
+			if (StringUtils.isNotEmpty(_content)) {
 				this.setValue(_content);
 			}
 			_scriptTmpl.append(this.getValue()).append("\n");
@@ -86,5 +89,5 @@ public class ScriptTag extends BodyTagSupport {
 		this.wrapper = null;
 		return super.doEndTag();
 	}
- 
+
 }

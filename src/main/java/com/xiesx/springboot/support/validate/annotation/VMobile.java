@@ -11,9 +11,9 @@ import java.lang.annotation.Target;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
+import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
-import javax.validation.constraints.NotEmpty;
 
 /**
  * @title VJson.java

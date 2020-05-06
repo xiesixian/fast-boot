@@ -2,12 +2,12 @@ package com.xiesx.springboot.support.request.base;
 
 import java.util.concurrent.ExecutionException;
 
-import lombok.extern.slf4j.Slf4j;
-import net.dongliu.requests.RawResponse;
-
 import com.github.rholder.retry.Attempt;
 import com.github.rholder.retry.RetryListener;
 import com.xiesx.springboot.base.result.BaseResult;
+
+import lombok.extern.slf4j.Slf4j;
+import net.dongliu.requests.RawResponse;
 
 /**
  * @title BaseRetryListener.java
@@ -27,9 +27,13 @@ public class BaseHttpRetryListener<T> implements RetryListener {
 			try {
 				V result = (V) attempt.get();
 				if (result instanceof RawResponse) {
-					log.warn("onRetry time:{} delay:{} isError:{} result:{} - {}", attempt.getAttemptNumber(), attempt.getDelaySinceFirstAttempt(), attempt.hasException(), attempt.hasResult(), ((RawResponse) result).statusCode());
+					log.warn("onRetry time:{} delay:{} isError:{} result:{} - {}", attempt.getAttemptNumber(),
+							attempt.getDelaySinceFirstAttempt(), attempt.hasException(), attempt.hasResult(),
+							((RawResponse) result).statusCode());
 				} else if (result instanceof BaseResult) {
-					log.warn("onRetry time:{} delay:{} isError:{} result:{} - {}", attempt.getAttemptNumber(), attempt.getDelaySinceFirstAttempt(), attempt.hasException(), attempt.hasResult(), ((BaseResult) result).getCode());
+					log.warn("onRetry time:{} delay:{} isError:{} result:{} - {}", attempt.getAttemptNumber(),
+							attempt.getDelaySinceFirstAttempt(), attempt.hasException(), attempt.hasResult(),
+							((BaseResult) result).getCode());
 				}
 			} catch (ExecutionException e) {
 				log.error("onResult attempt produce exception:{}", e.getCause().toString());

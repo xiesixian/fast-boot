@@ -2,6 +2,8 @@ package com.xiesx.springboot.support.token;
 
 import java.util.Date;
 
+import org.apache.commons.lang3.ObjectUtils;
+
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 
 public class TokenStorageHelper {
@@ -18,7 +20,7 @@ public class TokenStorageHelper {
 		Date expireTime = new Date(now.getTime() + EXPIRE * 1000);
 		// 判断是否生成过token
 		TokenStorage tokenEntity = new TokenStorage().setUserId(user_id).find();
-		if (tokenEntity == null) {
+		if (ObjectUtils.isEmpty(tokenEntity)) {
 			tokenEntity = new TokenStorage();
 			tokenEntity.setUserId(user_id);
 			tokenEntity.setToken(token);

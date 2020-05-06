@@ -3,6 +3,8 @@ package com.xiesx.springboot.support.jdbc;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.ObjectUtils;
+
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Lists;
@@ -25,7 +27,7 @@ public class DefaultRowMappler<T> {
 	 * 
 	 * @param clazz 实体类型
 	 */
-	public DefaultRowMappler(Class<T> clazz){
+	public DefaultRowMappler(Class<T> clazz) {
 		this.clazz = clazz;
 	}
 
@@ -36,7 +38,7 @@ public class DefaultRowMappler<T> {
 	 * @return
 	 */
 	public T fillToMap(Map<String, Object> map) {
-		if (map == null) {
+		if (ObjectUtils.isEmpty(map)) {
 			return null;
 		}
 		return JSON.toJavaObject(new JSONObject(map), clazz);

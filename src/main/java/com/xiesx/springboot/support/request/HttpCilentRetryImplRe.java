@@ -6,13 +6,6 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
-import lombok.extern.slf4j.Slf4j;
-import net.dongliu.requests.Methods;
-import net.dongliu.requests.RawResponse;
-import net.dongliu.requests.RequestBuilder;
-import net.dongliu.requests.Requests;
-import net.dongliu.requests.Session;
-
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -27,6 +20,13 @@ import com.xiesx.springboot.support.request.base.BaseHttpRetryListener;
 import com.xiesx.springboot.support.request.config.HttpCilentRetryConfig;
 import com.xiesx.springboot.support.request.impl.IHttpCallable;
 
+import lombok.extern.slf4j.Slf4j;
+import net.dongliu.requests.Methods;
+import net.dongliu.requests.RawResponse;
+import net.dongliu.requests.RequestBuilder;
+import net.dongliu.requests.Requests;
+import net.dongliu.requests.Session;
+
 /**
  * @title 自定义Requests网络请求类实现类
  * @description 基于Requests来实现（网络请求 + 动态代理 + 失败重试）
@@ -36,7 +36,8 @@ import com.xiesx.springboot.support.request.impl.IHttpCallable;
 @Slf4j
 @Scope("prototype")
 @Component("httpCilentRetryImplRe")
-public class HttpCilentRetryImplRe extends BaseHttpRetryCilent implements IHttpCilentRetry<RawResponse>, IHttpCallable<RawResponse> {
+public class HttpCilentRetryImplRe extends BaseHttpRetryCilent
+		implements IHttpCilentRetry<RawResponse>, IHttpCallable<RawResponse> {
 
 	/**
 	 * ============这里灰常重要
@@ -83,10 +84,11 @@ public class HttpCilentRetryImplRe extends BaseHttpRetryCilent implements IHttpC
 	}
 
 	@Override
-	public RawResponse get_try(String url, Map<String, Object> params, Proxy proxy) throws ExecutionException, RetryException {
+	public RawResponse get_try(String url, Map<String, Object> params, Proxy proxy)
+			throws ExecutionException, RetryException {
 		// 构造
-		Retryer<RawResponse> retry = RetryerBuilder.<RawResponse> newBuilder()
-		// 抛出runtime异常、checked异常时都会重试，但是抛出error不会重试。
+		Retryer<RawResponse> retry = RetryerBuilder.<RawResponse>newBuilder()
+				// 抛出runtime异常、checked异常时都会重试，但是抛出error不会重试。
 				.retryIfException()
 				// 返回x需要重试
 				.retryIfResult(reRetryPredicate)
@@ -95,8 +97,7 @@ public class HttpCilentRetryImplRe extends BaseHttpRetryCilent implements IHttpC
 				// 尝试次数
 				.withStopStrategy(StopStrategies.stopAfterAttempt(HttpCilentRetryConfig.RETRY_HTTP_NUM))
 				// 重试监听
-				.withRetryListener(new BaseHttpRetryListener<RawResponse>())
-				.build();
+				.withRetryListener(new BaseHttpRetryListener<RawResponse>()).build();
 		return retry.call(call(Methods.GET, url, params, proxy));
 	}
 
@@ -118,10 +119,11 @@ public class HttpCilentRetryImplRe extends BaseHttpRetryCilent implements IHttpC
 	}
 
 	@Override
-	public RawResponse post_try(String url, Map<String, Object> params, Proxy proxy) throws ExecutionException, RetryException {
+	public RawResponse post_try(String url, Map<String, Object> params, Proxy proxy)
+			throws ExecutionException, RetryException {
 		// 构造
-		Retryer<RawResponse> retry = RetryerBuilder.<RawResponse> newBuilder()
-		// 抛出runtime异常、checked异常时都会重试，但是抛出error不会重试。
+		Retryer<RawResponse> retry = RetryerBuilder.<RawResponse>newBuilder()
+				// 抛出runtime异常、checked异常时都会重试，但是抛出error不会重试。
 				.retryIfException()
 				// 返回x需要重试
 				.retryIfResult(reRetryPredicate)
@@ -130,8 +132,7 @@ public class HttpCilentRetryImplRe extends BaseHttpRetryCilent implements IHttpC
 				// 尝试次数
 				.withStopStrategy(StopStrategies.stopAfterAttempt(HttpCilentRetryConfig.RETRY_HTTP_NUM))
 				// 重试监听
-				.withRetryListener(new BaseHttpRetryListener<RawResponse>())
-				.build();
+				.withRetryListener(new BaseHttpRetryListener<RawResponse>()).build();
 		return retry.call(call(Methods.POST, url, params, proxy));
 	}
 
@@ -173,7 +174,8 @@ public class HttpCilentRetryImplRe extends BaseHttpRetryCilent implements IHttpC
 	// ========call========
 
 	@Override
-	public Callable<RawResponse> call(final String method, final String url, final Map<String, Object> params, final Proxy proxy) {
+	public Callable<RawResponse> call(final String method, final String url, final Map<String, Object> params,
+			final Proxy proxy) {
 
 		return new Callable<RawResponse>() {
 

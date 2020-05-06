@@ -2,10 +2,10 @@ package com.xiesx.springboot.base.pagination;
 
 import java.util.List;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import lombok.Builder;
 import lombok.Data;
-
-import com.alibaba.fastjson.annotation.JSONField;
 
 /**
  * @title PaginationBO.java

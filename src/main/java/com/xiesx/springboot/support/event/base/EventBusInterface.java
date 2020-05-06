@@ -6,4 +6,5 @@ package com.xiesx.springboot.support.event.base;
  * @author Sixian.xie
  * @date 2019年3月12日 下午5:46:00
  */
-public interface EventBusInterface {}
+public interface EventBusInterface {
+}

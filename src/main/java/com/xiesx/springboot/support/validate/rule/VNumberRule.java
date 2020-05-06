@@ -5,6 +5,8 @@ import java.util.regex.Pattern;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.xiesx.springboot.support.validate.annotation.VNumber;
 
 /**
@@ -21,7 +23,7 @@ public class VNumberRule implements ConstraintValidator<VNumber, String> {
 	}
 
 	public boolean isValid(String s, ConstraintValidatorContext constraintValidatorContext) {
-		if (s == null || s.equals("")) {
+		if (StringUtils.isEmpty(s)) {
 			return false;
 		}
 		return pattern.matcher(s).matches();

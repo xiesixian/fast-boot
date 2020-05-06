@@ -49,7 +49,6 @@ public class TokenStorage extends JdbcEntity<TokenStorage> {
 		public static final String SYS_TOKEN = "sys_token";
 	}
 
-	
 	/** 常量 */
 	public class FIELDS {
 

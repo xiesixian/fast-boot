@@ -57,7 +57,7 @@ public final class Pages {
 	 * 
 	 * @param page
 	 */
-	private Pages(int page){
+	private Pages(int page) {
 		this.page = page > 0 ? page : 1;
 		this.isCount = true;
 	}

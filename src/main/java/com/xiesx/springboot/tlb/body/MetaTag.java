@@ -1,11 +1,12 @@
-package com.xiesx.springboot.tld.tag;
+package com.xiesx.springboot.tlb.body;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import com.xiesx.springboot.tld.ui.BaseUITag;
+import com.xiesx.springboot.tlb.ui.BaseUITag;
 import com.xiesx.springboot.utils.RuntimeUtils;
 
 import lombok.Data;
@@ -26,7 +27,7 @@ public class MetaTag extends BodyTagSupport {
 	@Override
 	public int doStartTag() throws JspException {
 		__ui = (BaseUITag) this.getParent();
-		if (__ui == null) {
+		if (ObjectUtils.isEmpty(__ui)) {
 			throw new JspException("Parent UITag or LayoutTag not found.");
 		}
 		return super.doStartTag();
@@ -37,7 +38,7 @@ public class MetaTag extends BodyTagSupport {
 		try {
 			if (this.bodyContent != null) {
 				String _propValue = this.bodyContent.getString();
-				if (StringUtils.isNotBlank(_propValue)) {
+				if (StringUtils.isNotEmpty(_propValue)) {
 					this.setAttrValue(_propValue);
 				}
 				this.bodyContent.clearBody();
@@ -52,7 +53,7 @@ public class MetaTag extends BodyTagSupport {
 	public int doEndTag() throws JspException {
 		StringBuilder _metaTmpl = new StringBuilder("<meta");
 		boolean _isEmpty = true;
-		if (StringUtils.isNotBlank(this.getAttrKey())) {
+		if (StringUtils.isNotEmpty(this.getAttrKey())) {
 			_metaTmpl.append(" ").append(this.getAttrKey());
 			_isEmpty = false;
 		}

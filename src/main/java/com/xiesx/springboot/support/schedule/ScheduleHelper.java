@@ -2,8 +2,7 @@ package com.xiesx.springboot.support.schedule;
 
 import java.util.List;
 
-import lombok.extern.slf4j.Slf4j;
-
+import org.apache.commons.lang3.ObjectUtils;
 import org.quartz.CronScheduleBuilder;
 import org.quartz.CronTrigger;
 import org.quartz.Job;
@@ -24,6 +23,8 @@ import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
 import com.xiesx.springboot.support.schedule.job.SimpleJobSchedule;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * @title SimpleSchedule.java
  * @description 定时任务工具类
@@ -42,15 +43,13 @@ public class ScheduleHelper {
 	/**
 	 * 添加一个定时任务，使用默认的任务组名，触发器名，触发器组名
 	 * 
-	 * @param jobName
-	 *            任务名
-	 * @param cls
-	 *            任务
-	 * @param cron
-	 *            时间设置，参考quartz说明文档
+	 * @param jobName 任务名
+	 * @param cls     任务
+	 * @param cron    时间设置，参考quartz说明文档
 	 * @throws SchedulerException
 	 */
-	public static void addJob(String jobName, Class<? extends Job> cls, String cron, JobDataMap map) throws SchedulerException {
+	public static void addJob(String jobName, Class<? extends Job> cls, String cron, JobDataMap map)
+			throws SchedulerException {
 		Scheduler sched = gSchedulerFactory.getScheduler();
 		// 用于描叙Job实现类及其他的一些静态信息，构建一个作业实例
 		JobDetail jobDetail = JobBuilder.newJob(cls).setJobData(map).withIdentity(jobName, JOB_GROUP_NAME).build();
@@ -76,20 +75,15 @@ public class ScheduleHelper {
 	/**
 	 * 添加一个定时任务
 	 * 
-	 * @param jobName
-	 *            任务名
-	 * @param jobGroupName
-	 *            任务组名
-	 * @param triggerName
-	 *            触发器名
-	 * @param triggerGroupName
-	 *            触发器组名
-	 * @param jobClass
-	 *            任务
-	 * @param cron
-	 *            时间设置，参考quartz说明文档
+	 * @param jobName          任务名
+	 * @param jobGroupName     任务组名
+	 * @param triggerName      触发器名
+	 * @param triggerGroupName 触发器组名
+	 * @param jobClass         任务
+	 * @param cron             时间设置，参考quartz说明文档
 	 */
-	public static void addJob(String jobName, String jobGroupName, String triggerName, String triggerGroupName, Class<? extends Job> cls, String cron, JobDataMap map) throws SchedulerException {
+	public static void addJob(String jobName, String jobGroupName, String triggerName, String triggerGroupName,
+			Class<? extends Job> cls, String cron, JobDataMap map) throws SchedulerException {
 
 		Scheduler sched = gSchedulerFactory.getScheduler();
 		// 用于描叙Job实现类及其他的一些静态信息，构建一个作业实例
@@ -125,7 +119,7 @@ public class ScheduleHelper {
 		Scheduler sched = gSchedulerFactory.getScheduler();
 		TriggerKey triggerKey = new TriggerKey(jobName, TRIGGER_GROUP_NAME);
 		CronTrigger trigger = (CronTrigger) sched.getTrigger(triggerKey);
-		if (trigger == null) {
+		if (ObjectUtils.isEmpty(trigger)) {
 			return;
 		}
 		String oldTime = trigger.getCronExpression();
@@ -164,7 +158,8 @@ public class ScheduleHelper {
 	 * @param triggerGroupName
 	 * @throws SchedulerException
 	 */
-	public static void removeJob(String jobName, String jobGroupName, String triggerName, String triggerGroupName) throws SchedulerException {
+	public static void removeJob(String jobName, String jobGroupName, String triggerName, String triggerGroupName)
+			throws SchedulerException {
 		Scheduler sched = gSchedulerFactory.getScheduler();
 		JobKey jobKey = new JobKey(jobName, jobGroupName);
 		// 停止触发器

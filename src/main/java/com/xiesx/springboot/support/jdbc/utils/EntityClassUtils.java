@@ -6,6 +6,8 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.WeakHashMap;
 
+import org.apache.commons.lang3.ObjectUtils;
+
 /**
  * @title EntityClassUtils.java
  * @description 获取Entity对象类辅助
@@ -17,7 +19,8 @@ public class EntityClassUtils {
 	/**
 	 * 弱引用，BeanInfo信息需要注意垃圾回收
 	 */
-	private static final Map<Class<?>, BeanInfo> classCache = Collections.synchronizedMap(new WeakHashMap<Class<?>, BeanInfo>());
+	private static final Map<Class<?>, BeanInfo> classCache = Collections
+			.synchronizedMap(new WeakHashMap<Class<?>, BeanInfo>());
 
 	/**
 	 * 初始化实例
@@ -39,15 +42,14 @@ public class EntityClassUtils {
 	 */
 	public static BeanInfo getSelfBeanInfo(Class<?> clazz) throws Exception {
 		BeanInfo beanInfo;
-		if (classCache.get(clazz) == null) {
+		if (ObjectUtils.isEmpty(classCache.get(clazz))) {
 			beanInfo = Introspector.getBeanInfo(clazz, clazz.getSuperclass());
 			classCache.put(clazz, beanInfo);
 			Class<?> classToFlush = clazz;
 			do {
 				Introspector.flushFromCaches(classToFlush);
 				classToFlush = classToFlush.getSuperclass();
-			}
-			while (classToFlush != null);
+			} while (classToFlush != null);
 		} else {
 			beanInfo = classCache.get(clazz);
 		}

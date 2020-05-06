@@ -17,7 +17,7 @@ public class RunException extends Throwable {
 
 	private Integer errorCode;
 
-	public RunException(){
+	public RunException() {
 		super();
 	}
 
@@ -26,7 +26,7 @@ public class RunException extends Throwable {
 	 * 
 	 * @param message
 	 */
-	public RunException(String message){
+	public RunException(String message) {
 		super(message);
 		this.errorCode = RunExc.RUN.getErrorCode();
 	}
@@ -36,7 +36,7 @@ public class RunException extends Throwable {
 	 * 
 	 * @param message
 	 */
-	public RunException(Throwable e){
+	public RunException(Throwable e) {
 		super(e);
 		this.errorCode = RunExc.RUN.getErrorCode();
 	}
@@ -46,7 +46,7 @@ public class RunException extends Throwable {
 	 * 
 	 * @param message
 	 */
-	public RunException(RunExc act){
+	public RunException(RunExc act) {
 		super(act.getMassage());
 		this.errorCode = act.getErrorCode();
 	}
@@ -57,7 +57,7 @@ public class RunException extends Throwable {
 	 * @param message
 	 * @param message
 	 */
-	public RunException(RunExc act, String message){
+	public RunException(RunExc act, String message) {
 		super(act.getMassage() + " : " + message);
 		this.errorCode = act.getErrorCode();
 	}
@@ -69,7 +69,7 @@ public class RunException extends Throwable {
 	 * @param format
 	 * @param message
 	 */
-	public RunException(RunExc act, String format, Object... message){
+	public RunException(RunExc act, String format, Object... message) {
 		super(act.getMassage() + " : " + String.format(format, message));
 		this.errorCode = act.getErrorCode();
 	}

@@ -1,9 +1,10 @@
-package com.xiesx.springboot.tld.ui;
+package com.xiesx.springboot.tlb.ui;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.JspException;
 
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.xiesx.springboot.utils.RuntimeUtils;
@@ -28,12 +29,14 @@ public class LayoutTag extends BaseUITag {
 	@Override
 	public int doStartTag() throws JspException {
 		__ui = (BaseUITag) this.getParent();
-		if (__ui == null) {
+		if (ObjectUtils.isEmpty(__ui)) {
 			throw new JspException("Parent UITag or LayoutTag not found.");
 		}
 		try {
-			if (StringUtils.isNotBlank(this.getSrc())) {
-				__tmplContent = TagUtils.includeJSP((HttpServletRequest) this.pageContext.getRequest(), (HttpServletResponse) this.pageContext.getResponse(), this.buildSrcUrl(), __ui.getCharsetEncoding());
+			if (StringUtils.isNotEmpty(this.getSrc())) {
+				__tmplContent = TagUtils.includeJSP((HttpServletRequest) this.pageContext.getRequest(),
+						(HttpServletResponse) this.pageContext.getResponse(), this.buildSrcUrl(),
+						__ui.getCharsetEncoding());
 			} else {
 				__tmplContent = "";
 			}
@@ -48,7 +51,7 @@ public class LayoutTag extends BaseUITag {
 		try {
 			if (this.bodyContent != null) {
 				String _layoutBody = StringUtils.defaultIfEmpty(this.bodyContent.getString(), "");
-				if (StringUtils.isNotBlank(__tmplContent)) {
+				if (StringUtils.isNotEmpty(__tmplContent)) {
 					this.writerToBodyPart(_layoutBody);
 				} else {
 					__tmplContent = _layoutBody;
@@ -68,7 +71,7 @@ public class LayoutTag extends BaseUITag {
 			__ui.writerToCssPart(this.getCssPartContent());
 			__ui.writerToScriptPart(this.getScriptPartContent());
 			__tmplContent = this.mergeContent(StringUtils.defaultIfEmpty(__tmplContent, ""));
-			if (StringUtils.isNotBlank(name) && !"body".equalsIgnoreCase(name)) {
+			if (StringUtils.isNotEmpty(name) && !"body".equalsIgnoreCase(name)) {
 				__ui.putProperty(name, !isCleanup() ? __tmplContent : TagUtils.replaceRegClear(__tmplContent));
 			} else {
 				__ui.writerToBodyPart(!isCleanup() ? __tmplContent : TagUtils.replaceRegClear(__tmplContent));

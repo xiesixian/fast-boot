@@ -11,8 +11,6 @@ import java.util.TreeMap;
 
 import javax.servlet.http.HttpServletRequest;
 
-import lombok.extern.slf4j.Slf4j;
-
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -29,6 +27,8 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import com.google.common.collect.Maps;
 import com.xiesx.springboot.core.exception.RunException;
 import com.xiesx.springboot.support.sgin.annotation.GoSign;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @title SignAspect.java
@@ -68,7 +68,8 @@ public class SignAspect {
 		// 参数集
 		Map<String, String> parms = Maps.newConcurrentMap();
 		// 获取请求信息
-		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
+				.getRequest();
 		// 获取参数
 		Enumeration<String> names = request.getParameterNames();
 		while (names.hasMoreElements()) {

@@ -1,10 +1,12 @@
 package com.xiesx.springboot.support.event;
 
-import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.ObjectUtils;
 
 import com.google.common.eventbus.EventBus;
 import com.xiesx.springboot.support.event.base.AbstractEventBus;
 import com.xiesx.springboot.support.event.base.EventBusInterface;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @title SimpleEventBusUtils.java
@@ -23,7 +25,7 @@ public class EventBusHelper {
 	 * @param event
 	 */
 	public static void post(EventBusInterface event) {
-		if (event == null) {
+		if (ObjectUtils.isEmpty(event)) {
 			return;
 		}
 		log.info("post : {}", event.getClass().getName());
@@ -36,7 +38,7 @@ public class EventBusHelper {
 	 * @param handler
 	 */
 	public static void register(AbstractEventBus<? extends EventBusInterface> handler) {
-		if (handler == null) {
+		if (ObjectUtils.isEmpty(handler)) {
 			return;
 		}
 		log.info("register : {}", handler.getClass().getName());
@@ -49,7 +51,7 @@ public class EventBusHelper {
 	 * @param handler
 	 */
 	public static void unregister(AbstractEventBus<? extends EventBusInterface> handler) {
-		if (handler == null) {
+		if (ObjectUtils.isEmpty(handler)) {
 			return;
 		}
 		log.info("unregister : {}", handler.getClass().getName());

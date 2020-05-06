@@ -1,20 +1,21 @@
-package com.xiesx.springboot.tld.tag;
+package com.xiesx.springboot.tlb.body;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import com.xiesx.springboot.tld.ui.BaseUITag;
+import com.xiesx.springboot.tlb.ui.BaseUITag;
 import com.xiesx.springboot.utils.RuntimeUtils;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
-@EqualsAndHashCode(callSuper=false)
+@EqualsAndHashCode(callSuper = false)
 public class PropertyTag extends BodyTagSupport {
- 
+
 	private static final long serialVersionUID = -3493408190832765819L;
 
 	private BaseUITag __ui;
@@ -26,7 +27,7 @@ public class PropertyTag extends BodyTagSupport {
 	@Override
 	public int doStartTag() throws JspException {
 		__ui = (BaseUITag) this.getParent();
-		if (__ui == null) {
+		if (ObjectUtils.isEmpty(__ui)) {
 			throw new JspException("Parent UITag or LayoutTag not found.");
 		}
 		return super.doStartTag();
@@ -37,7 +38,7 @@ public class PropertyTag extends BodyTagSupport {
 		try {
 			if (this.bodyContent != null) {
 				String _propValue = this.bodyContent.getString();
-				if (StringUtils.isNotBlank(_propValue)) {
+				if (StringUtils.isNotEmpty(_propValue)) {
 					this.setValue(_propValue);
 				}
 				this.bodyContent.clearBody();
@@ -50,7 +51,7 @@ public class PropertyTag extends BodyTagSupport {
 
 	@Override
 	public int doEndTag() throws JspException {
-		if (StringUtils.isNotBlank(this.getName()) && StringUtils.isNotEmpty(this.getValue())) {
+		if (StringUtils.isNotEmpty(this.getName()) && StringUtils.isNotEmpty(this.getValue())) {
 			__ui.putProperty(this.getName(), this.getValue());
 		}
 		//

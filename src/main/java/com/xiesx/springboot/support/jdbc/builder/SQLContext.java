@@ -21,12 +21,12 @@ public class SQLContext {
 
 	// ================构造方法
 
-	public SQLContext(StringBuilder sql, List<Object> params){
+	public SQLContext(StringBuilder sql, List<Object> params) {
 		this.sql = sql;
 		this.params = params;
 	}
 
-	public SQLContext(StringBuilder sql, String primaryKey, List<Object> params){
+	public SQLContext(StringBuilder sql, String primaryKey, List<Object> params) {
 		this.sql = sql;
 		this.primaryKey = primaryKey;
 		this.params = params;
@@ -94,7 +94,8 @@ public class SQLContext {
 
 	private String getSqlToStringFormat(Boolean format) {
 		if (format) {
-			//return SQLUtils.formatMySql(this.sql.toString(), new SQLUtils.FormatOption(false));
+			// return SQLUtils.formatMySql(this.sql.toString(), new
+			// SQLUtils.FormatOption(false));
 			return this.sql.toString();
 		} else {
 			return this.sql.toString();

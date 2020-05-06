@@ -39,7 +39,7 @@ public final class Fields {
 	 * 
 	 * @param fields
 	 */
-	private Fields(String... fields){
+	private Fields(String... fields) {
 		this.fields = Lists.newArrayList();
 		if (fields != null && fields.length > 0) {
 			this.fields.addAll(Arrays.asList(fields));

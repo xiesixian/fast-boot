@@ -1,20 +1,21 @@
-package com.xiesx.springboot.tld.tag;
+package com.xiesx.springboot.tlb.body;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import com.xiesx.springboot.tld.ui.BaseUITag;
+import com.xiesx.springboot.tlb.ui.BaseUITag;
 import com.xiesx.springboot.utils.RuntimeUtils;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
-@EqualsAndHashCode(callSuper=false)
+@EqualsAndHashCode(callSuper = false)
 public class CssTag extends BodyTagSupport {
- 
+
 	private static final long serialVersionUID = -1975747968925711584L;
 
 	private BaseUITag __ui;
@@ -30,7 +31,7 @@ public class CssTag extends BodyTagSupport {
 	@Override
 	public int doStartTag() throws JspException {
 		__ui = (BaseUITag) this.getParent();
-		if (__ui == null) {
+		if (ObjectUtils.isEmpty(__ui)) {
 			throw new JspException("Parent UITag or LayoutTag not found.");
 		}
 		return super.doStartTag();
@@ -52,21 +53,21 @@ public class CssTag extends BodyTagSupport {
 	public int doEndTag() throws JspException {
 		StringBuilder _metaTmpl = new StringBuilder("<link");
 		boolean _isEmpty = true;
-		if (StringUtils.isNotBlank(this.getHref())) {
+		if (StringUtils.isNotEmpty(this.getHref())) {
 			_metaTmpl.append(" href=\"").append(this.getHref()).append("\"");
 			_isEmpty = false;
 		}
 		if (!_isEmpty) {
-			if (StringUtils.isBlank(this.getRel())) {
+			if (StringUtils.isEmpty(this.getRel())) {
 				this.setRel("stylesheet");
 			}
 			_metaTmpl.append(" rel=\"").append(this.getRel()).append("\"");
 			//
-			if (StringUtils.isNotBlank(this.getType())) {
+			if (StringUtils.isNotEmpty(this.getType())) {
 				_metaTmpl.append(" type=\"").append(this.getType()).append("\"");
 			}
 			//
-			if (StringUtils.isNotBlank(this.getMedia())) {
+			if (StringUtils.isNotEmpty(this.getMedia())) {
 				_metaTmpl.append(" media=\"").append(this.getMedia()).append("\"");
 			}
 			_metaTmpl.append(">\n");

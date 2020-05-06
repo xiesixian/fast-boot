@@ -81,7 +81,7 @@ public class LogStorage extends JdbcEntity<LogStorage> {
 	 */
 	@Column
 	private Long t;
-	
+
 	/**
 	 * 执行时间（毫秒）
 	 */
@@ -113,8 +113,8 @@ public class LogStorage extends JdbcEntity<LogStorage> {
 		public static final String RES = "res";
 
 		public static final String T = "t";
-		
-		public static final String OPT = "opt";	
+
+		public static final String OPT = "opt";
 	}
 
 	protected Serializable pkVal() {

@@ -7,12 +7,12 @@ import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import lombok.extern.slf4j.Slf4j;
-
 import org.apache.commons.lang3.StringUtils;
 
 import com.google.common.base.CaseFormat;
 import com.google.common.collect.Lists;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @title SimpleNameHandler.java
@@ -129,7 +129,8 @@ public class EntityNameHandler {
 	// EntityNameHandler handler = new EntityNameHandler();
 	// System.out.println(handler.getTableName(LogStorage.class));
 	// System.out.println(handler.getPrimaryName(LogStorage.class));
-	// System.out.println(handler.getColumnName(LogStorage.class, "createTimeFormat"));
+	// System.out.println(handler.getColumnName(LogStorage.class,
+	// "createTimeFormat"));
 	// List<String> cols = handler.getColumnNames(LogStorage.class);
 	// System.out.println(cols.size());
 	// System.out.println(cols);

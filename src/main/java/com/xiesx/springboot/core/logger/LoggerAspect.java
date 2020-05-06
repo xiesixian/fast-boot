@@ -8,6 +8,8 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.ObjectUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -95,6 +97,7 @@ public class LoggerAspect {
 		}
 		if (isStorage) {
 			try {
+				Object nickName = session.getAttribute(LoggerCfg.NICKNAME);
 				LogStorage log = new LogStorage();
 				log.setId(IdWorker.getIdStr(log));
 				log.setCreateDate(new Date());
@@ -105,7 +108,7 @@ public class LoggerAspect {
 				log.setReq(req);
 				log.setRes(res);
 				log.setT(t);
-				log.setOpt(session.getAttribute(LoggerCfg.NICKNAME).toString());
+				log.setOpt(ObjectUtils.isEmpty(nickName) ? "" : nickName.toString());
 				log.insert();
 			} catch (Exception e) {
 				log.error("=========request err {}", e);
@@ -116,16 +119,16 @@ public class LoggerAspect {
 
 	private String getIpAddr(HttpServletRequest request) {
 		String ip = request.getHeader("X-real-ip");
-		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+		if (StringUtils.isEmpty(ip) || "unknown".equalsIgnoreCase(ip)) {
 			ip = request.getHeader("X-Forwarded-For");
 		}
-		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+		if (StringUtils.isEmpty(ip) || "unknown".equalsIgnoreCase(ip)) {
 			ip = request.getHeader("Proxy-Client-IP");
 		}
-		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+		if (StringUtils.isEmpty(ip) || "unknown".equalsIgnoreCase(ip)) {
 			ip = request.getHeader("WL-Proxy-Client-IP");
 		}
-		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+		if (StringUtils.isEmpty(ip) || "unknown".equalsIgnoreCase(ip)) {
 			ip = request.getRemoteAddr();
 		}
 		return ip;

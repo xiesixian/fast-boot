@@ -2,9 +2,9 @@ package com.xiesx.springboot.base.pagination;
 
 import java.util.List;
 
-import lombok.NonNull;
-
 import com.google.common.collect.Lists;
+
+import lombok.NonNull;
 
 /**
  * @title PaginationVO.java

@@ -23,7 +23,7 @@ public final class ExpressionUtils {
 		return new ExpressionUtils(expressionStr);
 	}
 
-	private ExpressionUtils(String expressionStr){
+	private ExpressionUtils(String expressionStr) {
 		this.__result = expressionStr;
 	}
 
@@ -37,7 +37,7 @@ public final class ExpressionUtils {
 	/**
 	 * 设置变量值
 	 * 
-	 * @param key 变量名称
+	 * @param key   变量名称
 	 * @param value 变量值
 	 * @return 当前表达式工具类实例
 	 */
@@ -58,8 +58,7 @@ public final class ExpressionUtils {
 			do {
 				_vars.add(_match.group());
 				_result = _match.find();
-			}
-			while (_result);
+			} while (_result);
 		}
 		return _vars;
 	}

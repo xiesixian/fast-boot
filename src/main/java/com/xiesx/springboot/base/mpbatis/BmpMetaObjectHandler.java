@@ -2,12 +2,12 @@ package com.xiesx.springboot.base.mpbatis;
 
 import java.util.Date;
 
-import lombok.extern.slf4j.Slf4j;
-
 import org.apache.ibatis.reflection.MetaObject;
 import org.springframework.stereotype.Component;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * mybatisplus自定义填充公共字段 ,即没有传的字段自动填充

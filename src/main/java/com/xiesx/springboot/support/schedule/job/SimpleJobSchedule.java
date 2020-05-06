@@ -3,12 +3,12 @@ package com.xiesx.springboot.support.schedule.job;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import lombok.extern.slf4j.Slf4j;
-
 import org.quartz.Job;
 import org.quartz.JobDataMap;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @title SimpleJob.java

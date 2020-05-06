@@ -6,7 +6,7 @@ import lombok.Data;
 
 /**
  * @title CurrentToken
- * @description 
+ * @description
  * @author XIE
  * @date 2020年4月25日下午6:15:48
  */

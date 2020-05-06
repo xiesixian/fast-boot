@@ -1,4 +1,4 @@
-package com.xiesx.springboot.tld.ui;
+package com.xiesx.springboot.tlb.ui;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -8,12 +8,12 @@ import java.util.regex.Matcher;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-
 import org.apache.commons.lang3.StringUtils;
 
 import com.xiesx.springboot.utils.TagUtils;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -79,7 +79,7 @@ public abstract class BaseUITag extends BodyTagSupport {
 
 	public String mergeContent(String tmplContent) throws JspException {
 		String _tmplContent = tmplContent;
-		if (StringUtils.isNotBlank(_tmplContent)) {
+		if (StringUtils.isNotEmpty(_tmplContent)) {
 			if (__tmplMetaPart.length() > 0) {
 				_tmplContent = TagUtils.replaceRegText(_tmplContent, "meta", __tmplMetaPart.toString());
 			}
@@ -100,7 +100,7 @@ public abstract class BaseUITag extends BodyTagSupport {
 	}
 
 	public String buildSrcUrl() {
-		if (StringUtils.isNotBlank(this.getSrc())) {
+		if (StringUtils.isNotEmpty(this.getSrc())) {
 			StringBuilder _url = new StringBuilder();
 			if (!this.getSrc().startsWith("/")) {
 				_url.append("/WEB-INF/jsp/");

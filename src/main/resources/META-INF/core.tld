@@ -77,7 +77,7 @@
 	<tag>
 		<display-name>ScriptTag</display-name>
 		<name>script</name>
-		<tag-class>com.xiesx.springboot.tlb.body..ScriptTag</tag-class>
+		<tag-class>com.xiesx.springboot.tlb.body.ScriptTag</tag-class>
 		<body-content>JSP</body-content>
 		<attribute>
 			<name>id</name>

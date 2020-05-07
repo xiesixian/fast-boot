@@ -1,6 +1,6 @@
 package com.xiesx.springboot.support.jdbc.builder;
 
-import java.util.List;
+import java.util.Map;
 
 /**
  * @title SQLContext.java
@@ -17,16 +17,16 @@ public class SQLContext {
 	private String primaryKey;
 
 	/** 参数，对应sql中的?号 */
-	private List<Object> params;
+	private Map<String, Object> params;
 
 	// ================构造方法
 
-	public SQLContext(StringBuilder sql, List<Object> params) {
+	public SQLContext(StringBuilder sql, Map<String, Object> params) {
 		this.sql = sql;
 		this.params = params;
 	}
 
-	public SQLContext(StringBuilder sql, String primaryKey, List<Object> params) {
+	public SQLContext(StringBuilder sql, String primaryKey, Map<String, Object> params) {
 		this.sql = sql;
 		this.primaryKey = primaryKey;
 		this.params = params;
@@ -50,11 +50,11 @@ public class SQLContext {
 		this.primaryKey = primaryKey;
 	}
 
-	public List<Object> getParams() {
+	public Map<String, Object> getParams() {
 		return params;
 	}
 
-	public void setParams(List<Object> params) {
+	public void setParams(Map<String, Object> params) {
 		this.params = params;
 	}
 
@@ -83,11 +83,8 @@ public class SQLContext {
 	 * 
 	 * @return
 	 */
-	public Object[] getSqlParams() {
-		if (!params.isEmpty()) {
-			return params.toArray();
-		}
-		return new Object[0];
+	public Map<String, Object> getSqlParams() {
+		return params;
 	}
 
 	// ================私有

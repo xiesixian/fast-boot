@@ -10,6 +10,7 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 
 import com.xiesx.springboot.support.token.annotation.Token;
 import com.xiesx.springboot.support.token.cfg.TokenCfg;
+import com.xiesx.springboot.support.token.handle.CurrentToken.CurrentTokenBuilder;
 
 /**
  * @title TokenMethodArgumentResolverHandler
@@ -28,12 +29,25 @@ public class TokenMethodArgumentResolverHandler implements HandlerMethodArgument
 	@Override
 	public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer container, NativeWebRequest request,
 			WebDataBinderFactory factory) throws Exception {
+		// 构造用户信息
+		CurrentTokenBuilder builder = CurrentToken.builder();
 		// 获取用户id
-		Object user_id = request.getAttribute(TokenCfg.USER_KEY, RequestAttributes.SCOPE_REQUEST);
+		String user_id = request.getAttribute(TokenCfg.USER_KEY, RequestAttributes.SCOPE_REQUEST).toString();
 		if (ObjectUtils.isEmpty(user_id)) {
 			return null;
 		}
-		// 设置用户id
-		return CurrentToken.builder().id(String.valueOf(user_id)).build();
+		String user_name = request.getAttribute(TokenCfg.USER_NAME, RequestAttributes.SCOPE_REQUEST).toString();
+		if (ObjectUtils.isNotEmpty(user_name)) {
+			builder.userName(user_name);
+		}
+		String nick_name = request.getAttribute(TokenCfg.NICK_NAME, RequestAttributes.SCOPE_REQUEST).toString();
+		if (ObjectUtils.isNotEmpty(nick_name)) {
+			builder.nickName(nick_name);
+		}
+		return builder.userId(String.valueOf(user_id)).build();
+	}
+
+	public static void main(String[] args) {
+		System.out.println(String.valueOf(null));
 	}
 }

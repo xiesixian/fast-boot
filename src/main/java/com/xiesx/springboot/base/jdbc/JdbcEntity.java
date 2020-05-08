@@ -14,8 +14,8 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Lists;
 import com.xiesx.springboot.core.context.SpringHelper;
-import com.xiesx.springboot.support.jdbc.builder.SQLBuilder;
-import com.xiesx.springboot.support.jdbc.builder.SQLContext;
+import com.xiesx.springboot.support.jdbc.ar.SQLBuilder;
+import com.xiesx.springboot.support.jdbc.ar.SQLContext;
 
 public abstract class JdbcEntity<T> extends JdbcDaoSupport implements Serializable {
 

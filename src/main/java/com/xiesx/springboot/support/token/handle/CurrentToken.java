@@ -16,8 +16,8 @@ import lombok.Data;
 public class CurrentToken {
 
 	private String userId;
-	
+
 	private String userName;
-	
+
 	private String nickName;
 }

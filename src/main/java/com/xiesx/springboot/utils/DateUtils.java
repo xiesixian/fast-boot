@@ -15,11 +15,11 @@ import org.joda.time.LocalDate;
 public class DateUtils {
 
 	private static final String FORTER_DATE = "yyyy-MM-dd";
-	
+
 	private static final String FORMAT_TIME = "yyyy-MM-dd HH:mm:ss";
-	
+
 	// time
-	
+
 	/**
 	 * 获取当前系统时间
 	 * 
@@ -44,7 +44,7 @@ public class DateUtils {
 	}
 
 	// date
-	
+
 	/**
 	 * 获取当前日期
 	 * 
@@ -69,7 +69,7 @@ public class DateUtils {
 	}
 
 	// point time
-	
+
 	/**
 	 * 获取指定时间
 	 * 
@@ -107,7 +107,7 @@ public class DateUtils {
 	}
 
 	// point date
-	
+
 	/**
 	 * 获取指定日期
 	 * 
@@ -138,7 +138,7 @@ public class DateUtils {
 	}
 
 	// point week
-	
+
 	/**
 	 * 获取当前是一周星期几
 	 * 
@@ -217,7 +217,7 @@ public class DateUtils {
 	}
 
 	// format
-	
+
 	/**
 	 * 格式化日期
 	 * 
@@ -268,7 +268,7 @@ public class DateUtils {
 
 		return dateStr;
 	}
-	
+
 	/**
 	 * 格式化时间戳字符串
 	 * 
@@ -307,9 +307,9 @@ public class DateUtils {
 		sdf.setTimeZone(timeZone);
 		return sdf.format(date);
 	}
-	
+
 	// parse
-	
+
 	/**
 	 * 解析日期
 	 * 
@@ -326,7 +326,7 @@ public class DateUtils {
 			return null;
 		}
 	}
-	
+
 	/**
 	 * 解析日期字符串
 	 * 
@@ -348,7 +348,7 @@ public class DateUtils {
 	}
 
 	// forward
-	
+
 	/**
 	 * 获取当前时间前几天时间
 	 * 
@@ -372,9 +372,9 @@ public class DateUtils {
 		DateTime y = dt.minusDays(days);
 		return y.toString(format);
 	}
-	
+
 	// add
-	
+
 	/**
 	 * xx年之后
 	 * 
@@ -392,9 +392,10 @@ public class DateUtils {
 		return dt1.toDate();
 
 	}
-	
+
 	/**
 	 * xx月之后
+	 * 
 	 * @param date
 	 * @param offset
 	 * @return
@@ -409,9 +410,10 @@ public class DateUtils {
 		return dt1.toDate();
 
 	}
-	
+
 	/**
 	 * xx日之后
+	 * 
 	 * @param date
 	 * @param offset
 	 * @return
@@ -426,9 +428,10 @@ public class DateUtils {
 		return dt1.toDate();
 
 	}
-	
+
 	/**
 	 * xx时之后
+	 * 
 	 * @param date
 	 * @param offset
 	 * @return
@@ -445,6 +448,7 @@ public class DateUtils {
 
 	/**
 	 * xx分之后
+	 * 
 	 * @param date
 	 * @param offset
 	 * @return
@@ -459,9 +463,10 @@ public class DateUtils {
 		return dt1.toDate();
 
 	}
-	
+
 	/**
 	 * xx秒之后
+	 * 
 	 * @param date
 	 * @param offset
 	 * @return
@@ -476,9 +481,9 @@ public class DateUtils {
 		return dt1.toDate();
 
 	}
-	
+
 	// forward
-	
+
 	/**
 	 * 获取某月之前,之后某一个月最后一天,24:59:59
 	 * 
@@ -518,7 +523,7 @@ public class DateUtils {
 				.withSecondOfMinute(0);
 		return lastDay.toDate();
 	}
-	
+
 	/**
 	 * 获取指定时间之后或者之前的某一天00:00:00 默认返回当天
 	 * 
@@ -591,7 +596,7 @@ public class DateUtils {
 		int day = Days.daysBetween(dt1, dt2).getDays();
 		return Math.abs(day);
 	}
-	
+
 	/**
 	 * 传入日期时间与当前系统日期时间的比较, 若日期相同，则根据时分秒来返回 , 否则返回具体日期
 	 * 

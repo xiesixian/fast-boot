@@ -55,7 +55,7 @@ public class ScheduleHelper {
 		JobDetail jobDetail = JobBuilder.newJob(cls).setJobData(map).withIdentity(jobName, JOB_GROUP_NAME).build();
 
 		// 构建一个触发器，规定触发的规则
-		Trigger trigger = TriggerBuilder.newTrigger()// 创建一个新的TriggerBuilder来规范一个触发器
+		Trigger trigger = TriggerBuilder.newTrigger()
 				.withIdentity(jobName, TRIGGER_GROUP_NAME)
 				// 给触发器起一个名字和组名
 				.startNow()
@@ -90,7 +90,7 @@ public class ScheduleHelper {
 		JobDetail jobDetail = JobBuilder.newJob(cls).setJobData(map).withIdentity(jobName, jobGroupName).build();
 
 		// 构建一个触发器，规定触发的规则
-		Trigger trigger = TriggerBuilder.newTrigger()// 创建一个新的TriggerBuilder来规范一个触发器
+		Trigger trigger = TriggerBuilder.newTrigger()
 				.withIdentity(jobName, triggerGroupName)
 				// 给触发器起一个名字和组名
 				.startNow()

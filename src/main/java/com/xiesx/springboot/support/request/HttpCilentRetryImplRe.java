@@ -97,7 +97,8 @@ public class HttpCilentRetryImplRe extends BaseHttpRetryCilent
 				// 尝试次数
 				.withStopStrategy(StopStrategies.stopAfterAttempt(HttpCilentRetryConfig.RETRY_HTTP_NUM))
 				// 重试监听
-				.withRetryListener(new BaseHttpRetryListener<RawResponse>()).build();
+				.withRetryListener(new BaseHttpRetryListener<RawResponse>())
+				.build();
 		return retry.call(call(Methods.GET, url, params, proxy));
 	}
 
@@ -132,7 +133,8 @@ public class HttpCilentRetryImplRe extends BaseHttpRetryCilent
 				// 尝试次数
 				.withStopStrategy(StopStrategies.stopAfterAttempt(HttpCilentRetryConfig.RETRY_HTTP_NUM))
 				// 重试监听
-				.withRetryListener(new BaseHttpRetryListener<RawResponse>()).build();
+				.withRetryListener(new BaseHttpRetryListener<RawResponse>())
+				.build();
 		return retry.call(call(Methods.POST, url, params, proxy));
 	}
 

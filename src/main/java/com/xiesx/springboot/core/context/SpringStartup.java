@@ -59,8 +59,8 @@ public class SpringStartup {
 		JdbcTemplate jdbcTemplate = SpringHelper.getBean(JdbcTemplate.class);
 		String sql = "SELECT * FROM information_schema.TABLES WHERE TABLE_SCHEMA=(SELECT DATABASE()) AND `table_name` =? ";
 		try {
-			Map<String, Object> map = SpringHelper.getBean(JdbcTemplate.class).queryForMap(sql,
-					new Object[] { LogStorage.TABLE.SYS_LOG });
+			Map<String, Object> map = SpringHelper.getBean(JdbcTemplate.class)
+					.queryForMap(sql, new Object[] { LogStorage.TABLE.SYS_LOG });
 			log.info("Startup Logger Storage {}", map.isEmpty() == false);
 		} catch (Exception e) {
 			if (e instanceof EmptyResultDataAccessException) {

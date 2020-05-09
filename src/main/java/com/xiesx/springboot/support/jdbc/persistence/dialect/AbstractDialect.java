@@ -117,7 +117,9 @@ public abstract class AbstractDialect implements IDialect {
 		if (pageSize == 0) {
 			return originSql.concat(" limit ").concat(Integer.toString(_limit));
 		} else {
-			return originSql.concat(" limit ").concat(Integer.toString(_limit)).concat(", ")
+			return originSql.concat(" limit ")
+					.concat(Integer.toString(_limit))
+					.concat(", ")
 					.concat(Integer.toString(pageSize));
 		}
 	}
@@ -236,15 +238,16 @@ public abstract class AbstractDialect implements IDialect {
 			__doValidProperty(_meta, _fields, false);
 		}
 		return _exp.set("fields", __doGenerateFieldsFormatStr(_fields, null, null))
-				.set("values", StringUtils.repeat("?", ", ", _fields.fields().size())).getResult();
+				.set("values", StringUtils.repeat("?", ", ", _fields.fields().size()))
+				.getResult();
 	}
 
 	@Override
 	public String buildDeleteByPkSQL(Class<? extends IEntity> entityClass, String prefix, IShardingable shardingable,
 			Fields pkFields) {
 		EntityMeta _meta = EntityMeta.createAndGet(entityClass);
-		ExpressionUtils _exp = ExpressionUtils.bind("DELETE FROM ${table_name} WHERE ${pk}").set("table_name",
-				buildTableName(prefix, _meta, shardingable));
+		ExpressionUtils _exp = ExpressionUtils.bind("DELETE FROM ${table_name} WHERE ${pk}")
+				.set("table_name", buildTableName(prefix, _meta, shardingable));
 		//
 		Fields _fields = Fields.create();
 		if (pkFields == null || pkFields.fields().isEmpty()) {
@@ -260,8 +263,8 @@ public abstract class AbstractDialect implements IDialect {
 	public String buildUpdateByPkSQL(Class<? extends IEntity> entityClass, String prefix, IShardingable shardingable,
 			Fields pkFields, Fields fields) {
 		EntityMeta _meta = EntityMeta.createAndGet(entityClass);
-		ExpressionUtils _exp = ExpressionUtils.bind("UPDATE ${table_name} SET ${fields} WHERE ${pk}").set("table_name",
-				buildTableName(prefix, _meta, shardingable));
+		ExpressionUtils _exp = ExpressionUtils.bind("UPDATE ${table_name} SET ${fields} WHERE ${pk}")
+				.set("table_name", buildTableName(prefix, _meta, shardingable));
 		//
 		Fields _fields = Fields.create();
 		for (String _field : (fields == null || fields.fields().isEmpty()) ? _meta.getPropertyNames()
@@ -291,8 +294,8 @@ public abstract class AbstractDialect implements IDialect {
 	public String buildSelectByPkSQL(Class<? extends IEntity> entityClass, String prefix, IShardingable shardingable,
 			Fields pkFields, Fields fields) {
 		EntityMeta _meta = EntityMeta.createAndGet(entityClass);
-		ExpressionUtils _exp = ExpressionUtils.bind("SELECT ${fields} FROM ${table_name} WHERE ${pk}").set("table_name",
-				buildTableName(prefix, _meta, shardingable));
+		ExpressionUtils _exp = ExpressionUtils.bind("SELECT ${fields} FROM ${table_name} WHERE ${pk}")
+				.set("table_name", buildTableName(prefix, _meta, shardingable));
 		//
 		if (fields == null || fields.fields().isEmpty()) {
 			fields = Fields.create().add(_meta.getPropertyNames());
@@ -313,8 +316,8 @@ public abstract class AbstractDialect implements IDialect {
 	public String buildSelectSQL(Class<? extends IEntity> entityClass, String prefix, IShardingable shardingable,
 			Fields fields) {
 		EntityMeta _meta = EntityMeta.createAndGet(entityClass);
-		ExpressionUtils _exp = ExpressionUtils.bind("SELECT ${fields} FROM ${table_name}").set("table_name",
-				buildTableName(prefix, _meta, shardingable));
+		ExpressionUtils _exp = ExpressionUtils.bind("SELECT ${fields} FROM ${table_name}")
+				.set("table_name", buildTableName(prefix, _meta, shardingable));
 		//
 		if (fields == null || fields.fields().isEmpty()) {
 			fields = Fields.create().add(_meta.getPropertyNames());

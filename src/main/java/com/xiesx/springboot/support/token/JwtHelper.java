@@ -84,7 +84,7 @@ public class JwtHelper {
 		Date staDate = new Date(timemillis);
 		Date endDate = new Date(System.currentTimeMillis() + timeout);
 		//
-		JwtBuilder builder = Jwts.builder()//
+		JwtBuilder builder = Jwts.builder()
 				.setId(jwtid) // 唯一身份标识，根据业务需要，可以设置为一个不重复的值，主要用来作为一次性token，从而回避重放攻击
 				.setSubject(subject) // 主题
 				.setIssuer(issuer) // 签发者
@@ -108,10 +108,7 @@ public class JwtHelper {
 	 * @return
 	 */
 	public static Claims parser(String token) throws JwtException {
-		Claims claimsJws = Jwts.parser()//
-				.setSigningKey(key())//
-				.parseClaimsJws(token)//
-				.getBody();
+		Claims claimsJws = Jwts.parser().setSigningKey(key()).parseClaimsJws(token).getBody();
 		return claimsJws;
 	}
 

@@ -146,8 +146,11 @@ public class MySQLDialect extends AbstractDialect {
 						} else {
 							_tmpBuilder.append("\tINDEX ");
 						}
-						_tmpBuilder.append(wrapIdentifierQuote(_index.getName())).append(" (")
-								.append(StringUtils.join(_idxFields, ",")).append(")").append(__LINE_END_FLAG);
+						_tmpBuilder.append(wrapIdentifierQuote(_index.getName()))
+								.append(" (")
+								.append(StringUtils.join(_idxFields, ","))
+								.append(")")
+								.append(__LINE_END_FLAG);
 					}
 				}
 				if (_tmpBuilder.length() > 2) {

@@ -179,10 +179,12 @@ public class RuntimeUtils {
 			if (StringUtils.contains(origin, "${root}")) {
 				origin = ExpressionUtils.bind(origin).set("root", _defaultPath).getResult();
 			} else if (StringUtils.contains(origin, "${user.dir}")) {
-				origin = ExpressionUtils.bind(origin).set("user.dir", System.getProperty("user.dir", _defaultPath))
+				origin = ExpressionUtils.bind(origin)
+						.set("user.dir", System.getProperty("user.dir", _defaultPath))
 						.getResult();
 			} else if (StringUtils.contains(origin, "${user.home}")) {
-				origin = ExpressionUtils.bind(origin).set("user.home", System.getProperty("user.home", _defaultPath))
+				origin = ExpressionUtils.bind(origin)
+						.set("user.home", System.getProperty("user.home", _defaultPath))
 						.getResult();
 			}
 		}

@@ -41,9 +41,21 @@ public class Query {
 		Page.create(1).pageSize(10).count(false);
 
 		Cond _cond = Cond.create()//
-				.bracketBegin().like("username").param("%ymp%").and().gtEq("age").param(20).bracketEnd()//
+				.bracketBegin()
+				.like("username")
+				.param("%ymp%")
+				.and()
+				.gtEq("age")
+				.param(20)
+				.bracketEnd()//
 				.or()//
-				.bracketBegin().eq("sex").param("F").and().lt("age").param(18).bracketEnd();//
+				.bracketBegin()
+				.eq("sex")
+				.param("F")
+				.and()
+				.lt("age")
+				.param(18)
+				.bracketEnd();//
 		System.out.println("SQL: " + _cond.toString());
 		System.out.println("参数: " + _cond.params().params());
 
@@ -63,7 +75,8 @@ public class Query {
 		Join _join = Join.inner("user_ext").alias("ue").on(Cond.create().opt("ue", "uid", Cond.OPT.EQ, "u", "id"));
 		System.out.println(_join);
 
-		Select _select = Select.create("user").where(Where.create(Cond.create().eq("dept").param("IT")))
+		Select _select = Select.create("user")
+				.where(Where.create(Cond.create().eq("dept").param("IT")))
 				.union(Union.create(Select.create("user").where(Where.create(Cond.create().lt("age").param(18)))));
 		//
 		System.out.println("SQL: " + _select.toString());

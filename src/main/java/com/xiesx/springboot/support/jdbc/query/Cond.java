@@ -381,7 +381,9 @@ public final class Cond extends Query<Cond> {
 	}
 
 	public Cond in(String field, Params params) {
-		__condSB.append(field).append(" IN (").append(StringUtils.repeat("?", ", ", params.params().size()))
+		__condSB.append(field)
+				.append(" IN (")
+				.append(StringUtils.repeat("?", ", ", params.params().size()))
 				.append(")");
 		__params.add(params);
 		return this;

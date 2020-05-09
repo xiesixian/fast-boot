@@ -499,7 +499,10 @@ public class DateUtils {
 		} else {
 			dt1 = new DateTime(date).minusMonths(month);
 		}
-		DateTime lastDay = dt1.dayOfMonth().withMaximumValue().withHourOfDay(23).withMinuteOfHour(59)
+		DateTime lastDay = dt1.dayOfMonth()
+				.withMaximumValue()
+				.withHourOfDay(23)
+				.withMinuteOfHour(59)
 				.withSecondOfMinute(59);
 		return lastDay.toDate();
 	}
@@ -519,7 +522,10 @@ public class DateUtils {
 		} else {
 			dt1 = new DateTime(date).minusMonths(month);
 		}
-		DateTime lastDay = dt1.dayOfMonth().withMinimumValue().withHourOfDay(0).withMinuteOfHour(0)
+		DateTime lastDay = dt1.dayOfMonth()
+				.withMinimumValue()
+				.withHourOfDay(0)
+				.withMinuteOfHour(0)
 				.withSecondOfMinute(0);
 		return lastDay.toDate();
 	}

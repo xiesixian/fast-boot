@@ -64,7 +64,8 @@ public class ScriptTag extends BodyTagSupport {
 			_scriptTmpl.append(" src=\"").append(this.getSrc()).append("\"");
 			_isEmpty = false;
 		}
-		_scriptTmpl.append(" type=\"").append(StringUtils.defaultIfBlank(this.getType(), "text/javascript"))
+		_scriptTmpl.append(" type=\"")
+				.append(StringUtils.defaultIfBlank(this.getType(), "text/javascript"))
 				.append("\">");
 		if (_isEmpty && StringUtils.isNotEmpty(this.getValue())) {
 			String _wrapper = StringUtils.defaultIfBlank(this.getWrapper(), "script");

@@ -161,7 +161,8 @@ public final class Insert extends Query<Insert> {
 								? __buildSafeTableName(__prefix, EntityMeta.createAndGet(__entityClass), __safePrefix)
 								: __buildSafeTableName(__prefix, __tableName, true))
 						: __tableName)
-				.concat(" (").concat(StringUtils.join(__fields.fields(), ", "));
+				.concat(" (")
+				.concat(StringUtils.join(__fields.fields(), ", "));
 		if (__select != null) {
 			return _sqlStr.concat(") ").concat(__select.toString());
 		}

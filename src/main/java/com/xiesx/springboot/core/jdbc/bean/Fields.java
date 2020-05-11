@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.xiesx.springboot.support.jdbc;
+package com.xiesx.springboot.core.jdbc.bean;
 
 import java.util.ArrayList;
 import java.util.Arrays;

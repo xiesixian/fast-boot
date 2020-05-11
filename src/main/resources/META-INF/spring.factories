@@ -1,4 +1,5 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 com.xiesx.springboot.core.context.SpringApplicationContextAware,\
+com.xiesx.springboot.core.jdbc.cfg.JdbcPlusCfg,\
 com.xiesx.springboot.support.request.cfg.HttpCilentRetryCfg,\
 com.xiesx.springboot.support.validate.cfg.ValidatorCfg

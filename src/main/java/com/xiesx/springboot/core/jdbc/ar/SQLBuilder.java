@@ -1,4 +1,4 @@
-package com.xiesx.springboot.support.jdbc.ar;
+package com.xiesx.springboot.core.jdbc.ar;
 
 import java.beans.BeanInfo;
 import java.beans.PropertyDescriptor;
@@ -10,10 +10,10 @@ import java.util.Map;
 
 import com.google.common.base.Joiner;
 import com.google.common.collect.Maps;
+import com.xiesx.springboot.core.jdbc.bean.Fields;
+import com.xiesx.springboot.core.jdbc.utils.EntityClassUtils;
+import com.xiesx.springboot.core.jdbc.utils.EntityNameHandler;
 import com.xiesx.springboot.core.logger.LogStorage;
-import com.xiesx.springboot.support.jdbc.Fields;
-import com.xiesx.springboot.support.jdbc.ar.utils.EntityClassUtils;
-import com.xiesx.springboot.support.jdbc.ar.utils.EntityNameHandler;
 import com.xiesx.springboot.utils.IdWorker;
 
 import lombok.extern.slf4j.Slf4j;

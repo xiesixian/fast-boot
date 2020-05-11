@@ -1,4 +1,4 @@
-package com.xiesx.springboot.support.jdbc.ar.utils;
+package com.xiesx.springboot.core.jdbc.utils;
 
 import java.lang.reflect.Field;
 import java.util.List;

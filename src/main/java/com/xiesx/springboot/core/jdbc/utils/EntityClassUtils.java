@@ -1,4 +1,4 @@
-package com.xiesx.springboot.support.jdbc.ar.utils;
+package com.xiesx.springboot.core.jdbc.utils;
 
 import java.beans.BeanInfo;
 import java.beans.Introspector;

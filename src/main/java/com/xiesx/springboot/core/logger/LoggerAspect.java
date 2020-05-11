@@ -109,7 +109,7 @@ public class LoggerAspect {
 				log.setRes(res);
 				log.setT(t);
 				log.setOpt(ObjectUtils.isEmpty(nickName) ? "" : nickName.toString());
-				//log.insert();
+				log.insert();
 			} catch (Exception e) {
 				log.error("=========request err {}", e);
 			}

@@ -7,7 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.xiesx.springboot.core.jpa.JdbcEntity;
+import com.xiesx.springboot.core.jdbc.JdbcPlusEntity;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -25,7 +25,7 @@ import lombok.experimental.FieldNameConstants;
 @EqualsAndHashCode(callSuper = true)
 @FieldNameConstants(innerTypeName = "FIELDS")
 @Table(name = LogStorage.TABLE)
-public class LogStorage extends JdbcEntity<LogStorage> {
+public class LogStorage extends JdbcPlusEntity<LogStorage> {
 
 	private static final long serialVersionUID = 1L;
 

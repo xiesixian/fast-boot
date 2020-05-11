@@ -1,4 +1,4 @@
-package com.xiesx.springboot.core.jpa;
+package com.xiesx.springboot.core.jdbc;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
@@ -7,16 +7,15 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.ObjectUtils;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Lists;
 import com.xiesx.springboot.core.context.SpringHelper;
-import com.xiesx.springboot.support.jdbc.ar.SQLBuilder;
-import com.xiesx.springboot.support.jdbc.ar.SQLContext;
+import com.xiesx.springboot.core.jdbc.ar.SQLBuilder;
+import com.xiesx.springboot.core.jdbc.ar.SQLContext;
 
-public abstract class JdbcEntity<T> implements Serializable {
+public abstract class JdbcPlusEntity<T> implements Serializable {
 
 	/** 序列化 */
 	private static final long serialVersionUID = 1L;
@@ -25,17 +24,17 @@ public abstract class JdbcEntity<T> implements Serializable {
 	private Class<T> entityClass;
 
 	/** 持久对象 */
-	private NamedParameterJdbcTemplate mNamedParameterJdbcTemplate;
+	private JdbcPlusTemplate mJdbcPlusTemplate;
 
 	/**
 	 * 获取运行时的具体实体对象
 	 */
 	@SuppressWarnings("unchecked")
-	public JdbcEntity() {
+	public JdbcPlusEntity() {
 		Type superclass = getClass().getGenericSuperclass();
 		ParameterizedType type = (ParameterizedType) superclass;
 		entityClass = (Class<T>) type.getActualTypeArguments()[0];
-		mNamedParameterJdbcTemplate = SpringHelper.getBean(NamedParameterJdbcTemplate.class);
+		mJdbcPlusTemplate = SpringHelper.getBean(JdbcPlusTemplate.class);
 	}
 
 	/**
@@ -50,7 +49,7 @@ public abstract class JdbcEntity<T> implements Serializable {
 	public T find(List<String> fields) {
 		try {
 			SQLContext sqlContext = SQLBuilder.select(this, fields);
-			return result(mNamedParameterJdbcTemplate.queryForMap(sqlContext.getSqlString(), sqlContext.getSqlParams()),
+			return result(mJdbcPlusTemplate.queryForMap(sqlContext.getSqlString(), sqlContext.getSqlParams()),
 					entityClass);
 		} catch (Exception e) {
 		}
@@ -68,7 +67,7 @@ public abstract class JdbcEntity<T> implements Serializable {
 
 	public List<T> list(List<String> fields) {
 		SQLContext sqlContext = SQLBuilder.select(this);
-		return result(mNamedParameterJdbcTemplate.queryForList(sqlContext.getSqlString(), sqlContext.getSqlParams()),
+		return result(mJdbcPlusTemplate.queryForList(sqlContext.getSqlString(), sqlContext.getSqlParams()),
 				entityClass);
 	}
 
@@ -79,7 +78,7 @@ public abstract class JdbcEntity<T> implements Serializable {
 	 */
 	public Integer insert() {
 		SQLContext sqlContext = SQLBuilder.insert(this);
-		return mNamedParameterJdbcTemplate.update(sqlContext.getSqlString(), sqlContext.getSqlParams());
+		return mJdbcPlusTemplate.update(sqlContext.getSqlString(), sqlContext.getSqlParams());
 	}
 
 	/**
@@ -90,7 +89,7 @@ public abstract class JdbcEntity<T> implements Serializable {
 	 */
 	public Integer update() {
 		SQLContext sqlContext = SQLBuilder.update(this);
-		return mNamedParameterJdbcTemplate.update(sqlContext.getSqlString(), sqlContext.getSqlParams());
+		return mJdbcPlusTemplate.update(sqlContext.getSqlString(), sqlContext.getSqlParams());
 	}
 
 	/**

@@ -1,4 +1,4 @@
-package com.xiesx.springboot.support.jdbc.ar;
+package com.xiesx.springboot.core.jdbc.ar;
 
 import java.util.Map;
 

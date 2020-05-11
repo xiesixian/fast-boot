@@ -7,11 +7,12 @@ import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.xiesx.springboot.base.jdbc.JdbcEntity;
+import com.xiesx.springboot.core.jpa.JdbcEntity;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+import lombok.experimental.FieldNameConstants;
 
 /**
  * @title Log.java (generator)
@@ -20,12 +21,15 @@ import lombok.experimental.Accessors;
  * @date 2019-12-09
  */
 @Data
-@EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
-@Table(name = LogStorage.TABLE.SYS_LOG)
+@EqualsAndHashCode(callSuper = true)
+@FieldNameConstants(innerTypeName = "FIELDS")
+@Table(name = LogStorage.TABLE)
 public class LogStorage extends JdbcEntity<LogStorage> {
 
 	private static final long serialVersionUID = 1L;
+
+	public static final String TABLE = "sys_log";
 
 	/**
 	 * 主键
@@ -87,35 +91,6 @@ public class LogStorage extends JdbcEntity<LogStorage> {
 	 */
 	@Column
 	private String opt;
-
-	/** 常量 */
-	public class TABLE {
-
-		public static final String SYS_LOG = "sys_log";
-	}
-
-	public class FIELDS {
-
-		public static final String ID = "id";
-
-		public static final String CREATE_DATE = "create_date";
-
-		public static final String IP = "ip";
-
-		public static final String METHOD = "method";
-
-		public static final String TYPE = "TYPE";
-
-		public static final String URL = "url";
-
-		public static final String REQ = "req";
-
-		public static final String RES = "res";
-
-		public static final String T = "t";
-
-		public static final String OPT = "opt";
-	}
 
 	protected Serializable pkVal() {
 		return this.id;

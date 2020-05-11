@@ -60,12 +60,12 @@ public class SpringStartup {
 		String sql = "SELECT * FROM information_schema.TABLES WHERE TABLE_SCHEMA=(SELECT DATABASE()) AND `table_name` =? ";
 		try {
 			Map<String, Object> map = SpringHelper.getBean(JdbcTemplate.class)
-					.queryForMap(sql, new Object[] { LogStorage.TABLE.SYS_LOG });
+					.queryForMap(sql, new Object[] { LogStorage.TABLE });
 			log.info("Startup Logger Storage {}", map.isEmpty() == false);
 		} catch (Exception e) {
 			if (e instanceof EmptyResultDataAccessException) {
 				StringBuilder sb = new StringBuilder();
-				sb.append("CREATE TABLE " + LogStorage.TABLE.SYS_LOG + " ( ");
+				sb.append("CREATE TABLE " + LogStorage.TABLE + " ( ");
 				sb.append("id VARCHAR(255) NOT NULL COMMENT '主键',");
 				sb.append("create_date DATETIME NOT NULL COMMENT '创建时间',");
 				sb.append("ip VARCHAR(255) COMMENT '请求IP',");

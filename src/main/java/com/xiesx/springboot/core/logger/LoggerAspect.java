@@ -23,9 +23,9 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.alibaba.fastjson.JSON;
-import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import com.xiesx.springboot.core.logger.annotation.LoggerStorage;
 import com.xiesx.springboot.core.logger.cfg.LoggerCfg;
+import com.xiesx.springboot.utils.IdWorker;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -99,7 +99,7 @@ public class LoggerAspect {
 			try {
 				Object nickName = session.getAttribute(LoggerCfg.NICKNAME);
 				LogStorage log = new LogStorage();
-				log.setId(IdWorker.getIdStr(log));
+				log.setId(IdWorker.getIDStr());
 				log.setCreateDate(new Date());
 				log.setIp(ip);
 				log.setMethod(methodName);
@@ -109,7 +109,7 @@ public class LoggerAspect {
 				log.setRes(res);
 				log.setT(t);
 				log.setOpt(ObjectUtils.isEmpty(nickName) ? "" : nickName.toString());
-				log.insert();
+				//log.insert();
 			} catch (Exception e) {
 				log.error("=========request err {}", e);
 			}

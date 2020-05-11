@@ -8,13 +8,13 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import com.google.common.base.Joiner;
 import com.google.common.collect.Maps;
 import com.xiesx.springboot.core.logger.LogStorage;
+import com.xiesx.springboot.support.jdbc.Fields;
 import com.xiesx.springboot.support.jdbc.ar.utils.EntityClassUtils;
 import com.xiesx.springboot.support.jdbc.ar.utils.EntityNameHandler;
-import com.xiesx.springboot.support.jdbc.persistence.Fields;
+import com.xiesx.springboot.utils.IdWorker;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -267,19 +267,19 @@ public class SQLBuilder {
 
 	public static void main(String[] args) {
 		// 链式构造
-		LogStorage logStorage = new LogStorage().setId(IdWorker.getIdStr()).setIp("0.0.0.0").setCreateDate(new Date());
+		LogStorage logStorage = new LogStorage().setId(IdWorker.getIDStr()).setIp("0.0.0.0").setCreateDate(new Date());
 		// 普通构造
 		logStorage = new LogStorage();
-		logStorage.setId(IdWorker.getIdStr());
+		logStorage.setId(IdWorker.getIDStr());
 		logStorage.setIp("0.0.0.0");
 		logStorage.setCreateDate(new Date());
 		// 查询参数构造
-		Fields common = Fields.create(LogStorage.FIELDS.ID, LogStorage.FIELDS.CREATE_DATE);
+		Fields common = Fields.create(LogStorage.FIELDS.id, LogStorage.FIELDS.createDate);
 		Fields field = Fields.create();
 		field.add(common);
-		field.add(LogStorage.FIELDS.METHOD, "q");// 别名
-		field.add(LogStorage.FIELDS.TYPE);
-		field.add(LogStorage.FIELDS.URL);
+		field.add(LogStorage.FIELDS.method, "q");// 别名
+		field.add(LogStorage.FIELDS.type);
+		field.add(LogStorage.FIELDS.url);
 		// 查询所有
 		SQLContext queryAllSql = SQLBuilder.select(logStorage);
 		System.out.println(String.format("查询所有: SQL %s", queryAllSql.getSqlFormat()));

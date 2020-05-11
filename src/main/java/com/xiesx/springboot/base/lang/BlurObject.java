@@ -41,8 +41,8 @@ import org.apache.commons.logging.LogFactory;
 
 import com.xiesx.springboot.base.lang.converter.Converter;
 import com.xiesx.springboot.base.lang.converter.IConverter;
-import com.xiesx.springboot.support.jdbc.utils.ClassUtils;
-import com.xiesx.springboot.support.jdbc.utils.RuntimeUtils;
+import com.xiesx.springboot.utils.ymp.ClassUtils;
+import com.xiesx.springboot.utils.ymp.RuntimeUtils;
 
 /**
  * 模糊对象，任意数据类型间转换

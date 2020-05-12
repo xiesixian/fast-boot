@@ -32,7 +32,7 @@ public class JdbcPlusTemplate {
 	public NamedParameterJdbcTemplate getJdbcPlusTemplate() {
 		return mNamedParameterJdbcTemplate;
 	}
-	
+
 	/**
 	 * 查询Map
 	 * 
@@ -44,7 +44,7 @@ public class JdbcPlusTemplate {
 		try {
 			return mNamedParameterJdbcTemplate.getJdbcTemplate().queryForMap(sql, args);
 		} catch (Exception e) {
-			log.error("queryForMap error error", e.getMessage());
+			log.error("queryForMap error error", e);
 			return null;
 		}
 	}
@@ -60,7 +60,7 @@ public class JdbcPlusTemplate {
 		try {
 			return mNamedParameterJdbcTemplate.getJdbcTemplate().queryForList(sql, args);
 		} catch (Exception e) {
-			log.error("queryForList error", e.getMessage());
+			log.error("queryForList error", e);
 			return null;
 		}
 	}
@@ -78,7 +78,7 @@ public class JdbcPlusTemplate {
 		try {
 			return result(mNamedParameterJdbcTemplate.getJdbcTemplate().queryForMap(sql), clazz);
 		} catch (Exception e) {
-			log.error("queryForMap error", e.getMessage());
+			log.error("queryForMap error", e);
 			return null;
 		}
 	}
@@ -87,7 +87,7 @@ public class JdbcPlusTemplate {
 		try {
 			return result(mNamedParameterJdbcTemplate.getJdbcTemplate().queryForMap(sql, args), clazz);
 		} catch (Exception e) {
-			log.error("queryForMap error", e.getMessage());
+			log.error("queryForMap error", e);
 			return null;
 		}
 	}
@@ -105,7 +105,7 @@ public class JdbcPlusTemplate {
 		try {
 			return result(mNamedParameterJdbcTemplate.getJdbcTemplate().queryForList(sql), clazz);
 		} catch (Exception e) {
-			log.error("queryForList error", e.getMessage());
+			log.error("queryForList error", e);
 			return null;
 		}
 	}
@@ -114,7 +114,7 @@ public class JdbcPlusTemplate {
 		try {
 			return result(mNamedParameterJdbcTemplate.getJdbcTemplate().queryForList(sql, args), clazz);
 		} catch (Exception e) {
-			log.error("queryForList error", e.getMessage());
+			log.error("queryForList error", e);
 			return null;
 		}
 	}
@@ -126,15 +126,14 @@ public class JdbcPlusTemplate {
 	 * @param args
 	 * @return
 	 */
-	public int update(String sql, @Nullable Object... args) {
+	public int update(String sql, @Nullable Map<String, ?> paramMap) {
 		try {
-			return mNamedParameterJdbcTemplate.getJdbcTemplate().update(sql, args);
+			return mNamedParameterJdbcTemplate.update(sql, paramMap);
 		} catch (Exception e) {
-			log.error("update error", e.getMessage());
+			log.error("update error", e);
 			return 0;
 		}
 	}
-
 
 	/**
 	 * 数据填充
@@ -148,7 +147,6 @@ public class JdbcPlusTemplate {
 		}
 		return JSON.toJavaObject(new JSONObject(map), clazz);
 	}
-
 
 	/**
 	 * 数据填充

@@ -59,7 +59,7 @@ public class LogStorage extends JdbcPlusEntity<LogStorage> {
 	/**
 	 * 方式
 	 */
-	@Column(name = "TYPE")
+	@Column
 	private String type;
 
 	/**

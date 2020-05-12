@@ -49,8 +49,7 @@ public abstract class JdbcPlusEntity<T> implements Serializable {
 	public T find(List<String> fields) {
 		try {
 			SQLContext sqlContext = SQLBuilder.select(this, fields);
-			return result(mJdbcPlusTemplate.queryForMap(sqlContext.getSqlString(), sqlContext.getSqlParams()),
-					entityClass);
+			return result(mJdbcPlusTemplate.queryForMap(sqlContext.getSqlString(), sqlContext.getSqlParams()),entityClass);
 		} catch (Exception e) {
 		}
 		return null;
@@ -66,9 +65,8 @@ public abstract class JdbcPlusEntity<T> implements Serializable {
 	}
 
 	public List<T> list(List<String> fields) {
-		SQLContext sqlContext = SQLBuilder.select(this);
-		return result(mJdbcPlusTemplate.queryForList(sqlContext.getSqlString(), sqlContext.getSqlParams()),
-				entityClass);
+		SQLContext sqlContext = SQLBuilder.select(this, fields);
+		return result(mJdbcPlusTemplate.queryForList(sqlContext.getSqlString(), sqlContext.getSqlParams()),entityClass);
 	}
 
 	/**

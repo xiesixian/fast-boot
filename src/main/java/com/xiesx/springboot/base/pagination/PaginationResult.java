@@ -19,7 +19,6 @@ import lombok.experimental.Accessors;
 @Accessors(fluent = true)
 public class PaginationResult {
 
-	// 状态
 	@JSONField(ordinal = 1)
 	public Integer code;
 

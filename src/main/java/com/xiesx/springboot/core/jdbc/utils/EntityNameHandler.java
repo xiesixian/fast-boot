@@ -25,12 +25,12 @@ public class EntityNameHandler {
 
 	/**
 	 * 获得表名
-	 * 
+	 *
 	 * @param clazz
 	 * @return
 	 */
 	public String getTableName(Class<?> clazz) {
-		Table annotation = (Table) clazz.getAnnotation(Table.class);
+		Table annotation = clazz.getAnnotation(Table.class);
 		if (annotation != null) {
 			log.debug("getTableName:{}", annotation.name());
 			return annotation.name();
@@ -40,7 +40,7 @@ public class EntityNameHandler {
 
 	/**
 	 * 获取主键名
-	 * 
+	 *
 	 * @param clazz
 	 * @return
 	 */
@@ -48,12 +48,12 @@ public class EntityNameHandler {
 		try {
 			// 访问私有变量前：setAccessible(true)
 			Field[] fields = clazz.getDeclaredFields();
-			for (int i = 0; i < fields.length; i++) {
-				fields[i].setAccessible(true);
+			for (Field field : fields) {
+				field.setAccessible(true);
 			}
 			// 循环@Id的字段
-			for (int i = 0; i < fields.length; i++) {
-				Field field = clazz.getDeclaredField(fields[i].getName());
+			for (Field field2 : fields) {
+				Field field = clazz.getDeclaredField(field2.getName());
 				Id id = field.getAnnotation(Id.class);
 				if (id != null) {
 					return CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, field.getName());
@@ -68,7 +68,7 @@ public class EntityNameHandler {
 
 	/**
 	 * 获取列名
-	 * 
+	 *
 	 * @param clazz
 	 * @param field
 	 * @return
@@ -92,7 +92,7 @@ public class EntityNameHandler {
 
 	/**
 	 * 获取列名集合 
-	 * 
+	 *
 	 * @param clazz
 	 * @return
 	 */
@@ -102,12 +102,12 @@ public class EntityNameHandler {
 			List<String> list = Lists.newArrayList();
 			// 访问私有变量前：setAccessible(true)
 			Field[] fields = clazz.getDeclaredFields();
-			for (int i = 0; i < fields.length; i++) {
-				fields[i].setAccessible(true);
+			for (Field field : fields) {
+				field.setAccessible(true);
 			}
 			// 循环@Column的字段
-			for (int i = 0; i < fields.length; i++) {
-				Field field = clazz.getDeclaredField(fields[i].getName());
+			for (Field field2 : fields) {
+				Field field = clazz.getDeclaredField(field2.getName());
 				Column column = field.getAnnotation(Column.class);
 				if (column != null) {
 					if (StringUtils.isEmpty(column.name())) {

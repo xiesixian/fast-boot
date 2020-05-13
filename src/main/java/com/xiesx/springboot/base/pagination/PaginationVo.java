@@ -9,14 +9,15 @@ import lombok.Data;
  * @date 2018年12月24日 下午1:16:06
  */
 @Data
-public class PaginationVO {
+public class PaginationVo {
 
-	// 页码
-	public Integer page = 1;
+	public Integer page = 0;
 
-	// 大小
 	public Integer limit = 25;
 
-	// 大小
 	public Integer size = 25;
+
+	public Integer getPage() {
+		return page - 1;
+	}
 }

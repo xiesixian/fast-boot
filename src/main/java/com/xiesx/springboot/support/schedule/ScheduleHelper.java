@@ -42,7 +42,7 @@ public class ScheduleHelper {
 
 	/**
 	 * 添加一个定时任务，使用默认的任务组名，触发器名，触发器组名
-	 * 
+	 *
 	 * @param jobName 任务名
 	 * @param cls     任务
 	 * @param cron    时间设置，参考quartz说明文档
@@ -74,7 +74,7 @@ public class ScheduleHelper {
 
 	/**
 	 * 添加一个定时任务
-	 * 
+	 *
 	 * @param jobName          任务名
 	 * @param jobGroupName     任务组名
 	 * @param triggerName      触发器名
@@ -110,7 +110,7 @@ public class ScheduleHelper {
 
 	/**
 	 * 修改一个任务的触发时间(使用默认的任务组名，触发器名，触发器组名)
-	 * 
+	 *
 	 * @param jobName
 	 * @param cron
 	 * @throws SchedulerException
@@ -134,7 +134,7 @@ public class ScheduleHelper {
 
 	/**
 	 * 移除一个任务(使用默认的任务组名，触发器名，触发器组名)
-	 * 
+	 *
 	 * @param jobName
 	 * @throws SchedulerException
 	 */
@@ -151,7 +151,7 @@ public class ScheduleHelper {
 
 	/**
 	 * 移除任务
-	 * 
+	 *
 	 * @param jobName
 	 * @param jobGroupName
 	 * @param triggerName
@@ -171,7 +171,7 @@ public class ScheduleHelper {
 
 	/**
 	 * 获取所有任务名称
-	 * 
+	 *
 	 * @return
 	 * @throws SchedulerException
 	 */
@@ -189,7 +189,7 @@ public class ScheduleHelper {
 
 	/**
 	 * 启动所有任务
-	 * 
+	 *
 	 * @throws SchedulerException
 	 */
 	public static void startJobs() throws SchedulerException {
@@ -200,7 +200,7 @@ public class ScheduleHelper {
 
 	/**
 	 * 关闭所有定时任务
-	 * 
+	 *
 	 * @throws SchedulerException
 	 */
 	public static void shutdownJobs() throws SchedulerException {

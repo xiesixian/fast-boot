@@ -29,7 +29,7 @@ public class SQLBuilder {
 
 	/**
 	 * 构建 select sql
-	 * 
+	 *
 	 * @param entity
 	 * @return @
 	 */
@@ -39,7 +39,7 @@ public class SQLBuilder {
 
 	/**
 	 * 构建 select sql
-	 * 
+	 *
 	 * @param entity
 	 * @param fields
 	 * @return @
@@ -50,7 +50,7 @@ public class SQLBuilder {
 
 	/**
 	 * 构建 select sql
-	 * 
+	 *
 	 * @param entity
 	 * @param fields
 	 * @param nameHandler
@@ -103,7 +103,7 @@ public class SQLBuilder {
 
 	/**
 	 * 构建 insert sql
-	 * 
+	 *
 	 * @param entity
 	 * @return @
 	 */
@@ -113,7 +113,7 @@ public class SQLBuilder {
 
 	/**
 	 * 构建 insert sql
-	 * 
+	 *
 	 * @param entity
 	 * @param nameHandler
 	 * @return @
@@ -167,7 +167,7 @@ public class SQLBuilder {
 
 	/**
 	 * 构建 update sql
-	 * 
+	 *
 	 * @param entity
 	 * @return @
 	 */
@@ -177,7 +177,7 @@ public class SQLBuilder {
 
 	/**
 	 * 构建 update sql
-	 * 
+	 *
 	 * @param entity
 	 * @param nameHandler
 	 * @return @
@@ -233,7 +233,7 @@ public class SQLBuilder {
 
 	/**
 	 * 构建 del sql（省略）
-	 * 
+	 *
 	 * @param entity
 	 * @param nameHandler
 	 * @return @
@@ -245,7 +245,7 @@ public class SQLBuilder {
 	// =======================================
 	/**
 	 * 获取属性值
-	 * 
+	 *
 	 * @param readMethod
 	 * @param entity
 	 * @return @

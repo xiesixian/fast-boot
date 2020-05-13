@@ -25,7 +25,7 @@ public class FastJsonCfg implements WebMvcConfigurer {
 
 	/**
 	 * json转化
-	 * 
+	 *
 	 * @return
 	 */
 	public static FastJsonHttpMessageConverter fastConverters() {
@@ -37,7 +37,7 @@ public class FastJsonCfg implements WebMvcConfigurer {
 
 	/**
 	 * json配置
-	 * 
+	 *
 	 * @return
 	 */
 	public static FastJsonConfig fastJsonConfig() {
@@ -71,7 +71,7 @@ public class FastJsonCfg implements WebMvcConfigurer {
 
 	/**
 	 * json编码
-	 * 
+	 *
 	 * @return
 	 */
 	public static List<MediaType> fastMediaTypes() {

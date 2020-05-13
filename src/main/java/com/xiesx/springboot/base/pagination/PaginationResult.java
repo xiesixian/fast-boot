@@ -6,6 +6,7 @@ import com.alibaba.fastjson.annotation.JSONField;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 /**
  * @title PaginationBO.java
@@ -15,6 +16,7 @@ import lombok.Data;
  */
 @Data
 @Builder
+@Accessors(fluent = true)
 public class PaginationResult {
 
 	// 状态

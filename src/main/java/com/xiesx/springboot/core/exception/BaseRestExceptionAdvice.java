@@ -41,7 +41,7 @@ public class BaseRestExceptionAdvice {
 
 	/**
 	 * 系统
-	 * 
+	 *
 	 * @param request
 	 * @param e
 	 * @return
@@ -65,7 +65,7 @@ public class BaseRestExceptionAdvice {
 
 	/**
 	 * 效验
-	 * 
+	 *
 	 * @param request
 	 * @param e
 	 * @return
@@ -95,7 +95,7 @@ public class BaseRestExceptionAdvice {
 
 	/**
 	 * 数据库
-	 * 
+	 *
 	 * @param request
 	 * @param e
 	 * @return
@@ -114,7 +114,7 @@ public class BaseRestExceptionAdvice {
 
 	/**
 	 * 运行
-	 * 
+	 *
 	 * @param request
 	 * @param e
 	 * @return
@@ -128,7 +128,7 @@ public class BaseRestExceptionAdvice {
 
 	/**
 	 * 自定义
-	 * 
+	 *
 	 * @param request
 	 * @param e
 	 * @return

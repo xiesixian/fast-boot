@@ -179,13 +179,6 @@ public class HttpCilentRetryImplRe extends BaseHttpRetryCilent
 	public Callable<RawResponse> call(final String method, final String url, final Map<String, Object> params,
 			final Proxy proxy) {
 
-		return new Callable<RawResponse>() {
-
-			@Override
-			public RawResponse call() {
-
-				return request(method, url, params, proxy);
-			}
-		};
+		return () -> request(method, url, params, proxy);
 	}
 }

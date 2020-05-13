@@ -24,7 +24,7 @@ public class EntityClassUtils {
 
 	/**
 	 * 初始化实例
-	 * 
+	 *
 	 * @param clazz
 	 * @return
 	 * @throws Exception
@@ -35,7 +35,7 @@ public class EntityClassUtils {
 
 	/**
 	 * 获取类本身的BeanInfo
-	 * 
+	 *
 	 * @param clazz
 	 * @return
 	 * @throws Exception

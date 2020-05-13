@@ -28,7 +28,7 @@ public class BaseDecorator implements ISchedule {
 
 	/**
 	 * 构造
-	 * 
+	 *
 	 * @param decoratedJob
 	 */
 	public BaseDecorator(ISchedule decoratedJob) {

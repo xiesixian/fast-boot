@@ -60,7 +60,7 @@ public class BaseResult {
 
 	/**
 	 * 判断是否失败
-	 * 
+	 *
 	 * @return
 	 */
 	@JSONField(serialize = false)
@@ -70,7 +70,7 @@ public class BaseResult {
 
 	/**
 	 * 判断是否异常
-	 * 
+	 *
 	 * @return
 	 */
 	@JSONField(serialize = false)

@@ -10,7 +10,7 @@ public abstract class AbstractState {
 
 	/**
 	 * 是否成功
-	 * 
+	 *
 	 * @return
 	 */
 	public abstract Boolean isSuccess();

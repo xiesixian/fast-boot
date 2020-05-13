@@ -99,7 +99,7 @@ public class R {
 
 	/**
 	 * str 转 jsonArray
-	 * 
+	 *
 	 * @param text
 	 * @param clazz
 	 * @return

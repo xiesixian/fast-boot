@@ -15,7 +15,7 @@ public interface IHttpCilent<T> {
 
 	/**
 	 * get
-	 * 
+	 *
 	 * @param url
 	 * @return
 	 */
@@ -23,7 +23,7 @@ public interface IHttpCilent<T> {
 
 	/**
 	 * get
-	 * 
+	 *
 	 * @param url
 	 * @param proxy
 	 * @return
@@ -32,7 +32,7 @@ public interface IHttpCilent<T> {
 
 	/**
 	 * get
-	 * 
+	 *
 	 * @param url
 	 * @param params
 	 * @param proxy
@@ -42,7 +42,7 @@ public interface IHttpCilent<T> {
 
 	/**
 	 * get
-	 * 
+	 *
 	 * @param url
 	 * @param params
 	 * @param proxy
@@ -53,7 +53,7 @@ public interface IHttpCilent<T> {
 	// ========post========
 	/**
 	 * post
-	 * 
+	 *
 	 * @param url
 	 * @param params
 	 * @return
@@ -62,7 +62,7 @@ public interface IHttpCilent<T> {
 
 	/**
 	 * post
-	 * 
+	 *
 	 * @param url
 	 * @param params
 	 * @param proxy
@@ -73,7 +73,7 @@ public interface IHttpCilent<T> {
 	// ========request========
 	/**
 	 * request
-	 * 
+	 *
 	 * @param method
 	 * @param url
 	 * @param params

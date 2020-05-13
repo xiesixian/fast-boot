@@ -23,7 +23,7 @@ public class BaseResultRetryListener<T> implements RetryListener {
 		}
 		if (attempt.hasResult()) {
 			try {
-				V result = (V) attempt.get();
+				V result = attempt.get();
 				if (result instanceof BaseResult) {
 					log.warn("onRetry time:{} delay:{} isError:{} result:{} - {}", attempt.getAttemptNumber(),
 							attempt.getDelaySinceFirstAttempt(), attempt.hasException(), attempt.hasResult(),

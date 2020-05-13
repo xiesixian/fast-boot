@@ -23,7 +23,7 @@ public class RunException extends Throwable {
 
 	/**
 	 * throw new RunException("出错啦！");
-	 * 
+	 *
 	 * @param message
 	 */
 	public RunException(String message) {
@@ -33,7 +33,7 @@ public class RunException extends Throwable {
 
 	/**
 	 * throw new RunException(e);
-	 * 
+	 *
 	 * @param message
 	 */
 	public RunException(Throwable e) {
@@ -43,7 +43,7 @@ public class RunException extends Throwable {
 
 	/**
 	 * throw new RunException(ActExc.BUSINESS);
-	 * 
+	 *
 	 * @param message
 	 */
 	public RunException(RunExc act) {
@@ -53,7 +53,7 @@ public class RunException extends Throwable {
 
 	/**
 	 * throw new RunException(ActExc.BUSINESS,"活动业务处理失败----");
-	 * 
+	 *
 	 * @param message
 	 * @param message
 	 */
@@ -64,7 +64,7 @@ public class RunException extends Throwable {
 
 	/**
 	 * throw new RunException(ActExc.BUSINESS,"{}活动业务处理失败----","暑期砍价");
-	 * 
+	 *
 	 * @param message
 	 * @param format
 	 * @param message

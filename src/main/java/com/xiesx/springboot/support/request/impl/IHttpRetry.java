@@ -18,7 +18,7 @@ public interface IHttpRetry<T> {
 
 	/**
 	 * get_try
-	 * 
+	 *
 	 * @param url
 	 * @return
 	 * @throws ExecutionException
@@ -28,7 +28,7 @@ public interface IHttpRetry<T> {
 
 	/**
 	 * get_try
-	 * 
+	 *
 	 * @param url
 	 * @param proxy
 	 * @return
@@ -39,7 +39,7 @@ public interface IHttpRetry<T> {
 
 	/**
 	 * get_try
-	 * 
+	 *
 	 * @param url
 	 * @param params
 	 * @return
@@ -50,7 +50,7 @@ public interface IHttpRetry<T> {
 
 	/**
 	 * get_try
-	 * 
+	 *
 	 * @param url
 	 * @param params
 	 * @param proxy
@@ -64,7 +64,7 @@ public interface IHttpRetry<T> {
 
 	/**
 	 * post_try
-	 * 
+	 *
 	 * @param url
 	 * @param params
 	 * @return
@@ -75,7 +75,7 @@ public interface IHttpRetry<T> {
 
 	/**
 	 * post_try
-	 * 
+	 *
 	 * @param url
 	 * @param params
 	 * @param proxy
@@ -88,7 +88,7 @@ public interface IHttpRetry<T> {
 	// ========request========
 	/**
 	 * request
-	 * 
+	 *
 	 * @param method
 	 * @param url
 	 * @param params

@@ -62,7 +62,7 @@ public class SQLContext {
 
 	/**
 	 * toString
-	 * 
+	 *
 	 * @return
 	 */
 	public String getSqlString() {
@@ -71,7 +71,7 @@ public class SQLContext {
 
 	/**
 	 * ToFormat
-	 * 
+	 *
 	 * @return
 	 */
 	public String getSqlFormat() {
@@ -80,7 +80,7 @@ public class SQLContext {
 
 	/**
 	 * toArray
-	 * 
+	 *
 	 * @return
 	 */
 	public Map<String, Object> getSqlParams() {

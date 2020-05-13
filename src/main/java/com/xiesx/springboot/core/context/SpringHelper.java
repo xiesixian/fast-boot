@@ -5,7 +5,7 @@ import org.springframework.context.ApplicationContext;
 
 /**
  * spring工具类，静态工具方法获取bean
- * 
+ *
  * @author zhanghui
  * @date 2019/5/29
  */
@@ -13,7 +13,7 @@ public class SpringHelper {
 
 	/**
 	 * 通过name获取 Bean
-	 * 
+	 *
 	 * @param name
 	 * @return
 	 */
@@ -27,7 +27,7 @@ public class SpringHelper {
 
 	/**
 	 * 通过class获取Bean
-	 * 
+	 *
 	 * @param clazz
 	 * @return
 	 */
@@ -41,7 +41,7 @@ public class SpringHelper {
 
 	/**
 	 * 通过name,以及Clazz返回指定的Bean
-	 * 
+	 *
 	 * @param name
 	 * @param clazz
 	 * @return
@@ -56,7 +56,7 @@ public class SpringHelper {
 
 	/**
 	 * 通过class，Qulifier值取同类型的某个bean
-	 * 
+	 *
 	 * @param clazz
 	 * @param qualifier
 	 * @return

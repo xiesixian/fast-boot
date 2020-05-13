@@ -63,7 +63,7 @@ public class SignAspect {
 		MethodSignature signature = (MethodSignature) pjp.getSignature();
 		Method method = signature.getMethod();
 		// 获取注解信息
-		GoSign annotation = (GoSign) method.getAnnotation(GoSign.class);
+		GoSign annotation = method.getAnnotation(GoSign.class);
 		Boolean isIgnore = Boolean.valueOf(annotation == null ? true : annotation.ignore());
 		// 参数集
 		Map<String, String> parms = Maps.newConcurrentMap();
@@ -73,7 +73,7 @@ public class SignAspect {
 		// 获取参数
 		Enumeration<String> names = request.getParameterNames();
 		while (names.hasMoreElements()) {
-			String name = (String) names.nextElement();
+			String name = names.nextElement();
 			String value = request.getParameter(name);
 			parms.put(name, value);
 		}
@@ -101,7 +101,7 @@ public class SignAspect {
 
 	/**
 	 * 获取签名
-	 * 
+	 *
 	 * @param params
 	 * @param key
 	 * @return
@@ -112,7 +112,7 @@ public class SignAspect {
 
 	/**
 	 * 按key进行正序排列，之间以&相连 <功能描述>
-	 * 
+	 *
 	 * @param params
 	 * @return
 	 */

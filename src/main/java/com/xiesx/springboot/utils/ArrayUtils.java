@@ -17,7 +17,7 @@ public class ArrayUtils {
 
 	/**
 	 * list转str[]
-	 * 
+	 *
 	 * @param str
 	 * @return
 	 */
@@ -27,7 +27,7 @@ public class ArrayUtils {
 
 	/**
 	 * str[]转list
-	 * 
+	 *
 	 * @param str
 	 * @return
 	 */
@@ -37,7 +37,7 @@ public class ArrayUtils {
 
 	/**
 	 * str转list
-	 * 
+	 *
 	 * @param str
 	 * @return
 	 */
@@ -47,7 +47,7 @@ public class ArrayUtils {
 
 	/**
 	 * str转list
-	 * 
+	 *
 	 * @param str
 	 * @param separator
 	 * @return
@@ -58,7 +58,7 @@ public class ArrayUtils {
 
 	/**
 	 * list转str
-	 * 
+	 *
 	 * @param str
 	 * @return
 	 */
@@ -68,7 +68,7 @@ public class ArrayUtils {
 
 	/**
 	 * list转str
-	 * 
+	 *
 	 * @param str
 	 * @param separator
 	 * @return

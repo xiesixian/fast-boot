@@ -62,7 +62,7 @@ public class LoggerAspect {
 		Method method = signature.getMethod();
 		String methodName = method.getName();
 		// 获取注解信息
-		LoggerStorage annotation = (LoggerStorage) method.getAnnotation(LoggerStorage.class);
+		LoggerStorage annotation = method.getAnnotation(LoggerStorage.class);
 		Boolean isPrint = Boolean.valueOf(annotation == null ? false : annotation.print());
 		Boolean isStorage = Boolean.valueOf(annotation == null ? false : annotation.storage());
 		Boolean isPrettyFormat = Boolean.valueOf(annotation == null ? false : annotation.prettyFormat());

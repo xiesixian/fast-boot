@@ -7,7 +7,7 @@ import java.lang.annotation.Target;
 
 /**
  * api接口，忽略Token验证
- * 
+ *
  * @author Sixian.Xie
  * @date 2018-03-19
  */

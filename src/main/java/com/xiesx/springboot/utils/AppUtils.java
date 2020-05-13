@@ -47,7 +47,7 @@ public class AppUtils {
 	 * <p>
 	 * 通过appId和内置关键词生成APP Secret
 	 * </P>
-	 * 
+	 *
 	 * @author mazhq
 	 * @date 2019/8/27 16:32
 	 */
@@ -56,8 +56,8 @@ public class AppUtils {
 			String[] array = new String[] { SERVER_NAME, appId, String.valueOf(System.currentTimeMillis()) };
 			StringBuffer sb = new StringBuffer();
 			Arrays.sort(array); // 字符串排序
-			for (int i = 0; i < array.length; i++) {
-				sb.append(array[i]);
+			for (String element : array) {
+				sb.append(element);
 			}
 			String str = sb.toString();
 			MessageDigest md = MessageDigest.getInstance("SHA-1");
@@ -66,8 +66,8 @@ public class AppUtils {
 
 			StringBuffer hexstr = new StringBuffer();
 			String shaHex = "";
-			for (int i = 0; i < digest.length; i++) {
-				shaHex = Integer.toHexString(digest[i] & 0xFF);
+			for (byte element : digest) {
+				shaHex = Integer.toHexString(element & 0xFF);
 				if (shaHex.length() < 2) {
 					hexstr.append(0);
 				}

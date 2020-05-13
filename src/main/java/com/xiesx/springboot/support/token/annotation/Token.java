@@ -7,7 +7,7 @@ import java.lang.annotation.Target;
 
 /**
  * 登录用户信息
- * 
+ *
  * @author Sixian.Xie
  * @date 2018-03-19
  */

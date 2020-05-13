@@ -35,7 +35,7 @@ public class JdbcPlusTemplate {
 
 	/**
 	 * 查询Map
-	 * 
+	 *
 	 * @param sql
 	 * @param args
 	 * @return
@@ -51,7 +51,7 @@ public class JdbcPlusTemplate {
 
 	/**
 	 * 查询List<Map>
-	 * 
+	 *
 	 * @param sql
 	 * @param args
 	 * @return
@@ -67,7 +67,7 @@ public class JdbcPlusTemplate {
 
 	/**
 	 * 查询Obj
-	 * 
+	 *
 	 * @param <T>
 	 * @param sql
 	 * @param args
@@ -94,7 +94,7 @@ public class JdbcPlusTemplate {
 
 	/**
 	 * 查询List<Obj>
-	 * 
+	 *
 	 * @param <T>
 	 * @param sql
 	 * @param args
@@ -121,7 +121,23 @@ public class JdbcPlusTemplate {
 
 	/**
 	 * 执行update
-	 * 
+	 *
+	 * @param sql
+	 * @param args
+	 * @return
+	 */
+	public int update(String sql, @Nullable Object... args) {
+		try {
+			return mNamedParameterJdbcTemplate.getJdbcTemplate().update(sql, args);
+		} catch (Exception e) {
+			log.error("update error", e.getMessage());
+			return 0;
+		}
+	}
+
+	/**
+	 * 执行update
+	 *
 	 * @param sql
 	 * @param args
 	 * @return
@@ -137,7 +153,7 @@ public class JdbcPlusTemplate {
 
 	/**
 	 * 数据填充
-	 * 
+	 *
 	 * @param map
 	 * @return
 	 */
@@ -150,7 +166,7 @@ public class JdbcPlusTemplate {
 
 	/**
 	 * 数据填充
-	 * 
+	 *
 	 * @param list
 	 * @return
 	 */

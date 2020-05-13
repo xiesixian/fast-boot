@@ -22,7 +22,7 @@ public class ValidatorHelper {
 	/**
 	 * 调用JSR303的validate方法, 验证失败时抛出ConstraintViolationException. 参数 Validator
 	 * 可以直接注入，如：
-	 * 
+	 *
 	 * @Autowired protected Validator validator;
 	 */
 	public static void validateWithException(Validator validator, Object object, Class<?>... groups)

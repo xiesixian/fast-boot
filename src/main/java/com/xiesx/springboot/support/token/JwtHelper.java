@@ -103,7 +103,7 @@ public class JwtHelper {
 
 	/**
 	 * 解析
-	 * 
+	 *
 	 * @param token
 	 * @return
 	 */
@@ -114,7 +114,7 @@ public class JwtHelper {
 
 	/**
 	 * 过期
-	 * 
+	 *
 	 * @param token
 	 * @return
 	 */
@@ -124,7 +124,7 @@ public class JwtHelper {
 
 	/**
 	 * 生成加密key
-	 * 
+	 *
 	 * @return
 	 */
 	public static SecretKey key() {

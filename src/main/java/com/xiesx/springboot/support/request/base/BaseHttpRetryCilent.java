@@ -27,16 +27,13 @@ public class BaseHttpRetryCilent {
 	/**
 	 * ============这里灰常重要 判断重试的标准 ============这里灰常重要
 	 **/
-	protected Predicate<RawResponse> reRetryPredicate = new Predicate<RawResponse>() {
-
-		public boolean apply(RawResponse raw) {
-			if (ObjectUtils.isEmpty(raw)) {// 当返回null
-				return true;
-			} else if (raw.statusCode() != 200) {// 当返回不等于200时重试
-				return true;
-			}
-			return false;
+	protected Predicate<RawResponse> reRetryPredicate = raw -> {
+		if (ObjectUtils.isEmpty(raw)) {// 当返回null
+			return true;
+		} else if (raw.statusCode() != 200) {// 当返回不等于200时重试
+			return true;
 		}
+		return false;
 	};
 
 	static {
@@ -79,7 +76,7 @@ public class BaseHttpRetryCilent {
 
 	/**
 	 * 获取所有header
-	 * 
+	 *
 	 * @return
 	 */
 	protected static Map<String, Object> getHeaders() {
@@ -88,7 +85,7 @@ public class BaseHttpRetryCilent {
 
 	/**
 	 * 获取所有机型
-	 * 
+	 *
 	 * @return
 	 */
 	protected static List<String> getUserAgents() {
@@ -97,7 +94,7 @@ public class BaseHttpRetryCilent {
 
 	/**
 	 * 获取随机单个机型
-	 * 
+	 *
 	 * @return
 	 */
 	protected String getSingleRandomUserAgent() {

@@ -22,7 +22,7 @@ public class DateUtils {
 
 	/**
 	 * 获取当前系统时间
-	 * 
+	 *
 	 * @return yyyy-MM-dd HH:mm:ss
 	 */
 	public static String getCurrentTime() {
@@ -33,7 +33,7 @@ public class DateUtils {
 
 	/**
 	 * 获取系统当前时间按照指定格式返回
-	 * 
+	 *
 	 * @param pattern yyyy/MM/dd hh:mm:a
 	 * @return
 	 */
@@ -47,7 +47,7 @@ public class DateUtils {
 
 	/**
 	 * 获取当前日期
-	 * 
+	 *
 	 * @return
 	 */
 	public static String getCurrentDate() {
@@ -58,7 +58,7 @@ public class DateUtils {
 
 	/**
 	 * 获取当前日期按照指定格式
-	 * 
+	 *
 	 * @param pattern
 	 * @return
 	 */
@@ -72,7 +72,7 @@ public class DateUtils {
 
 	/**
 	 * 获取指定时间
-	 * 
+	 *
 	 * @param year    年
 	 * @param month   月
 	 * @param day     天
@@ -89,7 +89,7 @@ public class DateUtils {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param year    年
 	 * @param month   月
 	 * @param day     天
@@ -110,7 +110,7 @@ public class DateUtils {
 
 	/**
 	 * 获取指定日期
-	 * 
+	 *
 	 * @param year
 	 * @param month
 	 * @param day
@@ -124,7 +124,7 @@ public class DateUtils {
 
 	/**
 	 * 获取指定日期 返回指定格式
-	 * 
+	 *
 	 * @param year
 	 * @param month
 	 * @param day
@@ -141,7 +141,7 @@ public class DateUtils {
 
 	/**
 	 * 获取当前是一周星期几
-	 * 
+	 *
 	 * @return
 	 */
 	public static String getWeek() {
@@ -178,7 +178,7 @@ public class DateUtils {
 
 	/**
 	 * 获取指定时间是一周的星期几
-	 * 
+	 *
 	 * @param year
 	 * @param month
 	 * @param day
@@ -220,7 +220,7 @@ public class DateUtils {
 
 	/**
 	 * 格式化日期
-	 * 
+	 *
 	 * @param date
 	 * @return yyyy-MM-dd HH:mm:ss
 	 */
@@ -234,7 +234,7 @@ public class DateUtils {
 
 	/**
 	 * 格式化日期字符串
-	 * 
+	 *
 	 * @param date    日期
 	 * @param pattern 日期格式
 	 * @return
@@ -249,7 +249,7 @@ public class DateUtils {
 
 	/**
 	 * 格式化时间戳
-	 * 
+	 *
 	 * @param timestamp
 	 * @return
 	 */
@@ -271,7 +271,7 @@ public class DateUtils {
 
 	/**
 	 * 格式化时间戳字符串
-	 * 
+	 *
 	 * @param timestamp
 	 * @return
 	 */
@@ -293,7 +293,7 @@ public class DateUtils {
 
 	/**
 	 * 按照时区转换时间
-	 * 
+	 *
 	 * @param date
 	 * @param timeZone 时区
 	 * @param parrten
@@ -312,7 +312,7 @@ public class DateUtils {
 
 	/**
 	 * 解析日期
-	 * 
+	 *
 	 * @param date 日期字符串
 	 * @return
 	 */
@@ -329,7 +329,7 @@ public class DateUtils {
 
 	/**
 	 * 解析日期字符串
-	 * 
+	 *
 	 * @param date    日期字符串
 	 * @param pattern 日期格式
 	 * @return
@@ -351,7 +351,7 @@ public class DateUtils {
 
 	/**
 	 * 获取当前时间前几天时间
-	 * 
+	 *
 	 * @param days
 	 * @return
 	 */
@@ -363,7 +363,7 @@ public class DateUtils {
 
 	/**
 	 * 获取当前时间前几天时间,按指定格式返回
-	 * 
+	 *
 	 * @param days
 	 * @return
 	 */
@@ -377,7 +377,7 @@ public class DateUtils {
 
 	/**
 	 * xx年之后
-	 * 
+	 *
 	 * @param date
 	 * @param offset
 	 * @return
@@ -395,7 +395,7 @@ public class DateUtils {
 
 	/**
 	 * xx月之后
-	 * 
+	 *
 	 * @param date
 	 * @param offset
 	 * @return
@@ -413,12 +413,12 @@ public class DateUtils {
 
 	/**
 	 * xx日之后
-	 * 
+	 *
 	 * @param date
 	 * @param offset
 	 * @return
 	 */
-	public static Date addDay(Date date, int offset) {
+	public static Date addDays(Date date, int offset) {
 		DateTime dt1;
 		if (date == null) {
 			dt1 = new DateTime().plusDays(offset);
@@ -431,12 +431,12 @@ public class DateUtils {
 
 	/**
 	 * xx时之后
-	 * 
+	 *
 	 * @param date
 	 * @param offset
 	 * @return
 	 */
-	public static Date addHour(Date date, int offset) {
+	public static Date addHours(Date date, int offset) {
 		DateTime dt1;
 		if (date == null) {
 			dt1 = new DateTime().plusHours(offset);
@@ -448,12 +448,12 @@ public class DateUtils {
 
 	/**
 	 * xx分之后
-	 * 
+	 *
 	 * @param date
 	 * @param offset
 	 * @return
 	 */
-	public static Date addMinute(Date date, int offset) {
+	public static Date addMinutes(Date date, int offset) {
 		DateTime dt1;
 		if (date == null) {
 			dt1 = new DateTime().plusMinutes(offset);
@@ -466,12 +466,12 @@ public class DateUtils {
 
 	/**
 	 * xx秒之后
-	 * 
+	 *
 	 * @param date
 	 * @param offset
 	 * @return
 	 */
-	public static Date addSecond(Date date, int offset) {
+	public static Date addSeconds(Date date, int offset) {
 		DateTime dt1;
 		if (date == null) {
 			dt1 = new DateTime().plusSeconds(offset);
@@ -486,7 +486,7 @@ public class DateUtils {
 
 	/**
 	 * 获取某月之前,之后某一个月最后一天,24:59:59
-	 * 
+	 *
 	 * @return
 	 */
 	public static Date lastDay(Date date, Integer month) {
@@ -509,7 +509,7 @@ public class DateUtils {
 
 	/**
 	 * 获取某月月之前,之后某一个月第一天,00:00:00
-	 * 
+	 *
 	 * @return
 	 */
 	public static Date firstDay(Date date, Integer month) {
@@ -532,7 +532,7 @@ public class DateUtils {
 
 	/**
 	 * 获取指定时间之后或者之前的某一天00:00:00 默认返回当天
-	 * 
+	 *
 	 * @param days
 	 * @return
 	 */
@@ -560,7 +560,7 @@ public class DateUtils {
 
 	/**
 	 * 获取指定时间之后或者之前的某一天23:59:59 默认返回当天
-	 * 
+	 *
 	 * @param days 偏移量
 	 * @return
 	 */
@@ -588,7 +588,7 @@ public class DateUtils {
 
 	/**
 	 * 计算两个时间相差多少天
-	 * 
+	 *
 	 * @param startDate
 	 * @param endDate
 	 * @return
@@ -605,7 +605,7 @@ public class DateUtils {
 
 	/**
 	 * 传入日期时间与当前系统日期时间的比较, 若日期相同，则根据时分秒来返回 , 否则返回具体日期
-	 * 
+	 *
 	 * @return 日期或者 xx小时前||xx分钟前||xx秒前
 	 */
 	public static String getNewUpdateDateString(Date now, Date createDate) {

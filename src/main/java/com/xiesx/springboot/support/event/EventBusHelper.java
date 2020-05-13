@@ -21,7 +21,7 @@ public class EventBusHelper {
 
 	/**
 	 * 发布
-	 * 
+	 *
 	 * @param event
 	 */
 	public static void post(EventBusInterface event) {
@@ -34,7 +34,7 @@ public class EventBusHelper {
 
 	/**
 	 * 注册
-	 * 
+	 *
 	 * @param handler
 	 */
 	public static void register(AbstractEventBus<? extends EventBusInterface> handler) {
@@ -47,7 +47,7 @@ public class EventBusHelper {
 
 	/**
 	 * 销毁
-	 * 
+	 *
 	 * @param handler
 	 */
 	public static void unregister(AbstractEventBus<? extends EventBusInterface> handler) {

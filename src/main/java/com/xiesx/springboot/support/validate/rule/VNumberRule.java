@@ -19,9 +19,11 @@ public class VNumberRule implements ConstraintValidator<VNumber, String> {
 
 	private final Pattern pattern = Pattern.compile("^[0-9]*$");
 
+	@Override
 	public void initialize(VNumber number) {
 	}
 
+	@Override
 	public boolean isValid(String s, ConstraintValidatorContext constraintValidatorContext) {
 		if (StringUtils.isEmpty(s)) {
 			return false;

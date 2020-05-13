@@ -15,7 +15,7 @@ import com.xiesx.springboot.core.context.SpringHelper;
 import com.xiesx.springboot.core.jdbc.ar.SQLBuilder;
 import com.xiesx.springboot.core.jdbc.ar.SQLContext;
 
-public abstract class JdbcPlusEntity<T> implements Serializable {
+public class JdbcPlusEntity<T> implements Serializable {
 
 	/** 序列化 */
 	private static final long serialVersionUID = 1L;
@@ -31,15 +31,17 @@ public abstract class JdbcPlusEntity<T> implements Serializable {
 	 */
 	@SuppressWarnings("unchecked")
 	public JdbcPlusEntity() {
-		Type superclass = getClass().getGenericSuperclass();
-		ParameterizedType type = (ParameterizedType) superclass;
-		entityClass = (Class<T>) type.getActualTypeArguments()[0];
+		if (getClass().getGenericSuperclass() instanceof JdbcPlusEntity) {
+			Type superclass = getClass().getGenericSuperclass();
+			ParameterizedType type = (ParameterizedType) superclass;
+			entityClass = (Class<T>) type.getActualTypeArguments()[0];
+		}
 		mJdbcPlusTemplate = SpringHelper.getBean(JdbcPlusTemplate.class);
 	}
 
 	/**
 	 * 单条
-	 * 
+	 *
 	 * @param entity
 	 */
 	public T find() {
@@ -49,7 +51,8 @@ public abstract class JdbcPlusEntity<T> implements Serializable {
 	public T find(List<String> fields) {
 		try {
 			SQLContext sqlContext = SQLBuilder.select(this, fields);
-			return result(mJdbcPlusTemplate.queryForMap(sqlContext.getSqlString(), sqlContext.getSqlParams()),entityClass);
+			return result(mJdbcPlusTemplate.queryForMap(sqlContext.getSqlString(), sqlContext.getSqlParams()),
+					entityClass);
 		} catch (Exception e) {
 		}
 		return null;
@@ -57,7 +60,7 @@ public abstract class JdbcPlusEntity<T> implements Serializable {
 
 	/**
 	 * 多条
-	 * 
+	 *
 	 * @param entity
 	 */
 	public List<T> list() {
@@ -66,12 +69,13 @@ public abstract class JdbcPlusEntity<T> implements Serializable {
 
 	public List<T> list(List<String> fields) {
 		SQLContext sqlContext = SQLBuilder.select(this, fields);
-		return result(mJdbcPlusTemplate.queryForList(sqlContext.getSqlString(), sqlContext.getSqlParams()),entityClass);
+		return result(mJdbcPlusTemplate.queryForList(sqlContext.getSqlString(), sqlContext.getSqlParams()),
+				entityClass);
 	}
 
 	/**
 	 * 添加
-	 * 
+	 *
 	 * @param entity
 	 */
 	public Integer insert() {
@@ -81,7 +85,7 @@ public abstract class JdbcPlusEntity<T> implements Serializable {
 
 	/**
 	 * 更新
-	 * 
+	 *
 	 * @param entity
 	 * @return
 	 */
@@ -92,7 +96,7 @@ public abstract class JdbcPlusEntity<T> implements Serializable {
 
 	/**
 	 * 数据填充
-	 * 
+	 *
 	 * @param map
 	 * @return
 	 */
@@ -105,14 +109,14 @@ public abstract class JdbcPlusEntity<T> implements Serializable {
 
 	/**
 	 * 数据填充
-	 * 
+	 *
 	 * @param list
 	 * @return
 	 */
 	public List<T> result(List<Map<String, Object>> list, Class<T> clazz) {
 		List<T> data = Lists.newArrayList();
 		for (Map<String, Object> map : list) {
-			data.add((T) result(map, clazz));
+			data.add(result(map, clazz));
 		}
 		return data;
 	}

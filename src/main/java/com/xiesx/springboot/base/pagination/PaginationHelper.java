@@ -2,6 +2,8 @@ package com.xiesx.springboot.base.pagination;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+
 import com.google.common.collect.Lists;
 
 import lombok.NonNull;
@@ -16,7 +18,17 @@ public class PaginationHelper {
 
 	/**
 	 * 返回
-	 * 
+	 *
+	 * @param page
+	 * @return
+	 */
+	public static PaginationResult create(Page<?> page) {
+		return PaginationHelper.create(page.toList(), page.getTotalPages());
+	}
+
+	/**
+	 * 返回
+	 *
 	 * @param data
 	 * @param total
 	 * @return
@@ -27,7 +39,7 @@ public class PaginationHelper {
 
 	/**
 	 * 返回
-	 * 
+	 *
 	 * @param data
 	 * @param total
 	 * @return

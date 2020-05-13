@@ -40,7 +40,7 @@ public class ExecutorHelper {
 
 	/**
 	 * 添加异步计算任务
-	 * 
+	 *
 	 * @param task
 	 * @return
 	 */
@@ -52,7 +52,7 @@ public class ExecutorHelper {
 
 	/**
 	 * 添加异步任务，当有结果了进行回调
-	 * 
+	 *
 	 * @param task
 	 * @param callback
 	 * @return
@@ -63,7 +63,7 @@ public class ExecutorHelper {
 
 	/**
 	 * 添加异步任务，当有结果了进行回调
-	 * 
+	 *
 	 * @param task
 	 * @param callback
 	 * @return
@@ -78,7 +78,7 @@ public class ExecutorHelper {
 
 	/**
 	 * 批量执行任务（所有）
-	 * 
+	 *
 	 * @see invokeAll()在所有任务都完成（包括成功/被中断/超时）后才会返回。有不限时和限时版本，从更简单的不限时版入手。
 	 * @param task
 	 * @return

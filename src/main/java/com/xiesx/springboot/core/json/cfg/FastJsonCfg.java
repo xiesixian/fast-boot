@@ -1,5 +1,6 @@
 package com.xiesx.springboot.core.json.cfg;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import org.springframework.context.annotation.Configuration;
@@ -7,7 +8,9 @@ import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import com.alibaba.fastjson.serializer.SerializeConfig;
 import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.alibaba.fastjson.serializer.ToStringSerializer;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import com.google.common.collect.Lists;
@@ -29,20 +32,10 @@ public class FastJsonCfg implements WebMvcConfigurer {
 	 * @return
 	 */
 	public static FastJsonHttpMessageConverter fastConverters() {
+		// 转换
 		FastJsonHttpMessageConverter fastConverter = new FastJsonHttpMessageConverter();
-		fastConverter.setFastJsonConfig(fastJsonConfig());
-		fastConverter.setSupportedMediaTypes(fastMediaTypes());
-		return fastConverter;
-	}
-
-	/**
-	 * json配置
-	 *
-	 * @return
-	 */
-	public static FastJsonConfig fastJsonConfig() {
+		// 序列化配置
 		FastJsonConfig fastJsonConfig = new FastJsonConfig();
-		// 自定义输出配置
 		fastJsonConfig.setSerializerFeatures(
 				// // 输出空置字段
 				// SerializerFeature.WriteMapNullValue,
@@ -65,18 +58,19 @@ public class FastJsonCfg implements WebMvcConfigurer {
 				// 大数字写成文本
 				SerializerFeature.WriteBigDecimalAsPlain);
 		// 日期配置
-		fastJsonConfig.setDateFormat("yyyy-MM-dd HH:mm:ss");// 日期配置
-		return fastJsonConfig;
-	}
-
-	/**
-	 * json编码
-	 *
-	 * @return
-	 */
-	public static List<MediaType> fastMediaTypes() {
+		fastJsonConfig.setDateFormat("yyyy-MM-dd HH:mm:ss");
+		// 解决Long转json精度丢失的问题
+		SerializeConfig serializeConfig = SerializeConfig.globalInstance;
+		serializeConfig.put(BigInteger.class, ToStringSerializer.instance);
+		serializeConfig.put(Long.class, ToStringSerializer.instance);
+		serializeConfig.put(Long.TYPE, ToStringSerializer.instance);
+		fastJsonConfig.setSerializeConfig(serializeConfig);
+		// 自定义json配置
+		fastConverter.setFastJsonConfig(fastJsonConfig);
+		// 自定义编码配置
 		List<MediaType> fastMediaTypes = Lists.newArrayList();
 		fastMediaTypes.add(MediaType.APPLICATION_JSON);
-		return fastMediaTypes;
+		fastConverter.setSupportedMediaTypes(fastMediaTypes);
+		return fastConverter;
 	}
 }

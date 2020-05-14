@@ -19,7 +19,7 @@ import lombok.Data;
 public class JpcPlusHelper {
 
 	private Class<?> tupleClass;
-	
+
 	private List<Expression<?>> expressions;
 
 	private List<EntityPath<?>> entityPaths;

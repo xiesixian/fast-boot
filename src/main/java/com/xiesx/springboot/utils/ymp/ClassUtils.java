@@ -197,8 +197,7 @@ public class ClassUtils {
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static <T> ExtensionLoader<T> getExtensionLoader(final Class<T> clazz) throws Exception {
-		return ReentrantLockHelper.putIfAbsentAsync(EXTENSION_LOADERS, clazz,
-				() -> new ExtensionLoader<T>(clazz));
+		return ReentrantLockHelper.putIfAbsentAsync(EXTENSION_LOADERS, clazz, () -> new ExtensionLoader<T>(clazz));
 	}
 
 	/**

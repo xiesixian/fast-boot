@@ -9,8 +9,8 @@ import org.springframework.context.annotation.Import;
 
 import com.xiesx.springboot.support.token.cfg.TokenCfg;
 
-@Target({ ElementType.TYPE })
+@Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-@Import({ TokenCfg.class })
+@Import({TokenCfg.class})
 public @interface GoEnableToken {
 }

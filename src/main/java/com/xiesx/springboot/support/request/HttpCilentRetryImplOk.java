@@ -20,73 +20,77 @@ import com.xiesx.springboot.support.request.impl.IHttpCallable;
 @Component("httpCilentRetryImplOk")
 public class HttpCilentRetryImplOk<T> implements IHttpCilentRetry<T>, IHttpCallable<T> {
 
-	@Override
-	public Callable<T> call(String method, String url, Map<String, Object> params, Proxy proxy) {
-		return null;
-	}
+    @Override
+    public Callable<T> call(String method, String url, Map<String, Object> params, Proxy proxy) {
+        return null;
+    }
 
-	@Override
-	public T get(String url) {
-		return null;
-	}
+    @Override
+    public T get(String url) {
+        return null;
+    }
 
-	@Override
-	public T get(String url, Proxy proxy) {
-		return null;
-	}
+    @Override
+    public T get(String url, Proxy proxy) {
+        return null;
+    }
 
-	@Override
-	public T get(String url, Map<String, Object> params) {
-		return null;
-	}
+    @Override
+    public T get(String url, Map<String, Object> params) {
+        return null;
+    }
 
-	@Override
-	public T get(String url, Map<String, Object> params, Proxy proxy) {
-		return null;
-	}
+    @Override
+    public T get(String url, Map<String, Object> params, Proxy proxy) {
+        return null;
+    }
 
-	@Override
-	public T get_try(String url) throws ExecutionException, RetryException {
-		return null;
-	}
+    @Override
+    public T get_try(String url) throws ExecutionException, RetryException {
+        return null;
+    }
 
-	@Override
-	public T get_try(String url, Proxy proxy) throws ExecutionException, RetryException {
-		return null;
-	}
+    @Override
+    public T get_try(String url, Proxy proxy) throws ExecutionException, RetryException {
+        return null;
+    }
 
-	@Override
-	public T get_try(String url, Map<String, Object> params) throws ExecutionException, RetryException {
-		return null;
-	}
+    @Override
+    public T get_try(String url, Map<String, Object> params)
+            throws ExecutionException, RetryException {
+        return null;
+    }
 
-	@Override
-	public T get_try(String url, Map<String, Object> params, Proxy proxy) throws ExecutionException, RetryException {
-		return null;
-	}
+    @Override
+    public T get_try(String url, Map<String, Object> params, Proxy proxy)
+            throws ExecutionException, RetryException {
+        return null;
+    }
 
-	@Override
-	public T post(String url, Map<String, Object> params) {
-		return null;
-	}
+    @Override
+    public T post(String url, Map<String, Object> params) {
+        return null;
+    }
 
-	@Override
-	public T post(String url, Map<String, Object> params, Proxy proxy) {
-		return null;
-	}
+    @Override
+    public T post(String url, Map<String, Object> params, Proxy proxy) {
+        return null;
+    }
 
-	@Override
-	public T post_try(String url, Map<String, Object> params) throws ExecutionException, RetryException {
-		return null;
-	}
+    @Override
+    public T post_try(String url, Map<String, Object> params)
+            throws ExecutionException, RetryException {
+        return null;
+    }
 
-	@Override
-	public T post_try(String url, Map<String, Object> params, Proxy proxy) throws ExecutionException, RetryException {
-		return null;
-	}
+    @Override
+    public T post_try(String url, Map<String, Object> params, Proxy proxy)
+            throws ExecutionException, RetryException {
+        return null;
+    }
 
-	@Override
-	public T request(String method, String url, Map<String, Object> params, Proxy proxy) {
-		return null;
-	}
+    @Override
+    public T request(String method, String url, Map<String, Object> params, Proxy proxy) {
+        return null;
+    }
 }

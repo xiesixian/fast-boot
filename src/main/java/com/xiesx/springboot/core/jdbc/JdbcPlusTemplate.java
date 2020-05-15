@@ -25,156 +25,158 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 public class JdbcPlusTemplate {
 
-	/** 持久对象 */
-	@Autowired
-	private NamedParameterJdbcTemplate mNamedParameterJdbcTemplate;
+    /** 持久对象 */
+    @Autowired
+    private NamedParameterJdbcTemplate mNamedParameterJdbcTemplate;
 
-	public NamedParameterJdbcTemplate getJdbcPlusTemplate() {
-		return mNamedParameterJdbcTemplate;
-	}
+    public NamedParameterJdbcTemplate getJdbcPlusTemplate() {
+        return mNamedParameterJdbcTemplate;
+    }
 
-	/**
-	 * 查询Map
-	 *
-	 * @param sql
-	 * @param args
-	 * @return
-	 */
-	public Map<String, Object> queryForMap(String sql, Object... args) {
-		try {
-			return mNamedParameterJdbcTemplate.getJdbcTemplate().queryForMap(sql, args);
-		} catch (Exception e) {
-			log.error("queryForMap error error", e);
-			return null;
-		}
-	}
+    /**
+     * 查询Map
+     *
+     * @param sql
+     * @param args
+     * @return
+     */
+    public Map<String, Object> queryForMap(String sql, Object... args) {
+        try {
+            return mNamedParameterJdbcTemplate.getJdbcTemplate().queryForMap(sql, args);
+        } catch (Exception e) {
+            log.error("queryForMap error error", e);
+            return null;
+        }
+    }
 
-	/**
-	 * 查询List<Map>
-	 *
-	 * @param sql
-	 * @param args
-	 * @return
-	 */
-	public List<Map<String, Object>> queryForList(String sql, Object... args) {
-		try {
-			return mNamedParameterJdbcTemplate.getJdbcTemplate().queryForList(sql, args);
-		} catch (Exception e) {
-			log.error("queryForList error", e);
-			return null;
-		}
-	}
+    /**
+     * 查询List<Map>
+     *
+     * @param sql
+     * @param args
+     * @return
+     */
+    public List<Map<String, Object>> queryForList(String sql, Object... args) {
+        try {
+            return mNamedParameterJdbcTemplate.getJdbcTemplate().queryForList(sql, args);
+        } catch (Exception e) {
+            log.error("queryForList error", e);
+            return null;
+        }
+    }
 
-	/**
-	 * 查询Obj
-	 *
-	 * @param <T>
-	 * @param sql
-	 * @param args
-	 * @param clazz
-	 * @return
-	 */
-	public <T> T queryForMap(String sql, Class<T> clazz) {
-		try {
-			return result(mNamedParameterJdbcTemplate.getJdbcTemplate().queryForMap(sql), clazz);
-		} catch (Exception e) {
-			log.error("queryForMap error", e);
-			return null;
-		}
-	}
+    /**
+     * 查询Obj
+     *
+     * @param <T>
+     * @param sql
+     * @param args
+     * @param clazz
+     * @return
+     */
+    public <T> T queryForMap(String sql, Class<T> clazz) {
+        try {
+            return result(mNamedParameterJdbcTemplate.getJdbcTemplate().queryForMap(sql), clazz);
+        } catch (Exception e) {
+            log.error("queryForMap error", e);
+            return null;
+        }
+    }
 
-	public <T> T queryForMap(String sql, Object[] args, Class<T> clazz) {
-		try {
-			return result(mNamedParameterJdbcTemplate.getJdbcTemplate().queryForMap(sql, args), clazz);
-		} catch (Exception e) {
-			log.error("queryForMap error", e);
-			return null;
-		}
-	}
+    public <T> T queryForMap(String sql, Object[] args, Class<T> clazz) {
+        try {
+            return result(mNamedParameterJdbcTemplate.getJdbcTemplate().queryForMap(sql, args),
+                    clazz);
+        } catch (Exception e) {
+            log.error("queryForMap error", e);
+            return null;
+        }
+    }
 
-	/**
-	 * 查询List<Obj>
-	 *
-	 * @param <T>
-	 * @param sql
-	 * @param args
-	 * @param clazz
-	 * @return
-	 */
-	public <T> List<T> queryForList(String sql, Class<T> clazz) {
-		try {
-			return result(mNamedParameterJdbcTemplate.getJdbcTemplate().queryForList(sql), clazz);
-		} catch (Exception e) {
-			log.error("queryForList error", e);
-			return null;
-		}
-	}
+    /**
+     * 查询List<Obj>
+     *
+     * @param <T>
+     * @param sql
+     * @param args
+     * @param clazz
+     * @return
+     */
+    public <T> List<T> queryForList(String sql, Class<T> clazz) {
+        try {
+            return result(mNamedParameterJdbcTemplate.getJdbcTemplate().queryForList(sql), clazz);
+        } catch (Exception e) {
+            log.error("queryForList error", e);
+            return null;
+        }
+    }
 
-	public <T> List<T> queryForList(String sql, Object[] args, Class<T> clazz) {
-		try {
-			return result(mNamedParameterJdbcTemplate.getJdbcTemplate().queryForList(sql, args), clazz);
-		} catch (Exception e) {
-			log.error("queryForList error", e);
-			return null;
-		}
-	}
+    public <T> List<T> queryForList(String sql, Object[] args, Class<T> clazz) {
+        try {
+            return result(mNamedParameterJdbcTemplate.getJdbcTemplate().queryForList(sql, args),
+                    clazz);
+        } catch (Exception e) {
+            log.error("queryForList error", e);
+            return null;
+        }
+    }
 
-	/**
-	 * 执行update
-	 *
-	 * @param sql
-	 * @param args
-	 * @return
-	 */
-	public int update(String sql, @Nullable Object... args) {
-		try {
-			return mNamedParameterJdbcTemplate.getJdbcTemplate().update(sql, args);
-		} catch (Exception e) {
-			log.error("update error", e.getMessage());
-			return 0;
-		}
-	}
+    /**
+     * 执行update
+     *
+     * @param sql
+     * @param args
+     * @return
+     */
+    public int update(String sql, @Nullable Object... args) {
+        try {
+            return mNamedParameterJdbcTemplate.getJdbcTemplate().update(sql, args);
+        } catch (Exception e) {
+            log.error("update error", e.getMessage());
+            return 0;
+        }
+    }
 
-	/**
-	 * 执行update
-	 *
-	 * @param sql
-	 * @param args
-	 * @return
-	 */
-	public int update(String sql, @Nullable Map<String, ?> paramMap) {
-		try {
-			return mNamedParameterJdbcTemplate.update(sql, paramMap);
-		} catch (Exception e) {
-			log.error("update error", e);
-			return 0;
-		}
-	}
+    /**
+     * 执行update
+     *
+     * @param sql
+     * @param args
+     * @return
+     */
+    public int update(String sql, @Nullable Map<String, ?> paramMap) {
+        try {
+            return mNamedParameterJdbcTemplate.update(sql, paramMap);
+        } catch (Exception e) {
+            log.error("update error", e);
+            return 0;
+        }
+    }
 
-	/**
-	 * 数据填充
-	 *
-	 * @param map
-	 * @return
-	 */
-	protected <T> T result(Map<String, Object> map, Class<T> clazz) {
-		if (ObjectUtils.isEmpty(map)) {
-			return null;
-		}
-		return JSON.toJavaObject(new JSONObject(map), clazz);
-	}
+    /**
+     * 数据填充
+     *
+     * @param map
+     * @return
+     */
+    protected <T> T result(Map<String, Object> map, Class<T> clazz) {
+        if (ObjectUtils.isEmpty(map)) {
+            return null;
+        }
+        return JSON.toJavaObject(new JSONObject(map), clazz);
+    }
 
-	/**
-	 * 数据填充
-	 *
-	 * @param list
-	 * @return
-	 */
-	protected <T> List<T> result(List<Map<String, Object>> list, Class<T> clazz) {
-		List<T> data = Lists.newArrayList();
-		for (Map<String, Object> map : list) {
-			data.add(result(map, clazz));
-		}
-		return data;
-	}
+    /**
+     * 数据填充
+     *
+     * @param list
+     * @return
+     */
+    protected <T> List<T> result(List<Map<String, Object>> list, Class<T> clazz) {
+        List<T> data = Lists.newArrayList();
+        for (Map<String, Object> map : list) {
+            data.add(result(map, clazz));
+        }
+        return data;
+    }
 }

@@ -12,7 +12,7 @@ import com.xiesx.springboot.support.sgin.SignAspect;
  * @date 2019年3月14日 上午10:48:52
  */
 @Configuration
-@Import({ SignAspect.class })
+@Import({SignAspect.class})
 public class SignCfg {
 
 }

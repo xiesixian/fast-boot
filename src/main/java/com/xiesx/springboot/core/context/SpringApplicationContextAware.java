@@ -12,21 +12,21 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 public class SpringApplicationContextAware implements ApplicationContextAware {
 
-	private static ApplicationContext applicationContext;
+    private static ApplicationContext applicationContext;
 
-	public static ApplicationContext getApplicationContext() {
-		return applicationContext;
-	}
+    public static ApplicationContext getApplicationContext() {
+        return applicationContext;
+    }
 
-	@Override
-	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-		if (ObjectUtils.isEmpty(SpringApplicationContextAware.applicationContext)) {
-			SpringApplicationContextAware.applicationContext = applicationContext;
-			SpringStartup.init();
-			SpringStartup.logger();
-			SpringStartup.event();
-			SpringStartup.schedule();
-			log.info("Startup ApplicationContext completed.");
-		}
-	}
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        if (ObjectUtils.isEmpty(SpringApplicationContextAware.applicationContext)) {
+            SpringApplicationContextAware.applicationContext = applicationContext;
+            SpringStartup.init();
+            SpringStartup.logger();
+            SpringStartup.event();
+            SpringStartup.schedule();
+            log.info("Startup ApplicationContext completed.");
+        }
+    }
 }

@@ -6,6 +6,6 @@ import org.springframework.context.annotation.Import;
 import com.xiesx.springboot.core.jdbc.JdbcPlusTemplate;
 
 @Configuration
-@Import({ JdbcPlusTemplate.class })
+@Import({JdbcPlusTemplate.class})
 public class JdbcPlusCfg {
 }

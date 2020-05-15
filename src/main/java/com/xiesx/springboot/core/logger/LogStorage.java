@@ -27,72 +27,72 @@ import lombok.experimental.FieldNameConstants;
 @Table(name = LogStorage.TABLE)
 public class LogStorage extends JdbcPlusEntity<LogStorage> {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	public static final String TABLE = "sys_log";
+    public static final String TABLE = "sys_log";
 
-	/**
-	 * 主键
-	 */
-	@Id
-	@Column(name = "id")
-	private String id;
+    /**
+     * 主键
+     */
+    @Id
+    @Column(name = "id")
+    private String id;
 
-	/**
-	 * 创建时间
-	 */
-	@Column(name = "create_date")
-	private Date createDate;
+    /**
+     * 创建时间
+     */
+    @Column(name = "create_date")
+    private Date createDate;
 
-	/**
-	 * 请求IP
-	 */
-	@Column
-	private String ip;
+    /**
+     * 请求IP
+     */
+    @Column
+    private String ip;
 
-	/**
-	 * 方法
-	 */
-	@Column
-	private String method;
+    /**
+     * 方法
+     */
+    @Column
+    private String method;
 
-	/**
-	 * 方式
-	 */
-	@Column
-	private String type;
+    /**
+     * 方式
+     */
+    @Column
+    private String type;
 
-	/**
-	 * 地址
-	 */
-	@Column
-	private String url;
+    /**
+     * 地址
+     */
+    @Column
+    private String url;
 
-	/**
-	 * 请求
-	 */
-	@Column
-	private String req;
+    /**
+     * 请求
+     */
+    @Column
+    private String req;
 
-	/**
-	 * 响应
-	 */
-	@Column
-	private String res;
+    /**
+     * 响应
+     */
+    @Column
+    private String res;
 
-	/**
-	 * 执行时间（毫秒）
-	 */
-	@Column
-	private Long t;
+    /**
+     * 执行时间（毫秒）
+     */
+    @Column
+    private Long t;
 
-	/**
-	 * 执行时间（毫秒）
-	 */
-	@Column
-	private String opt;
+    /**
+     * 执行时间（毫秒）
+     */
+    @Column
+    private String opt;
 
-	protected Serializable pkVal() {
-		return this.id;
-	}
+    protected Serializable pkVal() {
+        return this.id;
+    }
 }

@@ -15,9 +15,9 @@ import lombok.Data;
 @AllArgsConstructor
 public class CurrentToken {
 
-	private String userId;
+    private String userId;
 
-	private String userName;
+    private String userName;
 
-	private String nickName;
+    private String nickName;
 }

@@ -6,9 +6,9 @@ import org.springframework.context.annotation.Import;
 import com.xiesx.springboot.core.logger.LoggerAspect;
 
 @Configuration
-@Import({ LoggerAspect.class })
+@Import({LoggerAspect.class})
 public class LoggerCfg {
 
-	public static final String NICKNAME = "nickname";
+    public static final String NICKNAME = "nickname";
 
 }

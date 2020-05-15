@@ -9,14 +9,14 @@ import org.springframework.context.annotation.Import;
 
 import com.xiesx.springboot.core.logger.cfg.LoggerCfg;
 
-@Target({ ElementType.METHOD })
+@Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-@Import({ LoggerCfg.class })
+@Import({LoggerCfg.class})
 public @interface LoggerStorage {
 
-	boolean print() default true;
+    boolean print() default true;
 
-	boolean storage() default false;
+    boolean storage() default false;
 
-	boolean prettyFormat() default false;
+    boolean prettyFormat() default false;
 }

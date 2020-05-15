@@ -11,74 +11,74 @@ import java.util.Map;
  */
 public interface IHttpCilent<T> {
 
-	// ========get========
+    // ========get========
 
-	/**
-	 * get
-	 *
-	 * @param url
-	 * @return
-	 */
-	T get(String url);
+    /**
+     * get
+     *
+     * @param url
+     * @return
+     */
+    T get(String url);
 
-	/**
-	 * get
-	 *
-	 * @param url
-	 * @param proxy
-	 * @return
-	 */
-	T get(String url, Proxy proxy);
+    /**
+     * get
+     *
+     * @param url
+     * @param proxy
+     * @return
+     */
+    T get(String url, Proxy proxy);
 
-	/**
-	 * get
-	 *
-	 * @param url
-	 * @param params
-	 * @param proxy
-	 * @return
-	 */
-	T get(String url, Map<String, Object> params);
+    /**
+     * get
+     *
+     * @param url
+     * @param params
+     * @param proxy
+     * @return
+     */
+    T get(String url, Map<String, Object> params);
 
-	/**
-	 * get
-	 *
-	 * @param url
-	 * @param params
-	 * @param proxy
-	 * @return
-	 */
-	T get(String url, Map<String, Object> params, Proxy proxy);
+    /**
+     * get
+     *
+     * @param url
+     * @param params
+     * @param proxy
+     * @return
+     */
+    T get(String url, Map<String, Object> params, Proxy proxy);
 
-	// ========post========
-	/**
-	 * post
-	 *
-	 * @param url
-	 * @param params
-	 * @return
-	 */
-	T post(String url, Map<String, Object> params);
+    // ========post========
+    /**
+     * post
+     *
+     * @param url
+     * @param params
+     * @return
+     */
+    T post(String url, Map<String, Object> params);
 
-	/**
-	 * post
-	 *
-	 * @param url
-	 * @param params
-	 * @param proxy
-	 * @return
-	 */
-	T post(String url, Map<String, Object> params, Proxy proxy);
+    /**
+     * post
+     *
+     * @param url
+     * @param params
+     * @param proxy
+     * @return
+     */
+    T post(String url, Map<String, Object> params, Proxy proxy);
 
-	// ========request========
-	/**
-	 * request
-	 *
-	 * @param method
-	 * @param url
-	 * @param params
-	 * @param proxy
-	 * @return
-	 */
-	T request(String method, String url, Map<String, Object> params, Proxy proxy);
+    // ========request========
+    /**
+     * request
+     *
+     * @param method
+     * @param url
+     * @param params
+     * @param proxy
+     * @return
+     */
+    T request(String method, String url, Map<String, Object> params, Proxy proxy);
 }

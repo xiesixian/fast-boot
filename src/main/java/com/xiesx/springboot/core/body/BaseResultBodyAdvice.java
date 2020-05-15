@@ -29,36 +29,37 @@ import lombok.extern.slf4j.Slf4j;
 @SuppressWarnings("all")
 public class BaseResultBodyAdvice implements ResponseBodyAdvice<Object> {
 
-	/**
-	 * systemException --> GlobalExceptionHandle.java 31行
-	 */
-	String[] methodNames = { "systemException" };
+    /**
+     * systemException --> GlobalExceptionHandle.java 31行
+     */
+    String[] methodNames = {"systemException"};
 
-	@Override
-	public Object beforeBodyWrite(Object returnValue, MethodParameter methodParameter, MediaType mediaType, Class clas,
-			ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse) {
-		log.debug("beforeBodyWrite ......");
-		Object res = null;
-		// 按需使用，如果有改动，务必兼容之前代码
-		if (returnValue instanceof BaseResult || returnValue instanceof PaginationResult) {
-			res = returnValue;
-		} else if (returnValue instanceof String || returnValue instanceof Boolean) {
-			res = returnValue;
-		} else if (returnValue instanceof Map<?, ?> || returnValue instanceof List<?>) {
-			res = returnValue;
-		} else if (returnValue instanceof JSON) {
-			res = returnValue;
-		} else {
-			res = R.succ(returnValue);
-		}
-		return res;
-	}
+    @Override
+    public Object beforeBodyWrite(Object returnValue, MethodParameter methodParameter,
+            MediaType mediaType, Class clas, ServerHttpRequest serverHttpRequest,
+            ServerHttpResponse serverHttpResponse) {
+        log.debug("beforeBodyWrite ......");
+        Object res = null;
+        // 按需使用，如果有改动，务必兼容之前代码
+        if (returnValue instanceof BaseResult || returnValue instanceof PaginationResult) {
+            res = returnValue;
+        } else if (returnValue instanceof String || returnValue instanceof Boolean) {
+            res = returnValue;
+        } else if (returnValue instanceof Map<?, ?> || returnValue instanceof List<?>) {
+            res = returnValue;
+        } else if (returnValue instanceof JSON) {
+            res = returnValue;
+        } else {
+            res = R.succ(returnValue);
+        }
+        return res;
+    }
 
-	@Override
-	public boolean supports(MethodParameter methodParameter, Class clas) {
-		// 获取当前处理请求的controller的方法
-		String methodName = methodParameter.getMethod().getName();
-		// 不拦截
-		return !Arrays.asList(methodNames).contains(methodName);
-	}
+    @Override
+    public boolean supports(MethodParameter methodParameter, Class clas) {
+        // 获取当前处理请求的controller的方法
+        String methodName = methodParameter.getMethod().getName();
+        // 不拦截
+        return !Arrays.asList(methodNames).contains(methodName);
+    }
 }

@@ -16,43 +16,43 @@ import org.apache.commons.lang3.ObjectUtils;
  */
 public class EntityClassUtils {
 
-	/**
-	 * 弱引用，BeanInfo信息需要注意垃圾回收
-	 */
-	private static final Map<Class<?>, BeanInfo> classCache = Collections
-			.synchronizedMap(new WeakHashMap<Class<?>, BeanInfo>());
+    /**
+     * 弱引用，BeanInfo信息需要注意垃圾回收
+     */
+    private static final Map<Class<?>, BeanInfo> classCache =
+            Collections.synchronizedMap(new WeakHashMap<Class<?>, BeanInfo>());
 
-	/**
-	 * 初始化实例
-	 *
-	 * @param clazz
-	 * @return
-	 * @throws Exception
-	 */
-	public static Object newInstance(Class<?> clazz) throws Exception {
-		return clazz.newInstance();
-	}
+    /**
+     * 初始化实例
+     *
+     * @param clazz
+     * @return
+     * @throws Exception
+     */
+    public static Object newInstance(Class<?> clazz) throws Exception {
+        return clazz.newInstance();
+    }
 
-	/**
-	 * 获取类本身的BeanInfo
-	 *
-	 * @param clazz
-	 * @return
-	 * @throws Exception
-	 */
-	public static BeanInfo getSelfBeanInfo(Class<?> clazz) throws Exception {
-		BeanInfo beanInfo;
-		if (ObjectUtils.isEmpty(classCache.get(clazz))) {
-			beanInfo = Introspector.getBeanInfo(clazz, clazz.getSuperclass());
-			classCache.put(clazz, beanInfo);
-			Class<?> classToFlush = clazz;
-			do {
-				Introspector.flushFromCaches(classToFlush);
-				classToFlush = classToFlush.getSuperclass();
-			} while (classToFlush != null);
-		} else {
-			beanInfo = classCache.get(clazz);
-		}
-		return beanInfo;
-	}
+    /**
+     * 获取类本身的BeanInfo
+     *
+     * @param clazz
+     * @return
+     * @throws Exception
+     */
+    public static BeanInfo getSelfBeanInfo(Class<?> clazz) throws Exception {
+        BeanInfo beanInfo;
+        if (ObjectUtils.isEmpty(classCache.get(clazz))) {
+            beanInfo = Introspector.getBeanInfo(clazz, clazz.getSuperclass());
+            classCache.put(clazz, beanInfo);
+            Class<?> classToFlush = clazz;
+            do {
+                Introspector.flushFromCaches(classToFlush);
+                classToFlush = classToFlush.getSuperclass();
+            } while (classToFlush != null);
+        } else {
+            beanInfo = classCache.get(clazz);
+        }
+        return beanInfo;
+    }
 }

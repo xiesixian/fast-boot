@@ -19,15 +19,15 @@ import lombok.experimental.Accessors;
 @Accessors(fluent = true)
 public class PaginationResult {
 
-	@JSONField(ordinal = 1)
-	public Integer code;
+    @JSONField(ordinal = 1)
+    public Integer code;
 
-	@JSONField(ordinal = 2)
-	public String msg;
+    @JSONField(ordinal = 2)
+    public String msg;
 
-	@JSONField(ordinal = 3)
-	public List<?> data;
+    @JSONField(ordinal = 3)
+    public List<?> data;
 
-	@JSONField(ordinal = 4)
-	public Integer count;
+    @JSONField(ordinal = 4)
+    public Integer count;
 }

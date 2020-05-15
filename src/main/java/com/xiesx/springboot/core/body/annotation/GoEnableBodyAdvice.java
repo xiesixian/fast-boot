@@ -9,8 +9,8 @@ import org.springframework.context.annotation.Import;
 
 import com.xiesx.springboot.core.body.BaseResultBodyAdvice;
 
-@Target({ ElementType.TYPE })
+@Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-@Import({ BaseResultBodyAdvice.class })
+@Import({BaseResultBodyAdvice.class})
 public @interface GoEnableBodyAdvice {
 }

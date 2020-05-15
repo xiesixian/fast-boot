@@ -16,40 +16,41 @@ import lombok.NonNull;
  */
 public class PaginationHelper {
 
-	/**
-	 * 返回
-	 *
-	 * @param page
-	 * @return
-	 */
-	public static PaginationResult create(Page<?> page) {
-		return PaginationHelper.create(page.toList(), page.getTotalPages());
-	}
+    /**
+     * 返回
+     *
+     * @param page
+     * @return
+     */
+    public static PaginationResult create(Page<?> page) {
+        return create(page.toList(), (int) page.getTotalElements());
+    }
 
-	/**
-	 * 返回
-	 *
-	 * @param data
-	 * @param total
-	 * @return
-	 */
-	public static PaginationResult create(@NonNull List<?> data) {
-		return create(data, null);
-	}
+    /**
+     * 返回
+     *
+     * @param data
+     * @param total
+     * @return
+     */
+    public static PaginationResult create(@NonNull List<?> data) {
+        return create(data, null);
+    }
 
-	/**
-	 * 返回
-	 *
-	 * @param data
-	 * @param total
-	 * @return
-	 */
-	public static PaginationResult create(@NonNull List<?> data, Integer total) {
-		List<?> list = Lists.newArrayList(data);
-		if (list.isEmpty()) {
-			return PaginationResult.builder().code(1).msg("无数据").data(Lists.newArrayList()).count(0).build();
-		} else {
-			return PaginationResult.builder().code(0).data(list).count(total).build();
-		}
-	}
+    /**
+     * 返回
+     *
+     * @param data
+     * @param total
+     * @return
+     */
+    public static PaginationResult create(@NonNull List<?> data, Integer total) {
+        List<?> list = Lists.newArrayList(data);
+        if (list.isEmpty()) {
+            return PaginationResult.builder().code(1).msg("无数据").data(Lists.newArrayList()).count(0)
+                    .build();
+        } else {
+            return PaginationResult.builder().code(0).data(list).count(total).build();
+        }
+    }
 }

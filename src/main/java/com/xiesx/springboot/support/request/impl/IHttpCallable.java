@@ -12,5 +12,5 @@ import java.util.concurrent.Callable;
  */
 public interface IHttpCallable<T> {
 
-	Callable<T> call(String method, String url, Map<String, Object> params, Proxy proxy);
+    Callable<T> call(String method, String url, Map<String, Object> params, Proxy proxy);
 }

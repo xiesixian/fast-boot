@@ -1,14 +1,15 @@
 package com.xiesx.springboot.core.jpa;
 
+import java.io.Serializable;
+
 import com.alibaba.fastjson.JSON;
-import com.xiesx.springboot.core.jdbc.JdbcPlusEntity;
 
-public abstract class JpaPlusEntity<T> extends JdbcPlusEntity<T> {
+public abstract class JpaPlusEntity<T> implements Serializable {
 
-	/** 序列化 */
-	private static final long serialVersionUID = 1L;
+    /** 序列化 */
+    private static final long serialVersionUID = 1L;
 
-	public String toJSONString() {
-		return JSON.toJSONString(this);
-	}
+    public String toJSONString() {
+        return JSON.toJSONString(this);
+    }
 }

@@ -19,28 +19,28 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class DefaultDecorator extends BaseDecorator implements ISchedule {
 
-	public DefaultDecorator(ISchedule decoratedJob) {
-		super(decoratedJob);
-	}
+    public DefaultDecorator(ISchedule decoratedJob) {
+        super(decoratedJob);
+    }
 
-	@Override
-	public void init() {
-		decoratedJob.init();
-		if (isStart()) {
-			JobDataMap map = new JobDataMap();
-			map.put(SimpleJobSchedule.simple_job_key, "time is ");
-			try {
-				ScheduleHelper.removeJob(SimpleJobSchedule.simple_job_name);
-				ScheduleHelper.addJob(SimpleJobSchedule.simple_job_name, SimpleJobSchedule.class,
-						SimpleJobSchedule.simple_job_cron, map);
-			} catch (SchedulerException e) {
-				log.error("DefaultDecorator error", e);
-			}
-		}
-	}
+    @Override
+    public void init() {
+        decoratedJob.init();
+        if (isStart()) {
+            JobDataMap map = new JobDataMap();
+            map.put(SimpleJobSchedule.simple_job_key, "time is ");
+            try {
+                ScheduleHelper.removeJob(SimpleJobSchedule.simple_job_name);
+                ScheduleHelper.addJob(SimpleJobSchedule.simple_job_name, SimpleJobSchedule.class,
+                        SimpleJobSchedule.simple_job_cron, map);
+            } catch (SchedulerException e) {
+                log.error("DefaultDecorator error", e);
+            }
+        }
+    }
 
-	@Override
-	public boolean isStart() {
-		return true;
-	}
+    @Override
+    public boolean isStart() {
+        return true;
+    }
 }

@@ -20,34 +20,37 @@ import com.xiesx.springboot.support.token.handle.CurrentToken.CurrentTokenBuilde
  */
 public class TokenMethodArgumentResolverHandler implements HandlerMethodArgumentResolver {
 
-	@Override
-	public boolean supportsParameter(MethodParameter parameter) {
-		return parameter.getParameterType().isAssignableFrom(CurrentToken.class)
-				&& parameter.hasParameterAnnotation(Token.class);
-	}
+    @Override
+    public boolean supportsParameter(MethodParameter parameter) {
+        return parameter.getParameterType().isAssignableFrom(CurrentToken.class)
+                && parameter.hasParameterAnnotation(Token.class);
+    }
 
-	@Override
-	public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer container, NativeWebRequest request,
-			WebDataBinderFactory factory) throws Exception {
-		// 构造用户信息
-		CurrentTokenBuilder builder = CurrentToken.builder();
-		// 获取用户id
-		String user_id = request.getAttribute(TokenCfg.USER_KEY, RequestAttributes.SCOPE_REQUEST).toString();
-		if (ObjectUtils.isEmpty(user_id)) {
-			return null;
-		}
-		String user_name = request.getAttribute(TokenCfg.USER_NAME, RequestAttributes.SCOPE_REQUEST).toString();
-		if (ObjectUtils.isNotEmpty(user_name)) {
-			builder.userName(user_name);
-		}
-		String nick_name = request.getAttribute(TokenCfg.NICK_NAME, RequestAttributes.SCOPE_REQUEST).toString();
-		if (ObjectUtils.isNotEmpty(nick_name)) {
-			builder.nickName(nick_name);
-		}
-		return builder.userId(String.valueOf(user_id)).build();
-	}
+    @Override
+    public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer container,
+            NativeWebRequest request, WebDataBinderFactory factory) throws Exception {
+        // 构造用户信息
+        CurrentTokenBuilder builder = CurrentToken.builder();
+        // 获取用户id
+        String user_id =
+                request.getAttribute(TokenCfg.USER_KEY, RequestAttributes.SCOPE_REQUEST).toString();
+        if (ObjectUtils.isEmpty(user_id)) {
+            return null;
+        }
+        String user_name = request.getAttribute(TokenCfg.USER_NAME, RequestAttributes.SCOPE_REQUEST)
+                .toString();
+        if (ObjectUtils.isNotEmpty(user_name)) {
+            builder.userName(user_name);
+        }
+        String nick_name = request.getAttribute(TokenCfg.NICK_NAME, RequestAttributes.SCOPE_REQUEST)
+                .toString();
+        if (ObjectUtils.isNotEmpty(nick_name)) {
+            builder.nickName(nick_name);
+        }
+        return builder.userId(String.valueOf(user_id)).build();
+    }
 
-	public static void main(String[] args) {
-		System.out.println(String.valueOf(null));
-	}
+    public static void main(String[] args) {
+        System.out.println(String.valueOf(null));
+    }
 }

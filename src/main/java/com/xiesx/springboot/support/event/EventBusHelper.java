@@ -17,44 +17,44 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class EventBusHelper {
 
-	private final static EventBus eventBus = new EventBus();
+    private final static EventBus eventBus = new EventBus();
 
-	/**
-	 * 发布
-	 *
-	 * @param event
-	 */
-	public static void post(EventBusInterface event) {
-		if (ObjectUtils.isEmpty(event)) {
-			return;
-		}
-		log.info("post : {}", event.getClass().getName());
-		eventBus.post(event);
-	}
+    /**
+     * 发布
+     *
+     * @param event
+     */
+    public static void post(EventBusInterface event) {
+        if (ObjectUtils.isEmpty(event)) {
+            return;
+        }
+        log.info("post : {}", event.getClass().getName());
+        eventBus.post(event);
+    }
 
-	/**
-	 * 注册
-	 *
-	 * @param handler
-	 */
-	public static void register(AbstractEventBus<? extends EventBusInterface> handler) {
-		if (ObjectUtils.isEmpty(handler)) {
-			return;
-		}
-		log.info("register : {}", handler.getClass().getName());
-		eventBus.register(handler);
-	}
+    /**
+     * 注册
+     *
+     * @param handler
+     */
+    public static void register(AbstractEventBus<? extends EventBusInterface> handler) {
+        if (ObjectUtils.isEmpty(handler)) {
+            return;
+        }
+        log.info("register : {}", handler.getClass().getName());
+        eventBus.register(handler);
+    }
 
-	/**
-	 * 销毁
-	 *
-	 * @param handler
-	 */
-	public static void unregister(AbstractEventBus<? extends EventBusInterface> handler) {
-		if (ObjectUtils.isEmpty(handler)) {
-			return;
-		}
-		log.info("unregister : {}", handler.getClass().getName());
-		eventBus.unregister(handler);
-	}
+    /**
+     * 销毁
+     *
+     * @param handler
+     */
+    public static void unregister(AbstractEventBus<? extends EventBusInterface> handler) {
+        if (ObjectUtils.isEmpty(handler)) {
+            return;
+        }
+        log.info("unregister : {}", handler.getClass().getName());
+        eventBus.unregister(handler);
+    }
 }

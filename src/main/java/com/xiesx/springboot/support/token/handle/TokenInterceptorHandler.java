@@ -27,38 +27,42 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class TokenInterceptorHandler extends HandlerInterceptorAdapter {
 
-	@Override
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
-		// 获取方法信息
-		Method method = ((HandlerMethod) handler).getMethod();
-		// 获取参数注解信息
-		Annotation[][] parameterAnnotations = method.getParameterAnnotations();
-		for (Annotation[] annotation1 : parameterAnnotations) {
-			for (Annotation annotation2 : annotation1) {
-				if (annotation2 instanceof Token) {
-					// 获取token
-					String token = request.getHeader("token");
-					if (StringUtils.isEmpty(token)) {
-						throw new RuntimeException("未登录");
-					}
-					try {
-						// 获取token
-						Claims claims = JwtHelper.parser(token);
-						// 设置requeest
-						request.setAttribute(TokenCfg.USER_KEY, claims.get("user_id", String.class));
-						request.setAttribute(TokenCfg.USER_NAME, claims.get("user_name", String.class));
-						request.setAttribute(TokenCfg.NICK_NAME, claims.get("nick_name", String.class));
-					} catch (Exception e) {
-						log.error("jwt token error", e);
-						if (e instanceof ExpiredJwtException) {
-							throw new RuntimeException("登录已失效");
-						} else {
-							throw new RuntimeException("登录错误");
-						}
-					}
-				}
-			}
-		}
-		return true;
-	}
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
+            Object handler) {
+        // 获取方法信息
+        Method method = ((HandlerMethod) handler).getMethod();
+        // 获取参数注解信息
+        Annotation[][] parameterAnnotations = method.getParameterAnnotations();
+        for (Annotation[] annotation1 : parameterAnnotations) {
+            for (Annotation annotation2 : annotation1) {
+                if (annotation2 instanceof Token) {
+                    // 获取token
+                    String token = request.getHeader("token");
+                    if (StringUtils.isEmpty(token)) {
+                        throw new RuntimeException("未登录");
+                    }
+                    try {
+                        // 获取token
+                        Claims claims = JwtHelper.parser(token);
+                        // 设置requeest
+                        request.setAttribute(TokenCfg.USER_KEY,
+                                claims.get("user_id", String.class));
+                        request.setAttribute(TokenCfg.USER_NAME,
+                                claims.get("user_name", String.class));
+                        request.setAttribute(TokenCfg.NICK_NAME,
+                                claims.get("nick_name", String.class));
+                    } catch (Exception e) {
+                        log.error("jwt token error", e);
+                        if (e instanceof ExpiredJwtException) {
+                            throw new RuntimeException("登录已失效");
+                        } else {
+                            throw new RuntimeException("登录错误");
+                        }
+                    }
+                }
+            }
+        }
+        return true;
+    }
 }

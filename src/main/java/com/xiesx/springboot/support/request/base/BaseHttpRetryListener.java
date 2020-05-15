@@ -18,26 +18,28 @@ import net.dongliu.requests.RawResponse;
 @Slf4j
 public class BaseHttpRetryListener<T> implements RetryListener {
 
-	@Override
-	public <V> void onRetry(Attempt<V> attempt) {
-		if (attempt.hasException()) {
-			log.warn("onException causeBy:{}", attempt.getExceptionCause().toString());
-		}
-		if (attempt.hasResult()) {
-			try {
-				V result = attempt.get();
-				if (result instanceof RawResponse) {
-					log.warn("onRetry time:{} delay:{} isError:{} result:{} - {}", attempt.getAttemptNumber(),
-							attempt.getDelaySinceFirstAttempt(), attempt.hasException(), attempt.hasResult(),
-							((RawResponse) result).statusCode());
-				} else if (result instanceof BaseResult) {
-					log.warn("onRetry time:{} delay:{} isError:{} result:{} - {}", attempt.getAttemptNumber(),
-							attempt.getDelaySinceFirstAttempt(), attempt.hasException(), attempt.hasResult(),
-							((BaseResult) result).getCode());
-				}
-			} catch (ExecutionException e) {
-				log.error("onResult attempt produce exception:{}", e.getCause().toString());
-			}
-		}
-	}
+    @Override
+    public <V> void onRetry(Attempt<V> attempt) {
+        if (attempt.hasException()) {
+            log.warn("onException causeBy:{}", attempt.getExceptionCause().toString());
+        }
+        if (attempt.hasResult()) {
+            try {
+                V result = attempt.get();
+                if (result instanceof RawResponse) {
+                    log.warn("onRetry time:{} delay:{} isError:{} result:{} - {}",
+                            attempt.getAttemptNumber(), attempt.getDelaySinceFirstAttempt(),
+                            attempt.hasException(), attempt.hasResult(),
+                            ((RawResponse) result).statusCode());
+                } else if (result instanceof BaseResult) {
+                    log.warn("onRetry time:{} delay:{} isError:{} result:{} - {}",
+                            attempt.getAttemptNumber(), attempt.getDelaySinceFirstAttempt(),
+                            attempt.hasException(), attempt.hasResult(),
+                            ((BaseResult) result).getCode());
+                }
+            } catch (ExecutionException e) {
+                log.error("onResult attempt produce exception:{}", e.getCause().toString());
+            }
+        }
+    }
 }

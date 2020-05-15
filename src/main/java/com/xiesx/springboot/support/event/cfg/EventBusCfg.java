@@ -19,16 +19,16 @@ import lombok.extern.slf4j.Slf4j;
 @Configuration
 public class EventBusCfg implements DisposableBean {
 
-	/**
-	 * 销毁时
-	 */
-	@Override
-	public void destroy() throws Exception {
-		if (SpringStartup.beans != null) {
-			for (AbstractEventBus<?> eventAbstract : SpringStartup.beans.values()) {
-				EventBusHelper.unregister(eventAbstract);
-			}
-		}
-		log.info("Startup EventBus {} destroy", SpringStartup.beans.size());
-	}
+    /**
+     * 销毁时
+     */
+    @Override
+    public void destroy() throws Exception {
+        if (SpringStartup.beans != null) {
+            for (AbstractEventBus<?> eventAbstract : SpringStartup.beans.values()) {
+                EventBusHelper.unregister(eventAbstract);
+            }
+        }
+        log.info("Startup EventBus {} destroy", SpringStartup.beans.size());
+    }
 }

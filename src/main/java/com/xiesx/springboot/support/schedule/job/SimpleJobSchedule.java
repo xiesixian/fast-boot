@@ -19,25 +19,26 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class SimpleJobSchedule implements Job {
 
-	public final static String DATE_TIME_PATTERN = "yyyy-MM-dd HH:mm:ss";
+    public final static String DATE_TIME_PATTERN = "yyyy-MM-dd HH:mm:ss";
 
-	public static final String simple_job_key = "SimpleJob";
+    public static final String simple_job_key = "SimpleJob";
 
-	public static final String simple_job_name = "SimpleJob";
+    public static final String simple_job_name = "SimpleJob";
 
-	public static final String simple_job_cron = "0/30 * * * * ?";
+    public static final String simple_job_cron = "0/30 * * * * ?";
 
-	@Override
-	public void execute(JobExecutionContext context) throws JobExecutionException {
-		JobDataMap map = context.getJobDetail().getJobDataMap();
-		log.info("simple job execute: " + map.getString(simple_job_key) + format(new Date(), DATE_TIME_PATTERN));
-	}
+    @Override
+    public void execute(JobExecutionContext context) throws JobExecutionException {
+        JobDataMap map = context.getJobDetail().getJobDataMap();
+        log.info("simple job execute: " + map.getString(simple_job_key)
+                + format(new Date(), DATE_TIME_PATTERN));
+    }
 
-	public static String format(Date date, String pattern) {
-		if (date != null) {
-			SimpleDateFormat df = new SimpleDateFormat(pattern);
-			return df.format(date);
-		}
-		return null;
-	}
+    public static String format(Date date, String pattern) {
+        if (date != null) {
+            SimpleDateFormat df = new SimpleDateFormat(pattern);
+            return df.format(date);
+        }
+        return null;
+    }
 }

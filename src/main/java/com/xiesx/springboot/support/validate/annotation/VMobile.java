@@ -22,7 +22,7 @@ import org.hibernate.validator.constraints.Length;
  * @date 2019年3月6日 下午6:24:22
  */
 // 申明注解的作用位置
-@Target({ ANNOTATION_TYPE, FIELD, METHOD, PARAMETER })
+@Target({ANNOTATION_TYPE, FIELD, METHOD, PARAMETER})
 // 运行时机
 @Retention(RUNTIME)
 // 定义对应的校验器,自定义注解必须指定
@@ -33,9 +33,9 @@ import org.hibernate.validator.constraints.Length;
 @Length(min = 11, max = 11, message = "{go.mobile}")
 public @interface VMobile {
 
-	String message() default "";// 错误提示信息默认值，可以使用el表达式。
+    String message() default "";// 错误提示信息默认值，可以使用el表达式。
 
-	Class<?>[] groups() default {};// 约束注解在验证时所属的组别
+    Class<?>[] groups() default {};// 约束注解在验证时所属的组别
 
-	Class<? extends Payload>[] payload() default {};// 约束注解的有效负载
+    Class<? extends Payload>[] payload() default {};// 约束注解的有效负载
 }

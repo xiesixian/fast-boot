@@ -8,13 +8,13 @@ package com.xiesx.springboot.support.schedule.impl;
  */
 public interface ISchedule {
 
-	/**
-	 * 初始化
-	 */
-	public void init();
+    /**
+     * 初始化
+     */
+    public void init();
 
-	/**
-	 * 是否启动
-	 */
-	public boolean isStart();
+    /**
+     * 是否启动
+     */
+    public boolean isStart();
 }

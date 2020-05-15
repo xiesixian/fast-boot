@@ -9,8 +9,8 @@ import org.springframework.context.annotation.Import;
 
 import com.xiesx.springboot.support.sgin.cfg.SignCfg;
 
-@Target({ ElementType.TYPE })
+@Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-@Import({ SignCfg.class })
+@Import({SignCfg.class})
 public @interface GoEnableSign {
 }

@@ -29,8 +29,7 @@ public class ReentrantLockHelper {
         DEFAULT = new ReentrantLockHelper();
     }
 
-    private ConcurrentHashMap<String, ReentrantLock> __LOCK_CACHES =
-            new ConcurrentHashMap<String, ReentrantLock>();
+    private ConcurrentHashMap<String, ReentrantLock> __LOCK_CACHES = new ConcurrentHashMap<String, ReentrantLock>();
 
     public ReentrantLock getLocker(String lockKey) {
         ReentrantLock _locker = __LOCK_CACHES.get(lockKey);
@@ -80,8 +79,8 @@ public class ReentrantLockHelper {
      * @throws Exception 可能产生的任何异常
      * @since 2.0.7
      */
-    public static <K, V> V putIfAbsentAsync(ConcurrentMap<K, V> target, K key,
-            ValueGetter<V> valueGetter) throws Exception {
+    public static <K, V> V putIfAbsentAsync(ConcurrentMap<K, V> target, K key, ValueGetter<V> valueGetter)
+            throws Exception {
         if (target == null) {
             throw new NullPointerException("target");
         }

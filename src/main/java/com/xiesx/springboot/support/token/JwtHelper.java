@@ -3,21 +3,13 @@ package com.xiesx.springboot.support.token;
 import java.util.Date;
 import java.util.Map;
 import java.util.UUID;
-
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
-
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang3.ObjectUtils;
-
 import com.google.common.collect.Maps;
 import com.xiesx.springboot.utils.DateUtils;
-
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.JwtBuilder;
-import io.jsonwebtoken.JwtException;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.*;
 
 /**
  * @title TokenStorageHelper
@@ -66,18 +58,17 @@ public class JwtHelper {
         return create(JWT_ISSUER, audience, subject, null, null, timeout);
     }
 
-    public static String create(String audience, String subject, Map<String, Object> claims,
-            long timeout) {
+    public static String create(String audience, String subject, Map<String, Object> claims, long timeout) {
         return create(JWT_ISSUER, audience, subject, null, claims, timeout);
     }
 
-    public static String create(String audience, String subject, Map<String, Object> header,
-            Map<String, Object> claims, long timeout) {
+    public static String create(String audience, String subject, Map<String, Object> header, Map<String, Object> claims,
+            long timeout) {
         return create(JWT_ISSUER, audience, subject, header, claims, timeout);
     }
 
-    public static String create(String issuer, String audience, String subject,
-            Map<String, Object> header, Map<String, Object> claims, long timeout) {
+    public static String create(String issuer, String audience, String subject, Map<String, Object> header,
+            Map<String, Object> claims, long timeout) {
         //
         String jwtid = UUID.randomUUID().toString();
         //
@@ -85,7 +76,8 @@ public class JwtHelper {
         Date staDate = new Date(timemillis);
         Date endDate = new Date(System.currentTimeMillis() + timeout);
         //
-        JwtBuilder builder = Jwts.builder().setId(jwtid) // 唯一身份标识，根据业务需要，可以设置为一个不重复的值，主要用来作为一次性token，从而回避重放攻击
+        JwtBuilder builder = Jwts.builder()
+                .setId(jwtid) // 唯一身份标识，根据业务需要，可以设置为一个不重复的值，主要用来作为一次性token，从而回避重放攻击
                 .setSubject(subject) // 主题
                 .setIssuer(issuer) // 签发者
                 .setAudience(audience) // 接收者

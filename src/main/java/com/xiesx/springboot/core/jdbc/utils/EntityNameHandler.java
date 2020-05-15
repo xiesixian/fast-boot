@@ -2,16 +2,12 @@ package com.xiesx.springboot.core.jdbc.utils;
 
 import java.lang.reflect.Field;
 import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
 import org.apache.commons.lang3.StringUtils;
-
 import com.google.common.base.CaseFormat;
 import com.google.common.collect.Lists;
-
 import lombok.extern.slf4j.Slf4j;
 
 /**

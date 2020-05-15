@@ -16,12 +16,7 @@ package com.xiesx.springboot.utils.ymp;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.util.Enumeration;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.NoSuchElementException;
-import java.util.Set;
+import java.util.*;
 
 /**
  * 资源加载工具类
@@ -31,11 +26,10 @@ import java.util.Set;
  */
 public class ResourceUtils {
 
-    public static Iterator<URL> getResources(String resourceName, Class<?> callingClass,
-            boolean aggregate) throws IOException {
+    public static Iterator<URL> getResources(String resourceName, Class<?> callingClass, boolean aggregate)
+            throws IOException {
         AggregateIterator<URL> iterator = new AggregateIterator<URL>();
-        iterator.addEnumeration(
-                Thread.currentThread().getContextClassLoader().getResources(resourceName));
+        iterator.addEnumeration(Thread.currentThread().getContextClassLoader().getResources(resourceName));
         if ((!iterator.hasNext()) || (aggregate)) {
             iterator.addEnumeration(ClassUtils.getDefaultClassLoader().getResources(resourceName));
         }
@@ -73,8 +67,7 @@ public class ResourceUtils {
         return url;
     }
 
-    public static InputStream getResourceAsStream(String resourceName, Class<?> callingClass)
-            throws IOException {
+    public static InputStream getResourceAsStream(String resourceName, Class<?> callingClass) throws IOException {
         URL url = getResource(resourceName, callingClass);
         return (url != null) ? url.openStream() : null;
     }

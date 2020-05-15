@@ -6,11 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
-
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.BindException;
@@ -20,13 +18,11 @@ import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-
 import com.alibaba.fastjson.JSONException;
 import com.github.rholder.retry.RetryException;
 import com.xiesx.springboot.base.result.BaseResult;
 import com.xiesx.springboot.base.result.R;
 import com.xiesx.springboot.support.validate.ValidatorHelper;
-
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -46,8 +42,8 @@ public class BaseRestExceptionAdvice {
      * @param e
      * @return
      */
-    @ExceptionHandler({HttpMessageNotReadableException.class,
-            HttpRequestMethodNotSupportedException.class, HttpMediaTypeNotSupportedException.class})
+    @ExceptionHandler({HttpMessageNotReadableException.class, HttpRequestMethodNotSupportedException.class,
+            HttpMediaTypeNotSupportedException.class})
     public BaseResult systemException(HttpServletRequest request, Exception e) {
         log.error("systemException ......", e);
         String msg = "";
@@ -86,8 +82,7 @@ public class BaseRestExceptionAdvice {
         // 这里走的是Hibernate Violation 验证 --> Java
         // Violation，这里有ConstraintViolationException接收
         if (e instanceof ConstraintViolationException) {
-            Set<ConstraintViolation<?>> violations =
-                    ((ConstraintViolationException) e).getConstraintViolations();
+            Set<ConstraintViolation<?>> violations = ((ConstraintViolationException) e).getConstraintViolations();
             List<String> errorMsg = ValidatorHelper.extractPropertyAndMessageAsList(violations);
             result.setData(errorMsg);
         }
@@ -120,8 +115,8 @@ public class BaseRestExceptionAdvice {
      * @param e
      * @return
      */
-    @ExceptionHandler({RuntimeException.class, IOException.class, JSONException.class,
-            SQLException.class, ExecutionException.class, RetryException.class})
+    @ExceptionHandler({RuntimeException.class, IOException.class, JSONException.class, SQLException.class,
+            ExecutionException.class, RetryException.class})
     public BaseResult runtimeException(HttpServletRequest request, Exception e) {
         log.error("runtimeException ......", e);
         return R.error(e.getMessage());

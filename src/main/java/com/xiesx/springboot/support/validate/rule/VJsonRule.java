@@ -2,9 +2,7 @@ package com.xiesx.springboot.support.validate.rule;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-
 import org.apache.commons.lang3.StringUtils;
-
 import com.alibaba.fastjson.JSON;
 import com.xiesx.springboot.support.validate.annotation.VJson;
 

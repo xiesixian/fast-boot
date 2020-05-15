@@ -18,31 +18,16 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.annotation.Annotation;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
+import java.lang.reflect.*;
 import java.net.URL;
 import java.net.URLClassLoader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
-
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
 import com.xiesx.springboot.base.lang.BlurObject;
 import com.xiesx.springboot.base.lang.PairObject;
 
@@ -131,8 +116,8 @@ public class ClassUtils {
     }
 
     @SuppressWarnings("unchecked")
-    public static <T> T impl(Class<?> implClass, Class<T> interfaceClass, Class<?>[] parameterTypes,
-            Object[] initArgs, boolean allowNoSuchMethod) {
+    public static <T> T impl(Class<?> implClass, Class<T> interfaceClass, Class<?>[] parameterTypes, Object[] initArgs,
+            boolean allowNoSuchMethod) {
         if (implClass != null) {
             if (interfaceClass == null || interfaceClass.isAssignableFrom(implClass)) {
                 try {
@@ -154,16 +139,14 @@ public class ClassUtils {
         return null;
     }
 
-    public static Class<?> loadClass(String className, Class<?> callingClass)
-            throws ClassNotFoundException {
+    public static Class<?> loadClass(String className, Class<?> callingClass) throws ClassNotFoundException {
         Class<?> _targetClass = null;
         try {
             try {
                 _targetClass = Thread.currentThread().getContextClassLoader().loadClass(className);
             } catch (ClassNotFoundException e) {
                 try {
-                    _targetClass =
-                            Class.forName(className, false, ClassUtils.class.getClassLoader());
+                    _targetClass = Class.forName(className, false, ClassUtils.class.getClassLoader());
                 } catch (ClassNotFoundException ex) {
                     try {
                         _targetClass = _INNER_CLASS_LOADER.loadClass(className);
@@ -198,8 +181,7 @@ public class ClassUtils {
      */
     @SuppressWarnings({"unchecked"})
     public static <T> ExtensionLoader<T> getExtensionLoader(final Class<T> clazz) throws Exception {
-        return ReentrantLockHelper.putIfAbsentAsync(EXTENSION_LOADERS, clazz,
-                () -> new ExtensionLoader<T>(clazz));
+        return ReentrantLockHelper.putIfAbsentAsync(EXTENSION_LOADERS, clazz, () -> new ExtensionLoader<T>(clazz));
     }
 
     /**
@@ -258,8 +240,7 @@ public class ClassUtils {
      * @param annotationClass 注解类对象
      * @return 判断target对象是否存在annotationClass注解
      */
-    public static boolean isAnnotationOf(Object target,
-            Class<? extends Annotation> annotationClass) {
+    public static boolean isAnnotationOf(Object target, Class<? extends Annotation> annotationClass) {
         if (target instanceof Field) {
             return ((Field) target).isAnnotationPresent(annotationClass);
         } else if (target instanceof Method) {
@@ -281,8 +262,7 @@ public class ClassUtils {
         if (_annotation == null && StringUtils.contains(target.getClass().getName(), "$$")) {
             try {
                 Class<?> _clazz =
-                        loadClass(StringUtils.substringBefore(target.getClass().getName(), "$$"),
-                                target.getClass());
+                        loadClass(StringUtils.substringBefore(target.getClass().getName(), "$$"), target.getClass());
                 if (_clazz != null) {
                     _annotation = _clazz.getAnnotation(annotationClass);
                 }
@@ -353,8 +333,8 @@ public class ClassUtils {
      * @param annotationClazz 目标注解类
      * @return 获取clazz类中成员声明的所有annotationClazz注解
      */
-    public static <A extends Annotation> List<PairObject<Field, A>> getFieldAnnotations(
-            Class<?> clazz, Class<A> annotationClazz) {
+    public static <A extends Annotation> List<PairObject<Field, A>> getFieldAnnotations(Class<?> clazz,
+            Class<A> annotationClazz) {
         List<PairObject<Field, A>> _annotations = new ArrayList<PairObject<Field, A>>();
         for (Field _field : ClassUtils.getFields(clazz, true)) {
             A _annotation = _field.getAnnotation(annotationClazz);
@@ -371,8 +351,8 @@ public class ClassUtils {
      * @param annotationClazz 目标注解类
      * @return 获取clazz类中成员声明的第一个annotationClazz注解
      */
-    public static <A extends Annotation> PairObject<Field, A> getFieldAnnotationFirst(
-            Class<?> clazz, Class<A> annotationClazz) {
+    public static <A extends Annotation> PairObject<Field, A> getFieldAnnotationFirst(Class<?> clazz,
+            Class<A> annotationClazz) {
         PairObject<Field, A> _returnAnno = null;
         for (Field _field : ClassUtils.getFields(clazz, true)) {
             A _annotation = _field.getAnnotation(annotationClazz);
@@ -453,16 +433,15 @@ public class ClassUtils {
                         String.format("Class type [%s] is not a interface.", clazz.getName()));
             }
             try {
-                Iterator<URL> resources = ResourceUtils.getResources(
-                        String.format("META-INF/services/%s", clazz.getName()), clazz, true);
+                Iterator<URL> resources =
+                        ResourceUtils.getResources(String.format("META-INF/services/%s", clazz.getName()), clazz, true);
                 while (resources.hasNext()) {
                     InputStream inputStream = null;
                     BufferedReader reader = null;
                     try {
                         inputStream = resources.next().openStream();
                         if (inputStream != null) {
-                            reader = new BufferedReader(
-                                    new InputStreamReader(inputStream, "UTF-8"));
+                            reader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
                             String lineStr;
                             do {
                                 lineStr = reader.readLine();
@@ -470,16 +449,14 @@ public class ClassUtils {
                                     lineStr = StringUtils.trim(lineStr);
                                     if (!StringUtils.startsWith(lineStr, "#")) {
                                         try {
-                                            Class<T> loadedClass =
-                                                    (Class<T>) loadClass(lineStr, clazz);
+                                            Class<T> loadedClass = (Class<T>) loadClass(lineStr, clazz);
                                             if (ClassUtils.isNormalClass(loadedClass)
                                                     && !classesCache.contains(loadedClass)) {
                                                 classesCache.add(loadedClass);
                                             }
                                         } catch (ClassNotFoundException e) {
                                             if (_LOG.isWarnEnabled()) {
-                                                _LOG.warn(StringUtils.EMPTY,
-                                                        RuntimeUtils.unwrapThrow(e));
+                                                _LOG.warn(StringUtils.EMPTY, RuntimeUtils.unwrapThrow(e));
                                             }
                                         }
                                     }
@@ -514,9 +491,8 @@ public class ClassUtils {
             try {
                 if (clazz != null) {
                     synchronized (instancesCache) {
-                        return ReentrantLockHelper.putIfAbsent(
-                                (ConcurrentMap<String, T>) instancesCache, clazz.getName(),
-                                clazz.newInstance());
+                        return ReentrantLockHelper.putIfAbsent((ConcurrentMap<String, T>) instancesCache,
+                                clazz.getName(), clazz.newInstance());
                     }
                 }
             } catch (Exception e) {
@@ -614,8 +590,7 @@ public class ClassUtils {
             return _fields.get(fieldName).getType();
         }
 
-        public BeanWrapper<T> setValue(String fieldName, Object value)
-                throws IllegalAccessException {
+        public BeanWrapper<T> setValue(String fieldName, Object value) throws IllegalAccessException {
             _fields.get(fieldName).set(target, value);
             return this;
         }
@@ -716,8 +691,8 @@ public class ClassUtils {
                         // 当首次赋值发生异常时，若成员变量值不为NULL则尝试转换一下
                         if (_fValue != null) {
                             try {
-                                _wrapDist.setValue(_fieldName, BlurObject.bind(_fValue)
-                                        .toObjectValue(_wrapDist.getFieldType(_fieldName)));
+                                _wrapDist.setValue(_fieldName,
+                                        BlurObject.bind(_fValue).toObjectValue(_wrapDist.getFieldType(_fieldName)));
                             } catch (Exception ignored) {
                                 // 当再次赋值发生异常时，彻底忽略当前值，不中断整个拷贝过程
                             }

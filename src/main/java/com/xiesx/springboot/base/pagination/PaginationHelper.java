@@ -1,11 +1,8 @@
 package com.xiesx.springboot.base.pagination;
 
 import java.util.List;
-
 import org.springframework.data.domain.Page;
-
 import com.google.common.collect.Lists;
-
 import lombok.NonNull;
 
 /**
@@ -47,8 +44,7 @@ public class PaginationHelper {
     public static PaginationResult create(@NonNull List<?> data, Integer total) {
         List<?> list = Lists.newArrayList(data);
         if (list.isEmpty()) {
-            return PaginationResult.builder().code(1).msg("无数据").data(Lists.newArrayList()).count(0)
-                    .build();
+            return PaginationResult.builder().code(1).msg("无数据").data(Lists.newArrayList()).count(0).build();
         } else {
             return PaginationResult.builder().code(0).data(list).count(total).build();
         }

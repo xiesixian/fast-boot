@@ -1,7 +1,6 @@
 package com.xiesx.springboot.base.result;
 
 import com.alibaba.fastjson.annotation.JSONField;
-
 import lombok.Builder;
 import lombok.Data;
 
@@ -103,8 +102,8 @@ public class BaseResult {
      * BaseResult.builder().code(FAIL).msg(OP_MSG_FAIL).build(); } public static BaseResult
      * fail(@NonNull String msg) { return BaseResult.builder().code(FAIL).msg(msg).build(); } public
      * static BaseResult fail(@NonNull Object data) { return
-     * BaseResult.builder().code(FAIL).msg(OP_MSG_FAIL).data(data).build(); } public static
-     * BaseResult fail(@NonNull String msg, Object data) { return
+     * BaseResult.builder().code(FAIL).msg(OP_MSG_FAIL).data(data).build(); } public static BaseResult
+     * fail(@NonNull String msg, Object data) { return
      * BaseResult.builder().code(FAIL).msg(msg).data(data).build(); } public static BaseResult
      * fail(@NonNull Integer code, @NonNull String msg) { return
      * BaseResult.builder().code(code).msg(msg).build(); } public static BaseResult fail(@NonNull
@@ -116,10 +115,10 @@ public class BaseResult {
     /*
      * public static BaseResult error() { return
      * BaseResult.builder().code(ERROR).msg(OP_MSG_FAIL).build(); } public static BaseResult
-     * error(@NonNull String msg) { return BaseResult.builder().code(ERROR).msg(msg).build(); }
-     * public static BaseResult error(@NonNull Object data) { return
-     * BaseResult.builder().code(ERROR).msg(OP_MSG_FAIL).data(data).build(); } public static
-     * BaseResult error(@NonNull String msg, Object data) { return
+     * error(@NonNull String msg) { return BaseResult.builder().code(ERROR).msg(msg).build(); } public
+     * static BaseResult error(@NonNull Object data) { return
+     * BaseResult.builder().code(ERROR).msg(OP_MSG_FAIL).data(data).build(); } public static BaseResult
+     * error(@NonNull String msg, Object data) { return
      * BaseResult.builder().code(ERROR).msg(msg).data(data).build(); } public static BaseResult
      * error(@NonNull Integer code, @NonNull String msg) { return
      * BaseResult.builder().code(code).msg(msg).build(); } public static BaseResult error(@NonNull

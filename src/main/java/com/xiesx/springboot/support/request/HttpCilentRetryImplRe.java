@@ -5,27 +5,16 @@ import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
-
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-
 import com.alibaba.fastjson.JSON;
-import com.github.rholder.retry.RetryException;
-import com.github.rholder.retry.Retryer;
-import com.github.rholder.retry.RetryerBuilder;
-import com.github.rholder.retry.StopStrategies;
-import com.github.rholder.retry.WaitStrategies;
+import com.github.rholder.retry.*;
 import com.xiesx.springboot.support.request.base.BaseHttpRetryCilent;
 import com.xiesx.springboot.support.request.base.BaseHttpRetryListener;
 import com.xiesx.springboot.support.request.config.HttpCilentRetryConfig;
 import com.xiesx.springboot.support.request.impl.IHttpCallable;
-
 import lombok.extern.slf4j.Slf4j;
-import net.dongliu.requests.Methods;
-import net.dongliu.requests.RawResponse;
-import net.dongliu.requests.RequestBuilder;
-import net.dongliu.requests.Requests;
-import net.dongliu.requests.Session;
+import net.dongliu.requests.*;
 
 /**
  * @title 自定义Requests网络请求类实现类
@@ -79,8 +68,7 @@ public class HttpCilentRetryImplRe extends BaseHttpRetryCilent
     }
 
     @Override
-    public RawResponse get_try(String url, Map<String, Object> params)
-            throws ExecutionException, RetryException {
+    public RawResponse get_try(String url, Map<String, Object> params) throws ExecutionException, RetryException {
         return get_try(url, params, null);
     }
 
@@ -94,13 +82,12 @@ public class HttpCilentRetryImplRe extends BaseHttpRetryCilent
                 // 返回x需要重试
                 .retryIfResult(reRetryPredicate)
                 // 重试策略
-                .withWaitStrategy(WaitStrategies.fixedWait(HttpCilentRetryConfig.RETRY_HTTP_WAIT,
-                        TimeUnit.SECONDS))
+                .withWaitStrategy(WaitStrategies.fixedWait(HttpCilentRetryConfig.RETRY_HTTP_WAIT, TimeUnit.SECONDS))
                 // 尝试次数
-                .withStopStrategy(
-                        StopStrategies.stopAfterAttempt(HttpCilentRetryConfig.RETRY_HTTP_NUM))
+                .withStopStrategy(StopStrategies.stopAfterAttempt(HttpCilentRetryConfig.RETRY_HTTP_NUM))
                 // 重试监听
-                .withRetryListener(new BaseHttpRetryListener<RawResponse>()).build();
+                .withRetryListener(new BaseHttpRetryListener<RawResponse>())
+                .build();
         return retry.call(call(Methods.GET, url, params, proxy));
     }
 
@@ -117,8 +104,7 @@ public class HttpCilentRetryImplRe extends BaseHttpRetryCilent
     }
 
     @Override
-    public RawResponse post_try(String url, Map<String, Object> params)
-            throws ExecutionException, RetryException {
+    public RawResponse post_try(String url, Map<String, Object> params) throws ExecutionException, RetryException {
         return post_try(url, params, null);
     }
 
@@ -132,13 +118,12 @@ public class HttpCilentRetryImplRe extends BaseHttpRetryCilent
                 // 返回x需要重试
                 .retryIfResult(reRetryPredicate)
                 // 重试策略
-                .withWaitStrategy(WaitStrategies.fixedWait(HttpCilentRetryConfig.RETRY_HTTP_WAIT,
-                        TimeUnit.SECONDS))
+                .withWaitStrategy(WaitStrategies.fixedWait(HttpCilentRetryConfig.RETRY_HTTP_WAIT, TimeUnit.SECONDS))
                 // 尝试次数
-                .withStopStrategy(
-                        StopStrategies.stopAfterAttempt(HttpCilentRetryConfig.RETRY_HTTP_NUM))
+                .withStopStrategy(StopStrategies.stopAfterAttempt(HttpCilentRetryConfig.RETRY_HTTP_NUM))
                 // 重试监听
-                .withRetryListener(new BaseHttpRetryListener<RawResponse>()).build();
+                .withRetryListener(new BaseHttpRetryListener<RawResponse>())
+                .build();
         return retry.call(call(Methods.POST, url, params, proxy));
     }
 
@@ -180,8 +165,8 @@ public class HttpCilentRetryImplRe extends BaseHttpRetryCilent
     // ========call========
 
     @Override
-    public Callable<RawResponse> call(final String method, final String url,
-            final Map<String, Object> params, final Proxy proxy) {
+    public Callable<RawResponse> call(final String method, final String url, final Map<String, Object> params,
+            final Proxy proxy) {
 
         return () -> request(method, url, params, proxy);
     }

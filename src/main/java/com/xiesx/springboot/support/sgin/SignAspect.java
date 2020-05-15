@@ -1,16 +1,8 @@
 package com.xiesx.springboot.support.sgin;
 
 import java.lang.reflect.Method;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
-import java.util.SortedMap;
-import java.util.TreeMap;
-
+import java.util.*;
 import javax.servlet.http.HttpServletRequest;
-
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -23,11 +15,9 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-
 import com.google.common.collect.Maps;
 import com.xiesx.springboot.core.exception.RunException;
 import com.xiesx.springboot.support.sgin.annotation.GoSign;
-
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -69,8 +59,7 @@ public class SignAspect {
         Map<String, String> parms = Maps.newConcurrentMap();
         // 获取请求信息
         HttpServletRequest request =
-                ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
-                        .getRequest();
+                ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         // 获取参数
         Enumeration<String> names = request.getParameterNames();
         while (names.hasMoreElements()) {

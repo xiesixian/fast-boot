@@ -3,19 +3,16 @@ package com.xiesx.springboot.core.body;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
-
 import com.alibaba.fastjson.JSON;
 import com.xiesx.springboot.base.pagination.PaginationResult;
 import com.xiesx.springboot.base.result.BaseResult;
 import com.xiesx.springboot.base.result.R;
-
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -35,9 +32,8 @@ public class BaseResultBodyAdvice implements ResponseBodyAdvice<Object> {
     String[] methodNames = {"systemException"};
 
     @Override
-    public Object beforeBodyWrite(Object returnValue, MethodParameter methodParameter,
-            MediaType mediaType, Class clas, ServerHttpRequest serverHttpRequest,
-            ServerHttpResponse serverHttpResponse) {
+    public Object beforeBodyWrite(Object returnValue, MethodParameter methodParameter, MediaType mediaType, Class clas,
+            ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse) {
         log.debug("beforeBodyWrite ......");
         Object res = null;
         // 按需使用，如果有改动，务必兼容之前代码

@@ -1,11 +1,6 @@
 package com.xiesx.springboot.support.validate;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
+import java.util.*;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import javax.validation.Validator;
@@ -25,8 +20,7 @@ public class ValidatorHelper {
      */
     public static void validateWithException(Validator validator, Object object, Class<?>... groups)
             throws ConstraintViolationException {
-        Set<? extends ConstraintViolation<?>> constraintViolations =
-                validator.validate(object, groups);
+        Set<? extends ConstraintViolation<?>> constraintViolations = validator.validate(object, groups);
         if (!constraintViolations.isEmpty()) {
             throw new ConstraintViolationException(constraintViolations);
         }
@@ -43,8 +37,7 @@ public class ValidatorHelper {
      * 辅助方法, 转换Set<ConstraintViolation>为List<message>
      */
     @SuppressWarnings("rawtypes")
-    public static List<String> extractMessage(
-            Set<? extends ConstraintViolation> constraintViolations) {
+    public static List<String> extractMessage(Set<? extends ConstraintViolation> constraintViolations) {
         List<String> errorMessages = new ArrayList<String>();
         for (ConstraintViolation violation : constraintViolations) {
             errorMessages.add(violation.getMessage());
@@ -92,8 +85,7 @@ public class ValidatorHelper {
      * 辅助方法, 转换ConstraintViolationException中的Set<ConstraintViolations>为List<propertyPath +separator+
      * message>.
      */
-    public static List<String> extractPropertyAndMessageAsList(ConstraintViolationException e,
-            String separator) {
+    public static List<String> extractPropertyAndMessageAsList(ConstraintViolationException e, String separator) {
         return extractPropertyAndMessageAsList(e.getConstraintViolations(), separator);
     }
 
@@ -101,8 +93,8 @@ public class ValidatorHelper {
      * 辅助方法, 转换Set<ConstraintViolation>为List<propertyPath +separator+ message>.
      */
     @SuppressWarnings("rawtypes")
-    public static List<String> extractPropertyAndMessageAsList(
-            Set<? extends ConstraintViolation> constraintViolations, String separator) {
+    public static List<String> extractPropertyAndMessageAsList(Set<? extends ConstraintViolation> constraintViolations,
+            String separator) {
         List<String> errorMessages = new ArrayList<String>();
         for (ConstraintViolation violation : constraintViolations) {
             errorMessages.add(violation.getPropertyPath() + separator + violation.getMessage());

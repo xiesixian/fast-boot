@@ -18,8 +18,7 @@ public class SpringHelper {
      * @return
      */
     public static Object getBean(String name) {
-        ApplicationContext applicationContext =
-                SpringApplicationContextAware.getApplicationContext();
+        ApplicationContext applicationContext = SpringApplicationContextAware.getApplicationContext();
         if (applicationContext != null) {
             return applicationContext.getBean(name);
         }
@@ -33,8 +32,7 @@ public class SpringHelper {
      * @return
      */
     public static <T> T getBean(Class<T> clazz) {
-        ApplicationContext applicationContext =
-                SpringApplicationContextAware.getApplicationContext();
+        ApplicationContext applicationContext = SpringApplicationContextAware.getApplicationContext();
         if (applicationContext != null) {
             return applicationContext.getBean(clazz);
         }
@@ -49,8 +47,7 @@ public class SpringHelper {
      * @return
      */
     public static <T> T getBean(String name, Class<T> clazz) {
-        ApplicationContext applicationContext =
-                SpringApplicationContextAware.getApplicationContext();
+        ApplicationContext applicationContext = SpringApplicationContextAware.getApplicationContext();
         if (applicationContext != null) {
             return applicationContext.getBean(name, clazz);
         }
@@ -65,11 +62,10 @@ public class SpringHelper {
      * @return
      */
     public static <T> T getBean(Class<T> clazz, String qualifier) {
-        ApplicationContext applicationContext =
-                SpringApplicationContextAware.getApplicationContext();
+        ApplicationContext applicationContext = SpringApplicationContextAware.getApplicationContext();
         if (applicationContext != null) {
-            return BeanFactoryAnnotationUtils.qualifiedBeanOfType(
-                    applicationContext.getAutowireCapableBeanFactory(), clazz, qualifier);
+            return BeanFactoryAnnotationUtils.qualifiedBeanOfType(applicationContext.getAutowireCapableBeanFactory(),
+                    clazz, qualifier);
         }
         return null;
     }

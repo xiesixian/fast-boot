@@ -2,13 +2,10 @@ package com.xiesx.springboot.support.tlb.body;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
-
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
-
 import com.xiesx.springboot.support.tlb.ui.BaseUITag;
 import com.xiesx.springboot.utils.ymp.RuntimeUtils;
-
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -69,8 +66,8 @@ public class ScriptTag extends BodyTagSupport {
                 .append("\">");
         if (_isEmpty && StringUtils.isNotEmpty(this.getValue())) {
             String _wrapper = StringUtils.defaultIfBlank(this.getWrapper(), "script");
-            String _content = StringUtils.substringBetween(this.getValue(), "<" + _wrapper + ">",
-                    "</" + _wrapper + ">");
+            String _content =
+                    StringUtils.substringBetween(this.getValue(), "<" + _wrapper + ">", "</" + _wrapper + ">");
             if (StringUtils.isNotEmpty(_content)) {
                 this.setValue(_content);
             }

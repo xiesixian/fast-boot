@@ -1,18 +1,12 @@
 package com.xiesx.springboot.support.tlb;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-
+import java.io.*;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.WriteListener;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletResponseWrapper;
-
 import org.apache.commons.lang3.StringUtils;
 
 public class TagUtils {
@@ -41,8 +35,8 @@ public class TagUtils {
      * @throws ServletException 可能产生的异常
      * @throws IOException 可能产生的异常
      */
-    public static String includeJSP(HttpServletRequest request, HttpServletResponse response,
-            String jspFile, String charsetEncoding) throws ServletException, IOException {
+    public static String includeJSP(HttpServletRequest request, HttpServletResponse response, String jspFile,
+            String charsetEncoding) throws ServletException, IOException {
         final OutputStream _output = new ByteArrayOutputStream();
         final PrintWriter _writer = new PrintWriter(new OutputStreamWriter(_output,
                 StringUtils.defaultIfEmpty(charsetEncoding, response.getCharacterEncoding())));

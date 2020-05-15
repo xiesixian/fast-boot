@@ -1,10 +1,8 @@
 package com.xiesx.springboot.base.result;
 
 import java.util.List;
-
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.parser.Feature;
-
 import lombok.NonNull;
 
 public class R {
@@ -21,8 +19,7 @@ public class R {
     }
 
     public static BaseResult succ(@NonNull Object data) {
-        return BaseResult.builder().code(BaseResult.SUCCESS).msg(BaseResult.OP_MSG_SUCC).data(data)
-                .build();
+        return BaseResult.builder().code(BaseResult.SUCCESS).msg(BaseResult.OP_MSG_SUCC).data(data).build();
     }
 
     public static BaseResult succ(@NonNull String msg, @NonNull Object data) {
@@ -33,8 +30,7 @@ public class R {
         return BaseResult.builder().code(code).msg(msg).build();
     }
 
-    public static BaseResult succ(@NonNull Integer code, @NonNull String msg,
-            @NonNull Object data) {
+    public static BaseResult succ(@NonNull Integer code, @NonNull String msg, @NonNull Object data) {
         return BaseResult.builder().code(code).msg(msg).data(data).build();
     }
 
@@ -50,8 +46,7 @@ public class R {
     }
 
     public static BaseResult fail(@NonNull Object data) {
-        return BaseResult.builder().code(BaseResult.FAIL).msg(BaseResult.OP_MSG_FAIL).data(data)
-                .build();
+        return BaseResult.builder().code(BaseResult.FAIL).msg(BaseResult.OP_MSG_FAIL).data(data).build();
     }
 
     public static BaseResult fail(@NonNull String msg, Object data) {
@@ -78,8 +73,7 @@ public class R {
     }
 
     public static BaseResult error(@NonNull Object data) {
-        return BaseResult.builder().code(BaseResult.ERROR).msg(BaseResult.OP_MSG_FAIL).data(data)
-                .build();
+        return BaseResult.builder().code(BaseResult.ERROR).msg(BaseResult.OP_MSG_FAIL).data(data).build();
     }
 
     public static BaseResult error(@NonNull String msg, Object data) {

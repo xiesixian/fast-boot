@@ -2,12 +2,10 @@ package com.xiesx.springboot.core.logger;
 
 import java.lang.reflect.Method;
 import java.util.Date;
-
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -21,12 +19,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.alibaba.fastjson.JSON;
 import com.xiesx.springboot.core.jpa.identifier.IdWorker;
 import com.xiesx.springboot.core.logger.annotation.LoggerStorage;
 import com.xiesx.springboot.core.logger.cfg.LoggerCfg;
-
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -49,8 +45,7 @@ public class LoggerAspect {
     @Around("logPointcut()")
     public Object logAroundAspect(ProceedingJoinPoint pjp) throws Throwable {
         // 获取到当前线程绑定的请求对象
-        ServletRequestAttributes servlet =
-                (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        ServletRequestAttributes servlet = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         // 获取Request
         HttpServletRequest request = servlet.getRequest();
         String ip = getIpAddr(request);
@@ -66,8 +61,7 @@ public class LoggerAspect {
         LoggerStorage annotation = method.getAnnotation(LoggerStorage.class);
         Boolean isPrint = Boolean.valueOf(annotation == null ? false : annotation.print());
         Boolean isStorage = Boolean.valueOf(annotation == null ? false : annotation.storage());
-        Boolean isPrettyFormat =
-                Boolean.valueOf(annotation == null ? false : annotation.prettyFormat());
+        Boolean isPrettyFormat = Boolean.valueOf(annotation == null ? false : annotation.prettyFormat());
         // 获取入参
         Object[] args = pjp.getArgs();
         // 请求
@@ -83,8 +77,7 @@ public class LoggerAspect {
         // 记录开始时间
         long beginTime = System.currentTimeMillis();
         if (isPrint) {
-            log.info("=========request sta {} {} {}",
-                    new Object[] {methodName, Long.valueOf(beginTime), req});
+            log.info("=========request sta {} {} {}", new Object[] {methodName, Long.valueOf(beginTime), req});
         }
         // 执行方法
         Object ret = pjp.proceed();

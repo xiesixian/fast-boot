@@ -1,7 +1,6 @@
 package com.xiesx.springboot.support.schedule.base;
 
 import java.util.concurrent.Executors;
-
 import com.google.common.util.concurrent.ListeningScheduledExecutorService;
 import com.google.common.util.concurrent.MoreExecutors;
 import com.xiesx.springboot.support.schedule.impl.ISchedule;
@@ -15,8 +14,8 @@ import com.xiesx.springboot.support.schedule.impl.ISchedule;
 public class BaseDecorator implements ISchedule {
 
     /**
-     * 调度型线程池 scheduleWithFixedDelay new timeTaskForException() 要执行的任务线程 initialDelay：延迟多长时间执行
-     * delay: 每隔多少长时间执行一次 TimeUnit.MILLISECONDS：时间单位
+     * 调度型线程池 scheduleWithFixedDelay new timeTaskForException() 要执行的任务线程 initialDelay：延迟多长时间执行 delay:
+     * 每隔多少长时间执行一次 TimeUnit.MILLISECONDS：时间单位
      */
     protected static ListeningScheduledExecutorService scheduled =
             MoreExecutors.listeningDecorator(Executors.newScheduledThreadPool(10));

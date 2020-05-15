@@ -5,12 +5,10 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.common.util.concurrent.MoreExecutors;
-
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -30,8 +28,7 @@ public class ExecutorHelper {
     /**
      * 缓存型线程池
      */
-    private static ListeningExecutorService service =
-            MoreExecutors.listeningDecorator(Executors.newCachedThreadPool());
+    private static ListeningExecutorService service = MoreExecutors.listeningDecorator(Executors.newCachedThreadPool());
 
     /**
      * 缓存型线程池

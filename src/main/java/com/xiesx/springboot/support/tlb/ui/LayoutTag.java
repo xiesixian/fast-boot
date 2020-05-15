@@ -3,10 +3,8 @@ package com.xiesx.springboot.support.tlb.ui;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.JspException;
-
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
-
 import com.xiesx.springboot.support.tlb.TagUtils;
 import com.xiesx.springboot.utils.ymp.RuntimeUtils;
 
@@ -34,10 +32,9 @@ public class LayoutTag extends BaseUITag {
         }
         try {
             if (StringUtils.isNotEmpty(this.getSrc())) {
-                __tmplContent =
-                        TagUtils.includeJSP((HttpServletRequest) this.pageContext.getRequest(),
-                                (HttpServletResponse) this.pageContext.getResponse(),
-                                this.buildSrcUrl(), __ui.getCharsetEncoding());
+                __tmplContent = TagUtils.includeJSP((HttpServletRequest) this.pageContext.getRequest(),
+                        (HttpServletResponse) this.pageContext.getResponse(), this.buildSrcUrl(),
+                        __ui.getCharsetEncoding());
             } else {
                 __tmplContent = "";
             }
@@ -73,11 +70,9 @@ public class LayoutTag extends BaseUITag {
             __ui.writerToScriptPart(this.getScriptPartContent());
             __tmplContent = this.mergeContent(StringUtils.defaultIfEmpty(__tmplContent, ""));
             if (StringUtils.isNotEmpty(name) && !"body".equalsIgnoreCase(name)) {
-                __ui.putProperty(name,
-                        !isCleanup() ? __tmplContent : TagUtils.replaceRegClear(__tmplContent));
+                __ui.putProperty(name, !isCleanup() ? __tmplContent : TagUtils.replaceRegClear(__tmplContent));
             } else {
-                __ui.writerToBodyPart(
-                        !isCleanup() ? __tmplContent : TagUtils.replaceRegClear(__tmplContent));
+                __ui.writerToBodyPart(!isCleanup() ? __tmplContent : TagUtils.replaceRegClear(__tmplContent));
             }
         } catch (Exception e) {
             throw new JspException(RuntimeUtils.unwrapThrow(e));

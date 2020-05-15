@@ -24,19 +24,11 @@ import java.sql.Clob;
 import java.sql.SQLException;
 import java.text.NumberFormat;
 import java.text.ParseException;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.LinkedHashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
+import java.util.*;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
 import com.xiesx.springboot.base.lang.converter.Converter;
 import com.xiesx.springboot.base.lang.converter.IConverter;
 import com.xiesx.springboot.utils.ymp.ClassUtils;
@@ -60,8 +52,7 @@ public class BlurObject implements Serializable, Cloneable {
 
     static {
         try {
-            ClassUtils.ExtensionLoader<IConverter> extensionLoader =
-                    ClassUtils.getExtensionLoader(IConverter.class);
+            ClassUtils.ExtensionLoader<IConverter> extensionLoader = ClassUtils.getExtensionLoader(IConverter.class);
             for (Class<IConverter> converter : extensionLoader.getExtensionClasses()) {
                 Converter converterAnn = converter.getAnnotation(Converter.class);
                 if (converterAnn != null) {
@@ -87,8 +78,7 @@ public class BlurObject implements Serializable, Cloneable {
      * @param toClass 目标类型
      * @param converter 类型转换器实例
      */
-    public static void registerConverter(Class<?> fromClass, Class<?> toClass,
-            IConverter<?> converter) {
+    public static void registerConverter(Class<?> fromClass, Class<?> toClass, IConverter<?> converter) {
         Map<Class<?>, IConverter<?>> _map = __converters.get(toClass);
         if (_map == null) {
             _map = new HashMap<Class<?>, IConverter<?>>();
@@ -178,8 +168,7 @@ public class BlurObject implements Serializable, Cloneable {
             return false;
         }
         if (attr instanceof String) {
-            return "true".equalsIgnoreCase(this.attr.toString())
-                    || "on".equalsIgnoreCase(this.attr.toString())
+            return "true".equalsIgnoreCase(this.attr.toString()) || "on".equalsIgnoreCase(this.attr.toString())
                     || "1".equalsIgnoreCase(this.attr.toString());
         }
         if (boolean.class.isAssignableFrom(attr.getClass())) {

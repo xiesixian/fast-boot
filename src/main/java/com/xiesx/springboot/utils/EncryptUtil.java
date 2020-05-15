@@ -2,13 +2,11 @@ package com.xiesx.springboot.utils;
 
 import java.security.MessageDigest;
 import java.security.SecureRandom;
-
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.Mac;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
-
 import org.apache.commons.codec.binary.Base64;
 
 /**
@@ -112,8 +110,7 @@ public class EncryptUtil {
      * @param isEncode
      * @return
      */
-    private String keyGeneratorES(String res, String algorithm, String key, int keysize,
-            boolean isEncode) {
+    private String keyGeneratorES(String res, String algorithm, String key, int keysize, boolean isEncode) {
         try {
             KeyGenerator kg = KeyGenerator.getInstance(algorithm);
             if (keysize == 0) {
@@ -340,7 +337,7 @@ public class EncryptUtil {
         String key = "123456";
         System.out.println(EncryptUtil.getInstance().Base64Encode("136305973"));
         System.out.println(EncryptUtil.getInstance().DESencode("1215193073783185410", key));
-        System.out.println(EncryptUtil.getInstance()
-                .DESdecode("6EE9BDDA68A885A24476426308E0E2C951F0F6CDECDBAA81", key));
+        System.out
+                .println(EncryptUtil.getInstance().DESdecode("6EE9BDDA68A885A24476426308E0E2C951F0F6CDECDBAA81", key));
     }
 }

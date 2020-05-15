@@ -21,7 +21,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
-
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.SystemUtils;
@@ -154,9 +153,8 @@ public class RuntimeUtils {
                 _rootPath = _rootURL.getPath();
             }
         } else {
-            _rootPath = StringUtils.removeEnd(
-                    StringUtils.substringBefore(_rootURL.getPath(), safe ? "classes/" : "WEB-INF/"),
-                    "/");
+            _rootPath = StringUtils
+                    .removeEnd(StringUtils.substringBefore(_rootURL.getPath(), safe ? "classes/" : "WEB-INF/"), "/");
         }
         //
         if (_rootPath != null) {
@@ -179,7 +177,8 @@ public class RuntimeUtils {
                 origin = ExpressionUtils.bind(origin).set("root", _defaultPath).getResult();
             } else if (StringUtils.contains(origin, "${user.dir}")) {
                 origin = ExpressionUtils.bind(origin)
-                        .set("user.dir", System.getProperty("user.dir", _defaultPath)).getResult();
+                        .set("user.dir", System.getProperty("user.dir", _defaultPath))
+                        .getResult();
             } else if (StringUtils.contains(origin, "${user.home}")) {
                 origin = ExpressionUtils.bind(origin)
                         .set("user.home", System.getProperty("user.home", _defaultPath))

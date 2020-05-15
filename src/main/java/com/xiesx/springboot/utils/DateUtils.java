@@ -4,13 +4,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
-
 import org.apache.commons.lang3.StringUtils;
-import org.joda.time.DateTime;
-import org.joda.time.DateTimeConstants;
-import org.joda.time.DateTimeZone;
-import org.joda.time.Days;
-import org.joda.time.LocalDate;
+import org.joda.time.*;
 
 public class DateUtils {
 
@@ -81,8 +76,8 @@ public class DateUtils {
      * @param seconds 秒
      * @return yyyy-MM-dd HH:mm:ss
      */
-    public static String getPointTime(Integer year, Integer month, Integer day, Integer hour,
-            Integer minute, Integer seconds) {
+    public static String getPointTime(Integer year, Integer month, Integer day, Integer hour, Integer minute,
+            Integer seconds) {
         DateTime dt = new DateTime(year, month, day, hour, minute, seconds);
         String date = dt.toString(FORMAT_TIME);
         return date;
@@ -99,8 +94,8 @@ public class DateUtils {
      * @param parrten 自定义格式
      * @return parrten
      */
-    public static String getPointTimePattern(Integer year, Integer month, Integer day, Integer hour,
-            Integer minute, Integer seconds, String parrten) {
+    public static String getPointTimePattern(Integer year, Integer month, Integer day, Integer hour, Integer minute,
+            Integer seconds, String parrten) {
         DateTime dt = new DateTime(year, month, day, hour, minute, seconds);
         String date = dt.toString(parrten);
         return date;
@@ -131,8 +126,7 @@ public class DateUtils {
      * @param parrten
      * @return
      */
-    public static String getPointDatParrten(Integer year, Integer month, Integer day,
-            String parrten) {
+    public static String getPointDatParrten(Integer year, Integer month, Integer day, String parrten) {
         LocalDate dt = new LocalDate(year, month, day);
         String date = dt.toString(parrten);
         return date;
@@ -500,8 +494,8 @@ public class DateUtils {
         } else {
             dt1 = new DateTime(date).minusMonths(month);
         }
-        DateTime lastDay = dt1.dayOfMonth().withMaximumValue().withHourOfDay(23)
-                .withMinuteOfHour(59).withSecondOfMinute(59);
+        DateTime lastDay =
+                dt1.dayOfMonth().withMaximumValue().withHourOfDay(23).withMinuteOfHour(59).withSecondOfMinute(59);
         return lastDay.toDate();
     }
 
@@ -520,8 +514,8 @@ public class DateUtils {
         } else {
             dt1 = new DateTime(date).minusMonths(month);
         }
-        DateTime lastDay = dt1.dayOfMonth().withMinimumValue().withHourOfDay(0).withMinuteOfHour(0)
-                .withSecondOfMinute(0);
+        DateTime lastDay =
+                dt1.dayOfMonth().withMinimumValue().withHourOfDay(0).withMinuteOfHour(0).withSecondOfMinute(0);
         return lastDay.toDate();
     }
 
@@ -541,11 +535,9 @@ public class DateUtils {
                 timeZone = TimeZone.getTimeZone(zimeZone);
             }
             if (StringUtils.isBlank(date)) {
-                dt = new DateTime().withZone(DateTimeZone.forTimeZone(timeZone)).toLocalDateTime()
-                        .toDateTime();
+                dt = new DateTime().withZone(DateTimeZone.forTimeZone(timeZone)).toLocalDateTime().toDateTime();
             } else {
-                dt = new DateTime(date).withZone(DateTimeZone.forTimeZone(timeZone))
-                        .toLocalDateTime().toDateTime();
+                dt = new DateTime(date).withZone(DateTimeZone.forTimeZone(timeZone)).toLocalDateTime().toDateTime();
             }
         } catch (Exception e) {
             throw new Throwable(e);
@@ -572,17 +564,14 @@ public class DateUtils {
             }
             if (StringUtils.isBlank(date)) {
 
-                dt = new DateTime().withZone(DateTimeZone.forTimeZone(timeZone)).toLocalDateTime()
-                        .toDateTime();
+                dt = new DateTime().withZone(DateTimeZone.forTimeZone(timeZone)).toLocalDateTime().toDateTime();
             } else {
-                dt = new DateTime(date).withZone(DateTimeZone.forTimeZone(timeZone))
-                        .toLocalDateTime().toDateTime();
+                dt = new DateTime(date).withZone(DateTimeZone.forTimeZone(timeZone)).toLocalDateTime().toDateTime();
             }
         } catch (Exception e) {
             throw new Throwable(e);
         }
-        DateTime y =
-                dt.minusDays(days).withHourOfDay(23).withMinuteOfHour(59).withSecondOfMinute(59);
+        DateTime y = dt.minusDays(days).withHourOfDay(23).withMinuteOfHour(59).withSecondOfMinute(59);
         return y.toDate();
     }
 

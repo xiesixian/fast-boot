@@ -14,17 +14,11 @@
 package com.xiesx.springboot.base.lang;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
-
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang3.StringUtils;
-
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -202,8 +196,8 @@ public class TreeObject implements Serializable, Cloneable {
             _returnValue = TYPE_CHAR;
         } else if (o instanceof Short || short.class.isAssignableFrom(_class)) {
             _returnValue = TYPE_SHORT;
-        } else if (o instanceof byte[] || o instanceof Byte[]
-                || byte[].class.isAssignableFrom(_class) || Byte[].class.isAssignableFrom(_class)) {
+        } else if (o instanceof byte[] || o instanceof Byte[] || byte[].class.isAssignableFrom(_class)
+                || Byte[].class.isAssignableFrom(_class)) {
             _returnValue = TYPE_BYTES;
         } else if (o instanceof Map) {
             _returnValue = TYPE_MAP;
@@ -342,15 +336,13 @@ public class TreeObject implements Serializable, Cloneable {
                 case TYPE_MIX_STRING:
                     // 混淆(Mix)类型编码为Base64
                     if (tObject.getObject() != null) {
-                        String _bStr =
-                                Base64.encodeBase64String(tObject.toMixStringValue().getBytes());
+                        String _bStr = Base64.encodeBase64String(tObject.toMixStringValue().getBytes());
                         _nodeJson.put(KEY_VALUE, _bStr);
                     }
                     break;
                 case TYPE_BYTES:
                     if (tObject.getObject() instanceof byte[]) {
-                        String _bytes =
-                                String.valueOf(Base64.encodeBase64String(tObject.toBytesValue()));
+                        String _bytes = String.valueOf(Base64.encodeBase64String(tObject.toBytesValue()));
                         _nodeJson.put(KEY_VALUE, _bytes);
                     }
                     break;
@@ -933,8 +925,7 @@ public class TreeObject implements Serializable, Cloneable {
         }
         if (index >= 0 && isList()) {
             List<TreeObject> _list = ((List<TreeObject>) _object);
-            if (_list != null && _list.size() > 0 && index < _list.size()
-                    && _list.get(index) != null) {
+            if (_list != null && _list.size() > 0 && index < _list.size() && _list.get(index) != null) {
                 return true;
             }
         }

@@ -3,7 +3,6 @@ package com.xiesx.springboot.support.request.impl;
 import java.net.Proxy;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
-
 import com.github.rholder.retry.RetryException;
 
 /**
@@ -58,8 +57,7 @@ public interface IHttpRetry<T> {
      * @throws ExecutionException
      * @throws RetryException
      */
-    T get_try(String url, Map<String, Object> params, Proxy proxy)
-            throws ExecutionException, RetryException;
+    T get_try(String url, Map<String, Object> params, Proxy proxy) throws ExecutionException, RetryException;
 
     // ========post========
 
@@ -84,8 +82,7 @@ public interface IHttpRetry<T> {
      * @throws ExecutionException
      * @throws RetryException
      */
-    T post_try(String url, Map<String, Object> params, Proxy proxy)
-            throws ExecutionException, RetryException;
+    T post_try(String url, Map<String, Object> params, Proxy proxy) throws ExecutionException, RetryException;
 
     // ========request========
     /**

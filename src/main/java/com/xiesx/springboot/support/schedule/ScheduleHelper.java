@@ -1,27 +1,12 @@
 package com.xiesx.springboot.support.schedule;
 
 import java.util.List;
-
 import org.apache.commons.lang3.ObjectUtils;
-import org.quartz.CronScheduleBuilder;
-import org.quartz.CronTrigger;
-import org.quartz.Job;
-import org.quartz.JobBuilder;
-import org.quartz.JobDataMap;
-import org.quartz.JobDetail;
-import org.quartz.JobKey;
-import org.quartz.Scheduler;
-import org.quartz.SchedulerException;
-import org.quartz.SchedulerFactory;
-import org.quartz.Trigger;
-import org.quartz.TriggerBuilder;
-import org.quartz.TriggerKey;
+import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
 import org.quartz.impl.matchers.GroupMatcher;
-
 import com.google.common.collect.Lists;
 import com.xiesx.springboot.support.schedule.job.SimpleJobSchedule;
-
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -51,11 +36,11 @@ public class ScheduleHelper {
             throws SchedulerException {
         Scheduler sched = gSchedulerFactory.getScheduler();
         // 用于描叙Job实现类及其他的一些静态信息，构建一个作业实例
-        JobDetail jobDetail = JobBuilder.newJob(cls).setJobData(map)
-                .withIdentity(jobName, JOB_GROUP_NAME).build();
+        JobDetail jobDetail = JobBuilder.newJob(cls).setJobData(map).withIdentity(jobName, JOB_GROUP_NAME).build();
 
         // 构建一个触发器，规定触发的规则
-        Trigger trigger = TriggerBuilder.newTrigger().withIdentity(jobName, TRIGGER_GROUP_NAME)
+        Trigger trigger = TriggerBuilder.newTrigger()
+                .withIdentity(jobName, TRIGGER_GROUP_NAME)
                 // 给触发器起一个名字和组名
                 .startNow()
                 // 立即执行
@@ -81,17 +66,16 @@ public class ScheduleHelper {
      * @param jobClass 任务
      * @param cron 时间设置，参考quartz说明文档
      */
-    public static void addJob(String jobName, String jobGroupName, String triggerName,
-            String triggerGroupName, Class<? extends Job> cls, String cron, JobDataMap map)
-            throws SchedulerException {
+    public static void addJob(String jobName, String jobGroupName, String triggerName, String triggerGroupName,
+            Class<? extends Job> cls, String cron, JobDataMap map) throws SchedulerException {
 
         Scheduler sched = gSchedulerFactory.getScheduler();
         // 用于描叙Job实现类及其他的一些静态信息，构建一个作业实例
-        JobDetail jobDetail =
-                JobBuilder.newJob(cls).setJobData(map).withIdentity(jobName, jobGroupName).build();
+        JobDetail jobDetail = JobBuilder.newJob(cls).setJobData(map).withIdentity(jobName, jobGroupName).build();
 
         // 构建一个触发器，规定触发的规则
-        Trigger trigger = TriggerBuilder.newTrigger().withIdentity(jobName, triggerGroupName)
+        Trigger trigger = TriggerBuilder.newTrigger()
+                .withIdentity(jobName, triggerGroupName)
                 // 给触发器起一个名字和组名
                 .startNow()
                 // 立即执行
@@ -100,8 +84,7 @@ public class ScheduleHelper {
                 .build();// 产生触发器
 
         sched.scheduleJob(jobDetail, trigger);
-        log.debug("添加任务:{},{},{},{},{},{}", jobName, jobGroupName, triggerName, triggerGroupName,
-                cls, cron);
+        log.debug("添加任务:{},{},{},{},{},{}", jobName, jobGroupName, triggerName, triggerGroupName, cls, cron);
         // 启动
         if (!sched.isShutdown()) {
             sched.start();
@@ -159,8 +142,8 @@ public class ScheduleHelper {
      * @param triggerGroupName
      * @throws SchedulerException
      */
-    public static void removeJob(String jobName, String jobGroupName, String triggerName,
-            String triggerGroupName) throws SchedulerException {
+    public static void removeJob(String jobName, String jobGroupName, String triggerName, String triggerGroupName)
+            throws SchedulerException {
         Scheduler sched = gSchedulerFactory.getScheduler();
         JobKey jobKey = new JobKey(jobName, jobGroupName);
         // 停止触发器

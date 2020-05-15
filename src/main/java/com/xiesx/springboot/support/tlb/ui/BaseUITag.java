@@ -4,14 +4,10 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
-
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
-
 import org.apache.commons.lang3.StringUtils;
-
 import com.xiesx.springboot.support.tlb.TagUtils;
-
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -81,24 +77,19 @@ public abstract class BaseUITag extends BodyTagSupport {
         String _tmplContent = tmplContent;
         if (StringUtils.isNotEmpty(_tmplContent)) {
             if (__tmplMetaPart.length() > 0) {
-                _tmplContent =
-                        TagUtils.replaceRegText(_tmplContent, "meta", __tmplMetaPart.toString());
+                _tmplContent = TagUtils.replaceRegText(_tmplContent, "meta", __tmplMetaPart.toString());
             }
             if (__tmplCssPart.length() > 0) {
-                _tmplContent =
-                        TagUtils.replaceRegText(_tmplContent, "css", __tmplCssPart.toString());
+                _tmplContent = TagUtils.replaceRegText(_tmplContent, "css", __tmplCssPart.toString());
             }
             if (__tmplScriptPart.length() > 0) {
-                _tmplContent = TagUtils.replaceRegText(_tmplContent, "script",
-                        __tmplScriptPart.toString());
+                _tmplContent = TagUtils.replaceRegText(_tmplContent, "script", __tmplScriptPart.toString());
             }
             if (__tmplBodyPart.length() > 0) {
-                _tmplContent =
-                        TagUtils.replaceRegText(_tmplContent, "body", __tmplBodyPart.toString());
+                _tmplContent = TagUtils.replaceRegText(_tmplContent, "body", __tmplBodyPart.toString());
             }
             for (Map.Entry<String, String> _entry : __tmplPropertyPart.entrySet()) {
-                _tmplContent =
-                        TagUtils.replaceRegText(_tmplContent, _entry.getKey(), _entry.getValue());
+                _tmplContent = TagUtils.replaceRegText(_tmplContent, _entry.getKey(), _entry.getValue());
             }
         }
         return _tmplContent;

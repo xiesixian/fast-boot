@@ -1,7 +1,6 @@
 package com.xiesx.springboot.utils;
 
 import java.util.List;
-
 import com.alibaba.fastjson.JSON;
 import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;

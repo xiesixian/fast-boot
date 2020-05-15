@@ -4,9 +4,7 @@ import java.net.Proxy;
 import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
-
 import org.springframework.stereotype.Component;
-
 import com.github.rholder.retry.RetryException;
 import com.xiesx.springboot.support.request.impl.IHttpCallable;
 
@@ -56,14 +54,12 @@ public class HttpCilentRetryImplOk<T> implements IHttpCilentRetry<T>, IHttpCalla
     }
 
     @Override
-    public T get_try(String url, Map<String, Object> params)
-            throws ExecutionException, RetryException {
+    public T get_try(String url, Map<String, Object> params) throws ExecutionException, RetryException {
         return null;
     }
 
     @Override
-    public T get_try(String url, Map<String, Object> params, Proxy proxy)
-            throws ExecutionException, RetryException {
+    public T get_try(String url, Map<String, Object> params, Proxy proxy) throws ExecutionException, RetryException {
         return null;
     }
 
@@ -78,14 +74,12 @@ public class HttpCilentRetryImplOk<T> implements IHttpCilentRetry<T>, IHttpCalla
     }
 
     @Override
-    public T post_try(String url, Map<String, Object> params)
-            throws ExecutionException, RetryException {
+    public T post_try(String url, Map<String, Object> params) throws ExecutionException, RetryException {
         return null;
     }
 
     @Override
-    public T post_try(String url, Map<String, Object> params, Proxy proxy)
-            throws ExecutionException, RetryException {
+    public T post_try(String url, Map<String, Object> params, Proxy proxy) throws ExecutionException, RetryException {
         return null;
     }
 

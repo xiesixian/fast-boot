@@ -2,10 +2,8 @@ package com.xiesx.springboot.core.context;
 
 import java.net.URL;
 import java.util.Map;
-
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-
 import com.google.common.collect.Maps;
 import com.xiesx.springboot.core.logger.LogStorage;
 import com.xiesx.springboot.support.event.EventBusHelper;
@@ -14,7 +12,6 @@ import com.xiesx.springboot.support.schedule.ScheduleHelper;
 import com.xiesx.springboot.support.schedule.decorator.DefaultDecorator;
 import com.xiesx.springboot.support.schedule.decorator.DefaultSchedule;
 import com.xiesx.springboot.support.schedule.impl.ISchedule;
-
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -60,8 +57,8 @@ public class SpringStartup {
         String sql =
                 "SELECT * FROM information_schema.TABLES WHERE TABLE_SCHEMA=(SELECT DATABASE()) AND `table_name` =? ";
         try {
-            Map<String, Object> map = SpringHelper.getBean(JdbcTemplate.class).queryForMap(sql,
-                    new Object[] {LogStorage.TABLE});
+            Map<String, Object> map =
+                    SpringHelper.getBean(JdbcTemplate.class).queryForMap(sql, new Object[] {LogStorage.TABLE});
             log.info("Startup Logger Storage {}", map.isEmpty() == false);
         } catch (Exception e) {
             if (e instanceof EmptyResultDataAccessException) {
@@ -88,8 +85,7 @@ public class SpringStartup {
     }
 
     public static void event() {
-        beans = SpringApplicationContextAware.getApplicationContext()
-                .getBeansOfType(AbstractEventBus.class);
+        beans = SpringApplicationContextAware.getApplicationContext().getBeansOfType(AbstractEventBus.class);
         if (beans != null) {
             for (AbstractEventBus<?> eventAbstract : beans.values()) {
                 EventBusHelper.register(eventAbstract);

@@ -1,7 +1,9 @@
 package com.xiesx.springboot.base.pagination;
 
 import java.util.List;
+
 import com.alibaba.fastjson.annotation.JSONField;
+
 import lombok.Builder;
 import lombok.Data;
 import lombok.experimental.Accessors;

@@ -3,12 +3,16 @@ package com.xiesx.springboot.support.token;
 import java.util.Date;
 import java.util.Map;
 import java.util.UUID;
+
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
+
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang3.ObjectUtils;
+
 import com.google.common.collect.Maps;
 import com.xiesx.springboot.utils.DateUtils;
+
 import io.jsonwebtoken.*;
 
 /**

@@ -6,9 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
+
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.BindException;
@@ -18,11 +20,13 @@ import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
 import com.alibaba.fastjson.JSONException;
 import com.github.rholder.retry.RetryException;
 import com.xiesx.springboot.base.result.BaseResult;
 import com.xiesx.springboot.base.result.R;
 import com.xiesx.springboot.support.validate.ValidatorHelper;
+
 import lombok.extern.slf4j.Slf4j;
 
 /**

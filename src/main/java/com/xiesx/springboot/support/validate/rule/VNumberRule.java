@@ -1,9 +1,12 @@
 package com.xiesx.springboot.support.validate.rule;
 
 import java.util.regex.Pattern;
+
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
+
 import org.apache.commons.lang3.StringUtils;
+
 import com.xiesx.springboot.support.validate.annotation.VNumber;
 
 /**

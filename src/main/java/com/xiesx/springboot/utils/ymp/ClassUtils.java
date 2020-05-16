@@ -24,12 +24,11 @@ import java.net.URLClassLoader;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
+
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import com.xiesx.springboot.base.lang.BlurObject;
-import com.xiesx.springboot.base.lang.PairObject;
 
 /**
  * 类操作相关工具
@@ -328,43 +327,6 @@ public class ClassUtils {
     }
 
     /**
-     * @param <A> 注解类型
-     * @param clazz 目标类
-     * @param annotationClazz 目标注解类
-     * @return 获取clazz类中成员声明的所有annotationClazz注解
-     */
-    public static <A extends Annotation> List<PairObject<Field, A>> getFieldAnnotations(Class<?> clazz,
-            Class<A> annotationClazz) {
-        List<PairObject<Field, A>> _annotations = new ArrayList<PairObject<Field, A>>();
-        for (Field _field : ClassUtils.getFields(clazz, true)) {
-            A _annotation = _field.getAnnotation(annotationClazz);
-            if (_annotation != null) {
-                _annotations.add(new PairObject<Field, A>(_field, _annotation));
-            }
-        }
-        return _annotations;
-    }
-
-    /**
-     * @param <A> 注解类型
-     * @param clazz 目标类
-     * @param annotationClazz 目标注解类
-     * @return 获取clazz类中成员声明的第一个annotationClazz注解
-     */
-    public static <A extends Annotation> PairObject<Field, A> getFieldAnnotationFirst(Class<?> clazz,
-            Class<A> annotationClazz) {
-        PairObject<Field, A> _returnAnno = null;
-        for (Field _field : ClassUtils.getFields(clazz, true)) {
-            A _annotation = _field.getAnnotation(annotationClazz);
-            if (_annotation != null) {
-                _returnAnno = new PairObject<Field, A>(_field, _annotation);
-                break;
-            }
-        }
-        return _returnAnno;
-    }
-
-    /**
      * @param method 目标方法
      * @return 获取方法的参数名集合，若找不到则返回元素数量为0的空数组
      */
@@ -659,48 +621,6 @@ public class ClassUtils {
                 }
             }
             return _returnValues;
-        }
-
-        /**
-         * @param dist 目标对象
-         * @param <D> 目标对象类型
-         * @return 拷贝当前对象的成员属性值到目标对象
-         */
-        public <D> D duplicate(D dist) {
-            return duplicate(dist, null);
-        }
-
-        /**
-         * @param dist 目标对象
-         * @param filter 类成员属性过滤器
-         * @param <D> 目标对象类型
-         * @return 拷贝当前对象的成员属性值到目标对象
-         */
-        public <D> D duplicate(D dist, IFieldValueFilter filter) {
-            BeanWrapper<D> _wrapDist = wrapper(dist);
-            for (String _fieldName : getFieldNames()) {
-                if (_wrapDist.getFieldNames().contains(_fieldName)) {
-                    Object _fValue = null;
-                    try {
-                        _fValue = getValue(_fieldName);
-                        if (filter != null && filter.filter(_fieldName, _fValue)) {
-                            continue;
-                        }
-                        _wrapDist.setValue(_fieldName, _fValue);
-                    } catch (Exception e) {
-                        // 当首次赋值发生异常时，若成员变量值不为NULL则尝试转换一下
-                        if (_fValue != null) {
-                            try {
-                                _wrapDist.setValue(_fieldName,
-                                        BlurObject.bind(_fValue).toObjectValue(_wrapDist.getFieldType(_fieldName)));
-                            } catch (Exception ignored) {
-                                // 当再次赋值发生异常时，彻底忽略当前值，不中断整个拷贝过程
-                            }
-                        }
-                    }
-                }
-            }
-            return _wrapDist.getTargetObject();
         }
 
     }

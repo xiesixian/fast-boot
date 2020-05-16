@@ -5,14 +5,17 @@ import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
+
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+
 import com.alibaba.fastjson.JSON;
 import com.github.rholder.retry.*;
 import com.xiesx.springboot.support.request.base.BaseHttpRetryCilent;
 import com.xiesx.springboot.support.request.base.BaseHttpRetryListener;
 import com.xiesx.springboot.support.request.config.HttpCilentRetryConfig;
 import com.xiesx.springboot.support.request.impl.IHttpCallable;
+
 import lombok.extern.slf4j.Slf4j;
 import net.dongliu.requests.*;
 

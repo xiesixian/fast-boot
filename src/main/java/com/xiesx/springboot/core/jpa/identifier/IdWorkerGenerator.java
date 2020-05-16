@@ -2,6 +2,7 @@ package com.xiesx.springboot.core.jpa.identifier;
 
 import java.io.Serializable;
 import java.util.Properties;
+
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.HibernateException;
 import org.hibernate.MappingException;

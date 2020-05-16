@@ -2,14 +2,17 @@ package com.xiesx.springboot.core.jdbc;
 
 import java.util.List;
 import java.util.Map;
+
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
+
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Lists;
+
 import lombok.extern.slf4j.Slf4j;
 
 /**

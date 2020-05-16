@@ -2,6 +2,7 @@ package com.xiesx.springboot.core.jpa.identifier;
 
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

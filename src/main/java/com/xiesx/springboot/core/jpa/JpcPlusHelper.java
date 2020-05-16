@@ -2,12 +2,15 @@ package com.xiesx.springboot.core.jpa;
 
 import java.util.Arrays;
 import java.util.List;
+
 import org.springframework.data.domain.Pageable;
+
 import com.google.common.collect.Lists;
 import com.querydsl.core.types.EntityPath;
 import com.querydsl.core.types.Expression;
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.Predicate;
+
 import lombok.Builder;
 import lombok.Data;
 

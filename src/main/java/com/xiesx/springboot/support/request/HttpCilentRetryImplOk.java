@@ -4,7 +4,9 @@ import java.net.Proxy;
 import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
+
 import org.springframework.stereotype.Component;
+
 import com.github.rholder.retry.RetryException;
 import com.xiesx.springboot.support.request.impl.IHttpCallable;
 

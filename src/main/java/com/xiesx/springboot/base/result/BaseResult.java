@@ -1,6 +1,7 @@
 package com.xiesx.springboot.base.result;
 
 import com.alibaba.fastjson.annotation.JSONField;
+
 import lombok.Builder;
 import lombok.Data;
 

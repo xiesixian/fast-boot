@@ -73,9 +73,13 @@ public class ResourceUtils {
     }
 
     protected static class AggregateIterator<E> implements Iterator<E> {
+
         LinkedList<Enumeration<E>> enums;
+
         Enumeration<E> cur;
+
         E next;
+
         Set<E> loaded;
 
         protected AggregateIterator() {

@@ -385,7 +385,6 @@ public class DateUtils {
         }
         dt1 = new DateTime(date).plusYears(offset);
         return dt1.toDate();
-
     }
 
     /**
@@ -403,7 +402,6 @@ public class DateUtils {
         }
         dt1 = new DateTime(date).plusWeeks(offset);
         return dt1.toDate();
-
     }
 
     /**
@@ -421,7 +419,6 @@ public class DateUtils {
         }
         dt1 = new DateTime(date).plusDays(offset);
         return dt1.toDate();
-
     }
 
     /**
@@ -456,7 +453,6 @@ public class DateUtils {
         }
         dt1 = new DateTime(date).plusMinutes(offset);
         return dt1.toDate();
-
     }
 
     /**
@@ -474,7 +470,6 @@ public class DateUtils {
         }
         dt1 = new DateTime(date).plusSeconds(offset);
         return dt1.toDate();
-
     }
 
     // forward

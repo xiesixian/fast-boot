@@ -16,7 +16,6 @@ public class VJsonRule implements ConstraintValidator<VJson, String> {
 
     @Override
     public void initialize(VJson json) {
-
     }
 
     @Override

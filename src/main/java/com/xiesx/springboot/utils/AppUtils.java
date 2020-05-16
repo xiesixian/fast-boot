@@ -40,7 +40,6 @@ public class AppUtils {
             shortBuffer.append(chars[x % 0x3E]);
         }
         return shortBuffer.toString();
-
     }
 
     /**

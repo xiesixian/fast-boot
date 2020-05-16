@@ -16,15 +16,23 @@ public class IdWorker {
     private final static Logger logger = LoggerFactory.getLogger(IdWorker.class);
 
     private final long workerId;
+
     private final long epoch = 1577808000000L; // 时间起始标记点，作为基准，一般取系统的最近时间
+
     private final long workerIdBits = 10L; // 机器标识位数
+
     private final long maxWorkerId = -1L ^ -1L << this.workerIdBits;// 机器ID最大值: 1023
+
     private long sequence = 0L; // 0，并发控制
+
     private final long sequenceBits = 12L; // 毫秒内自增位
 
     private final long workerIdShift = this.sequenceBits; // 12
+
     private final long timestampLeftShift = this.sequenceBits + this.workerIdBits;// 22
+
     private final long sequenceMask = -1L ^ -1L << this.sequenceBits; // 4095,111111111111,12位
+
     private long lastTimestamp = -1L;
 
     private IdWorker(long workerId) {

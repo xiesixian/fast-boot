@@ -31,8 +31,10 @@ public class EncryptUtil {
 
     /** 编码格式；默认使用uft-8 */
     public String charset = "utf-8";
+
     /** DES */
     public int keysizeDES = 56;
+
     /** AES */
     public int keysizeAES = 128;
 

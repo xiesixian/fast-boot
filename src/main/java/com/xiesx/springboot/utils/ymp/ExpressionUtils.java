@@ -31,7 +31,9 @@ public final class ExpressionUtils {
     private final static Pattern __pattern = Pattern.compile("(?<=\\$\\{)(.+?)(?=})");
 
     private final static String __pre = "\\$\\{";
+
     private final static String __suf = "}";
+
     private String __result;
 
     /**

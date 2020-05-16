@@ -40,6 +40,7 @@ public class JwtHelper {
     public static final long JWT_EXPIRE_D_7 = 7 * JWT_EXPIRE_D_1; // 7天
 
     public static final long JWT_EXPIRE_D_30 = 30 * JWT_EXPIRE_D_1; // 一个星期
+
     /**
      * jwt生成方
      */

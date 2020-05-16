@@ -89,7 +89,6 @@ public class ScheduleHelper {
         if (!sched.isShutdown()) {
             sched.start();
         }
-
     }
 
     /**

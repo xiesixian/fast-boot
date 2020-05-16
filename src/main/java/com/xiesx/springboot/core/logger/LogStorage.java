@@ -7,7 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.xiesx.springboot.core.jdbc.JdbcPlusEntity;
+import com.xiesx.springboot.core.jdbc.entity.JdbcPlusEntity;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

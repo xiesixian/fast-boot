@@ -44,23 +44,23 @@ public class JpaPlusRepositoryExecutor<T, ID> extends SimpleJpaRepository<T, ID>
 
     protected final EntityManager entityManager;
 
-    protected final QuerydslJpaPredicateExecutor<T> jpaPredicateExecutor;
-
     protected final JPAQueryFactory jpaQueryFactory;
 
     private final EntityPath<T> path;
 
     protected final Querydsl querydsl;
 
+    protected final QuerydslJpaPredicateExecutor<T> jpaPredicateExecutor;
+
     public JpaPlusRepositoryExecutor(Class<T> domainClass, EntityManager entityManager) {
         super(domainClass, entityManager);
         this.entityManager = entityManager;
-        this.jpaPredicateExecutor = new QuerydslJpaPredicateExecutor<>(
-                JpaEntityInformationSupport.getEntityInformation(domainClass, entityManager), entityManager,
-                SimpleEntityPathResolver.INSTANCE, getRepositoryMethodMetadata());
         this.jpaQueryFactory = new JPAQueryFactory(entityManager);
         this.path = SimpleEntityPathResolver.INSTANCE.createPath(domainClass);
         this.querydsl = new Querydsl(entityManager, new PathBuilder<T>(path.getType(), path.getMetadata()));
+        this.jpaPredicateExecutor = new QuerydslJpaPredicateExecutor<>(
+                JpaEntityInformationSupport.getEntityInformation(domainClass, entityManager), entityManager,
+                SimpleEntityPathResolver.INSTANCE, getRepositoryMethodMetadata());
     }
 
     // ==========================

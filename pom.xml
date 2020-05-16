@@ -56,10 +56,17 @@
 			<artifactId>spring-boot-starter-aop</artifactId>
 			<scope>provided</scope>
 		</dependency>
+		<!-- data-jdbc -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jdbc</artifactId>
+			<scope>provided</scope>
+		</dependency>
 		<!-- data-jpa -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
+			<scope>provided</scope>
 		</dependency>
 		<!-- log4j2 -->
 		<dependency>
@@ -89,6 +96,12 @@
 		</dependency>
 
 		<!-- ==========================数据库========================== -->
+		<!-- https://mvnrepository.com/artifact/com.querydsl/querydsl-sql -->
+		<dependency>
+			<groupId>com.querydsl</groupId>
+			<artifactId>querydsl-sql</artifactId>
+			<version>4.3.1</version>
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.querydsl/querydsl-jpa -->
 		<dependency>
 			<groupId>com.querydsl</groupId>

@@ -6,8 +6,8 @@ import java.util.Map;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 
 import com.alibaba.fastjson.JSON;
@@ -55,9 +55,27 @@ public class JdbcPlusTemplate {
         }
     }
 
+    public Map<String, Object> queryForMap(String sql, Class<?> dto) {
+        try {
+            return mNamedParameterJdbcTemplate.queryForMap(sql, new BeanPropertySqlParameterSource(dto));
+        } catch (Exception e) {
+            log.error("queryForMap error error", e);
+            return null;
+        }
+    }
+
     public Map<String, Object> queryForMap(String sql, Map<String, ?> paramMap) {
         try {
             return mNamedParameterJdbcTemplate.queryForMap(sql, paramMap);
+        } catch (Exception e) {
+            log.error("queryForMap error error", e);
+            return null;
+        }
+    }
+
+    public Map<String, Object> queryForMap(String sql, Object... args) {
+        try {
+            return mNamedParameterJdbcTemplate.getJdbcTemplate().queryForMap(sql, args);
         } catch (Exception e) {
             log.error("queryForMap error error", e);
             return null;
@@ -80,9 +98,27 @@ public class JdbcPlusTemplate {
         }
     }
 
+    public List<Map<String, Object>> queryForList(String sql, Class<?> dto) {
+        try {
+            return mNamedParameterJdbcTemplate.queryForList(sql, new BeanPropertySqlParameterSource(dto));
+        } catch (Exception e) {
+            log.error("queryForMap error error", e);
+            return null;
+        }
+    }
+
     public List<Map<String, Object>> queryForList(String sql, Map<String, ?> paramMap) {
         try {
             return mNamedParameterJdbcTemplate.queryForList(sql, paramMap);
+        } catch (Exception e) {
+            log.error("queryForList error", e);
+            return null;
+        }
+    }
+
+    public List<Map<String, Object>> queryForList(String sql, Object... args) {
+        try {
+            return mNamedParameterJdbcTemplate.getJdbcTemplate().queryForList(sql, args);
         } catch (Exception e) {
             log.error("queryForList error", e);
             return null;
@@ -98,7 +134,7 @@ public class JdbcPlusTemplate {
      * @param clazz
      * @return
      */
-    public <T> T queryForObject(String sql, Class<T> clazz) {
+    public <T> T queryForObj(String sql, Class<T> clazz) {
         try {
             return result(queryForMap(sql, Maps.newLinkedHashMap()), clazz);
         } catch (Exception e) {
@@ -107,9 +143,27 @@ public class JdbcPlusTemplate {
         }
     }
 
-    public <T> T queryForObject(String sql, Map<String, ?> paramMap, Class<T> clazz) {
+    public <T> T queryForObj(String sql, Class<?> dto, Class<T> clazz) {
+        try {
+            return result(queryForMap(sql, dto), clazz);
+        } catch (Exception e) {
+            log.error("queryForMap error", e);
+            return null;
+        }
+    }
+
+    public <T> T queryForObj(String sql, Map<String, ?> paramMap, Class<T> clazz) {
         try {
             return result(queryForMap(sql, paramMap), clazz);
+        } catch (Exception e) {
+            log.error("queryForMap error", e);
+            return null;
+        }
+    }
+
+    public <T> T queryForObj(String sql, Object[] args, Class<T> clazz) {
+        try {
+            return result(queryForMap(sql, args), clazz);
         } catch (Exception e) {
             log.error("queryForMap error", e);
             return null;
@@ -125,7 +179,7 @@ public class JdbcPlusTemplate {
      * @param clazz
      * @return
      */
-    public <T> List<T> queryForList(String sql, Class<T> clazz) {
+    public <T> List<T> queryForLists(String sql, Class<T> clazz) {
         try {
             return result(queryForList(sql, Maps.newLinkedHashMap()), clazz);
         } catch (Exception e) {
@@ -134,9 +188,27 @@ public class JdbcPlusTemplate {
         }
     }
 
-    public <T> List<T> queryForList(String sql, Map<String, ?> paramMap, Class<T> clazz) {
+    public <T> List<T> queryForLists(String sql, Class<?> dto, Class<T> clazz) {
+        try {
+            return result(queryForList(sql, dto), clazz);
+        } catch (Exception e) {
+            log.error("queryForList error", e);
+            return null;
+        }
+    }
+
+    public <T> List<T> queryForLists(String sql, Map<String, ?> paramMap, Class<T> clazz) {
         try {
             return result(queryForList(sql, paramMap), clazz);
+        } catch (Exception e) {
+            log.error("queryForList error", e);
+            return null;
+        }
+    }
+
+    public <T> List<T> queryForLists(String sql, Object[] args, Class<T> clazz) {
+        try {
+            return result(queryForList(sql, args), clazz);
         } catch (Exception e) {
             log.error("queryForList error", e);
             return null;
@@ -150,7 +222,16 @@ public class JdbcPlusTemplate {
      * @param args
      * @return
      */
-    public int update(String sql, @Nullable Map<String, ?> paramMap) {
+    public int update(String sql) {
+        try {
+            return mNamedParameterJdbcTemplate.update(sql, Maps.newLinkedHashMap());
+        } catch (Exception e) {
+            log.error("update error", e);
+            return 0;
+        }
+    }
+
+    public int update(String sql, Map<String, ?> paramMap) {
         try {
             return mNamedParameterJdbcTemplate.update(sql, paramMap);
         } catch (Exception e) {
@@ -159,12 +240,12 @@ public class JdbcPlusTemplate {
         }
     }
 
-    public int[] batchUpdate(String sql, @Nullable Map<String, ?>[] paramMap) {
+    public int update(String sql, Object... args) {
         try {
-            return mNamedParameterJdbcTemplate.batchUpdate(sql, paramMap);
+            return update(sql, args);
         } catch (Exception e) {
             log.error("update error", e);
-            return new int[0];
+            return 0;
         }
     }
 

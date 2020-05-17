@@ -37,6 +37,12 @@
 
 	<!-- 版本管理，会引入jar -->
 	<dependencies>
+		<!-- lombok -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
+
 		<!-- ==========================spring-boot========================== -->
 		<!-- web -->
 		<dependency>
@@ -68,13 +74,14 @@
 			<artifactId>spring-boot-starter-log4j2</artifactId>
 			<scope>provided</scope>
 		</dependency>
+		<!-- test -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
 
 		<!-- ==========================build========================== -->
-		<!-- lombok -->
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-		</dependency>
 		<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -87,6 +94,11 @@
 			<artifactId>jsp-api</artifactId>
 			<version>2.2.1-b03</version>
 			<scope>provided</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.freemarker/freemarker -->
+		<dependency>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
 		</dependency>
 
 		<!-- ==========================数据库========================== -->
@@ -113,7 +125,20 @@
 			<artifactId>p6spy</artifactId>
 			<version>3.9.0</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-generator -->
+		<dependency>
+			<groupId>com.baomidou</groupId>
+			<artifactId>mybatis-plus-generator</artifactId>
+			<version>3.3.1</version>
+		</dependency>
 		<!-- ==========================工具========================== -->
+		<!-- https://mvnrepository.com/artifact/de.schlichtherle.truelicense/truelicense-core -->
+		<dependency>
+			<groupId>de.schlichtherle.truelicense</groupId>
+			<artifactId>truelicense-core</artifactId>
+			<version>1.33</version>
+			<scope>provided</scope>
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt -->
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
@@ -171,7 +196,19 @@
 			<artifactId>joda-time</artifactId>
 		</dependency>
 
-		<!-- ==========================其他========================== -->
+		<!-- ==========================测试========================== -->
+		<!-- https://mvnrepository.com/artifact/junit/junit -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.rest-assured/rest-assured -->
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>rest-assured</artifactId>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<!-- 版本管理，不会引入jar -->

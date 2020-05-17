@@ -16,5 +16,7 @@ public @interface LogStorage {
 
     boolean print() default true;
 
+    boolean storage() default false;
+    
     boolean prettyFormat() default false;
 }

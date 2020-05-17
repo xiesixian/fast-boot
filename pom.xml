@@ -50,12 +50,6 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		<!-- aop -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-aop</artifactId>
-			<scope>provided</scope>
-		</dependency>
 		<!-- data-jdbc -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

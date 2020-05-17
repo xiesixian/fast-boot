@@ -3,8 +3,6 @@ package com.xiesx.springboot.core.context;
 import java.net.URL;
 import java.util.Map;
 
-import org.springframework.util.ResourceUtils;
-
 import com.google.common.collect.Maps;
 import com.xiesx.springboot.core.license.LicenseVerify;
 import com.xiesx.springboot.support.event.EventBusHelper;
@@ -34,17 +32,14 @@ public class SpringStartup {
             URL url = SpringStartup.class.getResource("/");
             classUrl = url.getPath();
             log.info("Startup classpath url " + classUrl);
-            // /home/gtgj/tomcat-loco/webapps/trainnet/WEB-INF/classes/
             int index = classUrl.indexOf("/webapps/");
             if (index > 0) {
-                // /home/gtgj/tomcat-loco
                 String path = classUrl.substring(0, index);
                 index = path.lastIndexOf("/");
-                // tomcat-loco1
                 servername = path.substring(index + 1);
                 serverpath = classUrl.split(servername)[0] + servername;
             } else {
-                servername = classUrl.substring(classUrl.length() - 20);
+                servername = classUrl.substring(classUrl.length() - 34);
                 serverpath = classUrl;
             }
             log.info("Startup tomcat-name " + servername + ", path " + serverpath);
@@ -89,9 +84,9 @@ public class SpringStartup {
             // 访问公钥库的密码
             param.setStorePass("136305973@qq.com");
             // 公钥库存储路径
-            param.setPublicKeysStorePath("E:\\key\\publicCerts.store");
+            param.setPublicKeysStorePath(SpringStartup.class.getResource("/license/publicCert.store").getFile());
             // 证书生成路径
-            param.setLicensePath("E:\\key\\license");
+            param.setLicensePath(SpringStartup.class.getResource("/license/license").getFile());
             // 安装证书
             param.install();
             // 卸载证书

@@ -120,7 +120,7 @@ public class LicenseVerify {
                 DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 LicenseContent licenseContent = licenseManager.verify();
                 log.info("------------------------------- 证书校验通过 -------------------------------");
-                log.info(MessageFormat.format("证书有效期：{0} - {1}", format.format(licenseContent.getNotBefore()),
+                log.info(MessageFormat.format("有效期：{0} - {1}", format.format(licenseContent.getNotBefore()),
                         format.format(licenseContent.getNotAfter())));
                 return true;
             } else {

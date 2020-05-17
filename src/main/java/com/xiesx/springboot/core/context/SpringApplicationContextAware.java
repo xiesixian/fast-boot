@@ -23,7 +23,6 @@ public class SpringApplicationContextAware implements ApplicationContextAware {
         if (ObjectUtils.isEmpty(SpringApplicationContextAware.applicationContext)) {
             SpringApplicationContextAware.applicationContext = applicationContext;
             SpringStartup.init();
-            SpringStartup.logger();
             SpringStartup.event();
             SpringStartup.schedule();
             log.info("Startup ApplicationContext completed.");

@@ -85,7 +85,7 @@ public class JdbcPlusRepositoryFactoryBean<T extends Repository<S, ID>, S, ID ex
         super.setDataAccessStrategy(dataAccessStrategy);
         this.dataAccessStrategy = dataAccessStrategy;
     }
-   
+
     @Autowired(required = false)
     public void setQueryMappingConfiguration(QueryMappingConfiguration queryMappingConfiguration) {
         super.setQueryMappingConfiguration(queryMappingConfiguration);

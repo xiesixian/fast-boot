@@ -1,15 +1,10 @@
 package com.xiesx.springboot.core.logger;
 
 import java.lang.reflect.Method;
-import java.util.Date;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
-import org.apache.commons.lang3.ObjectUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -18,14 +13,10 @@ import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.alibaba.fastjson.JSON;
-import com.xiesx.springboot.core.jpa.identifier.IdWorker;
-import com.xiesx.springboot.core.logger.annotation.LoggerStorage;
-import com.xiesx.springboot.core.logger.cfg.LoggerCfg;
+import com.xiesx.springboot.core.logger.annotation.LogStorage;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -48,23 +39,23 @@ public class LoggerAspect {
 
     @Around("logPointcut()")
     public Object logAroundAspect(ProceedingJoinPoint pjp) throws Throwable {
-        // 获取到当前线程绑定的请求对象
-        ServletRequestAttributes servlet = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        //// 获取到当前线程绑定的请求对象
+        // ServletRequestAttributes servlet = (ServletRequestAttributes)
+        //// RequestContextHolder.getRequestAttributes();
         // 获取Request
-        HttpServletRequest request = servlet.getRequest();
-        String ip = getIpAddr(request);
-        String type = request.getMethod();
-        String url = request.getRequestURI();
-        // 获取Session
-        HttpSession session = request.getSession();
+        // HttpServletRequest request = servlet.getRequest();
+        // String ip = getIpAddr(request);
+        // String type = request.getMethod();
+        // String url = request.getRequestURI();
+        //// 获取Session
+        // HttpSession session = request.getSession();
         // 获取方法信息
         MethodSignature signature = (MethodSignature) pjp.getSignature();
         Method method = signature.getMethod();
         String methodName = method.getName();
         // 获取注解信息
-        LoggerStorage annotation = method.getAnnotation(LoggerStorage.class);
+        LogStorage annotation = method.getAnnotation(LogStorage.class);
         Boolean isPrint = Boolean.valueOf(annotation == null ? false : annotation.print());
-        Boolean isStorage = Boolean.valueOf(annotation == null ? false : annotation.storage());
         Boolean isPrettyFormat = Boolean.valueOf(annotation == null ? false : annotation.prettyFormat());
         // 获取入参
         Object[] args = pjp.getArgs();
@@ -95,42 +86,22 @@ public class LoggerAspect {
             log.info("=========request end {} {} {} {}",
                     new Object[] {methodName, Long.valueOf(endTime), res, Long.valueOf(t)});
         }
-        if (isStorage) {
-            try {
-                Object nickName = session.getAttribute(LoggerCfg.NICKNAME);
-                LogStorage log = new LogStorage();
-                log.setId(IdWorker.getIDStr());
-                log.setCreateDate(new Date());
-                log.setIp(ip);
-                log.setMethod(methodName);
-                log.setType(type);
-                log.setUrl(url);
-                log.setReq(req);
-                log.setRes(res);
-                log.setT(t);
-                log.setOpt(ObjectUtils.isEmpty(nickName) ? "" : nickName.toString());
-                // log.insert();
-            } catch (Exception e) {
-                log.error("=========request err {}", e);
-            }
-        }
         return ret;
     }
-
-    private String getIpAddr(HttpServletRequest request) {
-        String ip = request.getHeader("X-real-ip");
-        if (StringUtils.isEmpty(ip) || "unknown".equalsIgnoreCase(ip)) {
-            ip = request.getHeader("X-Forwarded-For");
-        }
-        if (StringUtils.isEmpty(ip) || "unknown".equalsIgnoreCase(ip)) {
-            ip = request.getHeader("Proxy-Client-IP");
-        }
-        if (StringUtils.isEmpty(ip) || "unknown".equalsIgnoreCase(ip)) {
-            ip = request.getHeader("WL-Proxy-Client-IP");
-        }
-        if (StringUtils.isEmpty(ip) || "unknown".equalsIgnoreCase(ip)) {
-            ip = request.getRemoteAddr();
-        }
-        return ip;
-    }
+    // private String getIpAddr(HttpServletRequest request) {
+    // String ip = request.getHeader("X-real-ip");
+    // if (StringUtils.isEmpty(ip) || "unknown".equalsIgnoreCase(ip)) {
+    // ip = request.getHeader("X-Forwarded-For");
+    // }
+    // if (StringUtils.isEmpty(ip) || "unknown".equalsIgnoreCase(ip)) {
+    // ip = request.getHeader("Proxy-Client-IP");
+    // }
+    // if (StringUtils.isEmpty(ip) || "unknown".equalsIgnoreCase(ip)) {
+    // ip = request.getHeader("WL-Proxy-Client-IP");
+    // }
+    // if (StringUtils.isEmpty(ip) || "unknown".equalsIgnoreCase(ip)) {
+    // ip = request.getRemoteAddr();
+    // }
+    // return ip;
+    // }
 }

@@ -11,7 +11,7 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.xiesx.springboot.utils.ymp;
+package com.xiesx.springboot.utils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -165,28 +165,6 @@ public class RuntimeUtils {
             }
         }
         return StringUtils.trimToEmpty(_rootPath);
-    }
-
-    /**
-     * @param origin 原始字符串
-     * @return 替换${root}、${user.dir}和${user.home}环境变量
-     */
-    public static String replaceEnvVariable(String origin) {
-        if ((origin = StringUtils.trimToNull(origin)) != null) {
-            String _defaultPath = getRootPath();
-            if (StringUtils.contains(origin, "${root}")) {
-                origin = ExpressionUtils.bind(origin).set("root", _defaultPath).getResult();
-            } else if (StringUtils.contains(origin, "${user.dir}")) {
-                origin = ExpressionUtils.bind(origin)
-                        .set("user.dir", System.getProperty("user.dir", _defaultPath))
-                        .getResult();
-            } else if (StringUtils.contains(origin, "${user.home}")) {
-                origin = ExpressionUtils.bind(origin)
-                        .set("user.home", System.getProperty("user.home", _defaultPath))
-                        .getResult();
-            }
-        }
-        return origin;
     }
 
     /**

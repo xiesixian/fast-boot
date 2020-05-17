@@ -7,7 +7,7 @@ import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.xiesx.springboot.support.tlb.ui.BaseUITag;
-import com.xiesx.springboot.utils.ymp.RuntimeUtils;
+import com.xiesx.springboot.utils.RuntimeUtils;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

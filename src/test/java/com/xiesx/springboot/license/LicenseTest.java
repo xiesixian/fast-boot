@@ -1,23 +1,28 @@
 package com.xiesx.springboot.license;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang3.time.DateUtils;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.google.common.collect.Lists;
 import com.xiesx.springboot.core.license.LicenseCreator;
 import com.xiesx.springboot.core.license.LicenseCreatorParam;
 import com.xiesx.springboot.core.license.LicenseExtraModel;
+import com.xiesx.springboot.core.license.LicenseVerify;
 
-public class LicenseCreatorTest {
+@RunWith(SpringJUnit4ClassRunner.class)
+public class LicenseTest {
 
     public static DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-    public static void main(String[] args) throws ParseException {
+    @Test
+    public void create() {
 
         LicenseCreatorParam param = new LicenseCreatorParam();
         // 证书主题
@@ -53,5 +58,27 @@ public class LicenseCreatorTest {
         LicenseCreator licenseCreator = new LicenseCreator(param);
         // 生成license
         System.out.println(licenseCreator.generateLicense());
+    }
+
+    @Test
+    public void verify() {
+        //
+        LicenseVerify param = new LicenseVerify();
+        // 证书主题
+        param.setSubject("测试证书");
+        // 公钥别称
+        param.setPublicAlias("publicCert");
+        // 访问公钥库的密码
+        param.setStorePass("zedu@8888");
+        // 公钥库存储路径
+        param.setPublicKeysStorePath("E:\\key\\publicCerts.store");
+        // 证书生成路径
+        param.setLicensePath("E:\\key\\license");
+        // 安装证书
+        param.install();
+        // 卸载证书
+        // param.unInstall();
+        // 校验证书
+        System.out.println(param.verify());
     }
 }

@@ -89,8 +89,7 @@ public class LicenseVerify {
             DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             installSuccess = true;
             log.info("------------------------------- 证书安装成功 -------------------------------");
-            log.info(MessageFormat.format("证书有效期：{0} - {1}", format.format(licenseContent.getNotBefore()),
-                    format.format(licenseContent.getNotAfter())));
+            log.info(MessageFormat.format("有效期：{0} - {1}", format.format(licenseContent.getNotBefore()),format.format(licenseContent.getNotAfter())));
         } catch (Exception e) {
             installSuccess = false;
             e.printStackTrace();
@@ -120,7 +119,8 @@ public class LicenseVerify {
             if (installSuccess) {
                 DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 LicenseContent licenseContent = licenseManager.verify();
-                log.info(MessageFormat.format("证书校验通过，证书有效期：{0} - {1}", format.format(licenseContent.getNotBefore()),
+                log.info("------------------------------- 证书校验通过 -------------------------------");
+                log.info(MessageFormat.format("证书有效期：{0} - {1}", format.format(licenseContent.getNotBefore()),
                         format.format(licenseContent.getNotAfter())));
                 return true;
             } else {

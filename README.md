@@ -8,7 +8,7 @@
 - <a href="#md1">发布注意</a>
 - <a href="#md2">自动发布</a>
 - <a href="#md3">代码生成</a>
-- <a href="#md4">持久增强</a>
+- <a href="#md4">License</a>
 
 -------- 
 
@@ -88,62 +88,34 @@ location：【D:/Projects/gtgjxcom/src/main/java】（你的com目录）<br>
 
 <a name="md4">
 
-### 持久增强
+### License
 
-#### 特点
-1、使用标准：JPA（Java Persistence API），不宜懒第三方ORM框架 <br>
-2、兼容现有：与现有autoDao互补增强，提高效率<br>
-3、动态构建：目前支持select、insert、update，常用操作简化代码开发 <br>
-4、特定字段：查询支持字段配置、别名 <br>
-5、领域模型：支持AR模式<br>
-6、灵活使用：以上特点均解耦可拆分使用<br>
+## 1. 生成私匙库
+# validity：私钥的有效期多少天
+# alias：私钥别称
+# keystore: 指定私钥库文件的名称(生成在当前目录)
+# storepass：指定私钥库的密码(获取keystore信息所需的密码) 
+# keypass：指定别名条目的密码(私钥的密码) 
+# CN：姓名；OU：组织单位名称；O：组织名称；L：省/市/自治区名称；C：国家/地区代码
+keytool -genkeypair -keysize 1024 -validity 3650 -alias "privateKey" -keystore "privateKeys.keystore" -storepass "a123456" -keypass "a123456" -dname "CN=FAST, OU=JavaSoft, O=XSX, L=WUHAN, ST=HUBEI, C=CN"
 
-#### 使用
-1、测试详见：SQLBuilder.java <br>
-2、使用详见：CipOrderService.java
+## 2. 把私匙库内的公匙导出到一个文件当中
+# alias：私钥别称
+# keystore：指定私钥库的名称(在当前目录查找)
+# storepass: 指定私钥库的密码
+# file：证书名称
+keytool -exportcert -alias "privateKey" -keystore "privateKeys.keystore" -storepass "a123456" -file "certfile.cer"
 
-#### 改进
-未来需要完善：如果排序order by 、分组group by 、分页limit x、连接查询join....
+## 3. 再把这个证书文件导入到公匙库
+# alias：公钥别称
+# file：证书名称
+# keystore：公钥文件名称
+# storepass：指定私钥库的密码
+keytool -import -alias "publicCert" -file "certfile.cer" -keystore "publicCerts.keystore" -storepass "a123456"
 
-#### 示例
-AR终极版V4
-```
-	public CipOrder getOrderId(String cipOrderId) {
-		// AR领域模型
-		return new CipOrder().setOrderId(cipOrderId).find();
-	}
-```
-sql构建版V3
-```
-	public CipOrder getOrderId(String cipOrderId) {
-		// 参数设置
-		CipOrder order = new CipOrder().setOrderId(cipOrderId);
-		// 动态构建
-		SQLContext sqlContext = SQLBuilder.select(order);
-		// 执行->填充
-		return mapper.fillToMap(autoProcessDao.queryForMap(sqlContext.getSqlToString(), sqlContext.getParamsToArray(), null));
-	}
-```
-mp填充版V2
-```
-	public CipOrder getOrderId(String cipOrderId) {
-		String sql = "select * from hbgj_cip_order where order_id=? ";
-		// 执行->填充
-		return mapper.fillToMap(autoProcessDao.queryForMap(sql, new Object[] { cipOrderId }, null));
-	}
-```
-原始版本V1
-```
-	public CipOrder getOrderId4(String cipOrderId) {
-		String sql = "select * from hbgj_cip_order where order_id=? ";
-		Map<String, Object> map = autoProcessDao.queryForMap(sql, new Object[] { cipOrderId }, null);
-		CipOrder order = new CipOrder();
-		order.setOrderId(ObjectUtil.getString(map.get("order_id")));
-		order.setPhoneId(ObjectUtil.getString(map.get("phone_id")));
-		//.....如果是*，则后边还有30个字段
-		return order;
-	}
-```
+————————————————
+版权声明：本文为CSDN博主「tuacy」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/wuyuxing24/article/details/99692762
 
 #### 注意
 部分功能需要开启配置，代码生成了才可以使用

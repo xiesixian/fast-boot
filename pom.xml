@@ -137,7 +137,6 @@
 			<groupId>de.schlichtherle.truelicense</groupId>
 			<artifactId>truelicense-core</artifactId>
 			<version>1.33</version>
-			<scope>provided</scope>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt -->
 		<dependency>

@@ -3,7 +3,10 @@ package com.xiesx.springboot.core.context;
 import java.net.URL;
 import java.util.Map;
 
+import org.springframework.util.ResourceUtils;
+
 import com.google.common.collect.Maps;
+import com.xiesx.springboot.core.license.LicenseVerify;
 import com.xiesx.springboot.support.event.EventBusHelper;
 import com.xiesx.springboot.support.event.base.AbstractEventBus;
 import com.xiesx.springboot.support.schedule.ScheduleHelper;
@@ -72,6 +75,32 @@ public class SpringStartup {
             log.info("Startup Schedule {} init completed.", ScheduleHelper.getJobsName().size());
         } catch (Exception e) {
             log.error("Startup Schedule {}", e);
+        }
+    }
+
+
+    public static void license() {
+        try {
+            LicenseVerify param = new LicenseVerify();
+            // 证书主题
+            param.setSubject("FAST");
+            // 公钥别称
+            param.setPublicAlias("publicCert");
+            // 访问公钥库的密码
+            param.setStorePass("136305973@qq.com");
+            // 公钥库存储路径
+            param.setPublicKeysStorePath("E:\\key\\publicCerts.store");
+            // 证书生成路径
+            param.setLicensePath("E:\\key\\license");
+            // 安装证书
+            param.install();
+            // 卸载证书
+            // param.unInstall();
+            // 校验证书
+            if (!param.verify()) {
+                // System.exit(1);
+            }
+        } catch (Exception e) {
         }
     }
 }

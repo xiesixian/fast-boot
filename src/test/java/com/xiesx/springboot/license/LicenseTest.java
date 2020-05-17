@@ -21,18 +21,24 @@ public class LicenseTest {
 
     public static DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
+    public static String subject = "FAST";
+
+    public static String storepass = "136305973@qq.com";
+
+    public static String keypass = "xiesx@888";
+
     @Test
     public void create() {
 
         LicenseCreatorParam param = new LicenseCreatorParam();
         // 证书主题
-        param.setSubject("测试证书");
+        param.setSubject(subject);
         // 私钥别称
         param.setPrivateAlias("privateKey");
-        // 私钥密码
-        param.setKeyPass("zedu@888");
         // 访问私钥库的密码
-        param.setStorePass("zedu@8888");
+        param.setStorePass(storepass);
+        // 私钥密码
+        param.setKeyPass(keypass);
         // 私钥库存储路径
         param.setPrivateKeysStorePath("E:\\key\\privateKeys.store");
         // 证书生成路径
@@ -44,7 +50,7 @@ public class LicenseTest {
         System.out.println(format.format(issusedDate));
         param.setIssuedTime(issusedDate);
         // 证书失效时间
-        Date expiryDate = DateUtils.addMinutes(issusedDate, 1);
+        Date expiryDate = DateUtils.addMinutes(issusedDate, 30);
         System.out.println(format.format(expiryDate));
         param.setExpiryTime(expiryDate);
         // 消费类型
@@ -55,8 +61,8 @@ public class LicenseTest {
         LicenseExtraModel licenseExtraModel = new LicenseExtraModel();
         licenseExtraModel.setMacAddress(macs);
         param.setLicenseExtraModel(licenseExtraModel);
-        LicenseCreator licenseCreator = new LicenseCreator(param);
         // 生成license
+        LicenseCreator licenseCreator = new LicenseCreator(param);
         System.out.println(licenseCreator.generateLicense());
     }
 
@@ -65,11 +71,11 @@ public class LicenseTest {
         //
         LicenseVerify param = new LicenseVerify();
         // 证书主题
-        param.setSubject("测试证书");
+        param.setSubject(subject);
         // 公钥别称
         param.setPublicAlias("publicCert");
         // 访问公钥库的密码
-        param.setStorePass("zedu@8888");
+        param.setStorePass(storepass);
         // 公钥库存储路径
         param.setPublicKeysStorePath("E:\\key\\publicCerts.store");
         // 证书生成路径

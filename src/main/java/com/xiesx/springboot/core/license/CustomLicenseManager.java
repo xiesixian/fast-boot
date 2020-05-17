@@ -154,5 +154,4 @@ public class CustomLicenseManager extends LicenseManager {
         setCertificate(certificate);
         return content;
     }
-
 }

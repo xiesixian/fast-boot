@@ -42,6 +42,22 @@ public class LicenseCreator {
             return false;
         }
     }
+    
+
+
+    /**
+     * 初始化证书生成参数
+     */
+    private LicenseParam initLicenseParam() {
+        Preferences preferences = Preferences.userNodeForPackage(LicenseCreator.class);
+        // 设置对证书内容加密的秘钥
+        CipherParam cipherParam = new DefaultCipherParam(param.getStorePass());
+
+        KeyStoreParam privateStoreParam = new CustomKeyStoreParam(LicenseCreator.class, param.getPrivateKeysStorePath(),
+                param.getPrivateAlias(), param.getStorePass(), param.getKeyPass());
+
+        return new DefaultLicenseParam(param.getSubject(), preferences, privateStoreParam, cipherParam);
+    }
 
     /**
      * 设置证书生成正文信息
@@ -63,20 +79,4 @@ public class LicenseCreator {
         }
         return licenseContent;
     }
-
-    /**
-     * 初始化证书生成参数
-     */
-    private LicenseParam initLicenseParam() {
-        Preferences preferences = Preferences.userNodeForPackage(LicenseCreator.class);
-
-        // 设置对证书内容加密的秘钥
-        CipherParam cipherParam = new DefaultCipherParam(param.getStorePass());
-
-        KeyStoreParam privateStoreParam = new CustomKeyStoreParam(LicenseCreator.class, param.getPrivateKeysStorePath(),
-                param.getPrivateAlias(), param.getStorePass(), param.getKeyPass());
-
-        return new DefaultLicenseParam(param.getSubject(), preferences, privateStoreParam, cipherParam);
-    }
-
 }

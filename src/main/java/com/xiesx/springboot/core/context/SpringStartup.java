@@ -84,9 +84,9 @@ public class SpringStartup {
             // 访问公钥库的密码
             param.setStorePass("136305973@qq.com");
             // 公钥库存储路径
-            param.setPublicKeysStorePath(SpringStartup.class.getResource("/license/publicCert.store").getFile());
+            param.setPublicKeysStorePath(SpringStartup.class.getResource("/license/publicCerts.store").getPath());
             // 证书生成路径
-            param.setLicensePath(SpringStartup.class.getResource("/license/license").getFile());
+            param.setLicensePath(SpringStartup.class.getResource("/license/license").getPath());
             // 安装证书
             param.install();
             // 卸载证书
@@ -96,6 +96,7 @@ public class SpringStartup {
                 // System.exit(1);
             }
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

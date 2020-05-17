@@ -40,9 +40,9 @@ public class LicenseTest {
         // 私钥密码
         param.setKeyPass(keypass);
         // 私钥库存储路径
-        param.setPrivateKeysStorePath("E:\\key\\privateKeys.store");
+        param.setPrivateKeysStorePath(LicenseTest.class.getResource("privateKeys.store").getPath());
         // 证书生成路径
-        param.setLicensePath("E:\\key\\license");
+        param.setLicensePath(LicenseTest.class.getResource("license").getPath());
         // 证书生效时间
         // Date issusedDate = DateUtils.parseDate("2019-12-31 23:59:59", "yyyy-MM-dd
         // HH:mm:ss");
@@ -77,9 +77,9 @@ public class LicenseTest {
         // 访问公钥库的密码
         param.setStorePass(storepass);
         // 公钥库存储路径
-        param.setPublicKeysStorePath("E:\\key\\publicCerts.store");
+        param.setPublicKeysStorePath(LicenseTest.class.getResource("publicCerts.store").getPath());
         // 证书生成路径
-        param.setLicensePath("E:\\key\\license");
+        param.setLicensePath(LicenseTest.class.getResource("license").getPath());
         // 安装证书
         param.install();
         // 卸载证书

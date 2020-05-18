@@ -22,8 +22,8 @@ public class SpringApplicationContextAware implements ApplicationContextAware {
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         if (ObjectUtils.isEmpty(SpringApplicationContextAware.applicationContext)) {
             SpringApplicationContextAware.applicationContext = applicationContext;
-            SpringStartup.license();
             SpringStartup.init();
+            SpringStartup.license();
             SpringStartup.event();
             SpringStartup.schedule();
             log.info("Startup ApplicationContext completed.");

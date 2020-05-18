@@ -48,32 +48,6 @@ public class SpringStartup {
         }
     }
 
-    public static void event() {
-        beans = SpringApplicationContextAware.getApplicationContext().getBeansOfType(AbstractEventBus.class);
-        if (beans != null) {
-            for (AbstractEventBus<?> eventAbstract : beans.values()) {
-                EventBusHelper.register(eventAbstract);
-            }
-        }
-        log.info("Startup EventBus {} register completed.", beans.size());
-    }
-
-    public static void schedule() {
-        log.info("Startup Schedule Schedule init Starting...");
-        try {
-            // 默认实现
-            ISchedule job = new DefaultSchedule();
-            // 默认装饰追加
-            ISchedule job2 = new DefaultDecorator(job);
-            // 开始初始化....
-            job2.init();
-            log.info("Startup Schedule {} init completed.", ScheduleHelper.getJobsName().size());
-        } catch (Exception e) {
-            log.error("Startup Schedule {}", e);
-        }
-    }
-
-
     public static void license() {
         try {
             LicenseVerify param = new LicenseVerify();
@@ -97,6 +71,31 @@ public class SpringStartup {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public static void event() {
+        beans = SpringApplicationContextAware.getApplicationContext().getBeansOfType(AbstractEventBus.class);
+        if (beans != null) {
+            for (AbstractEventBus<?> eventAbstract : beans.values()) {
+                EventBusHelper.register(eventAbstract);
+            }
+        }
+        log.info("Startup EventBus {} register completed.", beans.size());
+    }
+
+    public static void schedule() {
+        log.info("Startup Schedule Schedule init Starting...");
+        try {
+            // 默认实现
+            ISchedule job = new DefaultSchedule();
+            // 默认装饰追加
+            ISchedule job2 = new DefaultDecorator(job);
+            // 开始初始化....
+            job2.init();
+            log.info("Startup Schedule {} init completed.", ScheduleHelper.getJobsName().size());
+        } catch (Exception e) {
+            log.error("Startup Schedule {}", e);
         }
     }
 }

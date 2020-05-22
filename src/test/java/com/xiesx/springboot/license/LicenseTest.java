@@ -50,7 +50,7 @@ public class LicenseTest {
         System.out.println(format.format(issusedDate));
         param.setIssuedTime(issusedDate);
         // 证书失效时间
-        Date expiryDate = DateUtils.addMinutes(issusedDate, 30);
+        Date expiryDate = DateUtils.addDays(issusedDate, 30);
         System.out.println(format.format(expiryDate));
         param.setExpiryTime(expiryDate);
         // 消费类型

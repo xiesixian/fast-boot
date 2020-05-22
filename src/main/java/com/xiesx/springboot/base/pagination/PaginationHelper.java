@@ -9,7 +9,7 @@ import com.google.common.collect.Lists;
 import lombok.NonNull;
 
 /**
- * @title PaginationVO.java
+ * @title PaginationHelper.java
  * @description 分页帮助类
  * @author Sixian.xie
  * @date 2018年12月24日 下午1:16:06
@@ -17,8 +17,8 @@ import lombok.NonNull;
 public class PaginationHelper {
 
     /**
-     * 返回
-     *
+     * 构造
+     * 
      * @param page
      * @return
      */
@@ -27,10 +27,9 @@ public class PaginationHelper {
     }
 
     /**
-     * 返回
+     * 构造
      *
      * @param data
-     * @param total
      * @return
      */
     public static PaginationResult create(@NonNull List<?> data) {
@@ -38,7 +37,7 @@ public class PaginationHelper {
     }
 
     /**
-     * 返回
+     * 构造
      *
      * @param data
      * @param total

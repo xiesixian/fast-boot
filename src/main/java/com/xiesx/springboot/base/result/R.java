@@ -7,6 +7,12 @@ import com.alibaba.fastjson.parser.Feature;
 
 import lombok.NonNull;
 
+/**
+ * @title R.java
+ * @description
+ * @author Sixian.xie
+ * @date 2020年5月19日下午10:33:43
+ */
 public class R {
 
     /**

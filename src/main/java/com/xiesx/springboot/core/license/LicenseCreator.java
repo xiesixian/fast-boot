@@ -42,7 +42,6 @@ public class LicenseCreator {
             return false;
         }
     }
-    
 
 
     /**

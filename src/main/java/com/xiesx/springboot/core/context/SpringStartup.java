@@ -1,6 +1,5 @@
 package com.xiesx.springboot.core.context;
 
-import java.net.URL;
 import java.util.Map;
 
 import com.google.common.collect.Maps;
@@ -11,6 +10,7 @@ import com.xiesx.springboot.support.schedule.ScheduleHelper;
 import com.xiesx.springboot.support.schedule.decorator.DefaultDecorator;
 import com.xiesx.springboot.support.schedule.decorator.DefaultSchedule;
 import com.xiesx.springboot.support.schedule.impl.ISchedule;
+import com.xiesx.springboot.utils.RuntimeUtils;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -29,8 +29,7 @@ public class SpringStartup {
 
     public static void init() {
         try {
-            URL url = SpringStartup.class.getResource("/");
-            classUrl = url.getPath();
+            classUrl = RuntimeUtils.getRootPath();
             log.info("Startup classpath url " + classUrl);
             int index = classUrl.indexOf("/webapps/");
             if (index > 0) {
@@ -42,6 +41,7 @@ public class SpringStartup {
                 servername = classUrl.substring(classUrl.length() - 34);
                 serverpath = classUrl;
             }
+            System.out.println();
             log.info("Startup tomcat-name " + servername + ", path " + serverpath);
         } catch (Exception e) {
             log.error("", e);

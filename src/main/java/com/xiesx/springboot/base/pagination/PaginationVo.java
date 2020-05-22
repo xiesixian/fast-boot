@@ -3,7 +3,7 @@ package com.xiesx.springboot.base.pagination;
 import lombok.Data;
 
 /**
- * @title PaginationVO.java
+ * @title PaginationVo.java
  * @description 分页请求对象
  * @author Sixian.xie
  * @date 2018年12月24日 下午1:16:06

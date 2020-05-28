@@ -45,9 +45,9 @@ public class TokenInterceptorHandler extends HandlerInterceptorAdapter {
                         // 获取token
                         Claims claims = JwtHelper.parser(token);
                         // 设置requeest
-                        request.setAttribute(TokenCfg.USERID, claims.get(TokenCfg.USERID, String.class));
-                        request.setAttribute(TokenCfg.USERNAME, claims.get(TokenCfg.USERNAME, String.class));
-                        request.setAttribute(TokenCfg.NICKNAME, claims.get(TokenCfg.NICKNAME, String.class));
+                        request.setAttribute(TokenCfg.USERID, claims.getOrDefault(TokenCfg.USERID, ""));
+                        request.setAttribute(TokenCfg.USERNAME, claims.getOrDefault(TokenCfg.USERNAME, ""));
+                        request.setAttribute(TokenCfg.NICKNAME, claims.getOrDefault(TokenCfg.NICKNAME, ""));
                     } catch (Exception e) {
                         log.error("jwt token error", e);
                         if (e instanceof ExpiredJwtException) {

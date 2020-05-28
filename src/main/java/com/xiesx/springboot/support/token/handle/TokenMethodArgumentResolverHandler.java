@@ -43,10 +43,6 @@ public class TokenMethodArgumentResolverHandler implements HandlerMethodArgument
         if (ObjectUtils.isNotEmpty(nick_name)) {
             builder.nickName(nick_name);
         }
-        return builder.userId(String.valueOf(user_id)).build();
-    }
-
-    public static void main(String[] args) {
-        System.out.println(String.valueOf(null));
+        return builder.userId(user_id).build();
     }
 }

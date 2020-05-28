@@ -19,7 +19,7 @@ import com.xiesx.springboot.support.token.handle.TokenMethodArgumentResolverHand
 @Configuration
 public class TokenCfg implements WebMvcConfigurer {
 
-    public static final String USERID = "user_id";
+    public static final String USERID = "userid";
 
     public static final String USERNAME = "username";
 

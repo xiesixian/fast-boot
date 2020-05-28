@@ -6,6 +6,7 @@ import java.util.*;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -51,16 +52,6 @@ public class SignAspect {
 
     Boolean open = false;
 
-//    public SignAspect() {
-//        if (StringUtils.isEmpty(properties.getKey())) {
-//            key = SIGN_KEY;
-//        }
-//        if (StringUtils.isEmpty(properties.getVal())) {
-//            val = SIGN_VAL;
-//        }
-//        open = properties.getOpen();
-//    }
-
     @Pointcut("@annotation(com.xiesx.springboot.support.sgin.annotation.Signal)")
     public void signPointcut() {
         log.debug("signPointcut=====");
@@ -68,6 +59,9 @@ public class SignAspect {
 
     @Around("signPointcut()")
     public Object signBeforeAspect(ProceedingJoinPoint pjp) throws RunException, Throwable {
+        key = StringUtils.isNotEmpty(properties.getKey()) ? properties.getKey() : SIGN_KEY;
+        val = StringUtils.isNotEmpty(properties.getVal()) ? properties.getVal() : SIGN_VAL;
+        open = ObjectUtils.isNotEmpty(properties.getOpen()) ? properties.getOpen() : false;
         // 获取方法信息
         MethodSignature signature = (MethodSignature) pjp.getSignature();
         Method method = signature.getMethod();
@@ -86,7 +80,7 @@ public class SignAspect {
             parms.put(name, value);
         }
         // 是否进行效验
-        if (open && !isIgnore) {
+        if (open && isIgnore) {
             if (!parms.isEmpty()) {
                 // 从header中获取sign
                 String headerSign = request.getHeader(key);
@@ -100,7 +94,7 @@ public class SignAspect {
                 }
             }
         }
-        return null;
+        return pjp.proceed();
     }
 
     /**

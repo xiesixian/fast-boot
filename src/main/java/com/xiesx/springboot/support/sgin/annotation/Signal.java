@@ -15,5 +15,5 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Signal {
 
-    boolean ignore() default false;
+    boolean ignore() default true;
 }

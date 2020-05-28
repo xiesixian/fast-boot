@@ -11,8 +11,8 @@ public class SignProperties {
     public static final String PREFIX = "fastboot.sign";
 
     private String key;
-    
+
     private String val;
 
-    private Boolean open;
+    private Boolean open = false;
 }

@@ -7,10 +7,10 @@ import java.lang.annotation.Target;
 
 import org.springframework.context.annotation.Import;
 
-import com.xiesx.springboot.core.body.BaseResultBodyAdvice;
+import com.xiesx.springboot.core.body.GlobalBodyAdvice;
 
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-@Import({BaseResultBodyAdvice.class})
+@Import({GlobalBodyAdvice.class})
 public @interface GoEnableBodyAdvice {
 }

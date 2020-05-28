@@ -71,7 +71,7 @@ public class LicenseVerify {
         // 设置对证书内容加密的秘钥
         CipherParam cipherParam = new DefaultCipherParam(storePass);
 
-        KeyStoreParam privateStoreParam = new CustomKeyStoreParam(LicenseCreator.class, publicKeysStorePath, publicAlias, storePass, null);
+        KeyStoreParam privateStoreParam = new GoKeyStoreParam(LicenseCreator.class, publicKeysStorePath, publicAlias, storePass, null);
 
         return new DefaultLicenseParam(subject, preferences, privateStoreParam, cipherParam);
     }
@@ -81,7 +81,7 @@ public class LicenseVerify {
      */
     public void install() {
         try {
-            licenseManager = new CustomLicenseManager(initLicenseParam());
+            licenseManager = new GoLicenseManager(initLicenseParam());
             licenseManager.uninstall();
             LicenseContent licenseContent = licenseManager.install(new File(licensePath));
             DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

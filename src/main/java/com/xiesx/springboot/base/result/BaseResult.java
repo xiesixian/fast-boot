@@ -26,7 +26,7 @@ public class BaseResult {
 
     public static Integer ERROR = -2;// 异常
 
-    public static Integer ERROR_RETRY = -3;// 重试
+    public static Integer RETRY = -3;// 重试
 
     // 状态
     @JSONField(ordinal = 1)

@@ -1,16 +1,14 @@
 package com.xiesx.springboot.core.exception;
 
-import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import java.util.concurrent.ExecutionException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.BindException;
@@ -21,8 +19,6 @@ import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import com.alibaba.fastjson.JSONException;
-import com.github.rholder.retry.RetryException;
 import com.xiesx.springboot.base.result.BaseResult;
 import com.xiesx.springboot.base.result.R;
 import com.xiesx.springboot.support.validate.ValidatorHelper;
@@ -30,17 +26,30 @@ import com.xiesx.springboot.support.validate.ValidatorHelper;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * @title GlobalExceptionHandle.java
- * @description 全局配置异常处理，分为3种涵盖日常使用场景
+ * @title GlobalExceptionAdvice.java
+ * @description 全局配置异常处理，分为5种涵盖日常使用场景
  * @author Sixian.xie
  * @date 2018年12月21日 下午6:15:40
  */
 @Slf4j
 @RestControllerAdvice
-public class BaseRestExceptionAdvice {
+public class GlobalExceptionAdvice {
 
     /**
-     * 系统
+     * 运行
+     *
+     * @param request
+     * @param e
+     * @return
+     */
+    @ExceptionHandler({Exception.class})
+    public BaseResult runtimeException(HttpServletRequest request, Exception e) {
+        log.error("runtimeException ......", e);
+        return R.error(RunExc.RUNTIME.getErrorCode(), e.getMessage());
+    }
+
+    /**
+     * 请求
      *
      * @param request
      * @param e
@@ -48,8 +57,8 @@ public class BaseRestExceptionAdvice {
      */
     @ExceptionHandler({HttpMessageNotReadableException.class, HttpRequestMethodNotSupportedException.class,
             HttpMediaTypeNotSupportedException.class})
-    public BaseResult systemException(HttpServletRequest request, Exception e) {
-        log.error("systemException ......", e);
+    public BaseResult requestException(HttpServletRequest request, Exception e) {
+        log.error("requestException ......", e);
         String msg = "";
         if (e instanceof HttpMessageNotReadableException) {
             msg = "当前参数解析失败";// 400 - Bad Request
@@ -60,7 +69,7 @@ public class BaseRestExceptionAdvice {
         } else {
             msg = "未知系统异常";
         }
-        return R.error(msg);
+        return R.error(RunExc.REQUEST.getErrorCode(), msg);
     }
 
     /**
@@ -73,7 +82,7 @@ public class BaseRestExceptionAdvice {
     @ExceptionHandler({BindException.class, ConstraintViolationException.class})
     public BaseResult validatorException(HttpServletRequest request, Exception e) {
         log.error("validatorException ......", e);
-        BaseResult result = R.error("参数效验错误");
+        BaseResult result = R.error(RunExc.VALI.getErrorCode());
         // 这里走的是Spring Violation 验证 --> Java Violation，这里有BindException接收
         if (e instanceof BindException) {
             BindingResult violations = ((BindException) e).getBindingResult();
@@ -100,7 +109,7 @@ public class BaseRestExceptionAdvice {
      * @param e
      * @return
      */
-    @ExceptionHandler({EmptyResultDataAccessException.class})
+    @ExceptionHandler({DataAccessException.class})
     public BaseResult jdbcException(HttpServletRequest request, Exception e) {
         log.error("jdbcException ......", e);
         String msg = "";
@@ -110,20 +119,6 @@ public class BaseRestExceptionAdvice {
             msg = "未知数据异常";
         }
         return R.error(msg);
-    }
-
-    /**
-     * 运行
-     *
-     * @param request
-     * @param e
-     * @return
-     */
-    @ExceptionHandler({RuntimeException.class, IOException.class, JSONException.class, SQLException.class, ExecutionException.class,
-            RetryException.class})
-    public BaseResult runtimeException(HttpServletRequest request, Exception e) {
-        log.error("runtimeException ......", e);
-        return R.error(e.getMessage());
     }
 
     /**

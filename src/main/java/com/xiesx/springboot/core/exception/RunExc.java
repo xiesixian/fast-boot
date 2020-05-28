@@ -11,19 +11,19 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public enum RunExc {
 
-    RUN(9000, "运行异常"),
+    RUNTIME(1000, "运行错误"), // --> BaseRestExceptionAdvice --> runtimeException
 
-    HTTP(9010, "请求异常"),
+    REQUEST(2000, "请求错误"), // --> BaseRestExceptionAdvice --> requestException
 
-    SIGN(9020, "签名错误"),
+    VALI(3000, "效验错误"), // --> BaseRestExceptionAdvice --> validatorException
 
-    PARA(9030, "参数错误"),
+    JDBC(4000, "数据错误"), // --> BaseRestExceptionAdvice --> jdbcException
 
-    RETR(9040, "重试异常"),
+    TOKEN(5000, "凭据错误"), // --> TokenInterceptorHandler
 
-    CALL(9050, "回调异常"),
+    SIGNA(6000, "签名错误"), // --> SignAspect
 
-    API(9060, "接口异常");
+    RETRY(7000, "重试错误"); // --> BaseResultRetryListener
 
     private Integer errorCode;
 

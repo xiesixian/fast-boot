@@ -7,10 +7,10 @@ import java.lang.annotation.Target;
 
 import org.springframework.context.annotation.Import;
 
-import com.xiesx.springboot.core.exception.BaseRestExceptionAdvice;
+import com.xiesx.springboot.core.exception.GlobalExceptionAdvice;
 
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-@Import({BaseRestExceptionAdvice.class})
+@Import({GlobalExceptionAdvice.class})
 public @interface GoEnableRestExcAdvice {
 }

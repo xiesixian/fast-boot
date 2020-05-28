@@ -7,21 +7,18 @@ import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import de.schlichtherle.license.*;
 import de.schlichtherle.xml.GenericCertificate;
 import de.schlichtherle.xml.XMLConstants;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 自定义LicenseManager，用于增加额外的信息校验(除了LicenseManager的校验，我们还可以在这个类里面添加额外的校验信息)
  */
-public class CustomLicenseManager extends LicenseManager {
+@Slf4j
+public class GoLicenseManager extends LicenseManager {
 
-    private static Logger logger = LogManager.getLogger(CustomLicenseManager.class);
-
-    public CustomLicenseManager(LicenseParam param) {
+    public GoLicenseManager(LicenseParam param) {
         super(param);
     }
 
@@ -96,7 +93,7 @@ public class CustomLicenseManager extends LicenseManager {
                     inputStream.close();
                 }
             } catch (Exception e) {
-                logger.error("XMLDecoder解析XML失败", e);
+                log.error("XMLDecoder解析XML失败", e);
             }
         }
 

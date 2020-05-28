@@ -11,7 +11,7 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class RunException extends Throwable {
+public class RunException extends RuntimeException {
 
     private static final long serialVersionUID = 1L;
 
@@ -28,7 +28,7 @@ public class RunException extends Throwable {
      */
     public RunException(String message) {
         super(message);
-        this.errorCode = RunExc.RUN.getErrorCode();
+        this.errorCode = RunExc.RUNTIME.getErrorCode();
     }
 
     /**
@@ -38,11 +38,11 @@ public class RunException extends Throwable {
      */
     public RunException(Throwable e) {
         super(e);
-        this.errorCode = RunExc.RUN.getErrorCode();
+        this.errorCode = RunExc.RUNTIME.getErrorCode();
     }
 
     /**
-     * throw new RunException(ActExc.BUSINESS);
+     * throw new RunException(RunExc.RUN);
      *
      * @param message
      */
@@ -52,25 +52,25 @@ public class RunException extends Throwable {
     }
 
     /**
-     * throw new RunException(ActExc.BUSINESS,"活动业务处理失败----");
+     * throw new RunException(RunExc.RUN,"活动业务处理失败----");
      *
      * @param message
      * @param message
      */
     public RunException(RunExc act, String message) {
-        super(act.getMassage() + " : " + message);
+        super(act.getMassage() + ":" + message);
         this.errorCode = act.getErrorCode();
     }
 
     /**
-     * throw new RunException(ActExc.BUSINESS,"{}活动业务处理失败----","暑期砍价");
+     * throw new RunException(RunExc.RUN,"{}活动业务处理失败----","暑期砍价");
      *
      * @param message
      * @param format
      * @param message
      */
     public RunException(RunExc act, String format, Object... message) {
-        super(act.getMassage() + " : " + String.format(format, message));
+        super(act.getMassage() + ":" + String.format(format, message));
         this.errorCode = act.getErrorCode();
     }
 }

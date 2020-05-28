@@ -19,6 +19,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.google.common.collect.Maps;
+import com.xiesx.springboot.core.exception.RunExc;
 import com.xiesx.springboot.core.exception.RunException;
 import com.xiesx.springboot.support.sgin.annotation.GoSign;
 
@@ -81,9 +82,9 @@ public class SignAspect {
                 String sign = request.getHeader(SIGN_KEY);
                 // sign为空
                 if (StringUtils.isEmpty(sign)) {
-                    throw new RuntimeException("验签错误，非法请求");
+                    throw new RunException(RunExc.SIGNA, "非法请求");
                 } else if (!getSignature(parms, sign).equals(sign)) {
-                    throw new RuntimeException("验签失败，非法请求");
+                    throw new RunException(RunExc.SIGNA, "验签失败");
                 } else {
                     return pjp.proceed();
                 }

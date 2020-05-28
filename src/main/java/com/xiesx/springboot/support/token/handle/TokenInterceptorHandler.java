@@ -10,6 +10,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import com.xiesx.springboot.core.exception.RunExc;
+import com.xiesx.springboot.core.exception.RunException;
 import com.xiesx.springboot.support.token.JwtHelper;
 import com.xiesx.springboot.support.token.annotation.Token;
 import com.xiesx.springboot.support.token.cfg.TokenCfg;
@@ -39,7 +41,7 @@ public class TokenInterceptorHandler extends HandlerInterceptorAdapter {
                     // 获取token
                     String token = request.getHeader("token");
                     if (StringUtils.isEmpty(token)) {
-                        throw new RuntimeException("未登录");
+                        throw new RunException(RunExc.TOKEN, "未登录");
                     }
                     try {
                         // 获取token
@@ -51,9 +53,9 @@ public class TokenInterceptorHandler extends HandlerInterceptorAdapter {
                     } catch (Exception e) {
                         log.error("jwt token error", e);
                         if (e instanceof ExpiredJwtException) {
-                            throw new RuntimeException("登录已失效");
+                            throw new RunException(RunExc.TOKEN, "已失效");
                         } else {
-                            throw new RuntimeException("登录错误");
+                            throw new RunException(RunExc.TOKEN);
                         }
                     }
                 }

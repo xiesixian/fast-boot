@@ -1,9 +1,9 @@
 package com.xiesx.springboot.base.result;
 
-import java.util.concurrent.ExecutionException;
-
 import com.github.rholder.retry.Attempt;
 import com.github.rholder.retry.RetryListener;
+import com.xiesx.springboot.core.exception.RunExc;
+import com.xiesx.springboot.core.exception.RunException;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -29,8 +29,8 @@ public class BaseResultRetryListener<T> implements RetryListener {
                             attempt.getDelaySinceFirstAttempt(), attempt.hasException(), attempt.hasResult(),
                             ((BaseResult) result).getCode());
                 }
-            } catch (ExecutionException e) {
-                log.error("onResult attempt produce exception:{}", e.getCause().toString());
+            } catch (Exception e) {
+                throw new RunException(RunExc.RETRY, e.getMessage());
             }
         }
     }

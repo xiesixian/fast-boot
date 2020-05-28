@@ -27,12 +27,12 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RestControllerAdvice
 @SuppressWarnings("all")
-public class BaseResultBodyAdvice implements ResponseBodyAdvice<Object> {
+public class GlobalBodyAdvice implements ResponseBodyAdvice<Object> {
 
     /**
      * systemException --> GlobalExceptionHandle.java 31行
      */
-    String[] methodNames = {"systemException"};
+    String[] methodNames = {"requestException"};
 
     @Override
     public Object beforeBodyWrite(Object returnValue, MethodParameter methodParameter, MediaType mediaType, Class clas,

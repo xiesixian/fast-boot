@@ -32,7 +32,7 @@ public class LicenseCreator {
      */
     public boolean generateLicense() {
         try {
-            LicenseManager licenseManager = new CustomLicenseManager(initLicenseParam());
+            LicenseManager licenseManager = new GoLicenseManager(initLicenseParam());
             LicenseContent licenseContent = initLicenseContent();
             licenseManager.store(licenseContent, new File(param.getLicensePath()));
             return true;
@@ -52,7 +52,7 @@ public class LicenseCreator {
         // 设置对证书内容加密的秘钥
         CipherParam cipherParam = new DefaultCipherParam(param.getStorePass());
 
-        KeyStoreParam privateStoreParam = new CustomKeyStoreParam(LicenseCreator.class, param.getPrivateKeysStorePath(),
+        KeyStoreParam privateStoreParam = new GoKeyStoreParam(LicenseCreator.class, param.getPrivateKeysStorePath(),
                 param.getPrivateAlias(), param.getStorePass(), param.getKeyPass());
 
         return new DefaultLicenseParam(param.getSubject(), preferences, privateStoreParam, cipherParam);

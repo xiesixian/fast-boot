@@ -7,6 +7,6 @@ public class P6SpyLogger implements MessageFormattingStrategy {
     @Override
     public String formatMessage(int connectionId, String now, long elapsed, String category, String prepared,
             String sql, String url) {
-        return "| took " + elapsed + "ms | " + "\n " + sql;
+        return "| took " + elapsed + "ms | " + sql;
     }
 }

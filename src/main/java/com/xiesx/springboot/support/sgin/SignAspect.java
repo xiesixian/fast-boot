@@ -40,10 +40,10 @@ public class SignAspect {
 
     public static final String SIGN_VAL = "1234567890";
 
-    @Value("${go.sign}")
+    @Value("${fb.sign}")
     String sign;
 
-    @Value("${go.active}")
+    @Value("${fb.active}")
     String active;
 
     @Pointcut("@annotation(com.xiesx.gotv.core.sgin.annotation.GoSign)")

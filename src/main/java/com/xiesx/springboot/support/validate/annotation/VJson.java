@@ -25,10 +25,10 @@ import com.xiesx.springboot.support.validate.rule.VJsonRule;
 // 定义对应的校验器,自定义注解必须指定
 @Constraint(validatedBy = {VJsonRule.class})
 // 附带不能为空
-@NotEmpty(message = "{go.empty}")
+@NotEmpty(message = "{fb.empty}")
 public @interface VJson {
 
-    String message() default "{go.json}";// 错误提示信息默认值，可以使用el表达式。
+    String message() default "{fb.json}";// 错误提示信息默认值，可以使用el表达式。
 
     Class<?>[] groups() default {};// 约束注解在验证时所属的组别
 

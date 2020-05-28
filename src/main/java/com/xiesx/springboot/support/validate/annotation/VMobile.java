@@ -25,9 +25,9 @@ import org.hibernate.validator.constraints.Length;
 // 定义对应的校验器,自定义注解必须指定
 @Constraint(validatedBy = {})
 // 定义不能为空
-@NotEmpty(message = "{go.empty}")
+@NotEmpty(message = "{fb.empty}")
 // 定义长度验证
-@Length(min = 11, max = 11, message = "{go.mobile}")
+@Length(min = 11, max = 11, message = "{fb.mobile}")
 public @interface VMobile {
 
     String message() default "";// 错误提示信息默认值，可以使用el表达式。

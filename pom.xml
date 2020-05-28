@@ -56,6 +56,12 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		<!-- configuration -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
 		<!-- data-jdbc -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

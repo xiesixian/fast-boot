@@ -12,7 +12,7 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -21,7 +21,8 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import com.google.common.collect.Maps;
 import com.xiesx.springboot.core.exception.RunExc;
 import com.xiesx.springboot.core.exception.RunException;
-import com.xiesx.springboot.support.sgin.annotation.GoSign;
+import com.xiesx.springboot.support.sgin.annotation.Signal;
+import com.xiesx.springboot.support.sgin.cfg.SignProperties;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -34,20 +35,33 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Component
 @Aspect
-@Order(2)
+@Order(0)
 public class SignAspect {
 
     public static final String SIGN_KEY = "sign";
 
     public static final String SIGN_VAL = "1234567890";
 
-    @Value("${fb.sign}")
-    String sign;
+    @Autowired
+    SignProperties properties;
 
-    @Value("${fb.active}")
-    String active;
+    String key;
 
-    @Pointcut("@annotation(com.xiesx.gotv.core.sgin.annotation.GoSign)")
+    String val;
+
+    Boolean open = false;
+
+//    public SignAspect() {
+//        if (StringUtils.isEmpty(properties.getKey())) {
+//            key = SIGN_KEY;
+//        }
+//        if (StringUtils.isEmpty(properties.getVal())) {
+//            val = SIGN_VAL;
+//        }
+//        open = properties.getOpen();
+//    }
+
+    @Pointcut("@annotation(com.xiesx.springboot.support.sgin.annotation.Signal)")
     public void signPointcut() {
         log.debug("signPointcut=====");
     }
@@ -58,7 +72,7 @@ public class SignAspect {
         MethodSignature signature = (MethodSignature) pjp.getSignature();
         Method method = signature.getMethod();
         // 获取注解信息
-        GoSign annotation = method.getAnnotation(GoSign.class);
+        Signal annotation = method.getAnnotation(Signal.class);
         Boolean isIgnore = Boolean.valueOf(annotation == null ? true : annotation.ignore());
         // 参数集
         Map<String, String> parms = Maps.newConcurrentMap();
@@ -71,19 +85,15 @@ public class SignAspect {
             String value = request.getParameter(name);
             parms.put(name, value);
         }
-        // 判断是否使用默认配置
-        if (StringUtils.isEmpty(sign)) {
-            sign = SIGN_VAL;
-        }
         // 是否进行效验
-        if (active.equals("release") && !isIgnore) {
+        if (open && !isIgnore) {
             if (!parms.isEmpty()) {
                 // 从header中获取sign
-                String sign = request.getHeader(SIGN_KEY);
+                String headerSign = request.getHeader(key);
                 // sign为空
-                if (StringUtils.isEmpty(sign)) {
+                if (StringUtils.isEmpty(headerSign)) {
                     throw new RunException(RunExc.SIGNA, "非法请求");
-                } else if (!getSignature(parms, sign).equals(sign)) {
+                } else if (!getSignature(parms, val).equals(headerSign)) {
                     throw new RunException(RunExc.SIGNA, "验签失败");
                 } else {
                     return pjp.proceed();

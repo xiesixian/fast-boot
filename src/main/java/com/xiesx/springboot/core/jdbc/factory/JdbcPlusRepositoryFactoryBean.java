@@ -67,8 +67,8 @@ public class JdbcPlusRepositoryFactoryBean<T extends Repository<S, ID>, S, ID ex
 
     @Override
     protected RepositoryFactorySupport doCreateRepositoryFactory() {
-        JdbcPlusRepositoryFactory jdbcRepositoryFactory = new JdbcPlusRepositoryFactory(dataAccessStrategy,
-                mappingContext, converter, publisher, operations, sqlQueryFactory);
+        JdbcPlusRepositoryFactory jdbcRepositoryFactory =
+                new JdbcPlusRepositoryFactory(dataAccessStrategy, mappingContext, converter, publisher, operations, sqlQueryFactory);
         jdbcRepositoryFactory.setQueryMappingConfiguration(queryMappingConfiguration);
         jdbcRepositoryFactory.setEntityCallbacks(entityCallbacks);
         return jdbcRepositoryFactory;
@@ -133,8 +133,7 @@ public class JdbcPlusRepositoryFactoryBean<T extends Repository<S, ID>, S, ID ex
             this.dataAccessStrategy = this.beanFactory.getBeanProvider(DataAccessStrategy.class) //
                     .getIfAvailable(() -> {
                         SqlGeneratorSource sqlGeneratorSource = new SqlGeneratorSource(this.mappingContext);
-                        return new DefaultDataAccessStrategy(sqlGeneratorSource, this.mappingContext, this.converter,
-                                this.operations);
+                        return new DefaultDataAccessStrategy(sqlGeneratorSource, this.mappingContext, this.converter, this.operations);
                     });
         }
 

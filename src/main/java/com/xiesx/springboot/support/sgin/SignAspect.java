@@ -62,8 +62,7 @@ public class SignAspect {
         // 参数集
         Map<String, String> parms = Maps.newConcurrentMap();
         // 获取请求信息
-        HttpServletRequest request =
-                ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         // 获取参数
         Enumeration<String> names = request.getParameterNames();
         while (names.hasMoreElements()) {

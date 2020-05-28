@@ -64,8 +64,7 @@ public class SpringHelper {
     public static <T> T getBean(Class<T> clazz, String qualifier) {
         ApplicationContext applicationContext = SpringApplicationContextAware.getApplicationContext();
         if (applicationContext != null) {
-            return BeanFactoryAnnotationUtils.qualifiedBeanOfType(applicationContext.getAutowireCapableBeanFactory(),
-                    clazz, qualifier);
+            return BeanFactoryAnnotationUtils.qualifiedBeanOfType(applicationContext.getAutowireCapableBeanFactory(), clazz, qualifier);
         }
         return null;
     }

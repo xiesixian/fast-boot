@@ -54,8 +54,7 @@ public class LicenseVerify {
 
     public LicenseVerify() {}
 
-    public LicenseVerify(String subject, String publicAlias, String storePass, String licensePath,
-            String publicKeysStorePath) {
+    public LicenseVerify(String subject, String publicAlias, String storePass, String licensePath, String publicKeysStorePath) {
         this.subject = subject;
         this.publicAlias = publicAlias;
         this.storePass = storePass;
@@ -72,8 +71,7 @@ public class LicenseVerify {
         // 设置对证书内容加密的秘钥
         CipherParam cipherParam = new DefaultCipherParam(storePass);
 
-        KeyStoreParam privateStoreParam =
-                new CustomKeyStoreParam(LicenseCreator.class, publicKeysStorePath, publicAlias, storePass, null);
+        KeyStoreParam privateStoreParam = new CustomKeyStoreParam(LicenseCreator.class, publicKeysStorePath, publicAlias, storePass, null);
 
         return new DefaultLicenseParam(subject, preferences, privateStoreParam, cipherParam);
     }

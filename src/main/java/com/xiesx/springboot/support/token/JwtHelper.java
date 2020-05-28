@@ -67,13 +67,12 @@ public class JwtHelper {
         return create(JWT_ISSUER, audience, subject, null, claims, timeout);
     }
 
-    public static String create(String audience, String subject, Map<String, Object> header, Map<String, Object> claims,
-            long timeout) {
+    public static String create(String audience, String subject, Map<String, Object> header, Map<String, Object> claims, long timeout) {
         return create(JWT_ISSUER, audience, subject, header, claims, timeout);
     }
 
-    public static String create(String issuer, String audience, String subject, Map<String, Object> header,
-            Map<String, Object> claims, long timeout) {
+    public static String create(String issuer, String audience, String subject, Map<String, Object> header, Map<String, Object> claims,
+            long timeout) {
         //
         String jwtid = UUID.randomUUID().toString();
         //

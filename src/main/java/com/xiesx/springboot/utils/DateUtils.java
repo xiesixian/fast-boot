@@ -77,8 +77,7 @@ public class DateUtils {
      * @param seconds 秒
      * @return yyyy-MM-dd HH:mm:ss
      */
-    public static String getPointTime(Integer year, Integer month, Integer day, Integer hour, Integer minute,
-            Integer seconds) {
+    public static String getPointTime(Integer year, Integer month, Integer day, Integer hour, Integer minute, Integer seconds) {
         DateTime dt = new DateTime(year, month, day, hour, minute, seconds);
         String date = dt.toString(FORMAT_TIME);
         return date;
@@ -95,8 +94,8 @@ public class DateUtils {
      * @param parrten 自定义格式
      * @return parrten
      */
-    public static String getPointTimePattern(Integer year, Integer month, Integer day, Integer hour, Integer minute,
-            Integer seconds, String parrten) {
+    public static String getPointTimePattern(Integer year, Integer month, Integer day, Integer hour, Integer minute, Integer seconds,
+            String parrten) {
         DateTime dt = new DateTime(year, month, day, hour, minute, seconds);
         String date = dt.toString(parrten);
         return date;
@@ -490,8 +489,7 @@ public class DateUtils {
         } else {
             dt1 = new DateTime(date).minusMonths(month);
         }
-        DateTime lastDay =
-                dt1.dayOfMonth().withMaximumValue().withHourOfDay(23).withMinuteOfHour(59).withSecondOfMinute(59);
+        DateTime lastDay = dt1.dayOfMonth().withMaximumValue().withHourOfDay(23).withMinuteOfHour(59).withSecondOfMinute(59);
         return lastDay.toDate();
     }
 
@@ -510,8 +508,7 @@ public class DateUtils {
         } else {
             dt1 = new DateTime(date).minusMonths(month);
         }
-        DateTime lastDay =
-                dt1.dayOfMonth().withMinimumValue().withHourOfDay(0).withMinuteOfHour(0).withSecondOfMinute(0);
+        DateTime lastDay = dt1.dayOfMonth().withMinimumValue().withHourOfDay(0).withMinuteOfHour(0).withSecondOfMinute(0);
         return lastDay.toDate();
     }
 

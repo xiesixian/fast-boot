@@ -35,8 +35,7 @@ public class ScheduleHelper {
      * @param cron 时间设置，参考quartz说明文档
      * @throws SchedulerException
      */
-    public static void addJob(String jobName, Class<? extends Job> cls, String cron, JobDataMap map)
-            throws SchedulerException {
+    public static void addJob(String jobName, Class<? extends Job> cls, String cron, JobDataMap map) throws SchedulerException {
         Scheduler sched = gSchedulerFactory.getScheduler();
         // 用于描叙Job实现类及其他的一些静态信息，构建一个作业实例
         JobDetail jobDetail = JobBuilder.newJob(cls).setJobData(map).withIdentity(jobName, JOB_GROUP_NAME).build();
@@ -69,8 +68,8 @@ public class ScheduleHelper {
      * @param jobClass 任务
      * @param cron 时间设置，参考quartz说明文档
      */
-    public static void addJob(String jobName, String jobGroupName, String triggerName, String triggerGroupName,
-            Class<? extends Job> cls, String cron, JobDataMap map) throws SchedulerException {
+    public static void addJob(String jobName, String jobGroupName, String triggerName, String triggerGroupName, Class<? extends Job> cls,
+            String cron, JobDataMap map) throws SchedulerException {
 
         Scheduler sched = gSchedulerFactory.getScheduler();
         // 用于描叙Job实现类及其他的一些静态信息，构建一个作业实例

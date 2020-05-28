@@ -53,8 +53,7 @@ public class GeneratorHelper {
             configuration = new Configuration(Configuration.DEFAULT_INCOMPATIBLE_IMPROVEMENTS);
             configuration.setDefaultEncoding(ConstVal.UTF8);
             try {
-                configuration.setDirectoryForTemplateLoading(
-                        new File(rootPath + File.separator + getTmplPath().toFile().getPath()));
+                configuration.setDirectoryForTemplateLoading(new File(rootPath + File.separator + getTmplPath().toFile().getPath()));
             } catch (IOException e) {
                 e.printStackTrace();
             }

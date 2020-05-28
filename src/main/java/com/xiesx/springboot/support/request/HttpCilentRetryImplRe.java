@@ -28,8 +28,7 @@ import net.dongliu.requests.*;
 @Slf4j
 @Scope("prototype")
 @Component("httpCilentRetryImplRe")
-public class HttpCilentRetryImplRe extends BaseHttpRetryCilent
-        implements IHttpCilentRetry<RawResponse>, IHttpCallable<RawResponse> {
+public class HttpCilentRetryImplRe extends BaseHttpRetryCilent implements IHttpCilentRetry<RawResponse>, IHttpCallable<RawResponse> {
 
     /**
      * ============这里灰常重要
@@ -76,8 +75,7 @@ public class HttpCilentRetryImplRe extends BaseHttpRetryCilent
     }
 
     @Override
-    public RawResponse get_try(String url, Map<String, Object> params, Proxy proxy)
-            throws ExecutionException, RetryException {
+    public RawResponse get_try(String url, Map<String, Object> params, Proxy proxy) throws ExecutionException, RetryException {
         // 构造
         Retryer<RawResponse> retry = RetryerBuilder.<RawResponse>newBuilder()
                 // 抛出runtime异常、checked异常时都会重试，但是抛出error不会重试。
@@ -112,8 +110,7 @@ public class HttpCilentRetryImplRe extends BaseHttpRetryCilent
     }
 
     @Override
-    public RawResponse post_try(String url, Map<String, Object> params, Proxy proxy)
-            throws ExecutionException, RetryException {
+    public RawResponse post_try(String url, Map<String, Object> params, Proxy proxy) throws ExecutionException, RetryException {
         // 构造
         Retryer<RawResponse> retry = RetryerBuilder.<RawResponse>newBuilder()
                 // 抛出runtime异常、checked异常时都会重试，但是抛出error不会重试。
@@ -168,8 +165,7 @@ public class HttpCilentRetryImplRe extends BaseHttpRetryCilent
     // ========call========
 
     @Override
-    public Callable<RawResponse> call(final String method, final String url, final Map<String, Object> params,
-            final Proxy proxy) {
+    public Callable<RawResponse> call(final String method, final String url, final Map<String, Object> params, final Proxy proxy) {
 
         return () -> request(method, url, params, proxy);
     }

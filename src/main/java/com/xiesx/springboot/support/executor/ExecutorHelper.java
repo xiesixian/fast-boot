@@ -35,8 +35,7 @@ public class ExecutorHelper {
     /**
      * 缓存型线程池
      */
-    private static ListeningExecutorService service_data =
-            MoreExecutors.listeningDecorator(Executors.newCachedThreadPool());
+    private static ListeningExecutorService service_data = MoreExecutors.listeningDecorator(Executors.newCachedThreadPool());
 
     /**
      * 添加异步计算任务

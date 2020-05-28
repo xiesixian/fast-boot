@@ -64,13 +64,10 @@ public class ScriptTag extends BodyTagSupport {
             _scriptTmpl.append(" src=\"").append(this.getSrc()).append("\"");
             _isEmpty = false;
         }
-        _scriptTmpl.append(" type=\"")
-                .append(StringUtils.defaultIfBlank(this.getType(), "text/javascript"))
-                .append("\">");
+        _scriptTmpl.append(" type=\"").append(StringUtils.defaultIfBlank(this.getType(), "text/javascript")).append("\">");
         if (_isEmpty && StringUtils.isNotEmpty(this.getValue())) {
             String _wrapper = StringUtils.defaultIfBlank(this.getWrapper(), "script");
-            String _content =
-                    StringUtils.substringBetween(this.getValue(), "<" + _wrapper + ">", "</" + _wrapper + ">");
+            String _content = StringUtils.substringBetween(this.getValue(), "<" + _wrapper + ">", "</" + _wrapper + ">");
             if (StringUtils.isNotEmpty(_content)) {
                 this.setValue(_content);
             }

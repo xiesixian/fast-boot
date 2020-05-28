@@ -22,8 +22,7 @@ public class IdWorkerGenerator implements Configurable, IdentifierGenerator {
     }
 
     @Override
-    public Serializable generate(SharedSessionContractImplementor sharedSessionContractImplementor, Object o)
-            throws HibernateException {
+    public Serializable generate(SharedSessionContractImplementor sharedSessionContractImplementor, Object o) throws HibernateException {
         if (StringUtils.isNoneEmpty(this.pre)) {
             return this.pre + IdWorker.getID();
         }

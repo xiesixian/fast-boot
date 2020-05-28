@@ -35,8 +35,7 @@ public class LayoutTag extends BaseUITag {
         try {
             if (StringUtils.isNotEmpty(this.getSrc())) {
                 __tmplContent = TagUtils.includeJSP((HttpServletRequest) this.pageContext.getRequest(),
-                        (HttpServletResponse) this.pageContext.getResponse(), this.buildSrcUrl(),
-                        __ui.getCharsetEncoding());
+                        (HttpServletResponse) this.pageContext.getResponse(), this.buildSrcUrl(), __ui.getCharsetEncoding());
             } else {
                 __tmplContent = "";
             }

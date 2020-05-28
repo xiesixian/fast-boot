@@ -38,8 +38,7 @@ public class IdWorker {
 
     private IdWorker(long workerId) {
         if (workerId > this.maxWorkerId || workerId < 0) {
-            throw new IllegalArgumentException(
-                    String.format("worker Id can't be greater than %d or less than 0", this.maxWorkerId));
+            throw new IllegalArgumentException(String.format("worker Id can't be greater than %d or less than 0", this.maxWorkerId));
         }
         this.workerId = workerId;
     }
@@ -75,10 +74,10 @@ public class IdWorker {
         }
 
         if (timestamp < this.lastTimestamp) {
-            logger.error(String.format("clock moved backwards.Refusing to generate id for %d milliseconds",
-                    (this.lastTimestamp - timestamp)));
-            throw new Exception(String.format("clock moved backwards.Refusing to generate id for %d milliseconds",
-                    (this.lastTimestamp - timestamp)));
+            logger.error(
+                    String.format("clock moved backwards.Refusing to generate id for %d milliseconds", (this.lastTimestamp - timestamp)));
+            throw new Exception(
+                    String.format("clock moved backwards.Refusing to generate id for %d milliseconds", (this.lastTimestamp - timestamp)));
         }
 
         this.lastTimestamp = timestamp;

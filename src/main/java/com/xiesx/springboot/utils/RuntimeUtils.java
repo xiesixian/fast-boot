@@ -154,8 +154,7 @@ public class RuntimeUtils {
                 _rootPath = _rootURL.getPath();
             }
         } else {
-            _rootPath = StringUtils
-                    .removeEnd(StringUtils.substringBefore(_rootURL.getPath(), safe ? "classes/" : "WEB-INF/"), "/");
+            _rootPath = StringUtils.removeEnd(StringUtils.substringBefore(_rootURL.getPath(), safe ? "classes/" : "WEB-INF/"), "/");
         }
         //
         if (_rootPath != null) {

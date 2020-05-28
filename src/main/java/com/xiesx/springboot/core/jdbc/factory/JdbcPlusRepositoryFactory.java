@@ -44,9 +44,8 @@ public class JdbcPlusRepositoryFactory extends JdbcRepositoryFactory {
 
     private EntityCallbacks entityCallbacks;
 
-    public JdbcPlusRepositoryFactory(DataAccessStrategy dataAccessStrategy, RelationalMappingContext context,
-            JdbcConverter converter, ApplicationEventPublisher publisher, NamedParameterJdbcOperations operations,
-            SQLQueryFactory sqlQueryFactory) {
+    public JdbcPlusRepositoryFactory(DataAccessStrategy dataAccessStrategy, RelationalMappingContext context, JdbcConverter converter,
+            ApplicationEventPublisher publisher, NamedParameterJdbcOperations operations, SQLQueryFactory sqlQueryFactory) {
         super(dataAccessStrategy, context, converter, publisher, operations);
         this.publisher = publisher;
         this.context = context;
@@ -72,8 +71,8 @@ public class JdbcPlusRepositoryFactory extends JdbcRepositoryFactory {
         Class<?> type = repositoryInformation.getDomainType();
         RelationalPath<?> relationalPathBase = getRelationalPathBase(repositoryInformation);
         ConstructorExpression<?> constructor = getConstructorExpression(type, relationalPathBase);
-        JdbcPlusRepositoryExecutor<?, ?> repository = new JdbcPlusRepositoryExecutor(template,
-                context.getRequiredPersistentEntity(type), sqlQueryFactory, constructor, relationalPathBase);
+        JdbcPlusRepositoryExecutor<?, ?> repository = new JdbcPlusRepositoryExecutor(template, context.getRequiredPersistentEntity(type),
+                sqlQueryFactory, constructor, relationalPathBase);
         if (entityCallbacks != null) {
             template.setEntityCallbacks(entityCallbacks);
         }
@@ -87,9 +86,8 @@ public class JdbcPlusRepositoryFactory extends JdbcRepositoryFactory {
             throw new IllegalArgumentException("Could not discover preferred constructor for " + type);
         }
 
-        Map<String, Path<?>> columnNameToColumn = pathBase.getColumns()
-                .stream()
-                .collect(Collectors.toMap(column -> column.getMetadata().getName(), Function.identity()));
+        Map<String, Path<?>> columnNameToColumn =
+                pathBase.getColumns().stream().collect(Collectors.toMap(column -> column.getMetadata().getName(), Function.identity()));
 
         Path<?>[] paths = constructor.getParameters()
                 .stream()
@@ -102,9 +100,8 @@ public class JdbcPlusRepositoryFactory extends JdbcRepositoryFactory {
 
     private RelationalPathBase<?> getRelationalPathBase(RepositoryInformation repositoryInformation) {
 
-        ResolvableType entityType = ResolvableType.forClass(repositoryInformation.getRepositoryInterface())
-                .as(JdbcPlusRepository.class)
-                .getGeneric(0);
+        ResolvableType entityType =
+                ResolvableType.forClass(repositoryInformation.getRepositoryInterface()).as(JdbcPlusRepository.class).getGeneric(0);
         if (entityType.getRawClass() == null) {
             throw new IllegalArgumentException("Could not resolve query class for " + repositoryInformation);
         }

@@ -31,8 +31,7 @@ public class DefaultDecorator extends BaseDecorator implements ISchedule {
             map.put(SimpleJobSchedule.simple_job_key, "time is ");
             try {
                 ScheduleHelper.removeJob(SimpleJobSchedule.simple_job_name);
-                ScheduleHelper.addJob(SimpleJobSchedule.simple_job_name, SimpleJobSchedule.class,
-                        SimpleJobSchedule.simple_job_cron, map);
+                ScheduleHelper.addJob(SimpleJobSchedule.simple_job_name, SimpleJobSchedule.class, SimpleJobSchedule.simple_job_cron, map);
             } catch (SchedulerException e) {
                 log.error("DefaultDecorator error", e);
             }

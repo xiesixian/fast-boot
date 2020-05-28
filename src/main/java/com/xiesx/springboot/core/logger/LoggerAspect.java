@@ -63,8 +63,8 @@ public class LoggerAspect {
         String req = "";
         if (args.length != 0) {
             for (Object arg : args) {
-                if ((!(arg instanceof ServletRequest)) && (!(arg instanceof ServletResponse))
-                        && (!(arg instanceof MultipartFile)) && (!(arg instanceof Model))) {
+                if ((!(arg instanceof ServletRequest)) && (!(arg instanceof ServletResponse)) && (!(arg instanceof MultipartFile))
+                        && (!(arg instanceof Model))) {
                     req = JSON.toJSONString(arg, isPrettyFormat);
                 }
             }
@@ -83,8 +83,7 @@ public class LoggerAspect {
         // 响应
         String res = JSON.toJSONString(ret, isPrettyFormat);
         if (isPrint) {
-            log.info("=========request end {} {} {} {}",
-                    new Object[] {methodName, Long.valueOf(endTime), res, Long.valueOf(t)});
+            log.info("=========request end {} {} {} {}", new Object[] {methodName, Long.valueOf(endTime), res, Long.valueOf(t)});
         }
         return ret;
     }

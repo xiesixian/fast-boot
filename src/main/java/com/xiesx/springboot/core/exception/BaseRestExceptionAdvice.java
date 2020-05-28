@@ -119,8 +119,8 @@ public class BaseRestExceptionAdvice {
      * @param e
      * @return
      */
-    @ExceptionHandler({RuntimeException.class, IOException.class, JSONException.class, SQLException.class,
-            ExecutionException.class, RetryException.class})
+    @ExceptionHandler({RuntimeException.class, IOException.class, JSONException.class, SQLException.class, ExecutionException.class,
+            RetryException.class})
     public BaseResult runtimeException(HttpServletRequest request, Exception e) {
         log.error("runtimeException ......", e);
         return R.error(e.getMessage());

@@ -37,11 +37,11 @@ public class TagUtils {
      * @throws ServletException 可能产生的异常
      * @throws IOException 可能产生的异常
      */
-    public static String includeJSP(HttpServletRequest request, HttpServletResponse response, String jspFile,
-            String charsetEncoding) throws ServletException, IOException {
+    public static String includeJSP(HttpServletRequest request, HttpServletResponse response, String jspFile, String charsetEncoding)
+            throws ServletException, IOException {
         final OutputStream _output = new ByteArrayOutputStream();
-        final PrintWriter _writer = new PrintWriter(new OutputStreamWriter(_output,
-                StringUtils.defaultIfEmpty(charsetEncoding, response.getCharacterEncoding())));
+        final PrintWriter _writer = new PrintWriter(
+                new OutputStreamWriter(_output, StringUtils.defaultIfEmpty(charsetEncoding, response.getCharacterEncoding())));
         final ServletOutputStream _servletOutput = new ServletOutputStream() {
 
             @Override

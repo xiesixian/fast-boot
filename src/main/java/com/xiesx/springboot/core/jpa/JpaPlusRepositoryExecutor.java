@@ -58,9 +58,9 @@ public class JpaPlusRepositoryExecutor<T, ID> extends SimpleJpaRepository<T, ID>
         this.jpaQueryFactory = new JPAQueryFactory(entityManager);
         this.path = SimpleEntityPathResolver.INSTANCE.createPath(domainClass);
         this.querydsl = new Querydsl(entityManager, new PathBuilder<T>(path.getType(), path.getMetadata()));
-        this.jpaPredicateExecutor = new QuerydslJpaPredicateExecutor<>(
-                JpaEntityInformationSupport.getEntityInformation(domainClass, entityManager), entityManager,
-                SimpleEntityPathResolver.INSTANCE, getRepositoryMethodMetadata());
+        this.jpaPredicateExecutor =
+                new QuerydslJpaPredicateExecutor<>(JpaEntityInformationSupport.getEntityInformation(domainClass, entityManager),
+                        entityManager, SimpleEntityPathResolver.INSTANCE, getRepositoryMethodMetadata());
     }
 
     // ==========================
@@ -102,12 +102,10 @@ public class JpaPlusRepositoryExecutor<T, ID> extends SimpleJpaRepository<T, ID>
     @Deprecated
     public Page<Tuple> findAll(JpcPlusHelper helper) {
         // 数量
-        JPAQuery<Tuple> countQuery = jpaQueryFactory.select(helper.expressionToArray())
-                .from(helper.entityPathToArray())
-                .where(helper.predicatesToArray());
+        JPAQuery<Tuple> countQuery =
+                jpaQueryFactory.select(helper.expressionToArray()).from(helper.entityPathToArray()).where(helper.predicatesToArray());
         // 分页查询
-        JPQLQuery<Tuple> query =
-                querydsl.applyPagination(helper.getPageable(), countQuery).orderBy(helper.orderSpecifiersToArray());
+        JPQLQuery<Tuple> query = querydsl.applyPagination(helper.getPageable(), countQuery).orderBy(helper.orderSpecifiersToArray());
         // 构造分页
         return PageableExecutionUtils.getPage(query.fetch(), helper.getPageable(), countQuery::fetchCount);
     }

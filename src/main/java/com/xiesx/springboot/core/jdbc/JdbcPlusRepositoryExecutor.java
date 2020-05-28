@@ -70,8 +70,7 @@ public class JdbcPlusRepositoryExecutor<T, ID> implements JdbcPlusRepository<T, 
     @Override
     public Optional<T> findOne(Predicate predicate) {
         try {
-            return Optional.ofNullable(
-                    sqlQueryFactory.query().select(entityProjection()).where(predicate).from(path).fetchOne());
+            return Optional.ofNullable(sqlQueryFactory.query().select(entityProjection()).where(predicate).from(path).fetchOne());
         } catch (NonUniqueResultException ex) {
             throw new IncorrectResultSizeDataAccessException(ex.getMessage(), 1, ex);
         }

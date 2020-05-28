@@ -21,8 +21,7 @@ public class JpaPlusRepositoryFactory extends JpaRepositoryFactory {
     }
 
     @Override
-    protected JpaRepositoryImplementation<?, ?> getTargetRepository(RepositoryInformation information,
-            EntityManager entityManager) {
+    protected JpaRepositoryImplementation<?, ?> getTargetRepository(RepositoryInformation information, EntityManager entityManager) {
         return new JpaPlusRepositoryExecutor<>(information.getDomainType(), entityManager);
     }
 }

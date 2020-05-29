@@ -5,11 +5,13 @@ import java.util.List;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import com.xiesx.springboot.support.token.handle.TokenArgumentResolver;
 import com.xiesx.springboot.support.token.handle.TokenInterceptorHandler;
-import com.xiesx.springboot.support.token.handle.TokenMethodArgumentResolverHandler;
+import com.xiesx.springboot.utils.ArrayUtils;
 
 /**
  * @title EventBusCfg.java
@@ -35,11 +37,22 @@ public class TokenCfg implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new TokenInterceptorHandler(mTokenProperties)).addPathPatterns("/**");
+        // 添加处理器
+        InterceptorRegistration in = registry.addInterceptor(new TokenInterceptorHandler());
+        // 处理url
+        List<String> paths = ArrayUtils.splitToList(mTokenProperties.getPaths());
+        if (!paths.isEmpty()) {
+            in.addPathPatterns(paths);
+        }
+        // 排除处理url
+        List<String> excludePaths = ArrayUtils.splitToList(mTokenProperties.getExcludePaths());
+        if (!paths.isEmpty()) {
+            in.excludePathPatterns(excludePaths);
+        }
     }
 
     @Override
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
-        resolvers.add(new TokenMethodArgumentResolverHandler());
+        resolvers.add(new TokenArgumentResolver());
     }
 }

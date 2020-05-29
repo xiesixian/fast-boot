@@ -8,8 +8,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.method.HandlerMethod;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import com.xiesx.springboot.core.context.SpringHelper;
 import com.xiesx.springboot.core.exception.RunExc;
 import com.xiesx.springboot.core.exception.RunException;
 import com.xiesx.springboot.support.token.JwtHelper;
@@ -30,19 +32,21 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class TokenInterceptorHandler extends HandlerInterceptorAdapter {
 
-    private final TokenProperties properties;
+    private static final String TOKEN_KEY = "token";
 
-    public static final String TOKEN_KEY = "token";
+    private String key;
 
-    String key;
-
-    public TokenInterceptorHandler(TokenProperties mTokenProperties) {
-        this.properties = mTokenProperties;
-        key = StringUtils.isNotEmpty(properties.getKey()) ? properties.getKey() : TOKEN_KEY;
-    }
-
+    /**
+     * Controller执行之前，如果返回false，controller不执行
+     * 
+     * @throws Exception
+     */
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        log.debug("preHandle ......");
+        // 获取配置
+        TokenProperties properties = SpringHelper.getBean(TokenProperties.class);
+        key = StringUtils.isNotEmpty(properties.getKey()) ? properties.getKey() : TOKEN_KEY;
         // 获取方法信息
         Method method = ((HandlerMethod) handler).getMethod();
         // 获取参数注解信息
@@ -73,6 +77,23 @@ public class TokenInterceptorHandler extends HandlerInterceptorAdapter {
                 }
             }
         }
-        return true;
+        return super.preHandle(request, response, handler);
+    }
+
+    /**
+     * Controller执行之后，且页面渲染之前调用
+     */
+    @Override
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView)
+            throws Exception {
+        log.debug("postHandle ......");
+    }
+
+    /**
+     * 页面渲染之后调用，一般用于资源清理操作
+     */
+    @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+        log.debug("afterCompletion ......");
     }
 }

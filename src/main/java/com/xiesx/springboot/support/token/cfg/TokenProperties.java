@@ -11,4 +11,8 @@ public class TokenProperties {
     public static final String PREFIX = "fastboot.token";
 
     private String key;
+
+    private String paths;
+
+    private String excludePaths;
 }

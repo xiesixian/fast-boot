@@ -18,7 +18,7 @@ import com.xiesx.springboot.support.token.handle.CurrentToken.CurrentTokenBuilde
  * @author XIE
  * @date 2020年4月25日下午6:15:53
  */
-public class TokenMethodArgumentResolverHandler implements HandlerMethodArgumentResolver {
+public class TokenArgumentResolver implements HandlerMethodArgumentResolver {
 
     @Override
     public boolean supportsParameter(MethodParameter parameter) {

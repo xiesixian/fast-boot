@@ -43,11 +43,11 @@ public class SignAspect {
     public static final String SIGN_VAL = "1234567890";
 
     @Autowired
-    SignProperties properties;
+    private SignProperties properties;
 
-    String key;
+    private String key;
 
-    String val;
+    private String val;
 
     @Pointcut("@annotation(com.xiesx.springboot.support.sign.annotation.Signal)")
     public void signPointcut() {
@@ -56,6 +56,7 @@ public class SignAspect {
 
     @Around("signPointcut()")
     public Object signBeforeAspect(ProceedingJoinPoint pjp) throws RunException, Throwable {
+        // 获取配置
         key = StringUtils.isNotEmpty(properties.getKey()) ? properties.getKey() : SIGN_KEY;
         val = StringUtils.isNotEmpty(properties.getVal()) ? properties.getVal() : SIGN_VAL;
         // 获取方法信息

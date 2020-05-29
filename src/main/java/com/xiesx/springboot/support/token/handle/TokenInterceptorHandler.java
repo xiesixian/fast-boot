@@ -15,6 +15,7 @@ import com.xiesx.springboot.core.exception.RunException;
 import com.xiesx.springboot.support.token.JwtHelper;
 import com.xiesx.springboot.support.token.annotation.Token;
 import com.xiesx.springboot.support.token.cfg.TokenCfg;
+import com.xiesx.springboot.support.token.cfg.TokenProperties;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -29,6 +30,17 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class TokenInterceptorHandler extends HandlerInterceptorAdapter {
 
+    private final TokenProperties properties;
+
+    public static final String TOKEN_KEY = "token";
+
+    String key;
+
+    public TokenInterceptorHandler(TokenProperties mTokenProperties) {
+        this.properties = mTokenProperties;
+        key = StringUtils.isNotEmpty(properties.getKey()) ? properties.getKey() : TOKEN_KEY;
+    }
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         // 获取方法信息
@@ -39,7 +51,7 @@ public class TokenInterceptorHandler extends HandlerInterceptorAdapter {
             for (Annotation annotation2 : annotation1) {
                 if (annotation2 instanceof Token) {
                     // 获取token
-                    String token = request.getHeader("token");
+                    String token = request.getHeader(key);
                     if (StringUtils.isEmpty(token)) {
                         throw new RunException(RunExc.TOKEN, "未登录");
                     }

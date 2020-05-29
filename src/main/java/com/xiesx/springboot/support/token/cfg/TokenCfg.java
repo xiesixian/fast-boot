@@ -2,6 +2,7 @@ package com.xiesx.springboot.support.token.cfg;
 
 import java.util.List;
 
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -17,6 +18,7 @@ import com.xiesx.springboot.support.token.handle.TokenMethodArgumentResolverHand
  * @date 2019年3月14日 上午10:48:52
  */
 @Configuration
+@EnableConfigurationProperties(TokenProperties.class)
 public class TokenCfg implements WebMvcConfigurer {
 
     public static final String USERID = "userid";
@@ -25,9 +27,15 @@ public class TokenCfg implements WebMvcConfigurer {
 
     public static final String NICKNAME = "nickname";
 
+    public TokenProperties mTokenProperties;
+
+    public TokenCfg(TokenProperties mTokenProperties) {
+        this.mTokenProperties = mTokenProperties;
+    }
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new TokenInterceptorHandler()).addPathPatterns("/**");
+        registry.addInterceptor(new TokenInterceptorHandler(mTokenProperties)).addPathPatterns("/**");
     }
 
     @Override

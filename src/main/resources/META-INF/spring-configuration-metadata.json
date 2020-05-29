@@ -2,25 +2,30 @@
   "groups": [
     {
       "name": "fastboot.sign",
-      "type": "com.xiesx.springboot.support.sgin.cfg.SignProperties",
-      "sourceType": "com.xiesx.springboot.support.sgin.cfg.SignProperties"
+      "type": "com.xiesx.springboot.support.sign.cfg.SignProperties",
+      "sourceType": "com.xiesx.springboot.support.sign.cfg.SignProperties"
+    },
+    {
+      "name": "fastboot.token",
+      "type": "com.xiesx.springboot.support.token.cfg.TokenProperties",
+      "sourceType": "com.xiesx.springboot.support.token.cfg.TokenProperties"
     }
   ],
   "properties": [
     {
       "name": "fastboot.sign.key",
       "type": "java.lang.String",
-      "sourceType": "com.xiesx.springboot.support.sgin.cfg.SignProperties"
+      "sourceType": "com.xiesx.springboot.support.sign.cfg.SignProperties"
     },
     {
       "name": "fastboot.sign.val",
       "type": "java.lang.String",
-      "sourceType": "com.xiesx.springboot.support.sgin.cfg.SignProperties"
+      "sourceType": "com.xiesx.springboot.support.sign.cfg.SignProperties"
     },
     {
-      "name": "fastboot.sign.open",
-      "type": "java.lang.Boolean",
-      "sourceType": "com.xiesx.springboot.support.sgin.cfg.SignProperties"
+      "name": "fastboot.token.key",
+      "type": "java.lang.String",
+      "sourceType": "com.xiesx.springboot.support.token.cfg.TokenProperties"
     }
   ],
   "hints": []

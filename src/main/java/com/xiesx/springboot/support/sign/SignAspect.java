@@ -1,4 +1,4 @@
-package com.xiesx.springboot.support.sgin;
+package com.xiesx.springboot.support.sign;
 
 import java.lang.reflect.Method;
 import java.util.*;
@@ -6,7 +6,6 @@ import java.util.*;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.codec.digest.DigestUtils;
-import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -22,8 +21,8 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import com.google.common.collect.Maps;
 import com.xiesx.springboot.core.exception.RunExc;
 import com.xiesx.springboot.core.exception.RunException;
-import com.xiesx.springboot.support.sgin.annotation.Signal;
-import com.xiesx.springboot.support.sgin.cfg.SignProperties;
+import com.xiesx.springboot.support.sign.annotation.Signal;
+import com.xiesx.springboot.support.sign.cfg.SignProperties;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -50,9 +49,7 @@ public class SignAspect {
 
     String val;
 
-    Boolean open = false;
-
-    @Pointcut("@annotation(com.xiesx.springboot.support.sgin.annotation.Signal)")
+    @Pointcut("@annotation(com.xiesx.springboot.support.sign.annotation.Signal)")
     public void signPointcut() {
         log.debug("signPointcut=====");
     }
@@ -61,18 +58,16 @@ public class SignAspect {
     public Object signBeforeAspect(ProceedingJoinPoint pjp) throws RunException, Throwable {
         key = StringUtils.isNotEmpty(properties.getKey()) ? properties.getKey() : SIGN_KEY;
         val = StringUtils.isNotEmpty(properties.getVal()) ? properties.getVal() : SIGN_VAL;
-        open = ObjectUtils.isNotEmpty(properties.getOpen()) ? properties.getOpen() : false;
         // 获取方法信息
         MethodSignature signature = (MethodSignature) pjp.getSignature();
         Method method = signature.getMethod();
         // 获取注解信息
         Signal annotation = method.getAnnotation(Signal.class);
-        Boolean isIgnore = Boolean.valueOf(annotation == null ? true : annotation.ignore());
-        // 参数集
-        Map<String, String> parms = Maps.newConcurrentMap();
+        Boolean isIgnore = annotation == null ? false : !annotation.ignore();
         // 获取请求信息
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         // 获取参数
+        Map<String, String> parms = Maps.newConcurrentMap();
         Enumeration<String> names = request.getParameterNames();
         while (names.hasMoreElements()) {
             String name = names.nextElement();
@@ -80,18 +75,16 @@ public class SignAspect {
             parms.put(name, value);
         }
         // 是否进行效验
-        if (open && isIgnore) {
-            if (!parms.isEmpty()) {
-                // 从header中获取sign
-                String headerSign = request.getHeader(key);
-                // sign为空
-                if (StringUtils.isEmpty(headerSign)) {
-                    throw new RunException(RunExc.SIGNA, "非法请求");
-                } else if (!getSignature(parms, val).equals(headerSign)) {
-                    throw new RunException(RunExc.SIGNA, "验签失败");
-                } else {
-                    return pjp.proceed();
-                }
+        if (isIgnore && !parms.isEmpty()) {
+            // 从header中获取sign
+            String headerSign = request.getHeader(key);
+            // sign为空
+            if (StringUtils.isEmpty(headerSign)) {
+                throw new RunException(RunExc.SIGNA, "非法请求");
+            }
+            // sign错误
+            if (!getSignature(parms, val).equals(headerSign)) {
+                throw new RunException(RunExc.SIGNA, "验签失败");
             }
         }
         return pjp.proceed();

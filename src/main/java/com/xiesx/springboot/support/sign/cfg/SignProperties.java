@@ -1,4 +1,4 @@
-package com.xiesx.springboot.support.sgin.cfg;
+package com.xiesx.springboot.support.sign.cfg;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
@@ -13,6 +13,4 @@ public class SignProperties {
     private String key;
 
     private String val;
-
-    private Boolean open = false;
 }

@@ -1,10 +1,10 @@
-package com.xiesx.springboot.support.sgin.cfg;
+package com.xiesx.springboot.support.sign.cfg;
 
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
-import com.xiesx.springboot.support.sgin.SignAspect;
+import com.xiesx.springboot.support.sign.SignAspect;
 
 /**
  * @title EventBusCfg.java

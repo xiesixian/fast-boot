@@ -48,30 +48,33 @@ public class TokenInterceptorHandler extends HandlerInterceptorAdapter {
         TokenProperties properties = SpringHelper.getBean(TokenProperties.class);
         key = StringUtils.isNotEmpty(properties.getKey()) ? properties.getKey() : TOKEN_KEY;
         // 获取方法信息
-        Method method = ((HandlerMethod) handler).getMethod();
-        // 获取参数注解信息
-        Annotation[][] parameterAnnotations = method.getParameterAnnotations();
-        for (Annotation[] annotation1 : parameterAnnotations) {
-            for (Annotation annotation2 : annotation1) {
-                if (annotation2 instanceof Token) {
-                    // 获取token
-                    String token = request.getHeader(key);
-                    if (StringUtils.isEmpty(token)) {
-                        throw new RunException(RunExc.TOKEN, "未登录");
-                    }
-                    try {
+        if (handler instanceof HandlerMethod) {
+            // 获取方法
+            Method method = ((HandlerMethod) handler).getMethod();
+            // 获取参数注解信息
+            Annotation[][] parameterAnnotations = method.getParameterAnnotations();
+            for (Annotation[] annotation1 : parameterAnnotations) {
+                for (Annotation annotation2 : annotation1) {
+                    if (annotation2 instanceof Token) {
                         // 获取token
-                        Claims claims = JwtHelper.parser(token);
-                        // 设置requeest
-                        request.setAttribute(TokenCfg.USERID, claims.getOrDefault(TokenCfg.USERID, ""));
-                        request.setAttribute(TokenCfg.USERNAME, claims.getOrDefault(TokenCfg.USERNAME, ""));
-                        request.setAttribute(TokenCfg.NICKNAME, claims.getOrDefault(TokenCfg.NICKNAME, ""));
-                    } catch (Exception e) {
-                        log.error("jwt token error", e);
-                        if (e instanceof ExpiredJwtException) {
-                            throw new RunException(RunExc.TOKEN, "已失效");
-                        } else {
-                            throw new RunException(RunExc.TOKEN);
+                        String token = request.getHeader(key);
+                        if (StringUtils.isEmpty(token)) {
+                            throw new RunException(RunExc.TOKEN, "未登录");
+                        }
+                        try {
+                            // 获取token
+                            Claims claims = JwtHelper.parser(token);
+                            // 设置requeest
+                            request.setAttribute(TokenCfg.USERID, claims.getOrDefault(TokenCfg.USERID, ""));
+                            request.setAttribute(TokenCfg.USERNAME, claims.getOrDefault(TokenCfg.USERNAME, ""));
+                            request.setAttribute(TokenCfg.NICKNAME, claims.getOrDefault(TokenCfg.NICKNAME, ""));
+                        } catch (Exception e) {
+                            log.error("jwt token error", e);
+                            if (e instanceof ExpiredJwtException) {
+                                throw new RunException(RunExc.TOKEN, "已失效");
+                            } else {
+                                throw new RunException(RunExc.TOKEN);
+                            }
                         }
                     }
                 }

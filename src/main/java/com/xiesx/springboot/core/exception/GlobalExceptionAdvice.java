@@ -1,6 +1,5 @@
 package com.xiesx.springboot.core.exception;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -19,6 +18,7 @@ import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import com.google.common.collect.Lists;
 import com.xiesx.springboot.base.result.BaseResult;
 import com.xiesx.springboot.base.result.R;
 import com.xiesx.springboot.support.validate.ValidatorHelper;
@@ -82,24 +82,21 @@ public class GlobalExceptionAdvice {
     @ExceptionHandler({BindException.class, ConstraintViolationException.class})
     public BaseResult validatorException(HttpServletRequest request, Exception e) {
         log.error("validatorException ......", e);
-        BaseResult result = R.error(RunExc.VALI.getErrorCode());
+        List<String> errorMsg = Lists.newArrayList();
         // 这里走的是Spring Violation 验证 --> Java Violation，这里有BindException接收
         if (e instanceof BindException) {
             BindingResult violations = ((BindException) e).getBindingResult();
-            List<String> errorMessages = new ArrayList<String>();
             for (FieldError fieldError : violations.getFieldErrors()) {
-                errorMessages.add(fieldError.getField() + " " + fieldError.getDefaultMessage());
+                errorMsg.add(fieldError.getField() + " " + fieldError.getDefaultMessage());
             }
-            result.setData(errorMessages);
         }
         // 这里走的是Hibernate Violation 验证 --> Java
         // Violation，这里有ConstraintViolationException接收
         if (e instanceof ConstraintViolationException) {
             Set<ConstraintViolation<?>> violations = ((ConstraintViolationException) e).getConstraintViolations();
-            List<String> errorMsg = ValidatorHelper.extractPropertyAndMessageAsList(violations);
-            result.setData(errorMsg);
+            errorMsg.addAll(ValidatorHelper.extractPropertyAndMessageAsList(violations));
         }
-        return result;
+        return R.error(RunExc.VALI.getErrorCode(), RunExc.VALI.getMassage(), errorMsg);
     }
 
     /**

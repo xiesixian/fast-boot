@@ -6,6 +6,8 @@ import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import javax.validation.Validator;
 
+import com.google.common.collect.Lists;
+
 /**
  * JSR303 Validator(Hibernate Validator)工具类. ConstraintViolation中包含propertyPath, message
  * 和invalidValue等信息. 提供了各种convert方法，适合不同的i18n需求: 1. List<String>, String内容为message 2. List<String>,
@@ -38,7 +40,7 @@ public class ValidatorHelper {
      */
     @SuppressWarnings("rawtypes")
     public static List<String> extractMessage(Set<? extends ConstraintViolation> constraintViolations) {
-        List<String> errorMessages = new ArrayList<String>();
+        List<String> errorMessages = Lists.newArrayList();
         for (ConstraintViolation violation : constraintViolations) {
             errorMessages.add(violation.getMessage());
         }
@@ -92,7 +94,7 @@ public class ValidatorHelper {
      */
     @SuppressWarnings("rawtypes")
     public static List<String> extractPropertyAndMessageAsList(Set<? extends ConstraintViolation> constraintViolations, String separator) {
-        List<String> errorMessages = new ArrayList<String>();
+        List<String> errorMessages = Lists.newArrayList();
         for (ConstraintViolation violation : constraintViolations) {
             errorMessages.add(violation.getPropertyPath() + separator + violation.getMessage());
         }

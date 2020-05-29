@@ -48,7 +48,7 @@ public class FastJsonCfg implements WebMvcConfigurer {
                 // Boolean字段如果为null，输出为false，而不是null
                 SerializerFeature.WriteNullBooleanAsFalse,
                 // list字段如果为null，输出为[]，而不是null
-                SerializerFeature.WriteNullListAsEmpty,
+                // SerializerFeature.WriteNullListAsEmpty,
                 // Enum输出为枚举值
                 SerializerFeature.WriteEnumUsingToString,
                 // 输入格式后的日期

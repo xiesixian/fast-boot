@@ -2,6 +2,7 @@ package com.xiesx.springboot.support.token.cfg;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
@@ -40,14 +41,18 @@ public class TokenCfg implements WebMvcConfigurer {
         // 添加处理器
         InterceptorRegistration in = registry.addInterceptor(new TokenInterceptorHandler());
         // 处理url
-        List<String> paths = ArrayUtils.splitToList(mTokenProperties.getPaths());
-        if (!paths.isEmpty()) {
-            in.addPathPatterns(paths);
+        if (StringUtils.isNotEmpty(mTokenProperties.getPaths())) {
+            List<String> paths = ArrayUtils.splitToList(mTokenProperties.getPaths());
+            if (!paths.isEmpty()) {
+                in.addPathPatterns(paths);
+            }
         }
         // 排除处理url
-        List<String> excludePaths = ArrayUtils.splitToList(mTokenProperties.getExcludePaths());
-        if (!paths.isEmpty()) {
-            in.excludePathPatterns(excludePaths);
+        if (StringUtils.isNotEmpty(mTokenProperties.getExcludePaths())) {
+            List<String> excludePaths = ArrayUtils.splitToList(mTokenProperties.getExcludePaths());
+            if (!excludePaths.isEmpty()) {
+                in.excludePathPatterns(excludePaths);
+            }
         }
     }
 

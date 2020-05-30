@@ -1,16 +1,16 @@
 package com.xiesx.springboot.core.jpa;
 
 import java.util.List;
-import java.util.function.Consumer;
-import java.util.function.Function;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.repository.NoRepositoryBean;
 
-import com.querydsl.core.Tuple;
+import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.Predicate;
+import com.querydsl.jpa.impl.JPADeleteClause;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAUpdateClause;
 
@@ -18,17 +18,17 @@ import com.querydsl.jpa.impl.JPAUpdateClause;
 @NoRepositoryBean
 public interface JpaPlusRepository<T, ID> extends JpaRepositoryImplementation<T, ID>, QuerydslPredicateExecutor<T> {
 
+    <O> Page<O> findAll(JPAQuery<O> query, Pageable pageable);
+
+    <O> Page<O> findAll(JPAQuery<O> query, Pageable pageable, OrderSpecifier<?>... orders);
+
+    <S extends T> List<S> insert(S... entities);
+
+    int insertOrUpdate(T... entities);
+
     int delete(ID... ids);
 
-    <O> O findAll(Function<JPAQuery<?>, O> query);
+    int delete(JPADeleteClause delete, Predicate... predicate);
 
-    Page<Tuple> findAll(JpcPlusHelper helper);
-
-    <O> Page<O> findAll(JpcPlusHelper helper, Class<O> cla);
-
-    <S extends T> List<S> save(S... entities);
-
-    int saveOrUpdate(T... entities);
-
-    void update(Consumer<JPAUpdateClause> update, Predicate... predicate);
+    int update(JPAUpdateClause update, Predicate... predicate);
 }

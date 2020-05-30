@@ -8,5 +8,5 @@ import com.xiesx.springboot.core.jdbc.JdbcPlusTemplate;
 @Configuration
 @Import({JdbcPlusTemplate.class})
 public class JdbcPlusCfg {
-    
+
 }

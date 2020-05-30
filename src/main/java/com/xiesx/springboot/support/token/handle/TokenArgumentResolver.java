@@ -31,18 +31,18 @@ public class TokenArgumentResolver implements HandlerMethodArgumentResolver {
         // 构造用户信息
         CurrentTokenBuilder builder = CurrentToken.builder();
         // 获取用户id
-        String user_id = request.getAttribute(TokenCfg.USERID, RequestAttributes.SCOPE_REQUEST).toString();
-        if (ObjectUtils.isEmpty(user_id)) {
-            return null;
+        Object user_id = request.getAttribute(TokenCfg.USERID, RequestAttributes.SCOPE_REQUEST);
+        if (ObjectUtils.isNotEmpty(user_id)) {
+            builder.userId(user_id.toString());
         }
-        String user_name = request.getAttribute(TokenCfg.USERNAME, RequestAttributes.SCOPE_REQUEST).toString();
+        Object user_name = request.getAttribute(TokenCfg.USERNAME, RequestAttributes.SCOPE_REQUEST);
         if (ObjectUtils.isNotEmpty(user_name)) {
-            builder.userName(user_name);
+            builder.userName(user_name.toString());
         }
-        String nick_name = request.getAttribute(TokenCfg.NICKNAME, RequestAttributes.SCOPE_REQUEST).toString();
+        Object nick_name = request.getAttribute(TokenCfg.NICKNAME, RequestAttributes.SCOPE_REQUEST);
         if (ObjectUtils.isNotEmpty(nick_name)) {
-            builder.nickName(nick_name);
+            builder.nickName(nick_name.toString());
         }
-        return builder.userId(user_id).build();
+        return builder.build();
     }
 }

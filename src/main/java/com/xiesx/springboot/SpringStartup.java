@@ -66,10 +66,6 @@ public class SpringStartup {
         }
     }
 
-    public static void event() {
-      
-    }
-
     public static void schedule() {
         log.info("Startup Schedule Schedule init Starting...");
         try {

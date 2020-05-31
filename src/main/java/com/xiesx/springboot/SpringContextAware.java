@@ -10,7 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Component
-public class SpringAppContextAware implements ApplicationContextAware {
+public class SpringContextAware implements ApplicationContextAware {
 
     private static ApplicationContext applicationContext;
 
@@ -20,11 +20,10 @@ public class SpringAppContextAware implements ApplicationContextAware {
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        if (ObjectUtils.isEmpty(SpringAppContextAware.applicationContext)) {
-            SpringAppContextAware.applicationContext = applicationContext;
+        if (ObjectUtils.isEmpty(SpringContextAware.applicationContext)) {
+            SpringContextAware.applicationContext = applicationContext;
             SpringStartup.init();
             SpringStartup.license();
-            SpringStartup.event();
             SpringStartup.schedule();
             log.info("Startup ApplicationContext completed.");
         }

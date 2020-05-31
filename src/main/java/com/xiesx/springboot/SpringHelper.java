@@ -17,7 +17,7 @@ public class SpringHelper {
      * @return
      */
     public static ApplicationContext getContext() {
-        ApplicationContext applicationContext = SpringAppContextAware.getApplicationContext();
+        ApplicationContext applicationContext = SpringContextAware.getApplicationContext();
         if (applicationContext != null) {
             return applicationContext;
         }
@@ -31,7 +31,7 @@ public class SpringHelper {
      * @return
      */
     public static Object getBean(String name) {
-        ApplicationContext applicationContext = SpringAppContextAware.getApplicationContext();
+        ApplicationContext applicationContext = SpringContextAware.getApplicationContext();
         if (applicationContext != null) {
             return applicationContext.getBean(name);
         }
@@ -45,7 +45,7 @@ public class SpringHelper {
      * @return
      */
     public static <T> T getBean(Class<T> clazz) {
-        ApplicationContext applicationContext = SpringAppContextAware.getApplicationContext();
+        ApplicationContext applicationContext = SpringContextAware.getApplicationContext();
         if (applicationContext != null) {
             return applicationContext.getBean(clazz);
         }
@@ -60,7 +60,7 @@ public class SpringHelper {
      * @return
      */
     public static <T> T getBean(String name, Class<T> clazz) {
-        ApplicationContext applicationContext = SpringAppContextAware.getApplicationContext();
+        ApplicationContext applicationContext = SpringContextAware.getApplicationContext();
         if (applicationContext != null) {
             return applicationContext.getBean(name, clazz);
         }
@@ -75,7 +75,7 @@ public class SpringHelper {
      * @return
      */
     public static <T> T getBean(Class<T> clazz, String qualifier) {
-        ApplicationContext applicationContext = SpringAppContextAware.getApplicationContext();
+        ApplicationContext applicationContext = SpringContextAware.getApplicationContext();
         if (applicationContext != null) {
             return BeanFactoryAnnotationUtils.qualifiedBeanOfType(applicationContext.getAutowireCapableBeanFactory(), clazz, qualifier);
         }

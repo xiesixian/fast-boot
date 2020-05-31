@@ -4,7 +4,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
-import com.xiesx.springboot.core.sign.SignAspect;
+import com.xiesx.springboot.core.sign.SignalAspect;
 
 /**
  * @title EventBusCfg.java
@@ -13,8 +13,8 @@ import com.xiesx.springboot.core.sign.SignAspect;
  * @date 2019年3月14日 上午10:48:52
  */
 @Configuration
-@EnableConfigurationProperties(SignProperties.class)
-@Import({SignAspect.class})
-public class SignCfg {
+@EnableConfigurationProperties(SignalProperties.class)
+@Import({SignalAspect.class})
+public class SignalCfg {
 
 }

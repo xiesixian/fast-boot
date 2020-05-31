@@ -7,10 +7,10 @@ import java.lang.annotation.Target;
 
 import org.springframework.context.annotation.Import;
 
-import com.xiesx.springboot.core.sign.cfg.SignCfg;
+import com.xiesx.springboot.core.sign.cfg.SignalCfg;
 
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-@Import({SignCfg.class})
-public @interface GoEnableSign {
+@Import({SignalCfg.class})
+public @interface GoEnableSignal {
 }

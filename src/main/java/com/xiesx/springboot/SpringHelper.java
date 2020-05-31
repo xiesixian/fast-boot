@@ -12,6 +12,19 @@ import org.springframework.context.ApplicationContext;
 public class SpringHelper {
 
     /**
+     * applicationContext
+     *
+     * @return
+     */
+    public static ApplicationContext getContext() {
+        ApplicationContext applicationContext = SpringAppContextAware.getApplicationContext();
+        if (applicationContext != null) {
+            return applicationContext;
+        }
+        return null;
+    }
+    
+    /**
      * 通过name获取 Bean
      *
      * @param name

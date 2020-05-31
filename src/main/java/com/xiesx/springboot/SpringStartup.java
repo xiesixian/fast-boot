@@ -1,10 +1,5 @@
 package com.xiesx.springboot;
 
-import java.util.Map;
-
-import com.google.common.collect.Maps;
-import com.xiesx.springboot.core.event.EventBusHelper;
-import com.xiesx.springboot.core.event.base.AbstractEventBus;
 import com.xiesx.springboot.support.license.LicenseVerify;
 import com.xiesx.springboot.support.schedule.ScheduleHelper;
 import com.xiesx.springboot.support.schedule.decorator.DefaultDecorator;
@@ -16,9 +11,6 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class SpringStartup {
-
-    @SuppressWarnings("rawtypes")
-    public static Map<String, AbstractEventBus> beans = Maps.newConcurrentMap();
 
     public static String classUrl;
 
@@ -75,13 +67,7 @@ public class SpringStartup {
     }
 
     public static void event() {
-        beans = SpringAppContextAware.getApplicationContext().getBeansOfType(AbstractEventBus.class);
-        if (beans != null) {
-            for (AbstractEventBus<?> eventAbstract : beans.values()) {
-                EventBusHelper.register(eventAbstract);
-            }
-        }
-        log.info("Startup EventBus {} register completed.", beans.size());
+      
     }
 
     public static void schedule() {

@@ -22,7 +22,7 @@ import com.google.common.collect.Maps;
 import com.xiesx.springboot.core.exception.RunExc;
 import com.xiesx.springboot.core.exception.RunException;
 import com.xiesx.springboot.core.sign.annotation.Signal;
-import com.xiesx.springboot.core.sign.cfg.SignProperties;
+import com.xiesx.springboot.core.sign.cfg.SignalProperties;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -36,20 +36,20 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @Aspect
 @Order(0)
-public class SignAspect {
+public class SignalAspect {
 
     public static final String SIGN_KEY = "sign";
 
     public static final String SIGN_VAL = "1234567890";
 
     @Autowired
-    private SignProperties properties;
+    private SignalProperties properties;
 
     private String key;
 
     private String val;
 
-    @Pointcut("@annotation(com.xiesx.springboot.support.sign.annotation.Signal)")
+    @Pointcut("@annotation(com.xiesx.springboot.core.sign.annotation.Signal)")
     public void signPointcut() {
         log.debug("signPointcut=====");
     }

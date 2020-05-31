@@ -5,8 +5,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import lombok.Data;
 
 @Data
-@ConfigurationProperties(prefix = SignProperties.PREFIX)
-public class SignProperties {
+@ConfigurationProperties(prefix = SignalProperties.PREFIX)
+public class SignalProperties {
 
     public static final String PREFIX = "fastboot.sign";
 

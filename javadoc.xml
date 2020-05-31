@@ -9,7 +9,7 @@
 			noindex="false" 
 			nonavbar="false" 
 			notree="false"
-			packagenames="com.xiesx.springboot.*"
+			packagenames="com.xiesx.fastboot.*"
 			source="1.8"
 			sourcepath="
 						src/main/java;

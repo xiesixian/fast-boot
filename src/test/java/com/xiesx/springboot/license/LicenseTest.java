@@ -11,10 +11,10 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.google.common.collect.Lists;
-import com.xiesx.springboot.core.license.LicenseCreator;
-import com.xiesx.springboot.core.license.LicenseCreatorParam;
-import com.xiesx.springboot.core.license.LicenseExtraModel;
-import com.xiesx.springboot.core.license.LicenseVerify;
+import com.xiesx.springboot.support.license.LicenseCreator;
+import com.xiesx.springboot.support.license.LicenseCreatorParam;
+import com.xiesx.springboot.support.license.LicenseExtraModel;
+import com.xiesx.springboot.support.license.LicenseVerify;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 public class LicenseTest {

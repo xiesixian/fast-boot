@@ -19,7 +19,7 @@ public enum RunExc {
 
     JDBC(4000, "数据错误"), // --> BaseRestExceptionAdvice --> jdbcException
 
-    TOKEN(5000, "凭据错误"), // --> TokenInterceptorHandler
+    TOKEN(5000, "令牌错误"), // --> TokenInterceptorHandler
 
     SIGNA(6000, "签名错误"), // --> SignAspect
 

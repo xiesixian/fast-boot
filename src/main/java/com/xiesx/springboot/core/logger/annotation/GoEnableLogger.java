@@ -12,5 +12,5 @@ import com.xiesx.springboot.core.logger.cfg.LoggerCfg;
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Import({LoggerCfg.class})
-public @interface GoEnableLoggerAspect {
+public @interface GoEnableLogger {
 }

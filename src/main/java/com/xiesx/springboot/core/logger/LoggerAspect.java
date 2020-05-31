@@ -72,7 +72,7 @@ public class LoggerAspect {
         // 记录开始时间
         long beginTime = System.currentTimeMillis();
         if (isPrint) {
-            log.info("=========request sta {} {} {}", new Object[] {methodName, Long.valueOf(beginTime), req});
+            log.info("| request staart {} {} {}ms", new Object[] {methodName, Long.valueOf(beginTime), req});
         }
         // 执行方法
         Object ret = pjp.proceed();
@@ -83,7 +83,7 @@ public class LoggerAspect {
         // 响应
         String res = JSON.toJSONString(ret, isPrettyFormat);
         if (isPrint) {
-            log.info("=========request end {} {} {} {}", new Object[] {methodName, Long.valueOf(endTime), res, Long.valueOf(t)});
+            log.info("| request end {} {} {} {}ms", new Object[] {methodName, Long.valueOf(endTime), res, Long.valueOf(t)});
         }
         return ret;
     }

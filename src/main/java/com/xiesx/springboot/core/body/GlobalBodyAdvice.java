@@ -1,7 +1,6 @@
 package com.xiesx.springboot.core.body;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.core.MethodParameter;
@@ -42,9 +41,9 @@ public class GlobalBodyAdvice implements ResponseBodyAdvice<Object> {
         // 按需使用，如果有改动，务必兼容之前代码
         if (returnValue instanceof BaseResult || returnValue instanceof PaginationResult) {
             res = returnValue;
-        } else if (returnValue instanceof String || returnValue instanceof Boolean) {
+        } else if (returnValue instanceof Map<?, ?> || returnValue instanceof Iterable<?>) {
             res = returnValue;
-        } else if (returnValue instanceof Map<?, ?> || returnValue instanceof List<?>) {
+        } else if (returnValue instanceof String) {
             res = returnValue;
         } else if (returnValue instanceof JSON) {
             res = returnValue;

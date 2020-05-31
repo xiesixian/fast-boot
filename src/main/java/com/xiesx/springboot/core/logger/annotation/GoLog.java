@@ -12,11 +12,11 @@ import com.xiesx.springboot.core.logger.cfg.LoggerCfg;
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @Import({LoggerCfg.class})
-public @interface LogStorage {
+public @interface GoLog {
 
     boolean print() default true;
 
-    boolean storage() default false;
+    boolean format() default false;
 
-    boolean prettyFormat() default false;
+    boolean storage() default false;
 }

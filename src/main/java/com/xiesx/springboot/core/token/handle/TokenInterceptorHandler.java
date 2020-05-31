@@ -15,7 +15,7 @@ import com.xiesx.springboot.SpringHelper;
 import com.xiesx.springboot.core.exception.RunExc;
 import com.xiesx.springboot.core.exception.RunException;
 import com.xiesx.springboot.core.token.JwtHelper;
-import com.xiesx.springboot.core.token.annotation.Token;
+import com.xiesx.springboot.core.token.annotation.GoToken;
 import com.xiesx.springboot.core.token.cfg.TokenCfg;
 import com.xiesx.springboot.core.token.cfg.TokenProperties;
 
@@ -55,7 +55,7 @@ public class TokenInterceptorHandler extends HandlerInterceptorAdapter {
             Annotation[][] parameterAnnotations = method.getParameterAnnotations();
             for (Annotation[] annotation1 : parameterAnnotations) {
                 for (Annotation annotation2 : annotation1) {
-                    if (annotation2 instanceof Token) {
+                    if (annotation2 instanceof GoToken) {
                         // 获取token
                         String token = request.getHeader(key);
                         if (StringUtils.isEmpty(token)) {

@@ -21,7 +21,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import com.google.common.collect.Maps;
 import com.xiesx.springboot.core.exception.RunExc;
 import com.xiesx.springboot.core.exception.RunException;
-import com.xiesx.springboot.core.sign.annotation.Signal;
+import com.xiesx.springboot.core.sign.annotation.GoSignal;
 import com.xiesx.springboot.core.sign.cfg.SignalProperties;
 
 import lombok.extern.slf4j.Slf4j;
@@ -49,7 +49,7 @@ public class SignalAspect {
 
     private String val;
 
-    @Pointcut("@annotation(com.xiesx.springboot.core.sign.annotation.Signal)")
+    @Pointcut("@annotation(com.xiesx.springboot.core.sign.annotation.GoSignal)")
     public void signPointcut() {
         log.debug("signPointcut=====");
     }
@@ -63,7 +63,7 @@ public class SignalAspect {
         MethodSignature signature = (MethodSignature) pjp.getSignature();
         Method method = signature.getMethod();
         // 获取注解信息
-        Signal annotation = method.getAnnotation(Signal.class);
+        GoSignal annotation = method.getAnnotation(GoSignal.class);
         Boolean isIgnore = annotation == null ? false : !annotation.ignore();
         // 获取请求信息
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();

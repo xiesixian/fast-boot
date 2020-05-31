@@ -6,6 +6,7 @@ import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
+import javax.validation.ValidationException;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -79,7 +80,7 @@ public class GlobalExceptionAdvice {
      * @param e
      * @return
      */
-    @ExceptionHandler({BindException.class, ConstraintViolationException.class})
+    @ExceptionHandler({BindException.class, ValidationException.class})
     public BaseResult validatorException(HttpServletRequest request, Exception e) {
         log.error("validatorException ......", e);
         List<String> errorMsg = Lists.newArrayList();

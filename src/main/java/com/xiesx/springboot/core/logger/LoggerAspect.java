@@ -16,7 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.alibaba.fastjson.JSON;
-import com.xiesx.springboot.core.logger.annotation.LogStorage;
+import com.xiesx.springboot.core.logger.annotation.GoLog;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -54,9 +54,9 @@ public class LoggerAspect {
         Method method = signature.getMethod();
         String methodName = method.getName();
         // 获取注解信息
-        LogStorage annotation = method.getAnnotation(LogStorage.class);
+        GoLog annotation = method.getAnnotation(GoLog.class);
         Boolean isPrint = Boolean.valueOf(annotation == null ? false : annotation.print());
-        Boolean isPrettyFormat = Boolean.valueOf(annotation == null ? false : annotation.prettyFormat());
+        Boolean isPrettyFormat = Boolean.valueOf(annotation == null ? false : annotation.format());
         // 获取入参
         Object[] args = pjp.getArgs();
         // 请求

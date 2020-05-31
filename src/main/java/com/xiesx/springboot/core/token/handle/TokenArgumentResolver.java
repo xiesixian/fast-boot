@@ -8,7 +8,7 @@ import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
-import com.xiesx.springboot.core.token.annotation.Token;
+import com.xiesx.springboot.core.token.annotation.GoToken;
 import com.xiesx.springboot.core.token.cfg.TokenCfg;
 import com.xiesx.springboot.core.token.handle.CurrentToken.CurrentTokenBuilder;
 
@@ -22,7 +22,7 @@ public class TokenArgumentResolver implements HandlerMethodArgumentResolver {
 
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
-        return parameter.getParameterType().isAssignableFrom(CurrentToken.class) && parameter.hasParameterAnnotation(Token.class);
+        return parameter.getParameterType().isAssignableFrom(CurrentToken.class) && parameter.hasParameterAnnotation(GoToken.class);
     }
 
     @Override

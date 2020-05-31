@@ -40,7 +40,7 @@ public class SignalAspect {
 
     public static final String SIGN_KEY = "sign";
 
-    public static final String SIGN_VAL = "1234567890";
+    public static final String SIGN_VAL = "123456780";
 
     @Autowired
     private SignalProperties properties;
@@ -129,7 +129,8 @@ public class SignalAspect {
 
     public static void main(String[] args) {
         Map<String, String> params = new HashMap<>();
-        params.put("qq", SIGN_VAL);
+        params.put("a", "1");
+        params.put("b", "2");
         System.out.println(getSignature(params, SIGN_VAL));
 
         params = new HashMap<>();

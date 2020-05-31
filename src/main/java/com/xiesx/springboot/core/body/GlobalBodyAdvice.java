@@ -43,9 +43,9 @@ public class GlobalBodyAdvice implements ResponseBodyAdvice<Object> {
             res = returnValue;
         } else if (returnValue instanceof Map<?, ?> || returnValue instanceof Iterable<?>) {
             res = returnValue;
-        } else if (returnValue instanceof String) {
-            res = returnValue;
         } else if (returnValue instanceof JSON) {
+            res = returnValue;
+        } else if (returnValue instanceof String) {
             res = returnValue;
         } else {
             res = R.succ(returnValue);

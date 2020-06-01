@@ -20,7 +20,7 @@ public class DefaultTask<T> implements Callable<T>, FutureCallback<T> {
      */
     @Override
     public T call() throws Exception {
-        log.info("call.......");
+        log.debug("call.......");
         return null;
     }
 
@@ -29,7 +29,7 @@ public class DefaultTask<T> implements Callable<T>, FutureCallback<T> {
      */
     @Override
     public void onSuccess(T t) {
-        log.info("call success........");
+        log.debug("call success........");
     }
 
     /**

@@ -15,7 +15,7 @@ public class DefaultSchedule implements ISchedule {
 
     @Override
     public void init() {
-        log.info("initialization." + isStart());
+        log.debug("initialization." + isStart());
     }
 
     @Override

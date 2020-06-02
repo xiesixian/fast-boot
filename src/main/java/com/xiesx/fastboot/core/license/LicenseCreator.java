@@ -1,4 +1,4 @@
-package com.xiesx.fastboot.support.license;
+package com.xiesx.fastboot.core.license;
 
 import java.io.File;
 import java.text.MessageFormat;
@@ -32,7 +32,7 @@ public class LicenseCreator {
      */
     public boolean generateLicense() {
         try {
-            LicenseManager licenseManager = new GoLicenseManager(initLicenseParam());
+            LicenseManager licenseManager = new LicenseManagerLocal(initLicenseParam());
             LicenseContent licenseContent = initLicenseContent();
             licenseManager.store(licenseContent, new File(param.getLicensePath()));
             return true;
@@ -51,10 +51,8 @@ public class LicenseCreator {
         Preferences preferences = Preferences.userNodeForPackage(LicenseCreator.class);
         // 设置对证书内容加密的秘钥
         CipherParam cipherParam = new DefaultCipherParam(param.getStorePass());
-
-        KeyStoreParam privateStoreParam = new GoKeyStoreParam(LicenseCreator.class, param.getPrivateKeysStorePath(),
+        KeyStoreParam privateStoreParam = new LicenseKeyStoreParam(LicenseCreator.class, param.getPrivateKeysStorePath(),
                 param.getPrivateAlias(), param.getStorePass(), param.getKeyPass());
-
         return new DefaultLicenseParam(param.getSubject(), preferences, privateStoreParam, cipherParam);
     }
 

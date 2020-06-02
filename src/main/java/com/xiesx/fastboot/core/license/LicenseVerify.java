@@ -1,4 +1,4 @@
-package com.xiesx.fastboot.support.license;
+package com.xiesx.fastboot.core.license;
 
 import java.io.File;
 import java.text.DateFormat;
@@ -23,19 +23,19 @@ public class LicenseVerify {
     private String subject;
 
     /**
-     * 公钥别称
+     * 公钥库存储路径
      */
-    private String publicAlias;
+    private String publicKeysStorePath;
 
     /**
-     * 访问公钥库的密码
+     * 访问私钥库的密码
      */
     private String storePass;
 
     /**
-     * 公钥库存储路径
+     * 公钥别称
      */
-    private String publicKeysStorePath;
+    private String publicAlias;
 
     /**
      * 证书生成路径
@@ -56,23 +56,22 @@ public class LicenseVerify {
 
     public LicenseVerify(String subject, String publicAlias, String storePass, String licensePath, String publicKeysStorePath) {
         this.subject = subject;
+        this.publicKeysStorePath = publicKeysStorePath;
         this.publicAlias = publicAlias;
         this.storePass = storePass;
         this.licensePath = licensePath;
-        this.publicKeysStorePath = publicKeysStorePath;
     }
 
     /**
      * 初始化证书生成参数
      */
     private LicenseParam initLicenseParam() {
+        // 绑定创建class路径
         Preferences preferences = Preferences.userNodeForPackage(LicenseCreator.class);
-
-        // 设置对证书内容加密的秘钥
+        // 密钥存储
+        KeyStoreParam privateStoreParam = new LicenseKeyStoreParam(LicenseCreator.class, publicKeysStorePath, publicAlias, storePass, null);
+        // 加密秘钥
         CipherParam cipherParam = new DefaultCipherParam(storePass);
-
-        KeyStoreParam privateStoreParam = new GoKeyStoreParam(LicenseCreator.class, publicKeysStorePath, publicAlias, storePass, null);
-
         return new DefaultLicenseParam(subject, preferences, privateStoreParam, cipherParam);
     }
 
@@ -81,7 +80,7 @@ public class LicenseVerify {
      */
     public void install() {
         try {
-            licenseManager = new GoLicenseManager(initLicenseParam());
+            licenseManager = new LicenseManagerLocal(initLicenseParam());
             licenseManager.uninstall();
             LicenseContent licenseContent = licenseManager.install(new File(licensePath));
             DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

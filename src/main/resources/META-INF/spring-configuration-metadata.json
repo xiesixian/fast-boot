@@ -9,21 +9,26 @@
       "name": "fastboot.token",
       "type": "com.xiesx.fastboot.core.token.cfg.TokenProperties",
       "sourceType": "com.xiesx.fastboot.core.token.cfg.TokenProperties"
+    },
+    {
+      "name": "fastboot.license",
+      "type": "com.xiesx.fastboot.core.license.cfg.LicenseProperties",
+      "sourceType": "com.xiesx.fastboot.core.license.cfg.LicenseProperties"
     }
   ],
   "properties": [
     {
-      "name": "fastboot.sign.key",
+      "name": "fastboot.sign.headerKey",
       "type": "java.lang.String",
       "sourceType": "com.xiesx.fastboot.core.sign.cfg.SignProperties"
     },
     {
-      "name": "fastboot.sign.val",
+      "name": "fastboot.sign.secret",
       "type": "java.lang.String",
       "sourceType": "com.xiesx.fastboot.core.sign.cfg.SignProperties"
     },
     {
-      "name": "fastboot.token.key",
+      "name": "fastboot.token.headerKey",
       "type": "java.lang.String",
       "sourceType": "com.xiesx.fastboot.core.token.cfg.TokenProperties"
     },
@@ -36,6 +41,31 @@
       "name": "fastboot.token.excludePaths",
       "type": "java.lang.String",
       "sourceType": "com.xiesx.fastboot.core.token.cfg.TokenProperties"
+    },
+    {
+      "name": "fastboot.license.subject",
+      "type": "java.lang.String",
+      "sourceType": "com.xiesx.fastboot.core.license.cfg.LicenseProperties"
+    },
+    {
+      "name": "fastboot.license.publicKeysStorePath",
+      "type": "java.lang.String",
+      "sourceType": "com.xiesx.fastboot.core.license.cfg.LicenseProperties"
+    },
+    {
+      "name": "fastboot.license.storePass",
+      "type": "java.lang.String",
+      "sourceType": "com.xiesx.fastboot.core.license.cfg.LicenseProperties"
+    },
+    {
+      "name": "fastboot.license.publicAlias",
+      "type": "java.lang.String",
+      "sourceType": "com.xiesx.fastboot.core.license.cfg.LicenseProperties"
+    },
+    {
+      "name": "fastboot.license.licensePath",
+      "type": "java.lang.String",
+      "sourceType": "com.xiesx.fastboot.core.license.cfg.LicenseProperties"
     }
   ],
   "hints": []

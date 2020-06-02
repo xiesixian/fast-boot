@@ -1,4 +1,4 @@
-package com.xiesx.fastboot.support.license;
+package com.xiesx.fastboot.core.license;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -19,14 +19,9 @@ public class LicenseCreatorParam implements Serializable {
     private String subject;
 
     /**
-     * 私钥别称
+     * 私钥库存储路径
      */
-    private String privateAlias;
-
-    /**
-     * 私钥密码（需要妥善保管，不能让使用者知道）
-     */
-    private String keyPass;
+    private String privateKeysStorePath;
 
     /**
      * 访问私钥库的密码
@@ -34,9 +29,14 @@ public class LicenseCreatorParam implements Serializable {
     private String storePass;
 
     /**
-     * 私钥库存储路径
+     * 私钥别称
      */
-    private String privateKeysStorePath;
+    private String privateAlias;
+
+    /**
+     * 私钥别称密码（需要妥善保管，不能让使用者知道）
+     */
+    private String keyPass;
 
     /**
      * 证书生成路径
@@ -61,5 +61,5 @@ public class LicenseCreatorParam implements Serializable {
     /**
      * 额外的服务器硬件校验信息
      */
-    private LicenseExtraModel licenseExtraModel;
+    private LicenseCreatorParamExtra licenseExtraModel;
 }

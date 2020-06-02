@@ -1,6 +1,7 @@
 package com.xiesx.fastboot;
 
-import com.xiesx.fastboot.support.license.LicenseVerify;
+import com.xiesx.fastboot.core.license.LicenseVerify;
+import com.xiesx.fastboot.core.license.cfg.LicenseProperties;
 import com.xiesx.fastboot.support.schedule.ScheduleHelper;
 import com.xiesx.fastboot.support.schedule.decorator.DefaultDecorator;
 import com.xiesx.fastboot.support.schedule.decorator.DefaultSchedule;
@@ -42,24 +43,30 @@ public class SpringStartup {
 
     public static void license() {
         try {
-            LicenseVerify param = new LicenseVerify();
-            // 证书主题
-            param.setSubject("FAST");
-            // 公钥别称
-            param.setPublicAlias("publicCert");
-            // 访问公钥库的密码
-            param.setStorePass("136305973@qq.com");
-            // 公钥库存储路径
-            param.setPublicKeysStorePath(SpringStartup.class.getResource("/license/publicCerts.store").getPath());
-            // 证书生成路径
-            param.setLicensePath(SpringStartup.class.getResource("/license/license").getPath());
-            // 安装证书
-            param.install();
-            // 卸载证书
-            // param.unInstall();
-            // 校验证书
-            if (!param.verify()) {
-                // System.exit(1);
+            // 获取参数
+            LicenseProperties properties = SpringHelper.getBean(LicenseProperties.class);
+            //
+            if (properties != null) {
+                // 构造
+                LicenseVerify param = new LicenseVerify();
+                // 证书主题
+                param.setSubject(properties.getSubject());
+                // 公钥库存储路径
+                param.setPublicKeysStorePath(properties.getPublicKeysStorePath());
+                // 访问公钥库的密码
+                param.setStorePass(properties.getStorePass());
+                // 公钥别称
+                param.setPublicAlias(properties.getPublicAlias());
+                // 证书生成路径
+                param.setLicensePath(properties.getLicensePath());
+                // 安装证书
+                param.install();
+                // 卸载证书
+                // param.unInstall();
+                // 校验证书
+                if (!param.verify()) {
+                    // System.exit(1);
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();

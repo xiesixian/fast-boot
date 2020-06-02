@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 
 import com.google.common.collect.Lists;
-import com.xiesx.fastboot.base.pagination.PaginationResult;
 
 import lombok.NonNull;
 

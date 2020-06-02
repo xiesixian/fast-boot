@@ -11,17 +11,17 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.google.common.collect.Lists;
-import com.xiesx.fastboot.support.license.LicenseCreator;
-import com.xiesx.fastboot.support.license.LicenseCreatorParam;
-import com.xiesx.fastboot.support.license.LicenseExtraModel;
-import com.xiesx.fastboot.support.license.LicenseVerify;
+import com.xiesx.fastboot.core.license.LicenseCreator;
+import com.xiesx.fastboot.core.license.LicenseCreatorParam;
+import com.xiesx.fastboot.core.license.LicenseCreatorParamExtra;
+import com.xiesx.fastboot.core.license.LicenseVerify;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-public class LicenseTest {
+public class LicenseZedu {
 
     public static DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-    public static String subject = "FAST";
+    public static String subject = "fast-boot";
 
     public static String storepass = "136305973@qq.com";
 
@@ -33,16 +33,16 @@ public class LicenseTest {
         LicenseCreatorParam param = new LicenseCreatorParam();
         // 证书主题
         param.setSubject(subject);
-        // 私钥别称
-        param.setPrivateAlias("privateKey");
+        // 私钥库存储路径
+        param.setPrivateKeysStorePath(LicenseZedu.class.getResource("privateKeys.store").getPath());
         // 访问私钥库的密码
         param.setStorePass(storepass);
-        // 私钥密码
+        // 私钥别称
+        param.setPrivateAlias("privateKey");
+        // 私钥别称密码
         param.setKeyPass(keypass);
-        // 私钥库存储路径
-        param.setPrivateKeysStorePath(LicenseTest.class.getResource("privateKeys.store").getPath());
         // 证书生成路径
-        param.setLicensePath(LicenseTest.class.getResource("license").getPath());
+        param.setLicensePath(LicenseZedu.class.getResource("license.lic").getPath());
         // 证书生效时间
         // Date issusedDate = DateUtils.parseDate("2019-12-31 23:59:59", "yyyy-MM-dd
         // HH:mm:ss");
@@ -58,7 +58,7 @@ public class LicenseTest {
         // 额外信息
         List<String> macs = Lists.newArrayList();
         macs.add("00:01:6C:06:A6:29");
-        LicenseExtraModel licenseExtraModel = new LicenseExtraModel();
+        LicenseCreatorParamExtra licenseExtraModel = new LicenseCreatorParamExtra();
         licenseExtraModel.setMacAddress(macs);
         param.setLicenseExtraModel(licenseExtraModel);
         // 生成license
@@ -72,14 +72,14 @@ public class LicenseTest {
         LicenseVerify param = new LicenseVerify();
         // 证书主题
         param.setSubject(subject);
+        // 公钥库存储路径
+        param.setPublicKeysStorePath("E:/license/publicCerts.store");
         // 公钥别称
         param.setPublicAlias("publicCert");
         // 访问公钥库的密码
         param.setStorePass(storepass);
-        // 公钥库存储路径
-        param.setPublicKeysStorePath(LicenseTest.class.getResource("publicCerts.store").getPath());
         // 证书生成路径
-        param.setLicensePath(LicenseTest.class.getResource("license").getPath());
+        param.setLicensePath("E:/license/license.lic");
         // 安装证书
         param.install();
         // 卸载证书

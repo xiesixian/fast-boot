@@ -47,7 +47,7 @@ public class SignalAspect {
 
     private String key;
 
-    private String val;
+    private String secret;
 
     @Pointcut("@annotation(com.xiesx.fastboot.core.sign.annotation.GoSignal)")
     public void signPointcut() {
@@ -57,8 +57,8 @@ public class SignalAspect {
     @Around("signPointcut()")
     public Object signBeforeAspect(ProceedingJoinPoint pjp) throws RunException, Throwable {
         // 获取配置
-        key = StringUtils.isNotEmpty(properties.getKey()) ? properties.getKey() : SIGN_KEY;
-        val = StringUtils.isNotEmpty(properties.getVal()) ? properties.getVal() : SIGN_VAL;
+        key = StringUtils.isNotEmpty(properties.getHeaderKey()) ? properties.getHeaderKey() : SIGN_KEY;
+        secret = StringUtils.isNotEmpty(properties.getSecret()) ? properties.getSecret() : SIGN_VAL;
         // 获取方法信息
         MethodSignature signature = (MethodSignature) pjp.getSignature();
         Method method = signature.getMethod();
@@ -84,7 +84,7 @@ public class SignalAspect {
                 throw new RunException(RunExc.SIGNA, "非法请求");
             }
             // sign错误
-            if (!getSignature(parms, val).equals(headerSign)) {
+            if (!getSignature(parms, secret).equals(headerSign)) {
                 throw new RunException(RunExc.SIGNA, "验签失败");
             }
         }

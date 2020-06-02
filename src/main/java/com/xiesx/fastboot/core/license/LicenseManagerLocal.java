@@ -1,4 +1,4 @@
-package com.xiesx.fastboot.support.license;
+package com.xiesx.fastboot.core.license;
 
 import java.beans.XMLDecoder;
 import java.io.BufferedInputStream;
@@ -16,9 +16,9 @@ import lombok.extern.slf4j.Slf4j;
  * 自定义LicenseManager，用于增加额外的信息校验(除了LicenseManager的校验，我们还可以在这个类里面添加额外的校验信息)
  */
 @Slf4j
-public class GoLicenseManager extends LicenseManager {
+public class LicenseManagerLocal extends LicenseManager {
 
-    public GoLicenseManager(LicenseParam param) {
+    public LicenseManagerLocal(LicenseParam param) {
         super(param);
     }
 
@@ -108,7 +108,7 @@ public class GoLicenseManager extends LicenseManager {
         // 1. 首先调用父类的validate方法
         super.validate(content);
         // 2. 然后校验自定义的License参数，去校验我们的license信息
-        LicenseExtraModel expectedCheckModel = (LicenseExtraModel) content.getExtra();
+        LicenseCreatorParamExtra expectedCheckModel = (LicenseCreatorParamExtra) content.getExtra();
         // 3. 自定义校验Mac地址
         if (!checkIpAddress(expectedCheckModel.getMacAddress(), expectedCheckModel.getMacAddress())) {
             throw new LicenseContentException("当前服务器的Mac地址没在授权范围内");

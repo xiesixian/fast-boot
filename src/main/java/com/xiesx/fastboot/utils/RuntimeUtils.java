@@ -50,6 +50,7 @@ public class RuntimeUtils {
     /**
      * 初始化系统环境，获取当前系统环境变量
      */
+    @SuppressWarnings("deprecation")
     public static void initSystemEnvs() {
         Process p = null;
         BufferedReader br = null;

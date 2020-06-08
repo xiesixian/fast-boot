@@ -17,7 +17,7 @@ public class LicenseKeyStoreParam extends AbstractKeyStoreParam {
      * 公钥/私钥在磁盘上的存储路径
      */
     private String storePath;
-    
+
     private String storePwd;
 
     private String alias;

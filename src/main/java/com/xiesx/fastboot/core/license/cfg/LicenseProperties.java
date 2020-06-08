@@ -24,7 +24,7 @@ public class LicenseProperties {
      * 访问密钥库的密码
      */
     private String storePass;
-    
+
     /**
      * 公钥别称
      */

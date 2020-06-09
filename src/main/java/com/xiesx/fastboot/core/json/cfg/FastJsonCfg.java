@@ -14,6 +14,7 @@ import com.alibaba.fastjson.serializer.ToStringSerializer;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import com.google.common.collect.Lists;
+import com.xiesx.fastboot.core.json.filter.ValueDesensitizeFilter;
 
 @Configuration
 public class FastJsonCfg implements WebMvcConfigurer {
@@ -70,6 +71,8 @@ public class FastJsonCfg implements WebMvcConfigurer {
         serializeConfig.put(Long.class, ToStringSerializer.instance);
         serializeConfig.put(Long.TYPE, ToStringSerializer.instance);
         fastJsonConfig.setSerializeConfig(serializeConfig);
+        // 脱敏拦截器
+        fastJsonConfig.setSerializeFilters(new ValueDesensitizeFilter());
         // 自定义json配置
         fastConverter.setFastJsonConfig(fastJsonConfig);
         // 自定义编码配置

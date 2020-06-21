@@ -10,6 +10,7 @@ import javax.validation.ValidationException;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
@@ -107,12 +108,14 @@ public class GlobalExceptionAdvice {
      * @param e
      * @return
      */
-    @ExceptionHandler({DataAccessException.class})
+    @ExceptionHandler({InvalidDataAccessApiUsageException.class, DataAccessException.class})
     public BaseResult jdbcException(HttpServletRequest request, Exception e) {
         log.error("jdbcException ......", e);
         String msg = "";
         if (e instanceof EmptyResultDataAccessException) {
-            msg = "无数据";// 400 - Bad Request
+            msg = "无数据";
+        } else if (e instanceof InvalidDataAccessApiUsageException) {
+            msg = "无数据";
         } else {
             msg = "未知数据异常";
         }

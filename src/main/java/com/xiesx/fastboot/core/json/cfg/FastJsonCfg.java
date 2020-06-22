@@ -40,7 +40,7 @@ public class FastJsonCfg implements WebMvcConfigurer {
         // 序列化配置
         FastJsonConfig fastJsonConfig = new FastJsonConfig();
         fastJsonConfig.setSerializerFeatures(
-                // // 输出空置字段
+                // 是否输出值为null的字段
                 // SerializerFeature.WriteMapNullValue,
                 // 字符类型字段如果为null，输出为""，而不是null
                 SerializerFeature.WriteNullStringAsEmpty,

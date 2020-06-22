@@ -14,6 +14,7 @@ import org.springframework.data.jdbc.repository.support.JdbcRepositoryFactory;
 import org.springframework.data.mapping.PreferredConstructor;
 import org.springframework.data.mapping.callback.EntityCallbacks;
 import org.springframework.data.mapping.model.PreferredConstructorDiscoverer;
+import org.springframework.data.relational.core.dialect.Dialect;
 import org.springframework.data.relational.core.mapping.RelationalMappingContext;
 import org.springframework.data.repository.core.RepositoryInformation;
 import org.springframework.data.repository.core.RepositoryMetadata;
@@ -45,8 +46,9 @@ public class JdbcPlusRepositoryFactory extends JdbcRepositoryFactory {
     private EntityCallbacks entityCallbacks;
 
     public JdbcPlusRepositoryFactory(DataAccessStrategy dataAccessStrategy, RelationalMappingContext context, JdbcConverter converter,
-            ApplicationEventPublisher publisher, NamedParameterJdbcOperations operations, SQLQueryFactory sqlQueryFactory) {
-        super(dataAccessStrategy, context, converter, publisher, operations);
+            Dialect dialect, ApplicationEventPublisher publisher, NamedParameterJdbcOperations operations,
+            SQLQueryFactory sqlQueryFactory) {
+        super(dataAccessStrategy, context, converter, dialect, publisher, operations);
         this.publisher = publisher;
         this.context = context;
         this.converter = converter;
@@ -64,13 +66,13 @@ public class JdbcPlusRepositoryFactory extends JdbcRepositoryFactory {
         return JdbcPlusRepositoryExecutor.class;
     }
 
-    @SuppressWarnings("all")
     @Override
     protected Object getTargetRepository(RepositoryInformation repositoryInformation) {
         JdbcAggregateTemplate template = new JdbcAggregateTemplate(publisher, context, converter, accessStrategy);
         Class<?> type = repositoryInformation.getDomainType();
         RelationalPath<?> relationalPathBase = getRelationalPathBase(repositoryInformation);
         ConstructorExpression<?> constructor = getConstructorExpression(type, relationalPathBase);
+        @SuppressWarnings({"rawtypes", "unchecked"})
         JdbcPlusRepositoryExecutor<?, ?> repository = new JdbcPlusRepositoryExecutor(template, context.getRequiredPersistentEntity(type),
                 sqlQueryFactory, constructor, relationalPathBase);
         if (entityCallbacks != null) {

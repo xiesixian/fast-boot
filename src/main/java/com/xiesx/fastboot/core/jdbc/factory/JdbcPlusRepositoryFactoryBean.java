@@ -25,6 +25,7 @@ import org.springframework.data.jdbc.core.convert.SqlGeneratorSource;
 import org.springframework.data.jdbc.repository.QueryMappingConfiguration;
 import org.springframework.data.jdbc.repository.support.JdbcRepositoryFactoryBean;
 import org.springframework.data.mapping.callback.EntityCallbacks;
+import org.springframework.data.relational.core.dialect.Dialect;
 import org.springframework.data.relational.core.mapping.RelationalMappingContext;
 import org.springframework.data.repository.Repository;
 import org.springframework.data.repository.core.support.RepositoryFactorySupport;
@@ -52,6 +53,8 @@ public class JdbcPlusRepositoryFactoryBean<T extends Repository<S, ID>, S, ID ex
 
     private EntityCallbacks entityCallbacks;
 
+    private Dialect dialect;
+
     private SQLQueryFactory sqlQueryFactory;
 
     protected JdbcPlusRepositoryFactoryBean(Class<? extends T> repositoryInterface) {
@@ -67,8 +70,8 @@ public class JdbcPlusRepositoryFactoryBean<T extends Repository<S, ID>, S, ID ex
 
     @Override
     protected RepositoryFactorySupport doCreateRepositoryFactory() {
-        JdbcPlusRepositoryFactory jdbcRepositoryFactory =
-                new JdbcPlusRepositoryFactory(dataAccessStrategy, mappingContext, converter, publisher, operations, sqlQueryFactory);
+        JdbcPlusRepositoryFactory jdbcRepositoryFactory = new JdbcPlusRepositoryFactory(dataAccessStrategy, mappingContext, converter,
+                dialect, publisher, operations, sqlQueryFactory);
         jdbcRepositoryFactory.setQueryMappingConfiguration(queryMappingConfiguration);
         jdbcRepositoryFactory.setEntityCallbacks(entityCallbacks);
         return jdbcRepositoryFactory;
@@ -132,7 +135,7 @@ public class JdbcPlusRepositoryFactoryBean<T extends Repository<S, ID>, S, ID ex
 
             this.dataAccessStrategy = this.beanFactory.getBeanProvider(DataAccessStrategy.class) //
                     .getIfAvailable(() -> {
-                        SqlGeneratorSource sqlGeneratorSource = new SqlGeneratorSource(this.mappingContext);
+                        SqlGeneratorSource sqlGeneratorSource = new SqlGeneratorSource(this.mappingContext, this.converter, this.dialect);
                         return new DefaultDataAccessStrategy(sqlGeneratorSource, this.mappingContext, this.converter, this.operations);
                     });
         }

@@ -9,7 +9,7 @@ import com.xiesx.fastboot.core.json.desensitized.SensitiveTypeEnum;
 @Inherited
 @Documented
 public @interface GoDesensitized {
-    
+
     // 脱敏类型(规则)
     SensitiveTypeEnum type();
 }

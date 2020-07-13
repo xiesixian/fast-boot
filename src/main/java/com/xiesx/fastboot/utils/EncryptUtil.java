@@ -339,6 +339,7 @@ public class EncryptUtil {
 
     public static void main(String[] args) {
         String key = "123456";
+        System.out.println(EncryptUtil.getInstance().SHA1("136305973"));
         System.out.println(EncryptUtil.getInstance().Base64Encode("136305973"));
         System.out.println(EncryptUtil.getInstance().DESencode("1215193073783185410", key));
         System.out.println(EncryptUtil.getInstance().DESdecode("6EE9BDDA68A885A24476426308E0E2C951F0F6CDECDBAA81", key));

@@ -242,7 +242,7 @@ public class JdbcPlusTemplate {
 
     public int update(String sql, Object... args) {
         try {
-            return update(sql, args);
+            return getJdbcTemplate().update(sql, args);
         } catch (Exception e) {
             log.error("update error", e);
             return 0;

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.repository.NoRepositoryBean;
@@ -18,11 +19,21 @@ import com.querydsl.jpa.impl.JPAUpdateClause;
 @NoRepositoryBean
 public interface JpaPlusRepository<T, ID> extends JpaRepositoryImplementation<T, ID>, QuerydslPredicateExecutor<T> {
 
-    <O> Page<O> findAll(JPAQuery<O> query, Pageable pageable);
+    T findOne(ID id);
 
-    <O> Page<O> findAll(JPAQuery<O> query, Pageable pageable, OrderSpecifier<?>... orders);
+    List<T> findAll(Predicate predicate);
 
-    <S extends T> List<S> insert(S... entities);
+    List<T> findAll(Predicate predicate, Sort sort);
+
+    List<T> findAll(Predicate predicate, OrderSpecifier<?>... orders);
+
+    List<T> findAll(OrderSpecifier<?>... orders);
+
+    <S> Page<S> findAll(JPAQuery<S> query, Pageable pageable);
+
+    <S> Page<S> findAll(JPAQuery<S> query, Pageable pageable, OrderSpecifier<?>... orders);
+
+    <O extends T> List<O> insert(O... entities);
 
     int insertOrUpdate(T... entities);
 

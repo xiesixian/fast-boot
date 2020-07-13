@@ -61,26 +61,6 @@ public class JpaPlusRepositoryExecutor<T, ID> extends SimpleJpaRepository<T, ID>
     }
 
     @Override
-    public Iterable<T> findAll(Predicate predicate) {
-        return jpaPredicateExecutor.findAll(predicate);
-    }
-
-    @Override
-    public Iterable<T> findAll(Predicate predicate, Sort sort) {
-        return jpaPredicateExecutor.findAll(predicate, sort);
-    }
-
-    @Override
-    public Iterable<T> findAll(Predicate predicate, OrderSpecifier<?>... orders) {
-        return jpaPredicateExecutor.findAll(predicate, orders);
-    }
-
-    @Override
-    public Iterable<T> findAll(OrderSpecifier<?>... orders) {
-        return jpaPredicateExecutor.findAll(orders);
-    }
-
-    @Override
     public Page<T> findAll(Predicate predicate, Pageable pageable) {
         return jpaPredicateExecutor.findAll(predicate, pageable);
     }
@@ -98,21 +78,46 @@ public class JpaPlusRepositoryExecutor<T, ID> extends SimpleJpaRepository<T, ID>
     // ========================== JpaPlusRepository
 
     @Override
-    public <O> Page<O> findAll(JPAQuery<O> query, Pageable pageable) {
+    public T findOne(ID id) {
+        Optional<T> optional = findById(id);
+        return (optional.isPresent()) ? optional.get() : null;
+    }
+
+    @Override
+    public List<T> findAll(Predicate predicate) {
+        return jpaPredicateExecutor.findAll(predicate);
+    }
+
+    @Override
+    public List<T> findAll(Predicate predicate, Sort sort) {
+        return jpaPredicateExecutor.findAll(predicate, sort);
+    }
+
+    @Override
+    public List<T> findAll(Predicate predicate, OrderSpecifier<?>... orders) {
+        return jpaPredicateExecutor.findAll(predicate, orders);
+    }
+
+    @Override
+    public List<T> findAll(OrderSpecifier<?>... orders) {
+        return jpaPredicateExecutor.findAll(orders);
+    }
+
+    @Override
+    public <S> Page<S> findAll(JPAQuery<S> query, Pageable pageable) {
         // 分页查询
-        JPQLQuery<O> jpqlQuery = querydsl.applyPagination(pageable, query);
+        JPQLQuery<S> jpqlQuery = querydsl.applyPagination(pageable, query);
         // 构造分页
         return PageableExecutionUtils.getPage(jpqlQuery.fetch(), pageable, query::fetchCount);
     }
 
-    public <O> Page<O> findAll(JPAQuery<O> query, Pageable pageable, OrderSpecifier<?>... orders) {
+    public <S> Page<S> findAll(JPAQuery<S> query, Pageable pageable, OrderSpecifier<?>... orders) {
         // 分页查询
-        JPQLQuery<O> jpqlQuery = querydsl.applyPagination(pageable, query).orderBy(orders);
+        JPQLQuery<S> jpqlQuery = querydsl.applyPagination(pageable, query).orderBy(orders);
         // 构造分页
         return PageableExecutionUtils.getPage(jpqlQuery.fetch(), pageable, query::fetchCount);
     }
 
-    @Deprecated
     @Transactional
     @Override
     public <S extends T> List<S> insert(S... entities) {
@@ -121,14 +126,13 @@ public class JpaPlusRepositoryExecutor<T, ID> extends SimpleJpaRepository<T, ID>
         return list;
     }
 
-    @Deprecated
     @Transactional
     @Override
     public int insertOrUpdate(T... entities) {
-        return insert(entities).size();
+        int row = insert(entities).size();
+        return row;
     }
 
-    @Deprecated
     @Transactional
     @Override
     public int delete(ID... ids) {
@@ -146,7 +150,6 @@ public class JpaPlusRepositoryExecutor<T, ID> extends SimpleJpaRepository<T, ID>
         return (int) delete.where(predicate).execute();
     }
 
-    @Deprecated
     @Transactional
     @Override
     public int update(JPAUpdateClause update, Predicate... predicate) {

@@ -31,19 +31,19 @@ public class JwtHelper {
     /**
      * jwt有效时间
      */
-    public static final long JWT_EXPIRE_M_1 = 1 * 60 * 1000; // 1分钟
+    public static final int JWT_EXPIRE_M_1 = 1 * 60 * 1000; // 1分钟
 
-    public static final long JWT_EXPIRE_M_5 = 5 * JWT_EXPIRE_M_1; // 5分钟
+    public static final int JWT_EXPIRE_M_5 = 5 * JWT_EXPIRE_M_1; // 5分钟
 
-    public static final long JWT_EXPIRE_H_1 = 1 * 60 * 60 * 1000; // 1小时
+    public static final int JWT_EXPIRE_H_1 = 1 * 60 * 60 * 1000; // 1小时
 
-    public static final long JWT_EXPIRE_H_12 = 12 * JWT_EXPIRE_H_1; // 12小时
+    public static final int JWT_EXPIRE_H_12 = 12 * JWT_EXPIRE_H_1; // 12小时
 
-    public static final long JWT_EXPIRE_D_1 = 24 * 60 * 60 * 1000; // 1天
+    public static final int JWT_EXPIRE_D_1 = 24 * 60 * 60 * 1000; // 1天
 
-    public static final long JWT_EXPIRE_D_7 = 7 * JWT_EXPIRE_D_1; // 7天
+    public static final int JWT_EXPIRE_D_7 = 7 * JWT_EXPIRE_D_1; // 7天
 
-    public static final long JWT_EXPIRE_D_30 = 30 * JWT_EXPIRE_D_1; // 30天
+    public static final int JWT_EXPIRE_D_30 = 30 * JWT_EXPIRE_D_1; // 30天
 
     /**
      * jwt生成方

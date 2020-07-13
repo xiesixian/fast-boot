@@ -16,8 +16,4 @@ public class PaginationVo {
     public Integer limit = 25;
 
     public Integer size = 25;
-
-    public Integer getPage() {
-        return page - 1;
-    }
 }

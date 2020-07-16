@@ -3,7 +3,7 @@
 	<target name="javadoc">
 		<javadoc access="public" additionalparam=" -encoding utf-8 -charset utf-8"
 			author="true"
-			destdir="doc" doctitle="Spring Boot Fast Support Doc.xml" 
+			destdir="doc" doctitle="SpringBoot Fast Support Doc.xml" 
 			nodeprecated="false"
 			nodeprecatedlist="false"
 			noindex="false" 

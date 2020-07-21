@@ -23,7 +23,9 @@ public enum RunExc {
 
     SIGNA(6000, "签名错误"), // --> SignAspect
 
-    RETRY(7000, "重试错误"); // --> BaseResultRetryListener
+    RETRY(7000, "重试错误"), // --> BaseResultRetryListener
+
+    LIMITER(8000, "请求限流"); // --> BaseResultRetryListener
 
     private Integer errorCode;
 

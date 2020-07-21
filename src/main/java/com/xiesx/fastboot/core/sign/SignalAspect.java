@@ -35,7 +35,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Component
 @Aspect
-@Order(0)
+@Order(-98)
 public class SignalAspect {
 
     public static final String SIGN_KEY = "sign";

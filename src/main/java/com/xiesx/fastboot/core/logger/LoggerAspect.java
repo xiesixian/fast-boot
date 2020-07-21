@@ -29,12 +29,12 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Component
 @Aspect
-@Order(0)
+@Order(-100)
 public class LoggerAspect {
 
     @Pointcut("@annotation(org.springframework.web.bind.annotation.GetMapping) || @annotation(org.springframework.web.bind.annotation.PostMapping) || @annotation(org.springframework.web.bind.annotation.RequestMapping)")
     public void logPointcut() {
-        log.info("logPointcut=====");
+        log.debug("logPointcut=====");
     }
 
     @Around("logPointcut()")
@@ -72,7 +72,7 @@ public class LoggerAspect {
         // 记录开始时间
         long beginTime = System.currentTimeMillis();
         if (isPrint) {
-            log.info("| request staart {} {} {}ms", new Object[] {methodName, Long.valueOf(beginTime), req});
+            log.info("| request {} {} {}ms", new Object[] {methodName, Long.valueOf(beginTime), req});
         }
         // 执行方法
         Object ret = pjp.proceed();
@@ -83,7 +83,7 @@ public class LoggerAspect {
         // 响应
         String res = JSON.toJSONString(ret, isPrettyFormat);
         if (isPrint) {
-            log.info("| request end {} {} {} {}ms", new Object[] {methodName, Long.valueOf(endTime), res, Long.valueOf(t)});
+            log.info("| response {} {} {} {}ms", new Object[] {methodName, Long.valueOf(endTime), res, Long.valueOf(t)});
         }
         return ret;
     }

@@ -20,21 +20,33 @@ public class SpringStartup {
 
     public static String serverpath;
 
+    // www/wwwroot/go168.xyz/WEB-INF
+    // www/wwwroot/gotv-api/webapps
+
     public static void init() {
         try {
             classUrl = RuntimeUtils.getRootPath();
             log.info("Startup classpath url " + classUrl);
-            int index = classUrl.indexOf("/webapps/");
-            if (index > 0) {
-                String path = classUrl.substring(0, index);
-                index = path.lastIndexOf("/");
-                servername = path.substring(index + 1);
-                serverpath = classUrl.split(servername)[0] + servername;
+            if (classUrl.contains("web-inf")) {
+                int index = classUrl.indexOf("/web-inf");
+                if (index > 0) {
+                    String path = classUrl.substring(0, index);
+                    index = path.lastIndexOf("/");
+                    servername = path.substring(index + 1);
+                    serverpath = classUrl.split(servername)[0] + servername;
+                }
+            } else if (classUrl.contains("webapps")) {
+                int index = classUrl.indexOf("/webapps");
+                if (index > 0) {
+                    String path = classUrl.substring(0, index);
+                    index = path.lastIndexOf("/");
+                    servername = path.substring(index + 1);
+                    serverpath = classUrl.split(servername)[0] + servername;
+                }
             } else {
-                servername = classUrl.substring(classUrl.length() - 34);
-                serverpath = classUrl;
+                servername = "unknown";
+                serverpath = "unknown";
             }
-            System.out.println();
             log.info("Startup tomcat-name " + servername + ", path " + serverpath);
         } catch (Exception e) {
             log.error("", e);

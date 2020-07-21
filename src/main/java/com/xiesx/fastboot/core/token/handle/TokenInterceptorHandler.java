@@ -43,7 +43,7 @@ public class TokenInterceptorHandler extends HandlerInterceptorAdapter {
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        log.debug("preHandle ......");
+        log.info("preHandle ......");
         // 获取配置
         TokenProperties properties = SpringHelper.getBean(TokenProperties.class);
         key = StringUtils.isNotEmpty(properties.getHeaderKey()) ? properties.getHeaderKey() : TOKEN_KEY;
@@ -89,7 +89,7 @@ public class TokenInterceptorHandler extends HandlerInterceptorAdapter {
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView)
             throws Exception {
-        log.debug("postHandle ......");
+        log.info("postHandle ......");
     }
 
     /**
@@ -97,6 +97,6 @@ public class TokenInterceptorHandler extends HandlerInterceptorAdapter {
      */
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-        log.debug("afterCompletion ......");
+        log.info("afterCompletion ......");
     }
 }

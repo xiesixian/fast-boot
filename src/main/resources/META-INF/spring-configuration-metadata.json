@@ -1,6 +1,13 @@
 {
   "groups": [
     {
+      "name": "fastboot.limit",
+      "type": "com.xiesx.fastboot.core.limiter.cfg.LimiterProperties",
+      "sourceType": "com.xiesx.fastboot.core.limiter.cfg.LimiterProperties"
+    }
+  ],
+  "groups": [
+    {
       "name": "fastboot.sign",
       "type": "com.xiesx.fastboot.core.sign.cfg.SignProperties",
       "sourceType": "com.xiesx.fastboot.core.sign.cfg.SignProperties"

@@ -6,10 +6,10 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * api接口，忽略Token验证
- *
- * @author Sixian.Xie
- * @date 2018-03-19
+ * @title GoSignal.java
+ * @description 数据签名
+ * @author Sixian.xie
+ * @date 2020-7-2112:14:36
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)

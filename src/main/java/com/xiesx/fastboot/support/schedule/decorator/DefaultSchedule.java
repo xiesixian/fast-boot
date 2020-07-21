@@ -5,10 +5,10 @@ import com.xiesx.fastboot.support.schedule.impl.ISchedule;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * @title JobDefault.java
+ * @title DefaultSchedule.java
  * @description 默认接口实现
  * @author Sixian.xie
- * @date 2019年3月4日 下午1:55:52
+ * @date 2020-7-21 22:43:06
  */
 @Slf4j
 public class DefaultSchedule implements ISchedule {

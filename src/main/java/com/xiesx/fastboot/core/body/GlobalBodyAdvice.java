@@ -18,10 +18,10 @@ import com.xiesx.fastboot.base.result.R;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * @title BaseResBodyAdvice.java
- * @description 返回增强
+ * @title GlobalBodyAdvice.java
+ * @description 统一返回
  * @author Sixian.xie
- * @date 2018年12月21日 下午6:14:28
+ * @date 2020-7-21 22:30:32
  */
 @Slf4j
 @RestControllerAdvice

@@ -5,10 +5,10 @@ import java.util.Map;
 import java.util.concurrent.Callable;
 
 /**
- * @title 网络重试类接口
- * @description
+ * @title IHttpCallable.java
+ * @description 网络重试类接口
  * @author Sixian.xie
- * @date 2018年7月17日 下午2:36:42
+ * @date 2020-7-21 22:41:45
  */
 public interface IHttpCallable<T> {
 

@@ -5,9 +5,9 @@ import lombok.EqualsAndHashCode;
 
 /**
  * @title RunException.java
- * @description
+ * @description 自定义异常
  * @author Sixian.xie
- * @date 2018年12月21日 下午6:15:34
+ * @date 2020-7-21 22:31:17
  */
 @Data
 @EqualsAndHashCode(callSuper = false)

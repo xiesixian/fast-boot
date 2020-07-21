@@ -16,11 +16,12 @@ import com.xiesx.fastboot.utils.DateUtils;
 import io.jsonwebtoken.*;
 
 /**
- * @title TokenStorageHelper
- * @description https://jwt.io/
- * @author XIE
- * @date 2020年5月7日上午10:42:17
+ * @title JwtHelper.java
+ * @description
+ * @author Sixian.xie
+ * @date 2020-7-21 22:37:47
  */
+// https://jwt.io/
 public class JwtHelper {
 
     /**

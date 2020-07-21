@@ -6,10 +6,10 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * 登录用户信息
- *
- * @author Sixian.Xie
- * @date 2018-03-19
+ * @title GoToken.java
+ * @description 登录用户信息
+ * @author Sixian.xie
+ * @date 2020-7-21 22:35:48
  */
 @Target(ElementType.PARAMETER)
 @Retention(RetentionPolicy.RUNTIME)

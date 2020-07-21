@@ -7,10 +7,10 @@ import java.util.concurrent.ExecutionException;
 import com.github.rholder.retry.RetryException;
 
 /**
- * @title HttpRetryCilentService.java
+ * @title IHttpRetry.java
  * @description 自定义网络请求类接口
  * @author Sixian.xie
- * @date 2018年12月26日 下午6:02:53
+ * @date 2020-7-21 22:41:57
  */
 public interface IHttpRetry<T> {
 

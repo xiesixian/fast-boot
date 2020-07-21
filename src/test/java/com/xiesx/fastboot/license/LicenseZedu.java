@@ -11,10 +11,10 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.google.common.collect.Lists;
-import com.xiesx.fastboot.core.license.LicenseCreator;
-import com.xiesx.fastboot.core.license.LicenseCreatorParam;
-import com.xiesx.fastboot.core.license.LicenseCreatorParamExtra;
-import com.xiesx.fastboot.core.license.LicenseVerify;
+import com.xiesx.fastboot.support.license.LicenseCreator;
+import com.xiesx.fastboot.support.license.LicenseCreatorParam;
+import com.xiesx.fastboot.support.license.LicenseCreatorParamExtra;
+import com.xiesx.fastboot.support.license.LicenseVerify;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 public class LicenseZedu {

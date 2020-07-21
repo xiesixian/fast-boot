@@ -20,10 +20,10 @@ import lombok.extern.slf4j.Slf4j;
 import net.dongliu.requests.*;
 
 /**
- * @title 自定义Requests网络请求类实现类
- * @description 基于Requests来实现（网络请求 + 动态代理 + 失败重试）
+ * @title HttpCilentRetryImplRe.java
+ * @description 自定义Requests网络请求类实现类，基于Requests来实现（网络请求 + 动态代理 + 失败重试）
  * @author Sixian.xie
- * @date 2018年7月17日 下午2:36:42
+ * @date 2020-7-21 22:42:34
  */
 @Slf4j
 @Scope("prototype")

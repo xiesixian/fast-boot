@@ -7,12 +7,6 @@ import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
 
-/**
- * @title ArrayUtils
- * @description
- * @author XIE
- * @date 2020年4月24日下午10:11:16
- */
 public class ArrayUtils {
 
     /**

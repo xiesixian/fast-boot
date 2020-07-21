@@ -7,11 +7,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * tweeter的snowflake 移植到Java: (a) id构成: 42位的时间前缀 + 10位的节点标识 + 12位的sequence避免并发的数字(12位不够用时强制得到新的时间前缀)
- * 注意这里进行了小改动: snowkflake是5位的datacenter加5位的机器id; 这里变成使用10位的机器id (b)
- * 对系统时间的依赖性非常强，需关闭ntp的时间同步功能。当检测到ntp时间调整后，将会拒绝分配id
+ * @title IdWorker.java
+ * @description tweeter的snowflake 移植到Java: (a) id构成: 42位的时间前缀 + 10位的节点标识 +
+ *              12位的sequence避免并发的数字(12位不够用时强制得到新的时间前缀) 注意这里进行了小改动: snowkflake是5位的datacenter加5位的机器id;
+ *              这里变成使用10位的机器id (b) 对系统时间的依赖性非常强，需关闭ntp的时间同步功能。当检测到ntp时间调整后，将会拒绝分配id
+ * @author Sixian.xie
+ * @date 2020-7-21 22:32:56
  */
-
 public class IdWorker {
 
     private final static Logger logger = LoggerFactory.getLogger(IdWorker.class);

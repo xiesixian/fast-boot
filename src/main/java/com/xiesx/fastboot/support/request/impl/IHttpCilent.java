@@ -4,10 +4,10 @@ import java.net.Proxy;
 import java.util.Map;
 
 /**
- * @title HttpRetryCilentService.java
+ * @title IHttpCilent.java
  * @description 自定义网络请求类接口
  * @author Sixian.xie
- * @date 2018年12月26日 下午6:02:53
+ * @date 2020-7-21 22:41:51
  */
 public interface IHttpCilent<T> {
 

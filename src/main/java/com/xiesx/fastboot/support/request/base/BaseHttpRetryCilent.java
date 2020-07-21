@@ -13,10 +13,10 @@ import com.google.common.collect.Maps;
 import net.dongliu.requests.RawResponse;
 
 /**
- * @title HttpRetryCilentServiceImpl.java
+ * @title BaseHttpRetryCilent.java
  * @description 网络请求重试类，包含（网络请求 + 动态代理 + 失败重试）
  * @author Sixian.xie
- * @date 2018年12月26日 下午6:04:47
+ * @date 2020-7-21 22:41:23
  */
 public class BaseHttpRetryCilent {
 

@@ -7,9 +7,9 @@ import lombok.Data;
 
 /**
  * @title BaseResult.java
- * @description 响应基类
+ * @description 结果基类
  * @author Sixian.xie
- * @date 2018年12月24日 下午1:16:06
+ * @date 2020-7-21 22:29:55
  */
 @Data
 @Builder

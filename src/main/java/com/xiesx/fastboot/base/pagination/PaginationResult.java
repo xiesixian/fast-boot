@@ -10,9 +10,9 @@ import lombok.experimental.Accessors;
 
 /**
  * @title PaginationResult.java
- * @description 分页返回对象
+ * @description 分页结果对象
  * @author Sixian.xie
- * @date 2018年12月24日 下午1:16:06
+ * @date 2020-7-21 22:29:25
  */
 @Data
 @Builder

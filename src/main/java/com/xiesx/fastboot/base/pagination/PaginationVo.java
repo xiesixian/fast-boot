@@ -6,7 +6,7 @@ import lombok.Data;
  * @title PaginationVo.java
  * @description 分页请求对象
  * @author Sixian.xie
- * @date 2018年12月24日 下午1:16:06
+ * @date 2020-7-21 22:29:45
  */
 @Data
 public class PaginationVo {

@@ -18,11 +18,13 @@ import com.google.common.collect.Maps;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * @title JdbcPlusTemplate
- * @description https://blog.csdn.net/hbtj_1216/article/details/100532763?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-1.3f686c96b88b49ab&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-1.3f686c96b88b49ab
- * @author XIE
- * @date 2020年4月24日下午10:01:05
+ * @title JdbcPlusTemplate.java
+ * @description
+ * @author Sixian.xie
+ * @date 2020-7-21 22:32:10
  */
+
+// https://blog.csdn.net/hbtj_1216/article/details/100532763?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-1.3f686c96b88b49ab&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-1.3f686c96b88b49ab
 @Slf4j
 @Component
 public class JdbcPlusTemplate {

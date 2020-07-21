@@ -1,7 +1,7 @@
 package com.xiesx.fastboot;
 
-import com.xiesx.fastboot.core.license.LicenseVerify;
-import com.xiesx.fastboot.core.license.cfg.LicenseProperties;
+import com.xiesx.fastboot.support.license.LicenseVerify;
+import com.xiesx.fastboot.support.license.cfg.LicenseProperties;
 import com.xiesx.fastboot.support.schedule.ScheduleHelper;
 import com.xiesx.fastboot.support.schedule.decorator.DefaultDecorator;
 import com.xiesx.fastboot.support.schedule.decorator.DefaultSchedule;

@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
  * @title GoSignal.java
  * @description 数据签名
  * @author Sixian.xie
- * @date 2020-7-2112:14:36
+ * @date 2020-7-21 22:35:16
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)

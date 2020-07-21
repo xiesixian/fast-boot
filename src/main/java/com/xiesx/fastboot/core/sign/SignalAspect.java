@@ -27,10 +27,10 @@ import com.xiesx.fastboot.core.sign.cfg.SignalProperties;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * @title SignAspect.java
- * @description 数据签名
+ * @title SignalAspect.java
+ * @description 数据签名切面
  * @author Sixian.xie
- * @date 2018年12月21日 下午6:14:55
+ * @date 2020-7-21 22:35:39
  */
 @Slf4j
 @Component

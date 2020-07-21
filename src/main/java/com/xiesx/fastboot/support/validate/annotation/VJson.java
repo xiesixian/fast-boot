@@ -14,9 +14,9 @@ import com.xiesx.fastboot.support.validate.rule.VJsonRule;
 
 /**
  * @title VJson.java
- * @description
+ * @description JSON判断
  * @author Sixian.xie
- * @date 2019年3月6日 下午6:24:22
+ * @date 2020-7-21 22:44:13
  */
 // 申明注解的作用位置
 @Target({ANNOTATION_TYPE, FIELD, METHOD, PARAMETER})

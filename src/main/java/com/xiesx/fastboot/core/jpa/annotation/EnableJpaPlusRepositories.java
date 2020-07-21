@@ -10,9 +10,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import com.xiesx.fastboot.core.jpa.factory.JpaPlusRepositoryFactoryBean;
 
 /**
- * Annotation to enable {@link ExtendedQuerydslJpaRepository} support.
- *
- * @see EnableJpaRepositories
+ * @title EnableJpaPlusRepositories.java
+ * @description
+ * @author Sixian.xie
+ * @date 2020-7-21 22:32:26
  */
 @EnableJpaRepositories(repositoryFactoryBeanClass = JpaPlusRepositoryFactoryBean.class)
 @Target(ElementType.TYPE)

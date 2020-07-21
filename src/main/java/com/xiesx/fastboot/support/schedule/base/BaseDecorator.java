@@ -10,7 +10,7 @@ import com.xiesx.fastboot.support.schedule.impl.ISchedule;
  * @title BaseDecorator.java
  * @description 装饰器父类
  * @author Sixian.xie
- * @date 2019年3月4日 下午2:12:04
+ * @date 2020-7-21 22:42:52
  */
 public class BaseDecorator implements ISchedule {
 

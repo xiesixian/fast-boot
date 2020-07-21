@@ -10,9 +10,9 @@ import com.xiesx.fastboot.support.validate.annotation.VJson;
 
 /**
  * @title VJsonRule.java
- * @description
+ * @description 验证JSON规则
  * @author Sixian.xie
- * @date 2019年3月6日 下午6:25:39
+ * @date 2020-7-21 22:44:51
  */
 public class VJsonRule implements ConstraintValidator<VJson, String> {
 

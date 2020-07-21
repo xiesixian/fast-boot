@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
  * @title RunExc.java
  * @description 异常枚举处理类
  * @author Sixian.xie
- * @date 2018年12月24日 下午1:16:40
+ * @date 2020-7-21 22:30:51
  */
 @AllArgsConstructor
 public enum RunExc {

@@ -10,10 +10,10 @@ import lombok.extern.slf4j.Slf4j;
 import net.dongliu.requests.RawResponse;
 
 /**
- * @title BaseRetryListener.java
+ * @title BaseHttpRetryListener.java
  * @description 重试监听基类（网络重试 + 业务重试）默认监听
  * @author Sixian.xie
- * @date 2018年12月26日 下午5:55:48
+ * @date 2020-7-21 22:41:28
  */
 @Slf4j
 public class BaseHttpRetryListener<T> implements RetryListener {

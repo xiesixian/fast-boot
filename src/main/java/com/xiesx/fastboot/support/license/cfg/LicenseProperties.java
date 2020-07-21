@@ -1,4 +1,4 @@
-package com.xiesx.fastboot.core.license.cfg;
+package com.xiesx.fastboot.support.license.cfg;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

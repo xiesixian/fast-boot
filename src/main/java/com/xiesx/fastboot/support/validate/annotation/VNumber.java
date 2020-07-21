@@ -14,9 +14,9 @@ import com.xiesx.fastboot.support.validate.rule.VNumberRule;
 
 /**
  * @title VNumber.java
- * @description
+ * @description 数字判断
  * @author Sixian.xie
- * @date 2018年12月21日 下午6:15:48
+ * @date 2020-7-21 22:44:29
  */
 // 申明注解的作用位置
 @Target({ANNOTATION_TYPE, FIELD, METHOD, PARAMETER})

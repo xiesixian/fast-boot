@@ -11,10 +11,10 @@ import com.github.rholder.retry.RetryException;
 import com.xiesx.fastboot.support.request.impl.IHttpCallable;
 
 /**
- * @title 自定义Requests网络请求类实现类（暂未实现）
- * @description 基于Apache公司HttpClient来实现（网络请求 + 动态代理 + 失败重试）
+ * @title HttpCilentRetryImplHc.java
+ * @description 自定义Requests网络请求类实现类（暂未实现），基于Apache公司HttpClient来实现（网络请求 + 动态代理 + 失败重试）
  * @author Sixian.xie
- * @date 2018年7月17日 下午2:36:42
+ * @date 2020-7-21 22:42:14
  */
 @Component("httpCilentRetryImplHc")
 public class HttpCilentRetryImplHc<T> implements IHttpCilentRetry<T>, IHttpCallable<T> {

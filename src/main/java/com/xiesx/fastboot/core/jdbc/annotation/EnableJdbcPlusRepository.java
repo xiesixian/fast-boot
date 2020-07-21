@@ -7,13 +7,13 @@ import java.lang.annotation.Target;
 
 import org.springframework.data.jdbc.repository.config.EnableJdbcRepositories;
 
-import com.xiesx.fastboot.core.jdbc.JdbcPlusRepository;
 import com.xiesx.fastboot.core.jdbc.factory.JdbcPlusRepositoryFactoryBean;
 
 /**
- * Annotation to enable {@link JdbcPlusRepository} support.
- *
- * @see EnableJdbcRepositories
+ * @title EnableJdbcPlusRepository.java
+ * @description
+ * @author Sixian.xie
+ * @date 2020-7-21 22:31:37
  */
 @EnableJdbcRepositories(repositoryFactoryBeanClass = JdbcPlusRepositoryFactoryBean.class)
 @Target(ElementType.TYPE)

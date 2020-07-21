@@ -1,10 +1,10 @@
 package com.xiesx.fastboot.support.request.config;
 
 /**
- * @title HttpConfig.java
+ * @title HttpCilentRetryConfig.java
  * @description Http相关配置
  * @author Sixian.xie
- * @date 2018年12月26日 下午5:57:55
+ * @date 2020-7-21 22:41:36
  */
 public class HttpCilentRetryConfig {
 

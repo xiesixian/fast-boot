@@ -6,11 +6,10 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * 
  * @title GoLimit.java
  * @description 限流器
  * @author Sixian.xie
- * @date 2020-7-2111:20:46
+ * @date 2020-7-21 22:34:43
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)

@@ -11,9 +11,9 @@ import com.xiesx.fastboot.support.validate.annotation.VNumber;
 
 /**
  * @title VNumberRule.java
- * @description
+ * @description 验证数字规则
  * @author Sixian.xie
- * @date 2019年3月7日 上午10:56:06
+ * @date 2020-7-21 22:45:00
  */
 public class VNumberRule implements ConstraintValidator<VNumber, String> {
 

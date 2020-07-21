@@ -1,10 +1,10 @@
 package com.xiesx.fastboot.base;
 
 /**
- * @title BaseResStateBO.java
+ * @title AbstractState.java
  * @description 响应状态抽象类
  * @author Sixian.xie
- * @date 2018年12月26日 上午10:38:53
+ * @date 2020-7-21 22:30:17
  */
 public abstract class AbstractState {
 

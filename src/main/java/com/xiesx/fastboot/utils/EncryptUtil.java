@@ -11,12 +11,6 @@ import javax.crypto.spec.SecretKeySpec;
 
 import org.apache.commons.codec.binary.Base64;
 
-/**
- * @title EncryptUtil
- * @description
- * @author XIE
- * @date 2020年4月24日下午10:11:27
- */
 public class EncryptUtil {
 
     public static final String MD5 = "MD5";

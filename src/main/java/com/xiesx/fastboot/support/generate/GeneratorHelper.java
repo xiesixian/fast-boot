@@ -36,10 +36,10 @@ import freemarker.template.Configuration;
 import freemarker.template.Template;
 
 /**
- * @title GoGenerator.java
+ * @title GeneratorHelper.java
  * @description 利用mybatis里的生成插件代码生成
  * @author Sixian.xie
- * @date 2016年5月1日 下午15:14:10
+ * @date 2020-7-21 22:41:12
  */
 public class GeneratorHelper {
 

@@ -14,7 +14,7 @@ import lombok.experimental.FieldNameConstants;
 
 /**
  * @title Generator.java (generator)
- * @description 代码生成
+ * @description 代码模板
  * @author 谢思贤
  * @date 2020-04-27
  */

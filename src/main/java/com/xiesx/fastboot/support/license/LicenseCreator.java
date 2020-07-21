@@ -1,4 +1,4 @@
-package com.xiesx.fastboot.core.license;
+package com.xiesx.fastboot.support.license;
 
 import java.io.File;
 import java.text.MessageFormat;
@@ -12,7 +12,10 @@ import org.apache.logging.log4j.Logger;
 import de.schlichtherle.license.*;
 
 /**
- * License生成类 -- 用于license生成
+ * @title LicenseCreator.java
+ * @description License生成类 -- 用于license生成
+ * @author Sixian.xie
+ * @date 2020-7-21 22:33:56
  */
 public class LicenseCreator {
 

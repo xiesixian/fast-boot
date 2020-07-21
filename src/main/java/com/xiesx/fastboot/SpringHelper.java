@@ -4,10 +4,10 @@ import org.springframework.beans.factory.annotation.BeanFactoryAnnotationUtils;
 import org.springframework.context.ApplicationContext;
 
 /**
- * spring工具类，静态工具方法获取bean
- *
- * @author zhanghui
- * @date 2019/5/29
+ * @title SpringHelper.java
+ * @description Spring工具类，静态工具方法获取bean
+ * @author Sixian.xie
+ * @date 2020-7-21 22:46:54
  */
 public class SpringHelper {
 

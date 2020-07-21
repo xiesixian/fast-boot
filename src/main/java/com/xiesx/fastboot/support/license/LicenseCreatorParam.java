@@ -1,4 +1,4 @@
-package com.xiesx.fastboot.core.license;
+package com.xiesx.fastboot.support.license;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -6,7 +6,10 @@ import java.util.Date;
 import lombok.Data;
 
 /**
- * License生成类需要的参数
+ * @title LicenseCreatorParam.java
+ * @description License生成类需要的参数
+ * @author Sixian.xie
+ * @date 2020-7-21 22:34:03
  */
 @Data
 public class LicenseCreatorParam implements Serializable {

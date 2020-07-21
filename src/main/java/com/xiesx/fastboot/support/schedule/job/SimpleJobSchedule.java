@@ -11,10 +11,10 @@ import org.quartz.JobExecutionException;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * @title SimpleJob.java
+ * @title SimpleJobSchedule.java
  * @description 默认定时任务
  * @author Sixian.xie
- * @date 2019年1月2日 下午3:05:47
+ * @date 2020-7-21 22:43:29
  */
 @Slf4j
 public class SimpleJobSchedule implements Job {

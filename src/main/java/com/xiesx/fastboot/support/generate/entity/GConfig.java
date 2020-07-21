@@ -11,10 +11,10 @@ import lombok.experimental.Accessors;
 import lombok.experimental.FieldNameConstants;
 
 /**
- * @title GeneratorConfig.java (generator)
- * @description 代码生成
- * @author 谢思贤
- * @date 2020-04-27
+ * @title GConfig.java
+ * @description 代码配置
+ * @author Sixian.xie
+ * @date 2020-7-21 22:40:43
  */
 @Data
 @Accessors(chain = true)

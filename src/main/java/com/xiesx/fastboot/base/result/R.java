@@ -9,9 +9,9 @@ import lombok.NonNull;
 
 /**
  * @title R.java
- * @description
+ * @description 返回值快速构造类
  * @author Sixian.xie
- * @date 2020年5月19日下午10:33:43
+ * @date 2020-7-21 22:30:11
  */
 public class R {
 

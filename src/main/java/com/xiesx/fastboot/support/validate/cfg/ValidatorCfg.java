@@ -13,7 +13,7 @@ import org.springframework.validation.beanvalidation.MethodValidationPostProcess
  * @title ValidatorCfg.java
  * @description 效验配置
  * @author Sixian.xie
- * @date 2019年3月14日 上午10:49:08
+ * @date 2020-7-21 22:44:43
  */
 @Configuration
 public class ValidatorCfg {

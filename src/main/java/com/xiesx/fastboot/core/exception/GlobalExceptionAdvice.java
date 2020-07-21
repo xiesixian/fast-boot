@@ -31,7 +31,7 @@ import lombok.extern.slf4j.Slf4j;
  * @title GlobalExceptionAdvice.java
  * @description 全局配置异常处理，分为5种涵盖日常使用场景
  * @author Sixian.xie
- * @date 2018年12月21日 下午6:15:40
+ * @date 2020-7-21 22:30:43
  */
 @Slf4j
 @RestControllerAdvice

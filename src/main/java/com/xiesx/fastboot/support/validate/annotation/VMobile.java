@@ -13,10 +13,10 @@ import javax.validation.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Length;
 
 /**
- * @title VJson.java
- * @description
+ * @title VMobile.java
+ * @description 手机验证
  * @author Sixian.xie
- * @date 2019年3月6日 下午6:24:22
+ * @date 2020-7-21 22:44:21
  */
 // 申明注解的作用位置
 @Target({ANNOTATION_TYPE, FIELD, METHOD, PARAMETER})

@@ -1,4 +1,4 @@
-package com.xiesx.fastboot.core.license;
+package com.xiesx.fastboot.support.license;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -9,7 +9,10 @@ import de.schlichtherle.license.AbstractKeyStoreParam;
 
 
 /**
- * 自定义KeyStoreParam，用于将公私钥存储文件存放到其他磁盘位置而不是项目中。现场使用的时候公钥大部分都不会放在项目中的
+ * @title LicenseKeyStoreParam.java
+ * @description 自定义KeyStoreParam，用于将公私钥存储文件存放到其他磁盘位置而不是项目中。现场使用的时候公钥大部分都不会放在项目中的
+ * @author Sixian.xie
+ * @date 2020-7-21 22:34:17
  */
 public class LicenseKeyStoreParam extends AbstractKeyStoreParam {
 

@@ -1,4 +1,4 @@
-package com.xiesx.fastboot.core.license;
+package com.xiesx.fastboot.support.license;
 
 import java.io.File;
 import java.text.DateFormat;
@@ -11,7 +11,10 @@ import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * License校验类
+ * @title LicenseVerify.java
+ * @description License校验类
+ * @author Sixian.xie
+ * @date 2020-7-21 22:34:31
  */
 @Slf4j
 @Data

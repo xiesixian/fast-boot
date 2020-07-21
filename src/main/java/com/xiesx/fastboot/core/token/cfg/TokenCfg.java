@@ -15,10 +15,10 @@ import com.xiesx.fastboot.core.token.handle.TokenInterceptorHandler;
 import com.xiesx.fastboot.utils.ArrayUtils;
 
 /**
- * @title EventBusCfg.java
- * @description 事件总线配置
+ * @title TokenCfg.java
+ * @description 令牌认证
  * @author Sixian.xie
- * @date 2019年3月14日 上午10:48:52
+ * @date 2020-7-21 22:36:02
  */
 @Configuration
 @EnableConfigurationProperties(TokenProperties.class)

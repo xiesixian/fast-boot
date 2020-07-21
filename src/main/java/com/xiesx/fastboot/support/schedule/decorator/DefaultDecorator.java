@@ -12,9 +12,9 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * @title DefaultDecorator.java
- * @description 默认装饰器实现
+ * @description DefaultDecorator.java
  * @author Sixian.xie
- * @date 2019年3月4日 下午2:08:10
+ * @date 2020-7-21 22:42:58
  */
 @Slf4j
 public class DefaultDecorator extends BaseDecorator implements ISchedule {

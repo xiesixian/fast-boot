@@ -22,9 +22,9 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * @title LoggerAspect.java
- * @description 日志输出
+ * @description 日志打印切面
  * @author Sixian.xie
- * @date 2018年12月21日 下午6:14:55
+ * @date 2020-7-21 22:35:02
  */
 @Slf4j
 @Component

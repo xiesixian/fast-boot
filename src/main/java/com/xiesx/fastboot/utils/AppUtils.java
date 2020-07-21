@@ -5,12 +5,6 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.UUID;
 
-/**
- * @title AppUtils
- * @description
- * @author XIE
- * @date 2020年4月24日下午10:11:13
- */
 public class AppUtils {
 
     // 生成 app_secret 密钥

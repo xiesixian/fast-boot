@@ -12,9 +12,9 @@ import javax.validation.constraints.NotEmpty;
 
 /**
  * @title VEmpty.java
- * @description
+ * @description 非空
  * @author Sixian.xie
- * @date 2019年3月7日 上午11:01:43
+ * @date 2020-7-21 22:43:52
  */
 // 申明注解的作用位置
 @Target({ANNOTATION_TYPE, FIELD, METHOD, PARAMETER})

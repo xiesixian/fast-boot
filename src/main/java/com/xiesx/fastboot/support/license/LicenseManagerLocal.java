@@ -1,4 +1,4 @@
-package com.xiesx.fastboot.core.license;
+package com.xiesx.fastboot.support.license;
 
 import java.beans.XMLDecoder;
 import java.io.BufferedInputStream;
@@ -13,7 +13,10 @@ import de.schlichtherle.xml.XMLConstants;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * 自定义LicenseManager，用于增加额外的信息校验(除了LicenseManager的校验，我们还可以在这个类里面添加额外的校验信息)
+ * @title LicenseManagerLocal.java
+ * @description 自定义LicenseManager，用于增加额外的信息校验(除了LicenseManager的校验，我们还可以在这个类里面添加额外的校验信息)
+ * @author Sixian.xie
+ * @date 2020-7-21 22:34:24
  */
 @Slf4j
 public class LicenseManagerLocal extends LicenseManager {

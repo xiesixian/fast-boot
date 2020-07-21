@@ -7,10 +7,10 @@ import com.google.common.util.concurrent.FutureCallback;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * @title SCListenTask.java
+ * @title DefaultTask.java
  * @description 基类任务：线程池，基类任务，定义3种状态
  * @author Sixian.xie
- * @date 2019年1月3日 下午2:38:12
+ * @date 2020-7-21 22:39:54
  */
 @Slf4j
 public class DefaultTask<T> implements Callable<T>, FutureCallback<T> {

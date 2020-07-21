@@ -14,13 +14,13 @@ import com.google.common.util.concurrent.MoreExecutors;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * @title 线程池
- * @description newCachedThreadPool：缓存型,先查看池中有没有以前建立的线程，如果有，就reuse；如果没有，就建一个新的线程加入池中。
+ * @title ExecutorHelper.java
+ * @description 线程池 newCachedThreadPool：缓存型,先查看池中有没有以前建立的线程，如果有，就reuse；如果没有，就建一个新的线程加入池中。
  *              newFixedThreadPool：固定型,可控制线程最大并发数，超出的线程会在队列中等待。 ScheduledThreadPool
  *              调度型,支持定时及周期性任务执行。 SingleThreadExecutor 单例型,它只会用唯一的工作线程来执行任务，保证所有任务按照指定顺序(FIFO, LIFO,
  *              优先级)执行。
  * @author Sixian.xie
- * @date 2018年7月23日 下午4:30:20
+ * @date 2020-7-21 22:40:11
  */
 @Slf4j
 public class ExecutorHelper {

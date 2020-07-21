@@ -24,10 +24,10 @@ import io.jsonwebtoken.ExpiredJwtException;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * @title TokenInterceptorHandler
+ * @title TokenInterceptorHandler.java
  * @description
- * @author XIE
- * @date 2020年4月25日下午6:17:04
+ * @author Sixian.xie
+ * @date 2020-7-21 22:37:38
  */
 @Slf4j
 public class TokenInterceptorHandler extends HandlerInterceptorAdapter {

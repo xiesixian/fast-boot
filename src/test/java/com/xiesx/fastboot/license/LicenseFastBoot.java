@@ -17,7 +17,7 @@ import com.xiesx.fastboot.support.license.LicenseCreatorParamExtra;
 import com.xiesx.fastboot.support.license.LicenseVerify;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-public class LicenseZedu {
+public class LicenseFastBoot {
 
     public static DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
@@ -34,7 +34,7 @@ public class LicenseZedu {
         // 证书主题
         param.setSubject(subject);
         // 私钥库存储路径
-        param.setPrivateKeysStorePath(LicenseZedu.class.getResource("privateKeys.store").getPath());
+        param.setPrivateKeysStorePath(LicenseFastBoot.class.getResource("privateKeys.store").getPath());
         // 访问私钥库的密码
         param.setStorePass(storepass);
         // 私钥别称
@@ -42,7 +42,7 @@ public class LicenseZedu {
         // 私钥别称密码
         param.setKeyPass(keypass);
         // 证书生成路径
-        param.setLicensePath(LicenseZedu.class.getResource("license.lic").getPath());
+        param.setLicensePath(LicenseFastBoot.class.getResource("license.lic").getPath());
         // 证书生效时间
         // Date issusedDate = DateUtils.parseDate("2019-12-31 23:59:59", "yyyy-MM-dd
         // HH:mm:ss");
@@ -73,13 +73,13 @@ public class LicenseZedu {
         // 证书主题
         param.setSubject(subject);
         // 公钥库存储路径
-        param.setPublicKeysStorePath("E:/license/publicCerts.store");
+        param.setPublicKeysStorePath("E:/license/zedu/publicCerts.store");
         // 公钥别称
         param.setPublicAlias("publicCert");
         // 访问公钥库的密码
         param.setStorePass(storepass);
         // 证书生成路径
-        param.setLicensePath("E:/license/license.lic");
+        param.setLicensePath("E:/license/zedu/license.lic");
         // 安装证书
         param.install();
         // 卸载证书

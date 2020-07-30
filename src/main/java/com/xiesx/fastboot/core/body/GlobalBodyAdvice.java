@@ -10,7 +10,6 @@ import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
-import com.alibaba.fastjson.JSON;
 import com.xiesx.fastboot.base.pagination.PaginationResult;
 import com.xiesx.fastboot.base.result.BaseResult;
 import com.xiesx.fastboot.base.result.R;
@@ -43,7 +42,7 @@ public class GlobalBodyAdvice implements ResponseBodyAdvice<Object> {
             res = returnValue;
         } else if (returnValue instanceof Map<?, ?> || returnValue instanceof Iterable<?>) {
             res = returnValue;
-        } else if (returnValue instanceof JSON) {
+        } else if (returnValue instanceof com.alibaba.fastjson.JSON) {
             res = returnValue;
         } else if (returnValue instanceof String) {
             res = returnValue;

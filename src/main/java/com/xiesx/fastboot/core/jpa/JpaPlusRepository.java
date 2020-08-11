@@ -9,7 +9,6 @@ import org.springframework.data.jpa.repository.support.JpaRepositoryImplementati
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.repository.NoRepositoryBean;
 
-import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.Predicate;
 import com.querydsl.jpa.impl.JPADeleteClause;
 import com.querydsl.jpa.impl.JPAQuery;
@@ -25,13 +24,7 @@ public interface JpaPlusRepository<T, ID> extends JpaRepositoryImplementation<T,
 
     List<T> findAll(Predicate predicate, Sort sort);
 
-    List<T> findAll(Predicate predicate, OrderSpecifier<?>... orders);
-
-    List<T> findAll(OrderSpecifier<?>... orders);
-
     <S> Page<S> findAll(JPAQuery<S> query, Pageable pageable);
-
-    <S> Page<S> findAll(JPAQuery<S> query, Pageable pageable, OrderSpecifier<?>... orders);
 
     <O extends T> List<O> insert(O... entities);
 

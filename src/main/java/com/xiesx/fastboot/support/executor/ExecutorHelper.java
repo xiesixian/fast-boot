@@ -33,11 +33,6 @@ public class ExecutorHelper {
     private static ListeningExecutorService service = MoreExecutors.listeningDecorator(Executors.newCachedThreadPool());
 
     /**
-     * 缓存型线程池
-     */
-    private static ListeningExecutorService service_data = MoreExecutors.listeningDecorator(Executors.newCachedThreadPool());
-
-    /**
      * 添加异步计算任务
      *
      * @param task
@@ -98,16 +93,16 @@ public class ExecutorHelper {
     /**
      * 停止
      */
-    public static void shutdownNow2() {
+    public static void shutdownNow() {
         // shutdown，执行后不再接收新任务，如果里面有任务，就执行完
         // shutdownNow，执行后不再接受新任务，如果有等待任务，移出队列；有正在执行的，尝试停止service_data.shutdownNow();
-        service_data.shutdownNow();
+        service.shutdownNow();
     }
 
-    public static ListeningExecutorService getService2() {
-        if (service_data.isShutdown()) {
-            service_data = MoreExecutors.listeningDecorator(Executors.newCachedThreadPool());
+    public static ListeningExecutorService getService() {
+        if (service.isShutdown()) {
+            service = MoreExecutors.listeningDecorator(Executors.newCachedThreadPool());
         }
-        return service_data;
+        return service;
     }
 }

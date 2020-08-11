@@ -13,7 +13,7 @@ public enum RunExc {
 
     RUNTIME(1000, "运行错误"), // --> BaseRestExceptionAdvice --> runtimeException
 
-    REQUEST(2000, "请求错误"), // --> BaseRestExceptionAdvice --> requestException
+    REQUEST(2000, "请求失败"), // --> BaseRestExceptionAdvice --> requestException
 
     VALI(3000, "效验错误"), // --> BaseRestExceptionAdvice --> validatorException
 
@@ -23,9 +23,9 @@ public enum RunExc {
 
     SIGNA(6000, "签名错误"), // --> SignAspect
 
-    RETRY(7000, "重试错误"), // --> BaseResultRetryListener
+    RETRY(7000, "重试失败"), // --> HttpRetryer
 
-    LIMITER(8000, "请求限流"); // --> BaseResultRetryListener
+    LIMITER(8000, "请求限流"); // --> LimiterAspect
 
     private Integer errorCode;
 

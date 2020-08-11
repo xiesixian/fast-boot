@@ -146,8 +146,19 @@ public class JpaPlusRepositoryExecutor<T, ID> extends SimpleJpaRepository<T, ID>
     }
 
     @Override
+    public int delete(JPADeleteClause delete) {
+        return (int) delete.execute();
+    }
+
+    @Override
     public int delete(JPADeleteClause delete, Predicate... predicate) {
         return (int) delete.where(predicate).execute();
+    }
+
+    @Transactional
+    @Override
+    public int update(JPAUpdateClause update) {
+        return (int) update.execute();
     }
 
     @Transactional

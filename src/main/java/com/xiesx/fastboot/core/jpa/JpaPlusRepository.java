@@ -39,7 +39,11 @@ public interface JpaPlusRepository<T, ID> extends JpaRepositoryImplementation<T,
 
     int delete(ID... ids);
 
+    int delete(JPADeleteClause delete);
+
     int delete(JPADeleteClause delete, Predicate... predicate);
+
+    int update(JPAUpdateClause update);
 
     int update(JPAUpdateClause update, Predicate... predicate);
 }

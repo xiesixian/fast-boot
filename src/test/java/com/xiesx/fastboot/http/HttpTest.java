@@ -15,9 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 // SpringBootTest.WebEnvironment.RANDOM_PORT)
 // @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class HttpTest {
- 
+
     @Test
-    public void str() {
-      
-    }
+    public void str() {}
 }

@@ -69,12 +69,12 @@ public class JpaPlusRepositoryExecutor<T, ID> extends SimpleJpaRepository<T, ID>
     public List<T> findAll(Predicate predicate, Sort sort) {
         return jpaPredicateExecutor.findAll(predicate, sort);
     }
-    
+
     @Override
     public List<T> findAll(OrderSpecifier<?>... orders) {
         return jpaPredicateExecutor.findAll(orders);
     }
-    
+
     @Override
     public List<T> findAll(Predicate predicate, OrderSpecifier<?>... orders) {
         return jpaPredicateExecutor.findAll(predicate, orders);
@@ -91,7 +91,7 @@ public class JpaPlusRepositoryExecutor<T, ID> extends SimpleJpaRepository<T, ID>
         // 构造分页
         return PageableExecutionUtils.getPage(jpqlQuery.fetch(), pageable, query::fetchCount);
     }
-    
+
     @Override
     public long count(Predicate predicate) {
         return jpaPredicateExecutor.count(predicate);
@@ -109,7 +109,7 @@ public class JpaPlusRepositoryExecutor<T, ID> extends SimpleJpaRepository<T, ID>
         Optional<T> optional = findById(id);
         return (optional.isPresent()) ? optional.get() : null;
     }
- 
+
     @Override
     public <S> Page<S> findAll(JPAQuery<S> query, Pageable pageable) {
         // 分页查询

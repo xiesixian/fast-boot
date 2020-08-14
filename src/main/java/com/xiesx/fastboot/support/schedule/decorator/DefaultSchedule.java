@@ -20,6 +20,6 @@ public class DefaultSchedule implements ISchedule {
 
     @Override
     public boolean isStart() {
-        return false;
+        return true;
     }
 }

@@ -4,7 +4,6 @@ import com.xiesx.fastboot.support.license.LicenseVerify;
 import com.xiesx.fastboot.support.license.cfg.LicenseProperties;
 import com.xiesx.fastboot.support.schedule.ScheduleHelper;
 import com.xiesx.fastboot.support.schedule.decorator.DefaultDecorator;
-import com.xiesx.fastboot.support.schedule.decorator.DefaultSchedule;
 import com.xiesx.fastboot.support.schedule.impl.ISchedule;
 import com.xiesx.fastboot.utils.RuntimeUtils;
 
@@ -89,12 +88,11 @@ public class SpringStartup {
         log.info("Startup Schedule Schedule init Starting...");
         try {
             // 默认实现
-            ISchedule job = new DefaultSchedule();
             // 默认装饰追加
-            ISchedule job2 = new DefaultDecorator(job);
+            ISchedule job2 = new DefaultDecorator();
             // 开始初始化....
             job2.init();
-            log.info("Startup Schedule {} init completed.", ScheduleHelper.getJobsName().size());
+            log.info("Startup Schedule {} init completed.", ScheduleHelper.queryAllJob().size());
         } catch (Exception e) {
             log.error("Startup Schedule {}", e);
         }

@@ -1,220 +1,388 @@
 package com.xiesx.fastboot.support.schedule;
 
-import java.util.List;
+import java.util.*;
 
-import org.apache.commons.lang3.ObjectUtils;
 import org.quartz.*;
-import org.quartz.impl.StdSchedulerFactory;
 import org.quartz.impl.matchers.GroupMatcher;
 
-import com.google.common.collect.Lists;
-import com.xiesx.fastboot.support.schedule.job.SimpleJobSchedule;
+import com.google.common.collect.Maps;
+import com.xiesx.fastboot.SpringHelper;
 
-import lombok.extern.slf4j.Slf4j;
-
-/**
- * @title ScheduleHelper.java
- * @description 定时任务工具类
- * @author Sixian.xie
- * @date 2020-7-21 22:43:38
- */
-@Slf4j
 public class ScheduleHelper {
 
-    private static SchedulerFactory gSchedulerFactory = new StdSchedulerFactory();
+    private static Scheduler scheduler = SpringHelper.getBean(Scheduler.class);
 
-    private static String JOB_GROUP_NAME = "JOB_GROUP_NAME";
+    private static String JOB_GROUP_NAME = "FAST_JOB_GROUP_NAME";
 
-    private static String TRIGGER_GROUP_NAME = "TRIGGER_GROUP_NAME";
+    // ============================
 
     /**
-     * 添加一个定时任务，使用默认的任务组名，触发器名，触发器组名
+     * 增加
      *
-     * @param jobName 任务名
-     * @param cls 任务
-     * @param cron 时间设置，参考quartz说明文档
-     * @throws SchedulerException
+     * @param jobClass 任务实现类
+     * @param interval 时间表达式 (这是每隔多少秒为一次任务)
+     * @param repeat 运行的次数 （<0:表示不限次数）
+     * @param data 参数
      */
-    public static void addJob(String jobName, Class<? extends Job> cls, String cron, JobDataMap map) throws SchedulerException {
-        Scheduler sched = gSchedulerFactory.getScheduler();
-        // 用于描叙Job实现类及其他的一些静态信息，构建一个作业实例
-        JobDetail jobDetail = JobBuilder.newJob(cls).setJobData(map).withIdentity(jobName, JOB_GROUP_NAME).build();
-
-        // 构建一个触发器，规定触发的规则
-        Trigger trigger = TriggerBuilder.newTrigger()
-                .withIdentity(jobName, TRIGGER_GROUP_NAME)
-                // 给触发器起一个名字和组名
-                .startNow()
-                // 立即执行
-                .withSchedule(CronScheduleBuilder.cronSchedule(cron))
-                // 触发器的执行时间
-                .build();// 产生触发器
-
-        sched.scheduleJob(jobDetail, trigger);
-        log.debug("添加任务:{},{},{}", jobName, cls, cron);
-        // 启动
-        if (!sched.isShutdown()) {
-            sched.start();
+    public static void addJob(String jobName, Class<? extends Job> jobClass, int interval, int repeat,
+            Map<? extends String, ? extends Object> data) {
+        // 构建SimpleScheduleBuilder规则
+        SimpleScheduleBuilder simpleScheduleBuilder = SimpleScheduleBuilder.repeatSecondlyForever(1);
+        if (repeat > 0) {
+            // 几秒钟重复执行
+            simpleScheduleBuilder.withIntervalInSeconds(interval);
+            // 重复次数
+            simpleScheduleBuilder.withRepeatCount(repeat);
         }
+        // 创建
+        createJob(jobName, jobClass, simpleScheduleBuilder, data);
     }
 
     /**
-     * 添加一个定时任务
+     * 增加
      *
-     * @param jobName 任务名
+     * @param jobClass 任务实现类
+     * @param cron 时间表达式 （如：0/5 * * * * ? ）
+     * @param data 参数
+     */
+    public static void addJob(String jobName, Class<? extends Job> jobClass, String cron, Map<? extends String, ? extends Object> data) {
+        // 构建CronScheduleBuilder规则
+        CronScheduleBuilder cronScheduleBuilder = CronScheduleBuilder.cronSchedule(cron);
+        // 创建
+        createJob(jobName, jobClass, cronScheduleBuilder, data);
+    }
+
+    /**
+     * 增加
+     *
+     * @param jobName 任务名称
      * @param jobGroupName 任务组名
-     * @param triggerName 触发器名
-     * @param triggerGroupName 触发器组名
-     * @param jobClass 任务
-     * @param cron 时间设置，参考quartz说明文档
+     * @param jobClass 任务实现类
+     * @param interval 时间表达式 (这是每隔多少秒为一次任务)
+     * @param repeat 运行的次数 （<0:表示不限次数）
+     * @param data 参数
      */
-    public static void addJob(String jobName, String jobGroupName, String triggerName, String triggerGroupName, Class<? extends Job> cls,
-            String cron, JobDataMap map) throws SchedulerException {
-
-        Scheduler sched = gSchedulerFactory.getScheduler();
-        // 用于描叙Job实现类及其他的一些静态信息，构建一个作业实例
-        JobDetail jobDetail = JobBuilder.newJob(cls).setJobData(map).withIdentity(jobName, jobGroupName).build();
-
-        // 构建一个触发器，规定触发的规则
-        Trigger trigger = TriggerBuilder.newTrigger()
-                .withIdentity(jobName, triggerGroupName)
-                // 给触发器起一个名字和组名
-                .startNow()
-                // 立即执行
-                .withSchedule(CronScheduleBuilder.cronSchedule(cron))
-                // 触发器的执行时间
-                .build();// 产生触发器
-
-        sched.scheduleJob(jobDetail, trigger);
-        log.debug("添加任务:{},{},{},{},{},{}", jobName, jobGroupName, triggerName, triggerGroupName, cls, cron);
-        // 启动
-        if (!sched.isShutdown()) {
-            sched.start();
+    public static void addJob(String jobName, String jobGroupName, Class<? extends Job> jobClass, int interval, int repeat,
+            Map<? extends String, ? extends Object> data) {
+        // 构建SimpleScheduleBuilder规则
+        SimpleScheduleBuilder simpleScheduleBuilder = SimpleScheduleBuilder.repeatSecondlyForever(1);
+        if (repeat > 0) {
+            // 几秒钟重复执行
+            simpleScheduleBuilder.withIntervalInSeconds(interval);
+            // 重复次数
+            simpleScheduleBuilder.withRepeatCount(repeat);
         }
+        // 创建
+        createJob(jobName, jobGroupName, jobClass, simpleScheduleBuilder, data);
     }
 
     /**
-     * 修改一个任务的触发时间(使用默认的任务组名，触发器名，触发器组名)
+     * 增加
      *
-     * @param jobName
+     * @param jobName 任务名称
+     * @param jobGroupName 任务组名
+     * @param jobClass 任务实现类
+     * @param cron 时间表达式 （如：0/5 * * * * ? ）
+     * @param data 参数
+     */
+    public static void addJob(String jobName, String jobGroupName, Class<? extends Job> jobClass, String cron,
+            Map<? extends String, ? extends Object> data) {
+        // 构建CronScheduleBuilder规则
+        CronScheduleBuilder cronScheduleBuilder = CronScheduleBuilder.cronSchedule(cron);
+        // 创建
+        createJob(jobName, jobGroupName, jobClass, cronScheduleBuilder, data);
+    }
+
+
+    // ============================
+
+    /**
+     * 创建
+     *
+     * @param jobClass 任务实现类
+     * @param ScheduleBuilder 时间表达式 (这是每隔多少秒为一次任务)
+     * @param data 参数
+     */
+    public static void createJob(String jobName, Class<? extends Job> jobClass, ScheduleBuilder<? extends Trigger> ScheduleBuilder,
+            Map<? extends String, ? extends Object> data) {
+        createJob(jobName, JOB_GROUP_NAME, jobClass, ScheduleBuilder, data);
+    }
+
+    /**
+     * 创建
+     *
+     * @param jobName 任务名称
+     * @param jobGroupName 任务组名
+     * @param jobClass 任务实现类
+     * @param interval 时间表达式 (这是每隔多少秒为一次任务)
+     * @param repeat 运行的次数 （<0:表示不限次数）
+     * @param data 参数
+     */
+    public static void createJob(String jobName, String jobGroupName, Class<? extends Job> jobClass,
+            ScheduleBuilder<? extends Trigger> ScheduleBuilder, Map<? extends String, ? extends Object> data) {
+        try {
+            // 构建实例
+            JobDetail jobDetail = JobBuilder.newJob(jobClass).withIdentity(jobName, jobGroupName).build();
+            // 设置参数
+            if (data != null && data.size() > 0) {
+                jobDetail.getJobDataMap().putAll(data);
+            }
+            // 构建触发器
+            TriggerBuilder<Trigger> triggerBuilder = TriggerBuilder.newTrigger().withIdentity(jobName, jobGroupName);
+            triggerBuilder.withSchedule(ScheduleBuilder);
+            triggerBuilder.startNow();
+            scheduler.scheduleJob(jobDetail, triggerBuilder.build());
+        } catch (SchedulerException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // ============================
+
+    /**
+     * 修改
+     * 
      * @param cron
-     * @throws SchedulerException
      */
-    public static void modifyJobTime(String jobName, String cron) throws SchedulerException {
-        Scheduler sched = gSchedulerFactory.getScheduler();
-        TriggerKey triggerKey = new TriggerKey(jobName, TRIGGER_GROUP_NAME);
-        CronTrigger trigger = (CronTrigger) sched.getTrigger(triggerKey);
-        if (ObjectUtils.isEmpty(trigger)) {
-            return;
-        }
-        String oldTime = trigger.getCronExpression();
-        if (!oldTime.equalsIgnoreCase(cron)) {
-            JobDetail jobDetail = sched.getJobDetail(new JobKey(jobName, JOB_GROUP_NAME));
-            Class<? extends Job> objJobClass = jobDetail.getJobClass();
-            removeJob(jobName);
-            addJob(jobName, objJobClass, cron, jobDetail.getJobDataMap());
-            log.debug("修改任务:{},{}", jobName, cron);
-        }
+    public static void updateJob(String jobName, String cron) {
+        updateJob(jobName, JOB_GROUP_NAME, cron);
     }
 
     /**
-     * 移除一个任务(使用默认的任务组名，触发器名，触发器组名)
-     *
-     * @param jobName
-     * @throws SchedulerException
-     */
-    public static void removeJob(String jobName) throws SchedulerException {
-        Scheduler sched = gSchedulerFactory.getScheduler();
-
-        JobKey jobKey = new JobKey(jobName, TRIGGER_GROUP_NAME);
-        // 停止触发器
-        sched.pauseJob(jobKey);
-        sched.unscheduleJob(new TriggerKey(jobName, TRIGGER_GROUP_NAME));// 移除触发器
-        sched.deleteJob(jobKey);// 删除任务
-        log.debug("移除任务:{}", jobName);
-    }
-
-    /**
-     * 移除任务
+     * 修改
      *
      * @param jobName
      * @param jobGroupName
-     * @param triggerName
-     * @param triggerGroupName
-     * @throws SchedulerException
+     * @param cron
      */
-    public static void removeJob(String jobName, String jobGroupName, String triggerName, String triggerGroupName)
-            throws SchedulerException {
-        Scheduler sched = gSchedulerFactory.getScheduler();
-        JobKey jobKey = new JobKey(jobName, jobGroupName);
-        // 停止触发器
-        sched.pauseJob(jobKey);
-        sched.unscheduleJob(new TriggerKey(jobName, triggerGroupName));// 移除触发器
-        sched.deleteJob(jobKey);// 删除任务
-        log.debug("移除任务:{},{},{},{},{},{}", jobName, jobGroupName, triggerName, triggerGroupName);
+    public static void updateJob(String jobName, String jobGroupName, String cron) {
+        try {
+            TriggerKey triggerKey = TriggerKey.triggerKey(jobName, jobGroupName);
+            CronTrigger trigger = (CronTrigger) scheduler.getTrigger(triggerKey);
+            //
+            trigger = trigger.getTriggerBuilder().withIdentity(triggerKey).withSchedule(CronScheduleBuilder.cronSchedule(cron)).build();
+            // 重启触发器
+            scheduler.rescheduleJob(triggerKey, trigger);
+        } catch (SchedulerException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // ============================
+
+    /**
+     * 删除
+     */
+    public static void deleteJob(String jobName) {
+        deleteJob(jobName, JOB_GROUP_NAME);
     }
 
     /**
-     * 获取所有任务名称
+     * 删除
+     *
+     * @param jobName 任务名称
+     * @param jobGroupName 任务组名
+     */
+    public static void deleteJob(String jobName, String jobGroupName) {
+        try {
+            scheduler.deleteJob(new JobKey(jobName, jobGroupName));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    // ============================
+
+    /**
+     * 暂停
+     */
+    public static void pauseJob(String jobName) {
+        pauseJob(jobName, JOB_GROUP_NAME);
+    }
+
+    /**
+     * 暂停
+     *
+     * @param jobName
+     * @param jobGroupName
+     */
+    public static void pauseJob(String jobName, String jobGroupName) {
+        try {
+            JobKey jobKey = JobKey.jobKey(jobName, jobGroupName);
+            scheduler.pauseJob(jobKey);
+        } catch (SchedulerException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // ============================
+
+    /**
+     * 恢复
+     */
+    public static void resumeJob(String jobName) {
+        resumeJob(jobName, JOB_GROUP_NAME);
+    }
+
+    /**
+     * 恢复
+     * 
+     * @param jobName
+     * @param jobGroupName
+     */
+    public static void resumeJob(String jobName, String jobGroupName) {
+        try {
+            JobKey jobKey = JobKey.jobKey(jobName, jobGroupName);
+            scheduler.resumeJob(jobKey);
+        } catch (SchedulerException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // ============================
+
+    /**
+     * 立即执行
+     *
+     */
+    public static void runAJobNow(String jobName) {
+        resumeJob(jobName, JOB_GROUP_NAME);
+    }
+
+    /**
+     * 立即执行
+     *
+     * @param jobName
+     * @param jobGroupName
+     */
+    public static void runAJobNow(String jobName, String jobGroupName) {
+        try {
+            JobKey jobKey = JobKey.jobKey(jobName, jobGroupName);
+            scheduler.triggerJob(jobKey);
+        } catch (SchedulerException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // ============================
+
+    /**
+     * 启动任务
+     *
+     * @throws SchedulerException
+     */
+    public static void startJobs() {
+        try {
+            scheduler.start();
+        } catch (SchedulerException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 关闭任务
+     *
+     * @throws SchedulerException
+     */
+    public static void shutdownJobs() {
+        try {
+            if (!scheduler.isShutdown()) {
+                scheduler.shutdown();
+            }
+        } catch (SchedulerException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 获取所有计划中的任务列表
      *
      * @return
-     * @throws SchedulerException
      */
-    public static List<Trigger> getJobsName() throws SchedulerException {
-        List<Trigger> jobs = Lists.newArrayList();
-        Scheduler scheduler = gSchedulerFactory.getScheduler();
-        for (String groupName : scheduler.getJobGroupNames()) {
-            for (JobKey jobKey : scheduler.getJobKeys(GroupMatcher.jobGroupEquals(groupName))) {
-                jobs.addAll(scheduler.getTriggersOfJob(jobKey));
+    public static List<Map<String, Object>> queryAllJob() {
+        List<Map<String, Object>> jobList = null;
+        try {
+            GroupMatcher<JobKey> matcher = GroupMatcher.anyJobGroup();
+            Set<JobKey> jobKeys = scheduler.getJobKeys(matcher);
+            jobList = new ArrayList<Map<String, Object>>();
+            for (JobKey jobKey : jobKeys) {
+                List<? extends Trigger> triggers = scheduler.getTriggersOfJob(jobKey);
+                for (Trigger trigger : triggers) {
+                    Map<String, Object> map = new HashMap<>();
+                    map.put("jobName", jobKey.getName());
+                    map.put("jobGroupName", jobKey.getGroup());
+                    map.put("description", "触发器:" + trigger.getKey());
+                    Trigger.TriggerState triggerState = scheduler.getTriggerState(trigger.getKey());
+                    map.put("jobStatus", triggerState.name());
+                    if (trigger instanceof CronTrigger) {
+                        CronTrigger cronTrigger = (CronTrigger) trigger;
+                        String cronExpression = cronTrigger.getCronExpression();
+                        map.put("cron", cronExpression);
+                    }
+                    jobList.add(map);
+                }
             }
+        } catch (SchedulerException e) {
+            e.printStackTrace();
         }
-        return jobs;
+        return jobList;
     }
 
     /**
-     * 启动所有任务
+     * 获取所有正在运行的job
      *
-     * @throws SchedulerException
+     * @return
      */
-    public static void startJobs() throws SchedulerException {
-        Scheduler sched = gSchedulerFactory.getScheduler();
-        sched.start();
-        log.debug("启动所有任务");
+    public static List<Map<String, Object>> queryRunJob() {
+        List<Map<String, Object>> jobList = null;
+        try {
+            List<JobExecutionContext> executingJobs = scheduler.getCurrentlyExecutingJobs();
+            jobList = new ArrayList<Map<String, Object>>(executingJobs.size());
+            for (JobExecutionContext executingJob : executingJobs) {
+                Map<String, Object> map = new HashMap<String, Object>();
+                JobDetail jobDetail = executingJob.getJobDetail();
+                JobKey jobKey = jobDetail.getKey();
+                Trigger trigger = executingJob.getTrigger();
+                map.put("jobName", jobKey.getName());
+                map.put("jobGroupName", jobKey.getGroup());
+                map.put("description", "触发器:" + trigger.getKey());
+                Trigger.TriggerState triggerState = scheduler.getTriggerState(trigger.getKey());
+                map.put("jobStatus", triggerState.name());
+                if (trigger instanceof CronTrigger) {
+                    CronTrigger cronTrigger = (CronTrigger) trigger;
+                    String cronExpression = cronTrigger.getCronExpression();
+                    map.put("cron", cronExpression);
+                }
+                jobList.add(map);
+            }
+        } catch (SchedulerException e) {
+            e.printStackTrace();
+        }
+        return jobList;
     }
 
-    /**
-     * 关闭所有定时任务
-     *
-     * @throws SchedulerException
-     */
-    public static void shutdownJobs() throws SchedulerException {
-        Scheduler sched = gSchedulerFactory.getScheduler();
-        if (!sched.isShutdown()) {
-            sched.shutdown();
-            log.debug("关闭所有任务");
-        }
-    }
+    // ============================
 
     public static void main(String[] args) {
         try {
-            JobDataMap map = new JobDataMap();
+            Map<String, String> map = Maps.newHashMap();
             map.put("type", "1");
 
             String job_name = "动态任务调度";
             System.out.println("【系统启动】开始(每1秒输出一次)...");
-            ScheduleHelper.addJob(job_name, SimpleJobSchedule.class, "0/1 * * * * ?", map);
+            ScheduleHelper.addJob(SimpleJob.simple_job_name, SimpleJob.class, "0/1 * * * * ?", map);
             System.out.println("【修改时间】开始(每2秒输出一次)...");
-            ScheduleHelper.modifyJobTime(job_name, "0/2 * * * * ?");
+            ScheduleHelper.updateJob(SimpleJob.simple_job_name, "0/2 * * * * ?");
             Thread.sleep(5000);
             System.out.println("【移除定时】开始...");
-            ScheduleHelper.removeJob(job_name);
+            ScheduleHelper.deleteJob(job_name);
             System.out.println("【移除定时】成功");
 
             System.out.println("【再次添加定时任务】开始(每5秒输出一次)...");
-            ScheduleHelper.addJob(job_name, SimpleJobSchedule.class, "*/5 * * * * ?", map);
+            ScheduleHelper.addJob(SimpleJob.simple_job_name, SimpleJob.class, "*/5 * * * * ?", map);
             Thread.sleep(11000);
             System.out.println("【移除定时】开始...");
-            ScheduleHelper.removeJob(job_name);
+            ScheduleHelper.deleteJob(job_name);
             System.out.println("【移除定时】成功");
         } catch (Exception e) {
             e.printStackTrace();

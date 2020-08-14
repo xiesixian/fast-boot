@@ -1,12 +1,10 @@
-package com.xiesx.fastboot.support.schedule.decorator;
+package com.xiesx.fastboot.support.scheduler.decorator;
 
 import java.util.Map;
 
 import com.google.common.collect.Maps;
-import com.xiesx.fastboot.support.schedule.ScheduleHelper;
-import com.xiesx.fastboot.support.schedule.SimpleJob;
-import com.xiesx.fastboot.support.schedule.base.BaseDecorator;
-import com.xiesx.fastboot.support.schedule.impl.ISchedule;
+import com.xiesx.fastboot.support.scheduler.ScheduleHelper;
+import com.xiesx.fastboot.support.scheduler.SimpleJob;
 
 /**
  * @title DefaultDecorator.java
@@ -14,13 +12,13 @@ import com.xiesx.fastboot.support.schedule.impl.ISchedule;
  * @author Sixian.xie
  * @date 2020-7-21 22:42:58
  */
-public class DefaultDecorator extends BaseDecorator implements ISchedule {
+public class ScheduleDecorator extends BaseDecorator implements ISchedule {
 
-    public DefaultDecorator() {
+    public ScheduleDecorator() {
         super();
     }
 
-    public DefaultDecorator(ISchedule decoratedJob) {
+    public ScheduleDecorator(ISchedule decoratedJob) {
         super(decoratedJob);
     }
 
@@ -36,6 +34,6 @@ public class DefaultDecorator extends BaseDecorator implements ISchedule {
 
     @Override
     public boolean isStart() {
-        return true;
+        return false;
     }
 }

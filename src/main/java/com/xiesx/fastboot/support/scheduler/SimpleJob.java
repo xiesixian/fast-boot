@@ -1,4 +1,4 @@
-package com.xiesx.fastboot.support.schedule;
+package com.xiesx.fastboot.support.scheduler;
 
 import java.util.Date;
 
@@ -27,6 +27,7 @@ public class SimpleJob implements Job {
     @Override
     public void execute(JobExecutionContext context) throws JobExecutionException {
         JobDataMap map = context.getMergedJobDataMap();
-        log.info("simple job execute: " + map.getString("key") + DateUtils.format(new Date(), DATE_TIME_PATTERN));
+        log.info("simple job {} {}，当前任务{}个，正在运行 {}", map.getString("key"), DateUtils.format(new Date(), DATE_TIME_PATTERN),
+                ScheduleHelper.queryAllJob().size(), ScheduleHelper.queryRunJob().size());
     }
 }

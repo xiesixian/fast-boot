@@ -2,9 +2,9 @@ package com.xiesx.fastboot;
 
 import com.xiesx.fastboot.support.license.LicenseVerify;
 import com.xiesx.fastboot.support.license.cfg.LicenseProperties;
-import com.xiesx.fastboot.support.schedule.ScheduleHelper;
-import com.xiesx.fastboot.support.schedule.decorator.DefaultDecorator;
-import com.xiesx.fastboot.support.schedule.impl.ISchedule;
+import com.xiesx.fastboot.support.scheduler.ScheduleHelper;
+import com.xiesx.fastboot.support.scheduler.decorator.ScheduleDecorator;
+import com.xiesx.fastboot.support.scheduler.decorator.ISchedule;
 import com.xiesx.fastboot.utils.RuntimeUtils;
 
 import lombok.extern.slf4j.Slf4j;
@@ -89,7 +89,7 @@ public class SpringStartup {
         try {
             // 默认实现
             // 默认装饰追加
-            ISchedule job2 = new DefaultDecorator();
+            ISchedule job2 = new ScheduleDecorator();
             // 开始初始化....
             job2.init();
             log.info("Startup Schedule {} init completed.", ScheduleHelper.queryAllJob().size());

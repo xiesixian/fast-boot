@@ -1,4 +1,4 @@
-package com.xiesx.fastboot.support.schedule.impl;
+package com.xiesx.fastboot.support.scheduler.decorator;
 
 /**
  * @title SimpleInterface.java

@@ -1,6 +1,4 @@
-package com.xiesx.fastboot.support.schedule.base;
-
-import com.xiesx.fastboot.support.schedule.impl.ISchedule;
+package com.xiesx.fastboot.support.scheduler.decorator;
 
 /**
  * @title BaseDecorator.java

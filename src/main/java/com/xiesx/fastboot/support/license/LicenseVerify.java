@@ -80,56 +80,43 @@ public class LicenseVerify {
 
     /**
      * 安装证书
+     * @throws Exception 
      */
-    public void install() {
-        try {
-            licenseManager = new LicenseManagerLocal(initLicenseParam());
-            licenseManager.uninstall();
-            LicenseContent licenseContent = licenseManager.install(new File(licensePath));
-            DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            installSuccess = true;
-            log.debug("------------------------------- 证书安装成功 -------------------------------");
-            log.debug(MessageFormat.format("有效期：{0} - {1}", format.format(licenseContent.getNotBefore()),
-                    format.format(licenseContent.getNotAfter())));
-        } catch (Exception e) {
-            installSuccess = false;
-            e.printStackTrace();
-            log.error("------------------------------- 证书安装失败 -------------------------------");
-        }
+    public void install() throws Exception {
+        licenseManager = new LicenseManagerLocal(initLicenseParam());
+        licenseManager.uninstall();
+        LicenseContent licenseContent = licenseManager.install(new File(licensePath));
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        installSuccess = true;
+        log.debug("------------------------------- 证书安装成功 -------------------------------");
+        log.debug(MessageFormat.format("有效期：{0} - {1}", format.format(licenseContent.getNotBefore()),
+                format.format(licenseContent.getNotAfter())));
     }
 
     /**
      * 卸载证书
+     * 
+     * @throws Exception
      */
-    public void unInstall() {
+    public void unInstall() throws Exception {
         if (installSuccess) {
-            try {
-                licenseManager.uninstall();
-            } catch (Exception e) {
-                e.printStackTrace();
-                log.error("------------------------------- 证书卸载失败 -------------------------------");
-            }
+            licenseManager.uninstall();
         }
     }
 
     /**
      * 校验证书
+     * 
+     * @throws Exception
      */
-    public boolean verify() {
-        try {
-            if (installSuccess) {
-                DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                LicenseContent licenseContent = licenseManager.verify();
-                log.debug("------------------------------- 证书校验通过 -------------------------------");
-                log.debug(MessageFormat.format("有效期：{0} - {1}", format.format(licenseContent.getNotBefore()),
-                        format.format(licenseContent.getNotAfter())));
-                return true;
-            } else {
-                return false;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            log.error("------------------------------- 证书校验失败 -------------------------------");
+    public boolean verify() throws Exception {
+        if (installSuccess) {
+            DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            LicenseContent licenseContent = licenseManager.verify();
+            log.debug("------------------------------- 证书校验通过 -------------------------------");
+            log.debug(MessageFormat.format("有效期：{0} - {1}", format.format(licenseContent.getNotBefore()),format.format(licenseContent.getNotAfter())));
+            return true;
+        } else {
             return false;
         }
     }

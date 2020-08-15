@@ -24,7 +24,7 @@ public class SpringContextAware implements ApplicationContextAware {
             SpringContextAware.applicationContext = applicationContext;
             SpringStartup.init();
             SpringStartup.license();
-            SpringStartup.schedule();
+            SpringStartup.scheduler();
             log.info("Startup ApplicationContext completed.");
         }
     }

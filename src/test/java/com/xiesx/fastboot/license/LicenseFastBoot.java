@@ -67,7 +67,7 @@ public class LicenseFastBoot {
     }
 
     @Test
-    public void verify() {
+    public void verify() throws Exception {
         //
         LicenseVerify param = new LicenseVerify();
         // 证书主题

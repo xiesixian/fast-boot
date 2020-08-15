@@ -38,10 +38,6 @@ public class ExecutorHelper {
         return service.submit(task);
     }
 
-    public static <T> ListenableFuture<T> submit(Runnable task, T result) {
-        return service.submit(task, result);
-    }
-
     public static <T> ListenableFuture<T> submit(Callable<T> task, FutureCallback<T> callback) {
         ListenableFuture<T> future = service.submit(task);
         if (callback != null) {

@@ -32,7 +32,7 @@ import net.dongliu.requests.RequestBuilder;
 @Slf4j
 public class HttpHelperTest {
 
-    String url = "https://api.go168.xyz/api/appConfig";
+    public final static String url = "https://api.go168.xyz/api/appConfig";
 
     @Test
     public void retry1() {

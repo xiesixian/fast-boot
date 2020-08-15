@@ -11,13 +11,15 @@ import com.xiesx.fastboot.base.result.BaseResult;
 import com.xiesx.fastboot.base.result.R;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class ExecutorHelperTest {
 
     @Test
     public void executor() throws InterruptedException, ExecutionException {
-
+        //
+        ExecutorHelper.submit(new MyRunnable3("3"));
         //
         ExecutorHelper.submit(new Callable<BaseResult>() {
 
@@ -29,18 +31,15 @@ public class ExecutorHelperTest {
 
             @Override
             public void onSuccess(@Nullable BaseResult result) {
-                System.out.println(result.getMsg());
+                log.info(result.getMsg());
             }
 
             @Override
             public void onFailure(Throwable t) {}
 
         });
+        //
         ExecutorHelper.submit(new MyTask2("2"));
-        ExecutorHelper.submit(new MyRunnable3("3"));
-
-        Demo demo = new Demo();
-        ExecutorHelper.submit(new MyRunnable4("4"), demo).get().getA();
     }
 
     @AllArgsConstructor
@@ -48,17 +47,15 @@ public class ExecutorHelperTest {
 
         public String keyword;
 
-        /**
-         * 执行
-         */
         @Override
         public BaseResult call() throws Exception {
+            // xxx
             return R.succ(keyword);
         }
 
         @Override
         public void onSuccess(BaseResult result) {
-            System.out.println(result.getMsg());
+            log.info(result.getMsg());
         }
     }
 
@@ -72,33 +69,8 @@ public class ExecutorHelperTest {
 
         @Override
         public void run() {
-            System.out.println(val);
+            // xxx
+            log.info(val);
         }
     }
-
-    public static class MyRunnable4 implements Runnable {
-
-        public Demo demo;
-
-        public String val;
-
-        public MyRunnable4(String val) {
-            this.val = val;
-            this.demo = new Demo();
-        }
-
-        @Override
-        public void run() {
-
-            demo.setA(val);
-            System.out.println(demo.getA());
-        }
-    }
-
-    @Data
-    public static class Demo {
-
-        public String a;
-    }
-
 }

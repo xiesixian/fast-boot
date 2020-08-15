@@ -53,7 +53,7 @@ public class SpringStartup {
             servername = "unknown";
             serverpath = classUrl;
         }
-        log.info("Startup name " + servername + ", path " + serverpath);
+        log.info("Startup name: " + servername + ", path: " + serverpath);
     }
 
     public static void license() {

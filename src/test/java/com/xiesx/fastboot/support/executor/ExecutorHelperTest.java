@@ -1,22 +1,22 @@
-package com.xiesx.fastboot.executor;
+package com.xiesx.fastboot.support.executor;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 
 import org.checkerframework.checker.nullness.qual.Nullable;
+import org.junit.jupiter.api.Test;
 
 import com.google.common.util.concurrent.FutureCallback;
 import com.xiesx.fastboot.base.result.BaseResult;
 import com.xiesx.fastboot.base.result.R;
-import com.xiesx.fastboot.support.executor.DefaultTask;
-import com.xiesx.fastboot.support.executor.ExecutorHelper;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-public class ExecutorTest {
+public class ExecutorHelperTest {
 
-    public static void main(String[] args) throws InterruptedException, ExecutionException {
+    @Test
+    public void executor() throws InterruptedException, ExecutionException {
 
         //
         ExecutorHelper.submit(new Callable<BaseResult>() {

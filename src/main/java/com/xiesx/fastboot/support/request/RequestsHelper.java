@@ -14,7 +14,7 @@ import net.dongliu.requests.Requests;
  * @author Sixian.xie
  * @date 2020-8-11 8:50:53
  */
-public class HttpHelper extends Requests {
+public class RequestsHelper extends Requests {
 
     static Retryer<RawResponse> retry;
 

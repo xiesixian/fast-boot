@@ -19,12 +19,12 @@ public class SpringStartup {
 
     public static String serverpath;
 
+    // D:/Projects/gotv/fastboot/target/classes/
     // www/wwwroot/go168.xyz/WEB-INF
     // www/wwwroot/gotv-api/webapps
 
     public static void init() {
-        classUrl = RuntimeUtils.getRootPath();
-        log.info("Startup classpath url " + classUrl);
+        classUrl = RuntimeUtils.getRootPath().toLowerCase();
         if (classUrl.contains("web-inf")) {
             int index = classUrl.indexOf("/web-inf");
             if (index > 0) {
@@ -41,11 +41,19 @@ public class SpringStartup {
                 servername = path.substring(index + 1);
                 serverpath = classUrl.split(servername)[0] + servername;
             }
+        } else if (classUrl.contains("target")) {
+            int index = classUrl.indexOf("/target");
+            if (index > 0) {
+                String path = classUrl.substring(0, index);
+                index = path.lastIndexOf("/");
+                servername = path.substring(index + 1);
+                serverpath = classUrl.split(servername)[0] + servername;
+            }
         } else {
             servername = "unknown";
-            serverpath = "unknown";
+            serverpath = classUrl;
         }
-        log.info("Startup tomcat-name " + servername + ", path " + serverpath);
+        log.info("Startup name " + servername + ", path " + serverpath);
     }
 
     public static void license() {
@@ -68,14 +76,14 @@ public class SpringStartup {
             try {
                 param.install();
             } catch (Exception e) {
-                log.error("Startup License Install Error {}", e.getMessage());
+                log.error("Startup License Install Error");
             }
             try {
                 if (!param.verify()) {
                     // System.exit(1);
                 }
             } catch (Exception e) {
-                log.error("Startup License Verify Error {}", e.getMessage());
+                log.error("Startup License Verify Error");
             }
             // 卸载证书
             // param.unInstall();

@@ -2,7 +2,6 @@ package com.xiesx.fastboot.support.license;
 
 import java.io.File;
 import java.text.DateFormat;
-import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.util.prefs.Preferences;
 
@@ -80,17 +79,15 @@ public class LicenseVerify {
 
     /**
      * 安装证书
-     * @throws Exception 
+     * 
+     * @throws Exception
      */
     public void install() throws Exception {
         licenseManager = new LicenseManagerLocal(initLicenseParam());
         licenseManager.uninstall();
-        LicenseContent licenseContent = licenseManager.install(new File(licensePath));
-        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        licenseManager.install(new File(licensePath));
         installSuccess = true;
-        log.debug("------------------------------- 证书安装成功 -------------------------------");
-        log.debug(MessageFormat.format("有效期：{0} - {1}", format.format(licenseContent.getNotBefore()),
-                format.format(licenseContent.getNotAfter())));
+        log.info("Startup License Install Success");
     }
 
     /**
@@ -113,8 +110,8 @@ public class LicenseVerify {
         if (installSuccess) {
             DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             LicenseContent licenseContent = licenseManager.verify();
-            log.debug("------------------------------- 证书校验通过 -------------------------------");
-            log.debug(MessageFormat.format("有效期：{0} - {1}", format.format(licenseContent.getNotBefore()),format.format(licenseContent.getNotAfter())));
+            log.info("Startup License Verify Success {} - {}", format.format(licenseContent.getNotBefore()),
+                    format.format(licenseContent.getNotAfter()));
             return true;
         } else {
             return false;

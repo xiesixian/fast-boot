@@ -9,4 +9,35 @@ spring:
 
 logging:
   config: classpath:log4j2.xml
-  
+ 
+fastboot:
+  # ======= 限流配置 =======
+  limit:
+    # 超时 (默认ms毫秒)
+    timeout: 1000
+  # ======= 数据签名 =======
+  sign:
+    # 默认值：sign
+    header-key: sign
+    # 加密串
+    secret: gotv
+  # ======= 令牌认证 =======
+  token:
+    # 默认值：token
+    header-key: token
+    # 处理请求
+    paths: /api/**
+    # 排除请求
+    exclude-paths: /static/**
+  # ======= 证书配置 =======
+  license:
+        # 公钥路径
+    public-keys-store-path: E:/license/gotv/publicCerts.store
+        # 证书密码
+    license-path: E:/license/gotv/license.lic
+        # 主题
+    subject: fast-boot
+        # 公钥别名
+    public-alias: publicCert
+        # 私钥密码
+    store-pass: 136305973@qq.com

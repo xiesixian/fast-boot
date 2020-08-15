@@ -76,18 +76,15 @@ public class SpringStartup {
             try {
                 param.install();
             } catch (Exception e) {
-                log.error("Startup License Install Error");
+                log.error("Startup License Install Error {}", e.getMessage());
             }
             try {
                 if (!param.verify()) {
                     // System.exit(1);
                 }
             } catch (Exception e) {
-                log.error("Startup License Verify Error");
+                log.error("Startup License Verify Error {}", e.getMessage());
             }
-            // 卸载证书
-            // param.unInstall();
-            // 校验证书
         }
     }
 

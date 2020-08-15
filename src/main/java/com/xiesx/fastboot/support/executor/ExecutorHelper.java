@@ -2,16 +2,10 @@ package com.xiesx.fastboot.support.executor;
 
 import java.util.List;
 import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-import com.google.common.util.concurrent.FutureCallback;
-import com.google.common.util.concurrent.ListenableFuture;
-import com.google.common.util.concurrent.ListeningExecutorService;
-import com.google.common.util.concurrent.MoreExecutors;
-
-import lombok.extern.slf4j.Slf4j;
+import com.google.common.util.concurrent.*;
 
 /**
  * @title ExecutorHelper.java
@@ -22,82 +16,12 @@ import lombok.extern.slf4j.Slf4j;
  * @author Sixian.xie
  * @date 2020-7-21 22:40:11
  */
-@Slf4j
 public class ExecutorHelper {
-
-    private static final String TAG = ExecutorHelper.class.getSimpleName();
 
     /**
      * 缓存型线程池
      */
     private static ListeningExecutorService service = MoreExecutors.listeningDecorator(Executors.newCachedThreadPool());
-
-    /**
-     * 添加异步计算任务
-     *
-     * @param task
-     * @return
-     */
-    public static <T> ListenableFuture<T> submit(DefaultTask<T> task) {
-        return submit(task, task);
-    }
-
-    // --------------------
-
-    /**
-     * 添加异步任务，当有结果了进行回调
-     *
-     * @param task
-     * @param callback
-     * @return
-     */
-    public static ListenableFuture<?> submit(Runnable task) {
-        return service.submit(task);
-    }
-
-    /**
-     * 添加异步任务，当有结果了进行回调
-     *
-     * @param task
-     * @param callback
-     * @return
-     */
-    public static <T> ListenableFuture<T> submit(Callable<T> task, FutureCallback<T> callback) {
-        ListenableFuture<T> future = service.submit(task);
-        if (callback != null) {
-            // Futures.addCallback(future, callback);
-        }
-        return future;
-    }
-
-    /**
-     * 批量执行任务（所有）
-     *
-     * @see invokeAll()在所有任务都完成（包括成功/被中断/超时）后才会返回。有不限时和限时版本，从更简单的不限时版入手。
-     * @param task
-     * @return
-     * @throws InterruptedException
-     * @throws ExecutionException
-     */
-    public static <T> List<Future<T>> invokeAll(List<DefaultTask<T>> tasks) {
-        try {
-            return service.invokeAll(tasks);
-        } catch (InterruptedException e) {
-            log.error(TAG, e);
-        }
-        return null;
-    }
-
-    // --------------------
-
-    /**
-     * 停止
-     */
-    public static void shutdownNow() {
-        // shutdown，执行后不再接收新任务，如果里面有任务，就执行完
-        // shutdownNow，执行后不再接受新任务，如果有等待任务，移出队列；有正在执行的，尝试停止service_data.shutdownNow();
-        service.shutdownNow();
-    }
 
     public static ListeningExecutorService getService() {
         if (service.isShutdown()) {
@@ -105,4 +29,44 @@ public class ExecutorHelper {
         }
         return service;
     }
+
+    public static <T> ListenableFuture<T> submit(DefaultTask<T> task) {
+        return submit(task, task);
+    }
+
+    public static ListenableFuture<?> submit(Runnable task) {
+        return service.submit(task);
+    }
+
+    public static <T> ListenableFuture<T> submit(Runnable task, T result) {
+        return service.submit(task, result);
+    }
+
+    public static <T> ListenableFuture<T> submit(Callable<T> task, FutureCallback<T> callback) {
+        ListenableFuture<T> future = service.submit(task);
+        if (callback != null) {
+            Futures.addCallback(future, callback, MoreExecutors.directExecutor());
+        }
+        return future;
+    }
+
+    public static <T> List<Future<T>> invokeAll(List<DefaultTask<T>> tasks) {
+        try {
+            return service.invokeAll(tasks);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static void shutdown() {
+        // shutdown，执行后不再接收新任务，如果里面有任务，就执行完
+        service.shutdown();
+    }
+
+    public static void shutdownNow() {
+        // shutdownNow，执行后不再接受新任务，如果有等待任务，移出队列；有正在执行的，尝试停止service_data.shutdownNow();
+        service.shutdownNow();
+    }
+
 }

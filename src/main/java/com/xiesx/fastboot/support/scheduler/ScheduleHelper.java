@@ -26,13 +26,14 @@ public class ScheduleHelper {
     public static void addJob(String jobName, Class<? extends Job> jobClass, int interval, int repeat,
             Map<? extends String, ? extends Object> data) {
         // 构建SimpleScheduleBuilder规则
-        SimpleScheduleBuilder simpleScheduleBuilder = SimpleScheduleBuilder.repeatSecondlyForever(1);
+        SimpleScheduleBuilder simpleScheduleBuilder = SimpleScheduleBuilder.simpleSchedule() // 几秒钟重复执行
+                .withIntervalInSeconds(interval);;
         if (repeat > 0) {
-            // 几秒钟重复执行
-            simpleScheduleBuilder.withIntervalInSeconds(interval);
             // 重复次数
             simpleScheduleBuilder.withRepeatCount(repeat);
         }
+        // 一直执行
+        simpleScheduleBuilder.repeatForever();
         // 创建
         createJob(jobName, jobClass, simpleScheduleBuilder, data);
     }
@@ -64,13 +65,15 @@ public class ScheduleHelper {
     public static void addJob(String jobName, String jobGroupName, Class<? extends Job> jobClass, int interval, int repeat,
             Map<? extends String, ? extends Object> data) {
         // 构建SimpleScheduleBuilder规则
-        SimpleScheduleBuilder simpleScheduleBuilder = SimpleScheduleBuilder.repeatSecondlyForever(1);
+        SimpleScheduleBuilder simpleScheduleBuilder = SimpleScheduleBuilder.simpleSchedule()
+                // 几秒钟重复执行
+                .withIntervalInSeconds(interval);
         if (repeat > 0) {
-            // 几秒钟重复执行
-            simpleScheduleBuilder.withIntervalInSeconds(interval);
             // 重复次数
             simpleScheduleBuilder.withRepeatCount(repeat);
         }
+        // 一直执行
+        simpleScheduleBuilder.repeatForever();
         // 创建
         createJob(jobName, jobGroupName, jobClass, simpleScheduleBuilder, data);
     }
@@ -143,8 +146,45 @@ public class ScheduleHelper {
      * 
      * @param cron
      */
+    public static void updateJob(String jobName, int interval, int repeat) {
+        updateJob(jobName, JOB_GROUP_NAME, interval, repeat);
+    }
+
+    /**
+     * 修改
+     * 
+     * @param cron
+     */
     public static void updateJob(String jobName, String cron) {
         updateJob(jobName, JOB_GROUP_NAME, cron);
+    }
+
+    /**
+     * 修改
+     *
+     * @param jobName
+     * @param jobGroupName
+     * @param cron
+     */
+    public static void updateJob(String jobName, String jobGroupName, int interval, int repeat) {
+        try {
+            TriggerKey triggerKey = TriggerKey.triggerKey(jobName, jobGroupName);
+            SimpleTrigger trigger = (SimpleTrigger) scheduler.getTrigger(triggerKey);
+            //
+            SimpleScheduleBuilder simpleScheduleBuilder = SimpleScheduleBuilder.simpleSchedule() // 几秒钟重复执行
+                    .withIntervalInSeconds(interval);
+            if (repeat > 0) {
+                // 重复次数
+                simpleScheduleBuilder.withRepeatCount(repeat);
+            }
+            // 一直执行
+            simpleScheduleBuilder.repeatForever();
+            trigger = trigger.getTriggerBuilder().withIdentity(triggerKey).withSchedule(simpleScheduleBuilder).build();
+            // 重启触发器
+            scheduler.rescheduleJob(triggerKey, trigger);
+        } catch (SchedulerException e) {
+            e.printStackTrace();
+        }
     }
 
     /**

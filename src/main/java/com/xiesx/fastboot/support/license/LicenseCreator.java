@@ -46,7 +46,6 @@ public class LicenseCreator {
         }
     }
 
-
     /**
      * 初始化证书生成参数
      */

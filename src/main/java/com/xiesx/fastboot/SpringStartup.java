@@ -25,7 +25,15 @@ public class SpringStartup {
 
     public static void init() {
         classUrl = RuntimeUtils.getRootPath().toLowerCase();
-        if (classUrl.contains("web-inf")) {
+        if (classUrl.contains("target")) {// 本地
+            int index = classUrl.indexOf("/target");
+            if (index > 0) {
+                String path = classUrl.substring(0, index);
+                index = path.lastIndexOf("/");
+                servername = path.substring(index + 1);
+                serverpath = classUrl.split(servername)[0] + servername;
+            }
+        } else if (classUrl.contains("web-inf")) {// tomcat启动
             int index = classUrl.indexOf("/web-inf");
             if (index > 0) {
                 String path = classUrl.substring(0, index);
@@ -33,16 +41,8 @@ public class SpringStartup {
                 servername = path.substring(index + 1);
                 serverpath = classUrl.split(servername)[0] + servername;
             }
-        } else if (classUrl.contains("webapps")) {
+        } else if (classUrl.contains("webapps")) {// jar启动
             int index = classUrl.indexOf("/webapps");
-            if (index > 0) {
-                String path = classUrl.substring(0, index);
-                index = path.lastIndexOf("/");
-                servername = path.substring(index + 1);
-                serverpath = classUrl.split(servername)[0] + servername;
-            }
-        } else if (classUrl.contains("target")) {
-            int index = classUrl.indexOf("/target");
             if (index > 0) {
                 String path = classUrl.substring(0, index);
                 index = path.lastIndexOf("/");

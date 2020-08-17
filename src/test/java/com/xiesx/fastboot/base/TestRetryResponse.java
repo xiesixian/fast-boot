@@ -15,7 +15,7 @@ public class TestRetryResponse {
 
     @JSONField(ordinal = 3)
     private Object data;
-    
+
     @JSONField(ordinal = 3)
     private Boolean success;
 }

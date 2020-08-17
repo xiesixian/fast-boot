@@ -7,6 +7,7 @@ import java.util.Set;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import javax.validation.Validator;
+import javax.validation.groups.Default;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -23,8 +24,22 @@ public class ValidatorHelper {
 
     private static Validator validator = SpringHelper.getBean(Validator.class);
 
+    public static void validate(Object object) throws ConstraintViolationException {
+        Set<? extends ConstraintViolation<?>> constraintViolations = validator.validate(object, Default.class);
+        if (!constraintViolations.isEmpty()) {
+            throw new ConstraintViolationException(constraintViolations);
+        }
+    }
+
     public static void validate(Object object, Class<?>... groups) throws ConstraintViolationException {
         Set<? extends ConstraintViolation<?>> constraintViolations = validator.validate(object, groups);
+        if (!constraintViolations.isEmpty()) {
+            throw new ConstraintViolationException(constraintViolations);
+        }
+    }
+
+    public static void validate(Validator validator, Object object) throws ConstraintViolationException {
+        Set<? extends ConstraintViolation<?>> constraintViolations = validator.validate(object, Default.class);
         if (!constraintViolations.isEmpty()) {
             throw new ConstraintViolationException(constraintViolations);
         }
@@ -72,7 +87,6 @@ public class ValidatorHelper {
         return extractPropertyAndMessageAsList(e.getConstraintViolations(), " ");
     }
 
-    @SuppressWarnings("rawtypes")
     public static List<String> extractPropertyAndMessageAsList(Set<? extends ConstraintViolation> constraintViolations) {
         return extractPropertyAndMessageAsList(constraintViolations, " ");
     }
@@ -81,7 +95,6 @@ public class ValidatorHelper {
         return extractPropertyAndMessageAsList(e.getConstraintViolations(), separator);
     }
 
-    @SuppressWarnings("rawtypes")
     public static List<String> extractPropertyAndMessageAsList(Set<? extends ConstraintViolation> constraintViolations, String separator) {
         List<String> errorMessages = Lists.newArrayList();
         for (ConstraintViolation<?> violation : constraintViolations) {

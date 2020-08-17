@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import javax.validation.Validator;
+import javax.validation.groups.Default;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,7 +18,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.alibaba.fastjson.JSON;
 import com.xiesx.fastboot.FastBootApplication;
 import com.xiesx.fastboot.base.TestVo;
-import com.xiesx.fastboot.base.TestVoValid.A;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -32,8 +32,8 @@ public class ValidatorHelperTest {
     @Test
     public void verify1() {
         TestVo vo = new TestVo();
-        Set<ConstraintViolation<TestVo>> constraintViolations = validator.validate(vo, A.class);
-        List<String> message = ValidatorHelper.extractMessage(constraintViolations);
+        Set<ConstraintViolation<TestVo>> violations = validator.validate(vo, Default.class);
+        List<String> message = ValidatorHelper.extractMessage(violations);
         log.info(JSON.toJSONString(message));
     }
 
@@ -41,14 +41,17 @@ public class ValidatorHelperTest {
     public void verify2() {
         TestVo vo = new TestVo();
         try {
-            ValidatorHelper.validate(vo, A.class);
+            ValidatorHelper.validate(vo);
         } catch (ConstraintViolationException e) {
+            // 打印 messgae
             List<String> message = ValidatorHelper.extractMessage(e);
             log.info(JSON.toJSONString(message));
 
+            // 打印property + messgae
             Map<String, String> message2 = ValidatorHelper.extractPropertyAndMessage(e);
             log.info(JSON.toJSONString(message2));
 
+            // 打印property + messgae
             List<String> message3 = ValidatorHelper.extractPropertyAndMessageAsList(e);
             log.info(JSON.toJSONString(message3));
         }

@@ -92,8 +92,7 @@ public class GlobalExceptionAdvice {
                 errorMsg.add(fieldError.getField() + " " + fieldError.getDefaultMessage());
             }
         }
-        // 这里走的是Hibernate Violation 验证 --> Java
-        // Violation，这里有ConstraintViolationException接收
+        // 这里走的是Hibernate Violation 验证 --> Java Violation，这里有ConstraintViolationException接收
         if (e instanceof ConstraintViolationException) {
             Set<ConstraintViolation<?>> violations = ((ConstraintViolationException) e).getConstraintViolations();
             errorMsg.addAll(ValidatorHelper.extractPropertyAndMessageAsList(violations));

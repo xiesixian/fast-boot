@@ -18,17 +18,17 @@ public class LicenseProperties {
     /**
      * 公钥库存储路径
      */
-    private String publicKeysStorePath;
-
-    /**
-     * 访问密钥库的密码
-     */
-    private String storePass;
+    private String publicStorePath;
 
     /**
      * 公钥别称
      */
     private String publicAlias;
+
+    /**
+     * 密钥库的密码
+     */
+    private String storePass;
 
     /**
      * 证书生成路径

@@ -2,7 +2,7 @@ package com.xiesx.fastboot.core.token.cfg;
 
 import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
@@ -30,29 +30,22 @@ public class TokenCfg implements WebMvcConfigurer {
 
     public static final String NICKNAME = "nickname";
 
-    public TokenProperties mTokenProperties;
-
-    public TokenCfg(TokenProperties mTokenProperties) {
-        this.mTokenProperties = mTokenProperties;
-    }
+    @Autowired
+    private TokenProperties mTokenProperties;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         // 添加处理器
         InterceptorRegistration in = registry.addInterceptor(new TokenInterceptorHandler());
         // 处理url
-        if (StringUtils.isNotEmpty(mTokenProperties.getPaths())) {
-            List<String> paths = ArrayUtils.splitToList(mTokenProperties.getPaths());
-            if (!paths.isEmpty()) {
-                in.addPathPatterns(paths);
-            }
+        List<String> paths = ArrayUtils.arrayToList(mTokenProperties.getIncludePaths());
+        if (!paths.isEmpty()) {
+            in.addPathPatterns(paths);
         }
         // 排除处理url
-        if (StringUtils.isNotEmpty(mTokenProperties.getExcludePaths())) {
-            List<String> excludePaths = ArrayUtils.splitToList(mTokenProperties.getExcludePaths());
-            if (!excludePaths.isEmpty()) {
-                in.excludePathPatterns(excludePaths);
-            }
+        List<String> excludePaths = ArrayUtils.arrayToList(mTokenProperties.getExcludePaths());
+        if (!excludePaths.isEmpty()) {
+            in.excludePathPatterns(excludePaths);
         }
     }
 

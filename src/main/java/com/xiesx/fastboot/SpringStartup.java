@@ -65,7 +65,7 @@ public class SpringStartup {
             // 证书主题
             param.setSubject(properties.getSubject());
             // 公钥库存储路径
-            param.setPublicKeysStorePath(properties.getPublicKeysStorePath());
+            param.setPublicKeysStorePath(properties.getPublicStorePath());
             // 访问公钥库的密码
             param.setStorePass(properties.getStorePass());
             // 公钥别称

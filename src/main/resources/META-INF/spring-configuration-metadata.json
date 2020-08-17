@@ -1,79 +1,131 @@
 {
-  "groups": [
-    {
-      "name": "fastboot.limit",
-      "type": "com.xiesx.fastboot.core.limiter.cfg.LimiterProperties",
-      "sourceType": "com.xiesx.fastboot.core.limiter.cfg.LimiterProperties"
-    }
-  ],
-  "groups": [
-    {
-      "name": "fastboot.sign",
-      "type": "com.xiesx.fastboot.core.sign.cfg.SignProperties",
-      "sourceType": "com.xiesx.fastboot.core.sign.cfg.SignProperties"
-    },
-    {
-      "name": "fastboot.token",
-      "type": "com.xiesx.fastboot.core.token.cfg.TokenProperties",
-      "sourceType": "com.xiesx.fastboot.core.token.cfg.TokenProperties"
-    },
-    {
-      "name": "fastboot.license",
-      "type": "com.xiesx.fastboot.core.license.cfg.LicenseProperties",
-      "sourceType": "com.xiesx.fastboot.core.license.cfg.LicenseProperties"
-    }
-  ],
-  "properties": [
-    {
-      "name": "fastboot.sign.headerKey",
-      "type": "java.lang.String",
-      "sourceType": "com.xiesx.fastboot.core.sign.cfg.SignProperties"
-    },
-    {
-      "name": "fastboot.sign.secret",
-      "type": "java.lang.String",
-      "sourceType": "com.xiesx.fastboot.core.sign.cfg.SignProperties"
-    },
-    {
-      "name": "fastboot.token.headerKey",
-      "type": "java.lang.String",
-      "sourceType": "com.xiesx.fastboot.core.token.cfg.TokenProperties"
-    },
-    {
-      "name": "fastboot.token.paths",
-      "type": "java.lang.String",
-      "sourceType": "com.xiesx.fastboot.core.token.cfg.TokenProperties"
-    },
-    {
-      "name": "fastboot.token.excludePaths",
-      "type": "java.lang.String",
-      "sourceType": "com.xiesx.fastboot.core.token.cfg.TokenProperties"
-    },
-    {
-      "name": "fastboot.license.subject",
-      "type": "java.lang.String",
-      "sourceType": "com.xiesx.fastboot.core.license.cfg.LicenseProperties"
-    },
-    {
-      "name": "fastboot.license.publicKeysStorePath",
-      "type": "java.lang.String",
-      "sourceType": "com.xiesx.fastboot.core.license.cfg.LicenseProperties"
-    },
-    {
-      "name": "fastboot.license.storePass",
-      "type": "java.lang.String",
-      "sourceType": "com.xiesx.fastboot.core.license.cfg.LicenseProperties"
-    },
-    {
-      "name": "fastboot.license.publicAlias",
-      "type": "java.lang.String",
-      "sourceType": "com.xiesx.fastboot.core.license.cfg.LicenseProperties"
-    },
-    {
-      "name": "fastboot.license.licensePath",
-      "type": "java.lang.String",
-      "sourceType": "com.xiesx.fastboot.core.license.cfg.LicenseProperties"
-    }
-  ],
-  "hints": []
+	"groups": [
+		{
+			"name": "fastboot.fastjson",
+			"type": "com.xiesx.fastboot.core.json.cfg.FastJsonProperties",
+			"sourceType": "com.xiesx.fastboot.core.json.cfg.FastJsonProperties"
+		},
+		{
+			"name": "fastboot.sign",
+			"type": "com.xiesx.fastboot.core.sign.cfg.SignProperties",
+			"sourceType": "com.xiesx.fastboot.core.sign.cfg.SignProperties"
+		},
+		{
+			"name": "fastboot.token",
+			"type": "com.xiesx.fastboot.core.token.cfg.TokenProperties",
+			"sourceType": "com.xiesx.fastboot.core.token.cfg.TokenProperties"
+		},
+		{
+			"name": "fastboot.limit",
+			"type": "com.xiesx.fastboot.core.limiter.cfg.LimiterProperties",
+			"sourceType": "com.xiesx.fastboot.core.limiter.cfg.LimiterProperties"
+		},
+		{
+			"name": "fastboot.license",
+			"type": "com.xiesx.fastboot.core.license.cfg.LicenseProperties",
+			"sourceType": "com.xiesx.fastboot.core.license.cfg.LicenseProperties"
+		}
+	],
+	"properties": [
+		{
+			"name": "fastboot.fastjson.dateFormat",
+			"type": "java.lang.String",
+			"defaultValue": "yyyy-MM-dd HH:mm:ss",
+			"description": "日期格式"
+		},
+		{
+			"name": "fastboot.fastjson.desensitize",
+			"type": "java.lang.Boolean",
+			"defaultValue": true,
+			"description": "数据脱敏"
+		},
+		{
+			"type": "java.lang.String",
+			"name": "fastboot.sign.header",
+			"defaultValue": "sign",
+			"description": "数据签名header"
+		},
+		{
+			"name": "fastboot.sign.secret",
+			"type": "java.lang.String",
+			"defaultValue": "fastboot",
+			"description": "数据签名加密串"
+		},
+		{
+			"name": "fastboot.token.header",
+			"type": "java.lang.String",
+			"defaultValue": "token",
+			"description": "令牌认证header"
+		},
+		{
+			"name": "fastboot.token.includePaths",
+			"type": "java.lang.String",
+			"description": "包含请求"
+		},
+		{
+			"name": "fastboot.token.excludePaths",
+			"type": "java.lang.String",
+			"description": "排除请求"
+		},
+		{
+			"name": "fastboot.limit.timeout",
+			"type": "java.lang.Integer",
+			"defaultValue": 1000,
+			"description": "请求限流等待时间"
+		},
+		{
+			"name": "fastboot.license.subject",
+			"type": "java.lang.String",
+			"description": "证书主题"
+		},
+		{
+			"name": "fastboot.license.publicStorePath",
+			"type": "java.lang.String",
+			"description": "公钥路径"
+		},
+		{
+			"name": "fastboot.license.publicAlias",
+			"type": "java.lang.String",
+			"description": "公钥别名"
+		},
+		{
+			"name": "fastboot.license.storePass",
+			"type": "java.lang.String",
+			"description": "私钥密码"
+		},
+		{
+			"name": "fastboot.license.licensePath",
+			"type": "java.lang.String",
+			"description": "证书路径"
+		}
+	],
+	"hints": [
+		{
+			"name": "fastboot.fastjson.dateFormat",
+			"values": [
+				{
+					"value": "yyyy-MM-dd HH:mm:ss"
+				},
+				{
+					"value": "yyyy-MM-dd"
+				},
+				{
+					"value": "HH:mm:ss"
+				}
+			]
+		},
+		{
+			"name": "fastboot.fastjson.desensitize",
+			"values": [
+				{
+					"value": true,
+					"description": "开启脱敏（注：  在脱敏的字段上加上 @GoDesensitized）"
+				},
+				{
+					"value": false,
+					"description": "禁用脱敏"
+				}
+			]
+		}
+	]
 }

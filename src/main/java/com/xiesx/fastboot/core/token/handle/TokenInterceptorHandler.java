@@ -46,7 +46,7 @@ public class TokenInterceptorHandler extends HandlerInterceptorAdapter {
         log.debug("preHandle ......");
         // 获取配置
         TokenProperties properties = SpringHelper.getBean(TokenProperties.class);
-        key = StringUtils.isNotEmpty(properties.getHeaderKey()) ? properties.getHeaderKey() : TOKEN_KEY;
+        key = StringUtils.isNotEmpty(properties.getHeader()) ? properties.getHeader() : TOKEN_KEY;
         // 获取方法信息
         if (handler instanceof HandlerMethod) {
             // 获取方法

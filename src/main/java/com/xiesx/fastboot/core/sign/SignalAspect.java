@@ -57,7 +57,7 @@ public class SignalAspect {
     @Around("signPointcut()")
     public Object signBeforeAspect(ProceedingJoinPoint pjp) throws RunException, Throwable {
         // 获取配置
-        key = StringUtils.isNotEmpty(properties.getHeaderKey()) ? properties.getHeaderKey() : SIGN_KEY;
+        key = StringUtils.isNotEmpty(properties.getHeader()) ? properties.getHeader() : SIGN_KEY;
         secret = StringUtils.isNotEmpty(properties.getSecret()) ? properties.getSecret() : SIGN_VAL;
         // 获取方法信息
         MethodSignature signature = (MethodSignature) pjp.getSignature();

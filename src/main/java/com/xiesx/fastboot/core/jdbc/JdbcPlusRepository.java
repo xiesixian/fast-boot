@@ -13,10 +13,11 @@ import com.querydsl.core.types.Predicate;
 import com.querydsl.sql.SQLQuery;
 import com.querydsl.sql.dml.SQLUpdateClause;
 
+@SuppressWarnings("all")
 @NoRepositoryBean
 public interface JdbcPlusRepository<T, ID> extends CrudRepository<T, ID> {
 
-    List<T> save(@SuppressWarnings("unchecked") T... iterable);
+    List<T> save(T... iterable);
 
     @Override
     <S extends T> List<S> saveAll(Iterable<S> entities);

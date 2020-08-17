@@ -23,6 +23,7 @@ import com.querydsl.sql.SQLQuery;
 import com.querydsl.sql.SQLQueryFactory;
 import com.querydsl.sql.dml.SQLUpdateClause;
 
+@SuppressWarnings("all")
 @Transactional(readOnly = true)
 public class JdbcPlusRepositoryExecutor<T, ID> implements JdbcPlusRepository<T, ID> {
 
@@ -44,7 +45,7 @@ public class JdbcPlusRepositoryExecutor<T, ID> implements JdbcPlusRepository<T, 
 
     @Override
     @Transactional
-    public List<T> save(@SuppressWarnings("unchecked") T... iterable) {
+    public List<T> save(T... iterable) {
         return Stream.of(iterable).map(this::save).collect(Collectors.toList());
     }
 

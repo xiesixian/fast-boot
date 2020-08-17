@@ -1,4 +1,4 @@
-package com.xiesx.fastboot.core.json.cfg;
+package com.xiesx.fastboot.core.fastjson.cfg;
 
 import java.math.BigInteger;
 import java.util.List;
@@ -17,7 +17,7 @@ import com.alibaba.fastjson.serializer.ToStringSerializer;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import com.google.common.collect.Lists;
-import com.xiesx.fastboot.core.json.filter.ValueDesensitizeFilter;
+import com.xiesx.fastboot.core.fastjson.filter.ValueDesensitizeFilter;
 
 @Configuration
 @EnableConfigurationProperties(FastJsonProperties.class)

@@ -2,8 +2,8 @@
 	"groups": [
 		{
 			"name": "fastboot.fastjson",
-			"type": "com.xiesx.fastboot.core.json.cfg.FastJsonProperties",
-			"sourceType": "com.xiesx.fastboot.core.json.cfg.FastJsonProperties"
+			"type": "com.xiesx.fastboot.core.fastjson.cfg.FastJsonProperties",
+			"sourceType": "com.xiesx.fastboot.core.fastjson.cfg.FastJsonProperties"
 		},
 		{
 			"name": "fastboot.sign",

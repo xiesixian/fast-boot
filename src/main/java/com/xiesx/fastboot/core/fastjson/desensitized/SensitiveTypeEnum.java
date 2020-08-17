@@ -1,4 +1,4 @@
-package com.xiesx.fastboot.core.json.desensitized;
+package com.xiesx.fastboot.core.fastjson.desensitized;
 
 
 public enum SensitiveTypeEnum {

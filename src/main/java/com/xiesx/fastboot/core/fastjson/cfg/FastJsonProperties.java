@@ -1,4 +1,4 @@
-package com.xiesx.fastboot.core.json.cfg;
+package com.xiesx.fastboot.core.fastjson.cfg;
 
 
 import org.springframework.boot.context.properties.ConfigurationProperties;

@@ -1,8 +1,8 @@
-package com.xiesx.fastboot.core.json.annotation;
+package com.xiesx.fastboot.core.fastjson.annotation;
 
 import java.lang.annotation.*;
 
-import com.xiesx.fastboot.core.json.desensitized.SensitiveTypeEnum;
+import com.xiesx.fastboot.core.fastjson.desensitized.SensitiveTypeEnum;
 
 @Target({ElementType.FIELD, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)

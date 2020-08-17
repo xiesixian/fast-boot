@@ -1,10 +1,10 @@
-package com.xiesx.fastboot.core.json.filter;
+package com.xiesx.fastboot.core.fastjson.filter;
 
 import java.lang.reflect.Field;
 
 import com.alibaba.fastjson.serializer.ValueFilter;
-import com.xiesx.fastboot.core.json.annotation.GoDesensitized;
-import com.xiesx.fastboot.core.json.desensitized.SensitiveTypeEnum;
+import com.xiesx.fastboot.core.fastjson.annotation.GoDesensitized;
+import com.xiesx.fastboot.core.fastjson.desensitized.SensitiveTypeEnum;
 import com.xiesx.fastboot.utils.DesensitizedUtils;
 
 /**

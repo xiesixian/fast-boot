@@ -1,6 +1,5 @@
 package com.xiesx.fastboot.support.executor;
 
-import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 
 import org.checkerframework.checker.nullness.qual.Nullable;
@@ -21,13 +20,7 @@ public class ExecutorHelperTest {
         //
         ExecutorHelper.submit(new MyRunnable3("3"));
         //
-        ExecutorHelper.submit(new Callable<BaseResult>() {
-
-            @Override
-            public BaseResult call() throws Exception {
-                return R.succ("1");
-            }
-        }, new FutureCallback<BaseResult>() {
+        ExecutorHelper.submit(() -> R.succ("1"), new FutureCallback<BaseResult>() {
 
             @Override
             public void onSuccess(@Nullable BaseResult result) {

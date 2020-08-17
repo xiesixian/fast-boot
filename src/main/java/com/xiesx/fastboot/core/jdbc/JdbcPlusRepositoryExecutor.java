@@ -39,7 +39,7 @@ public class JdbcPlusRepositoryExecutor<T, ID> implements JdbcPlusRepository<T, 
         this.sqlQueryFactory = sqlQueryFactory;
         this.constructorExpression = constructorExpression;
         this.path = path;
-        this.repository = new SimpleJdbcRepository<T, ID>(entityOperations, entity);
+        this.repository = new SimpleJdbcRepository<>(entityOperations, entity);
     }
 
     @Override

@@ -27,7 +27,7 @@ public class ScheduleHelper {
             Map<? extends String, ? extends Object> data) {
         // 构建SimpleScheduleBuilder规则
         SimpleScheduleBuilder simpleScheduleBuilder = SimpleScheduleBuilder.simpleSchedule() // 几秒钟重复执行
-                .withIntervalInSeconds(interval);;
+                .withIntervalInSeconds(interval);
         if (repeat > 0) {
             // 重复次数
             simpleScheduleBuilder.withRepeatCount(repeat);
@@ -143,7 +143,7 @@ public class ScheduleHelper {
 
     /**
      * 修改
-     * 
+     *
      * @param cron
      */
     public static void updateJob(String jobName, int interval, int repeat) {
@@ -152,7 +152,7 @@ public class ScheduleHelper {
 
     /**
      * 修改
-     * 
+     *
      * @param cron
      */
     public static void updateJob(String jobName, String cron) {
@@ -265,7 +265,7 @@ public class ScheduleHelper {
 
     /**
      * 恢复
-     * 
+     *
      * @param jobName
      * @param jobGroupName
      */
@@ -343,7 +343,7 @@ public class ScheduleHelper {
         try {
             GroupMatcher<JobKey> matcher = GroupMatcher.anyJobGroup();
             Set<JobKey> jobKeys = scheduler.getJobKeys(matcher);
-            jobList = new ArrayList<Map<String, Object>>();
+            jobList = new ArrayList<>();
             for (JobKey jobKey : jobKeys) {
                 List<? extends Trigger> triggers = scheduler.getTriggersOfJob(jobKey);
                 for (Trigger trigger : triggers) {
@@ -376,9 +376,9 @@ public class ScheduleHelper {
         List<Map<String, Object>> jobList = null;
         try {
             List<JobExecutionContext> executingJobs = scheduler.getCurrentlyExecutingJobs();
-            jobList = new ArrayList<Map<String, Object>>(executingJobs.size());
+            jobList = new ArrayList<>(executingJobs.size());
             for (JobExecutionContext executingJob : executingJobs) {
-                Map<String, Object> map = new HashMap<String, Object>();
+                Map<String, Object> map = new HashMap<>();
                 JobDetail jobDetail = executingJob.getJobDetail();
                 JobKey jobKey = jobDetail.getKey();
                 Trigger trigger = executingJob.getTrigger();

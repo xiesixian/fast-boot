@@ -22,7 +22,7 @@ public class RuntimeUtils {
     /**
      * 系统环境变量映射
      */
-    private static final Map<String, String> SYSTEM_ENV_MAP = new HashMap<String, String>();
+    private static final Map<String, String> SYSTEM_ENV_MAP = new HashMap<>();
 
     static {
         initSystemEnvs();
@@ -219,7 +219,7 @@ public class RuntimeUtils {
     }
 
     public static Map<String, String> keyStartsWith(Map<String, String> map, String keyPrefix) {
-        Map<String, String> _returnValues = new HashMap<String, String>();
+        Map<String, String> _returnValues = new HashMap<>();
         for (Map.Entry<String, String> _entry : map.entrySet()) {
             String _key = _entry.getKey();
             if (StringUtils.startsWith(_key, keyPrefix)) {

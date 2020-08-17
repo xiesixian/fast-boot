@@ -26,13 +26,15 @@ public class CopyUtils {
                 if (Iterable.class.isAssignableFrom(propertyValue.getClass())) {
                     Iterable<?> iterable = (Iterable<?>) propertyValue;
                     Iterator<?> iterator = iterable.iterator();
-                    if (!iterator.hasNext())
+                    if (!iterator.hasNext()) {
                         noValuePropertySet.add(pd.getName());
+                    }
                 }
                 if (Map.class.isAssignableFrom(propertyValue.getClass())) {
                     Map<?, ?> map = (Map<?, ?>) propertyValue;
-                    if (map.isEmpty())
+                    if (map.isEmpty()) {
                         noValuePropertySet.add(pd.getName());
+                    }
                 }
             }
         });

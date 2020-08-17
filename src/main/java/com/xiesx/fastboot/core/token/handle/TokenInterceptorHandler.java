@@ -38,7 +38,7 @@ public class TokenInterceptorHandler extends HandlerInterceptorAdapter {
 
     /**
      * Controller执行之前，如果返回false，controller不执行
-     * 
+     *
      * @throws Exception
      */
     @Override

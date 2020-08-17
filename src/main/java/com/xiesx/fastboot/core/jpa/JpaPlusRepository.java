@@ -20,8 +20,10 @@ public interface JpaPlusRepository<T, ID> extends JpaRepositoryImplementation<T,
 
     T findOne(ID id);
 
+    @Override
     List<T> findAll(Predicate predicate);
 
+    @Override
     List<T> findAll(Predicate predicate, Sort sort);
 
     <S> Page<S> findAll(JPAQuery<S> query, Pageable pageable);

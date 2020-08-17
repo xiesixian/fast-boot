@@ -42,7 +42,7 @@ public class RetryerBuilder<V> {
 
     private Predicate<Attempt<V>> rejectionPredicate = Predicates.alwaysFalse();
 
-    private List<RetryListener> listeners = new ArrayList<RetryListener>();
+    private List<RetryListener> listeners = new ArrayList<>();
 
     private RetryerBuilder() {}
 
@@ -53,7 +53,7 @@ public class RetryerBuilder<V> {
      * @return the new builder
      */
     public static <V> RetryerBuilder<V> newBuilder() {
-        return new RetryerBuilder<V>();
+        return new RetryerBuilder<>();
     }
 
     /**
@@ -184,7 +184,7 @@ public class RetryerBuilder<V> {
      */
     public RetryerBuilder<V> retryIfResult(@Nonnull Predicate<V> resultPredicate) {
         Preconditions.checkNotNull(resultPredicate, "resultPredicate may not be null");
-        rejectionPredicate = Predicates.or(rejectionPredicate, new ResultPredicate<V>(resultPredicate));
+        rejectionPredicate = Predicates.or(rejectionPredicate, new ResultPredicate<>(resultPredicate));
         return this;
     }
 
@@ -200,7 +200,7 @@ public class RetryerBuilder<V> {
         WaitStrategy theWaitStrategy = waitStrategy == null ? WaitStrategies.noWait() : waitStrategy;
         BlockStrategy theBlockStrategy = blockStrategy == null ? BlockStrategies.threadSleepStrategy() : blockStrategy;
 
-        return new Retryer<V>(theAttemptTimeLimiter, theStopStrategy, theWaitStrategy, theBlockStrategy, rejectionPredicate, listeners);
+        return new Retryer<>(theAttemptTimeLimiter, theStopStrategy, theWaitStrategy, theBlockStrategy, rejectionPredicate, listeners);
     }
 
     private static final class ExceptionClassPredicate<V> implements Predicate<Attempt<V>> {

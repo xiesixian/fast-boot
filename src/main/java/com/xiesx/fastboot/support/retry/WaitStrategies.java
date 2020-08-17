@@ -198,7 +198,7 @@ public final class WaitStrategies {
     public static <T extends Throwable> WaitStrategy exceptionWait(@Nonnull Class<T> exceptionClass, @Nonnull Function<T, Long> function) {
         Preconditions.checkNotNull(exceptionClass, "exceptionClass may not be null");
         Preconditions.checkNotNull(function, "function may not be null");
-        return new ExceptionWaitStrategy<T>(exceptionClass, function);
+        return new ExceptionWaitStrategy<>(exceptionClass, function);
     }
 
     /**
@@ -330,10 +330,12 @@ public final class WaitStrategies {
         }
 
         private long fib(long n) {
-            if (n == 0L)
+            if (n == 0L) {
                 return 0L;
-            if (n == 1L)
+            }
+            if (n == 1L) {
                 return 1L;
+            }
 
             long prevPrev = 0L;
             long prev = 1L;

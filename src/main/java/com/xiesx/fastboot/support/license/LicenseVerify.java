@@ -79,7 +79,7 @@ public class LicenseVerify {
 
     /**
      * 安装证书
-     * 
+     *
      * @throws Exception
      */
     public void install() throws Exception {
@@ -92,7 +92,7 @@ public class LicenseVerify {
 
     /**
      * 卸载证书
-     * 
+     *
      * @throws Exception
      */
     public void unInstall() throws Exception {
@@ -103,7 +103,7 @@ public class LicenseVerify {
 
     /**
      * 校验证书
-     * 
+     *
      * @throws Exception
      */
     public boolean verify() throws Exception {

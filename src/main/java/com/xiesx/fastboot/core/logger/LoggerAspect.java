@@ -55,8 +55,8 @@ public class LoggerAspect {
         String methodName = method.getName();
         // 获取注解信息
         GoLog annotation = method.getAnnotation(GoLog.class);
-        Boolean isPrint = Boolean.valueOf(annotation == null ? false : annotation.print());
-        Boolean isPrettyFormat = Boolean.valueOf(annotation == null ? false : annotation.format());
+        Boolean isPrint = annotation == null ? false : annotation.print();
+        Boolean isPrettyFormat = annotation == null ? false : annotation.format();
         // 获取入参
         Object[] args = pjp.getArgs();
         // 请求
@@ -72,7 +72,7 @@ public class LoggerAspect {
         // 记录开始时间
         long beginTime = System.currentTimeMillis();
         if (isPrint) {
-            log.info("| request {} {} {}ms", new Object[] {methodName, Long.valueOf(beginTime), req});
+            log.info("| request {} {} {}ms", methodName, Long.valueOf(beginTime), req);
         }
         // 执行方法
         Object ret = pjp.proceed();
@@ -83,7 +83,7 @@ public class LoggerAspect {
         // 响应
         String res = JSON.toJSONString(ret, isPrettyFormat);
         if (isPrint) {
-            log.info("| response {} {} {} {}ms", new Object[] {methodName, Long.valueOf(endTime), res, Long.valueOf(t)});
+            log.info("| response {} {} {} {}ms", methodName, Long.valueOf(endTime), res, Long.valueOf(t));
         }
         return ret;
     }

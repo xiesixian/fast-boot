@@ -157,9 +157,9 @@ public final class Retryer<V> {
             Attempt<V> attempt;
             try {
                 V result = attemptTimeLimiter.call(callable);
-                attempt = new ResultAttempt<V>(result, attemptNumber, TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startTime));
+                attempt = new ResultAttempt<>(result, attemptNumber, TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startTime));
             } catch (Throwable t) {
-                attempt = new ExceptionAttempt<V>(t, attemptNumber, TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startTime));
+                attempt = new ExceptionAttempt<>(t, attemptNumber, TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startTime));
             }
 
             for (RetryListener listener : listeners) {
@@ -193,7 +193,7 @@ public final class Retryer<V> {
      *         behavior defined by this {@link Retryer}
      */
     public RetryerCallable<V> wrap(Callable<V> callable) {
-        return new RetryerCallable<V>(this, callable);
+        return new RetryerCallable<>(this, callable);
     }
 
     @Immutable

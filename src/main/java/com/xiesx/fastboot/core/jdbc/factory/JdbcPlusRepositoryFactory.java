@@ -56,6 +56,7 @@ public class JdbcPlusRepositoryFactory extends JdbcRepositoryFactory {
         this.sqlQueryFactory = sqlQueryFactory;
     }
 
+    @Override
     public void setEntityCallbacks(EntityCallbacks entityCallbacks) {
         super.setEntityCallbacks(entityCallbacks);
         this.entityCallbacks = entityCallbacks;

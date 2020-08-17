@@ -64,6 +64,7 @@ public class JdbcPlusRepositoryFactoryBean<T extends Repository<S, ID>, S, ID ex
         return jdbcRepositoryFactory;
     }
 
+    @Override
     @Autowired
     protected void setMappingContext(RelationalMappingContext mappingContext) {
 
@@ -71,11 +72,13 @@ public class JdbcPlusRepositoryFactoryBean<T extends Repository<S, ID>, S, ID ex
         this.mappingContext = mappingContext;
     }
 
+    @Override
     public void setDataAccessStrategy(DataAccessStrategy dataAccessStrategy) {
         super.setDataAccessStrategy(dataAccessStrategy);
         this.dataAccessStrategy = dataAccessStrategy;
     }
 
+    @Override
     @Autowired(required = false)
     public void setQueryMappingConfiguration(QueryMappingConfiguration queryMappingConfiguration) {
         super.setQueryMappingConfiguration(queryMappingConfiguration);
@@ -87,10 +90,12 @@ public class JdbcPlusRepositoryFactoryBean<T extends Repository<S, ID>, S, ID ex
         this.sqlQueryFactory = sqlQueryFactory;
     }
 
+    @Override
     public void setJdbcOperations(NamedParameterJdbcOperations operations) {
         this.operations = operations;
     }
 
+    @Override
     @Autowired
     public void setConverter(JdbcConverter converter) {
         super.setConverter(converter);

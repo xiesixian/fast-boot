@@ -109,7 +109,7 @@ public class SignalAspect {
      * @return
      */
     public static String getSortParams(Map<String, String> params) {
-        SortedMap<String, String> map = new TreeMap<String, String>();
+        SortedMap<String, String> map = new TreeMap<>();
         for (String key : params.keySet()) {
             map.put(key, params.get(key));
         }

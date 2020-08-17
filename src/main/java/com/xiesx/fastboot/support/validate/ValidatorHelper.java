@@ -66,7 +66,7 @@ public class ValidatorHelper {
      */
     @SuppressWarnings("rawtypes")
     public static Map<String, String> extractPropertyAndMessage(Set<? extends ConstraintViolation> constraintViolations) {
-        Map<String, String> errorMessages = new HashMap<String, String>();
+        Map<String, String> errorMessages = new HashMap<>();
         for (ConstraintViolation violation : constraintViolations) {
             errorMessages.put(violation.getPropertyPath().toString(), violation.getMessage());
         }

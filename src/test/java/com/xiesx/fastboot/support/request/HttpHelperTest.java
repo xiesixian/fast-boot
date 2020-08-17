@@ -1,6 +1,5 @@
 package com.xiesx.fastboot.support.request;
 
-import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
@@ -10,7 +9,6 @@ import org.junit.jupiter.api.Test;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.annotation.JSONField;
-import com.google.common.base.Predicate;
 import com.xiesx.fastboot.base.result.BaseResult;
 import com.xiesx.fastboot.base.result.R;
 import com.xiesx.fastboot.core.exception.RunExc;
@@ -22,6 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 import net.dongliu.requests.Parameter;
 import net.dongliu.requests.RawResponse;
 import net.dongliu.requests.RequestBuilder;
+import net.dongliu.requests.Requests;
 
 /**
  * @title HttpTest.java
@@ -37,7 +36,7 @@ public class HttpHelperTest {
     @Test
     public void retry1() {
         // 构造请求
-        RequestBuilder req = RequestsHelper.post(url).params(Parameter.of("configKey", "appLaunch"));
+        RequestBuilder req = Requests.post(url).params(Parameter.of("configKey", "appLaunch"));
         // 请求重试
         RawResponse response = RequestsHelper.retry(req);
         // 获取结果
@@ -53,17 +52,13 @@ public class HttpHelperTest {
                 // 重试条件
                 .retryIfException()
                 // 返回指定结果时重试
-                .retryIfResult(new Predicate<BaseResult>() {
-
-                    @Override
-                    public boolean apply(@Nullable BaseResult result) {
-                        if (ObjectUtils.isEmpty(result)) {
-                            return true;
-                        } else if (result.getCode() == -3) {
-                            return true;
-                        }
-                        return false;
+                .retryIfResult((@Nullable BaseResult result) -> {
+                    if (ObjectUtils.isEmpty(result)) {
+                        return true;
+                    } else if (result.getCode() == -3) {
+                        return true;
                     }
+                    return false;
                 })
                 // 等待策略：每次请求间隔1s
                 .withWaitStrategy(WaitStrategies.fixedWait(1, TimeUnit.SECONDS))
@@ -105,22 +100,18 @@ public class HttpHelperTest {
                 .build();
 
         try {
-            BaseResult result = retry.call(new Callable<BaseResult>() {
-
-                @Override
-                public BaseResult call() throws Exception {
-                    // 构造请求
-                    RequestBuilder req = RequestsHelper.post(url).params(Parameter.of("configKey", "appLaunch"));
-                    // 请求重试
-                    RawResponse response = RequestsHelper.retry(req);
-                    // 获取结果
-                    TestRetryResponse result = response.readToJson(TestRetryResponse.class);
-                    // 验证结果，如果结果正确则返回，错误则重试
-                    if (result.getCode() == 0) {
-                        return R.succ(result.getData());
-                    } else {
-                        return R.fail(BaseResult.RETRY, result.getMsg());
-                    }
+            BaseResult result = retry.call(() -> {
+                // 构造请求
+                RequestBuilder req = Requests.post(url).params(Parameter.of("configKey", "appLaunch"));
+                // 请求重试
+                RawResponse response = RequestsHelper.retry(req);
+                // 获取结果
+                TestRetryResponse result1 = response.readToJson(TestRetryResponse.class);
+                // 验证结果，如果结果正确则返回，错误则重试
+                if (result1.getCode() == 0) {
+                    return R.succ(result1.getData());
+                } else {
+                    return R.fail(BaseResult.RETRY, result1.getMsg());
                 }
             });
             // 验证结果，如果结果正确则返回，错误则重试

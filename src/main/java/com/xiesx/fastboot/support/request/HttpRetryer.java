@@ -41,13 +41,11 @@ public class HttpRetryer {
     /**
      * 重试条件
      */
-    public static Predicate<RawResponse> reRetryPredicate = raw -> {
-        return raw.statusCode() != 200;
-    };
+    public static Predicate<RawResponse> reRetryPredicate = raw -> (raw.statusCode() != 200);
 
     /**
      * 重试条件
-     * 
+     *
      * @title HttpCilent.java
      * @description
      * @author Sixian.xie

@@ -27,10 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 @SuppressWarnings("all")
 public class GlobalBodyAdvice implements ResponseBodyAdvice<Object> {
 
-    /**
-     * systemException --> GlobalExceptionHandle.java 31行
-     */
-    String[] methodNames = {"requestException"};
+    String[] methodNames = {};
 
     @Override
     public Object beforeBodyWrite(Object returnValue, MethodParameter methodParameter, MediaType mediaType, Class clas,

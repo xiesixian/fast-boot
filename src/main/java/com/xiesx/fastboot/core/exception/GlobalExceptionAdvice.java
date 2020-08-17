@@ -98,7 +98,7 @@ public class GlobalExceptionAdvice {
             Set<ConstraintViolation<?>> violations = ((ConstraintViolationException) e).getConstraintViolations();
             errorMsg.addAll(ValidatorHelper.extractPropertyAndMessageAsList(violations));
         }
-        return R.error(RunExc.VALI.getErrorCode(), RunExc.VALI.getMassage(), errorMsg);
+        return R.error(RunExc.VALI.getErrorCode(), RunExc.VALI.getErrorMsg(), errorMsg);
     }
 
     /**

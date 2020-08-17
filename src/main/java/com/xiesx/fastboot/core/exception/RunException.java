@@ -47,7 +47,7 @@ public class RunException extends RuntimeException {
      * @param message
      */
     public RunException(RunExc act) {
-        super(act.getMassage());
+        super(act.getErrorMsg());
         this.errorCode = act.getErrorCode();
     }
 
@@ -58,7 +58,7 @@ public class RunException extends RuntimeException {
      * @param message
      */
     public RunException(RunExc act, String message) {
-        super(act.getMassage() + ":" + message);
+        super(act.getErrorMsg() + ":" + message);
         this.errorCode = act.getErrorCode();
     }
 
@@ -70,7 +70,7 @@ public class RunException extends RuntimeException {
      * @param message
      */
     public RunException(RunExc act, String format, Object... message) {
-        super(act.getMassage() + ":" + String.format(format, message));
+        super(act.getErrorMsg() + ":" + String.format(format, message));
         this.errorCode = act.getErrorCode();
     }
 }

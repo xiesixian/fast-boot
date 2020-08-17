@@ -29,7 +29,7 @@ public enum RunExc {
 
     private Integer errorCode;
 
-    private String massage;
+    private String errorMsg;
 
     public Integer getErrorCode() {
         return errorCode;
@@ -39,11 +39,11 @@ public enum RunExc {
         this.errorCode = errorCode;
     }
 
-    public String getMassage() {
-        return massage;
+    public String getErrorMsg() {
+        return errorMsg;
     }
 
-    public void setMassage(String massage) {
-        this.massage = massage;
+    public void setErrorMsg(String errorMsg) {
+        this.errorMsg = errorMsg;
     }
 }

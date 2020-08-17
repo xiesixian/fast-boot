@@ -14,7 +14,6 @@
 
 package com.xiesx.fastboot.support.retry;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Nonnull;
@@ -22,6 +21,7 @@ import javax.annotation.Nonnull;
 import com.google.common.base.Preconditions;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
+import com.google.common.collect.Lists;
 
 /**
  * A builder used to configure and create a {@link Retryer}.
@@ -42,7 +42,7 @@ public class RetryerBuilder<V> {
 
     private Predicate<Attempt<V>> rejectionPredicate = Predicates.alwaysFalse();
 
-    private List<RetryListener> listeners = new ArrayList<>();
+    private List<RetryListener> listeners = Lists.newArrayList();
 
     private RetryerBuilder() {}
 

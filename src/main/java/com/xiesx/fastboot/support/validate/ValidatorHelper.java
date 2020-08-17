@@ -1,6 +1,5 @@
 package com.xiesx.fastboot.support.validate;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -10,6 +9,7 @@ import javax.validation.ConstraintViolationException;
 import javax.validation.Validator;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 
 /**
  * @title ValidatorHelper.java
@@ -66,11 +66,11 @@ public class ValidatorHelper {
      */
     @SuppressWarnings("rawtypes")
     public static Map<String, String> extractPropertyAndMessage(Set<? extends ConstraintViolation> constraintViolations) {
-        Map<String, String> errorMessages = new HashMap<>();
+        Map<String, String> errorMsgs = Maps.newHashMap();
         for (ConstraintViolation violation : constraintViolations) {
-            errorMessages.put(violation.getPropertyPath().toString(), violation.getMessage());
+            errorMsgs.put(violation.getPropertyPath().toString(), violation.getMessage());
         }
-        return errorMessages;
+        return errorMsgs;
     }
 
     /**

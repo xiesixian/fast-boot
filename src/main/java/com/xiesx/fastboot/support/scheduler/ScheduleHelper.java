@@ -1,10 +1,15 @@
 package com.xiesx.fastboot.support.scheduler;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.quartz.*;
 import org.quartz.impl.matchers.GroupMatcher;
 
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.xiesx.fastboot.SpringHelper;
 
 public class ScheduleHelper {
@@ -343,11 +348,11 @@ public class ScheduleHelper {
         try {
             GroupMatcher<JobKey> matcher = GroupMatcher.anyJobGroup();
             Set<JobKey> jobKeys = scheduler.getJobKeys(matcher);
-            jobList = new ArrayList<>();
+            jobList = Lists.newArrayList();
             for (JobKey jobKey : jobKeys) {
                 List<? extends Trigger> triggers = scheduler.getTriggersOfJob(jobKey);
                 for (Trigger trigger : triggers) {
-                    Map<String, Object> map = new HashMap<>();
+                    Map<String, Object> map = Maps.newHashMap();
                     map.put("jobName", jobKey.getName());
                     map.put("jobGroupName", jobKey.getGroup());
                     map.put("description", "触发器:" + trigger.getKey());
@@ -378,7 +383,7 @@ public class ScheduleHelper {
             List<JobExecutionContext> executingJobs = scheduler.getCurrentlyExecutingJobs();
             jobList = new ArrayList<>(executingJobs.size());
             for (JobExecutionContext executingJob : executingJobs) {
-                Map<String, Object> map = new HashMap<>();
+                Map<String, Object> map = Maps.newHashMap();
                 JobDetail jobDetail = executingJob.getJobDetail();
                 JobKey jobKey = jobDetail.getKey();
                 Trigger trigger = executingJob.getTrigger();

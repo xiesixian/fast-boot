@@ -1,7 +1,6 @@
 package com.xiesx.fastboot.tag.ui;
 
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 
@@ -10,6 +9,7 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.google.common.collect.Maps;
 import com.xiesx.fastboot.tag.TagUtils;
 
 import lombok.Data;
@@ -52,7 +52,7 @@ public abstract class BaseUITag extends BodyTagSupport {
         __tmplScriptPart = new StringBuilder();
         __tmplMetaPart = new StringBuilder();
         __tmplCssPart = new StringBuilder();
-        __tmplPropertyPart = new HashMap<>();
+        __tmplPropertyPart = Maps.newHashMap();
         return super.doStartTag();
     }
 

@@ -15,6 +15,8 @@ import org.apache.commons.lang3.SystemUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.google.common.collect.Maps;
+
 public class RuntimeUtils {
 
     private static final Log _LOG = LogFactory.getLog(RuntimeUtils.class);
@@ -22,7 +24,7 @@ public class RuntimeUtils {
     /**
      * 系统环境变量映射
      */
-    private static final Map<String, String> SYSTEM_ENV_MAP = new HashMap<>();
+    private static final Map<String, String> SYSTEM_ENV_MAP = Maps.newHashMap();
 
     static {
         initSystemEnvs();

@@ -109,7 +109,7 @@ public class SignalAspect {
      * @return
      */
     public static String getSortParams(Map<String, String> params) {
-        SortedMap<String, String> map = new TreeMap<>();
+        SortedMap<String, String> map = Maps.newTreeMap();
         for (String key : params.keySet()) {
             map.put(key, params.get(key));
         }
@@ -128,16 +128,16 @@ public class SignalAspect {
     }
 
     public static void main(String[] args) {
-        Map<String, String> params = new HashMap<>();
+        Map<String, String> params = Maps.newHashMap();
         params.put("a", "1");
         params.put("b", "2");
         System.out.println(getSignature(params, SIGN_VAL));
 
-        params = new HashMap<>();
+        params = Maps.newHashMap();
         params.put("url", "https://www.iqiyi.com/v_19rsmej7tw.html?vfm=2008_aldbd");
         System.out.println(getSignature(params, SIGN_VAL));
 
-        params = new HashMap<>();
+        params = Maps.newHashMap();
         params.put("url", "https://v.youku.com/v_show/id_XNDE0ODQ5NzczNg==.html");
         System.out.println(getSignature(params, SIGN_VAL));
     }

@@ -1,11 +1,16 @@
 package com.xiesx.fastboot.utils;
 
 import java.beans.PropertyDescriptor;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
+
+import com.google.common.collect.Sets;
 
 import lombok.NonNull;
 
@@ -17,7 +22,7 @@ public class CopyUtils {
 
         PropertyDescriptor[] pds = beanWrapper.getPropertyDescriptors();
 
-        Set<String> noValuePropertySet = new HashSet<>();
+        Set<String> noValuePropertySet = Sets.newHashSet();
         Arrays.stream(pds).forEach(pd -> {
             Object propertyValue = beanWrapper.getPropertyValue(pd.getName());
             if (ObjectUtils.isEmpty(propertyValue)) {

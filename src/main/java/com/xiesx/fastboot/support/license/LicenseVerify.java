@@ -7,6 +7,7 @@ import java.util.prefs.Preferences;
 
 import de.schlichtherle.license.*;
 import lombok.Data;
+import lombok.experimental.Accessors;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -17,22 +18,18 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @Data
+@Accessors(chain = true)
 public class LicenseVerify {
 
     /**
-     * 证书subject
+     * 证书主题
      */
     private String subject;
 
     /**
-     * 公钥库存储路径
+     * 公钥路径
      */
     private String publicKeysStorePath;
-
-    /**
-     * 访问私钥库的密码
-     */
-    private String storePass;
 
     /**
      * 公钥别称
@@ -40,9 +37,14 @@ public class LicenseVerify {
     private String publicAlias;
 
     /**
-     * 证书生成路径
+     * 证书路径
      */
     private String licensePath;
+
+    /**
+     * 访问私钥库的密码
+     */
+    private String storePass;
 
     /**
      * LicenseManager
@@ -68,10 +70,10 @@ public class LicenseVerify {
      * 初始化证书生成参数
      */
     private LicenseParam initLicenseParam() {
-        // 绑定创建class路径
+        // 绑定创建Class路径
         Preferences preferences = Preferences.userNodeForPackage(LicenseCreator.class);
-        // 密钥存储
-        KeyStoreParam privateStoreParam = new LicenseKeyStoreParam(LicenseCreator.class, publicKeysStorePath, publicAlias, storePass, null);
+        // 密钥信息
+        KeyStoreParam privateStoreParam = new LicenseKeyStoreParam(LicenseCreator.class, publicKeysStorePath, publicAlias, storePass);
         // 加密秘钥
         CipherParam cipherParam = new DefaultCipherParam(storePass);
         return new DefaultLicenseParam(subject, preferences, privateStoreParam, cipherParam);
@@ -87,7 +89,7 @@ public class LicenseVerify {
         licenseManager.uninstall();
         licenseManager.install(new File(licensePath));
         installSuccess = true;
-        log.info("Startup License Install Success");
+        log.info("license install success");
     }
 
     /**
@@ -110,7 +112,7 @@ public class LicenseVerify {
         if (installSuccess) {
             DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             LicenseContent licenseContent = licenseManager.verify();
-            log.info("Startup License Verify Success {} - {}", format.format(licenseContent.getNotBefore()),
+            log.info("license verify success {} - {}", format.format(licenseContent.getNotBefore()),
                     format.format(licenseContent.getNotAfter()));
             return true;
         } else {

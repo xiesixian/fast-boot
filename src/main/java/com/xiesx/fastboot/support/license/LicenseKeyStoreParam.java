@@ -27,6 +27,13 @@ public class LicenseKeyStoreParam extends AbstractKeyStoreParam {
 
     private String keyPwd;
 
+    public LicenseKeyStoreParam(Class<?> clazz, String resource, String alias, String storePwd) {
+        super(clazz, resource);
+        this.storePath = resource;
+        this.alias = alias;
+        this.storePwd = storePwd;
+    }
+
     public LicenseKeyStoreParam(Class<?> clazz, String resource, String alias, String storePwd, String keyPwd) {
         super(clazz, resource);
         this.storePath = resource;

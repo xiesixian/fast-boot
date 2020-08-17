@@ -11,9 +11,9 @@
 	<packaging>jar</packaging>
 
 	<!-- 基础信息(非必须) -->
-	<name>fast-boot</name>
-	<url></url>
-	<description>FastBoot</description>
+	<name>FastBoot</name>
+	<url>http://fast.go168.xyz</url>
+	<description>fast boot</description>
 
 	<!-- 父类 -->
 	<parent>
@@ -140,12 +140,6 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>provided</scope>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-generator -->
-		<dependency>
-			<groupId>com.baomidou</groupId>
-			<artifactId>mybatis-plus-generator</artifactId>
-			<version>3.3.1</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator -->
 		<dependency>

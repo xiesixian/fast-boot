@@ -1,15 +1,14 @@
 package com.xiesx.fastboot.support.license;
 
 import java.io.File;
-import java.text.MessageFormat;
 import java.util.prefs.Preferences;
 
 import javax.security.auth.x500.X500Principal;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import de.schlichtherle.license.*;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @title LicenseCreator.java
@@ -17,18 +16,15 @@ import de.schlichtherle.license.*;
  * @author Sixian.xie
  * @date 2020-7-21 22:33:56
  */
+@Slf4j
+@RequiredArgsConstructor
 public class LicenseCreator {
 
     private final static X500Principal DEFAULT_HOLDER_AND_ISSUER =
             new X500Principal("CN=FAST, OU=JavaSoft, O=XSX, L=WUHAN, ST=HUBEI, C=CN");
 
-    private static Logger logger = LogManager.getLogger(LicenseCreator.class);
-
-    private LicenseCreatorParam param;
-
-    public LicenseCreator(LicenseCreatorParam param) {
-        this.param = param;
-    }
+    @NonNull
+    private LicenseParams param;
 
     /**
      * 生成License证书
@@ -40,8 +36,7 @@ public class LicenseCreator {
             licenseManager.store(licenseContent, new File(param.getLicensePath()));
             return true;
         } catch (Exception e) {
-            e.printStackTrace();
-            logger.error(MessageFormat.format("证书生成失败：{0}", param), e);
+            log.error("证书生成失败", e);
             return false;
         }
     }
@@ -70,7 +65,7 @@ public class LicenseCreator {
         licenseContent.setIssued(param.getIssuedTime());
         licenseContent.setNotBefore(param.getIssuedTime());
         licenseContent.setNotAfter(param.getExpiryTime());
-        licenseContent.setConsumerType(param.getConsumerType());
+        licenseContent.setConsumerType("user");
 
         // 扩展校验，这里可以自定义一些额外的校验信息(也可以用json字符串保存)
         if (param.getLicenseExtraModel() != null) {

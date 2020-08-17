@@ -3,6 +3,7 @@ package com.xiesx.fastboot.support.license;
 import java.util.List;
 
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 /**
  * @title LicenseCreatorParamExtra.java
@@ -11,7 +12,8 @@ import lombok.Data;
  * @date 2020-7-21 22:34:10
  */
 @Data
-public class LicenseCreatorParamExtra {
+@Accessors(chain = true)
+public class LicenseParamsExtra {
 
     /**
      * 可被允许的MAC地址

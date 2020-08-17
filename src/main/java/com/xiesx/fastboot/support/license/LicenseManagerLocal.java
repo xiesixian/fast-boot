@@ -111,7 +111,7 @@ public class LicenseManagerLocal extends LicenseManager {
         // 1. 首先调用父类的validate方法
         super.validate(content);
         // 2. 然后校验自定义的License参数，去校验我们的license信息
-        LicenseCreatorParamExtra expectedCheckModel = (LicenseCreatorParamExtra) content.getExtra();
+        LicenseParamsExtra expectedCheckModel = (LicenseParamsExtra) content.getExtra();
         // 3. 自定义校验Mac地址
         if (!checkIpAddress(expectedCheckModel.getMacAddress(), expectedCheckModel.getMacAddress())) {
             throw new LicenseContentException("当前服务器的Mac地址没在授权范围内");

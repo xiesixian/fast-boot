@@ -11,7 +11,7 @@ public class FastJsonProperties {
 
     public static final String PREFIX = "fastboot.fastjson";
 
-    private String dateFormat;
+    private String dateFormat = "yyyy-MM-dd HH:mm:ss";
 
-    private Boolean desensitize;
+    private Boolean desensitize = true;
 }

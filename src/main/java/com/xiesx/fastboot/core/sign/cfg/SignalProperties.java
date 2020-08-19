@@ -10,7 +10,7 @@ public class SignalProperties {
 
     public static final String PREFIX = "fastboot.sign";
 
-    private String header;
+    private String header = "sign";
 
-    private String secret;
+    private String secret = "123456790";
 }

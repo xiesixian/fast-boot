@@ -10,9 +10,9 @@ public class TokenProperties {
 
     public static final String PREFIX = "fastboot.token";
 
-    private String header;
+    private String header = "token";
 
-    private String[] includePaths;
+    private String[] includePaths = new String[0];
 
-    private String[] excludePaths;
+    private String[] excludePaths = new String[0];
 }

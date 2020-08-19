@@ -10,5 +10,5 @@ public class LimiterProperties {
 
     public static final String PREFIX = "fastboot.limit";
 
-    private Integer timeout;
+    private Integer timeout = 1000;
 }

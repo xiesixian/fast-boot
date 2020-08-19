@@ -136,7 +136,7 @@ public class JpaPlusRepositoryExecutor<T, ID> extends SimpleJpaRepository<T, ID>
     @Transactional
     @Override
     public int delete(ID... ids) {
-        Assert.notNull(ids, "Ids must not be null!");
+        Assert.notNull(ids, "ids must not be null!");
         int rows = 0;
         for (ID id : ids) {
             deleteById(id);

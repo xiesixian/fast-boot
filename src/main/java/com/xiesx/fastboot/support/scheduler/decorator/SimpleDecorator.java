@@ -12,13 +12,13 @@ import com.xiesx.fastboot.support.scheduler.SimpleJob;
  * @author Sixian.xie
  * @date 2020-7-21 22:42:58
  */
-public class ScheduleDecorator extends BaseDecorator implements ISchedule {
+public class SimpleDecorator extends BaseDecorator implements ISchedule {
 
-    public ScheduleDecorator() {
+    public SimpleDecorator() {
         super();
     }
 
-    public ScheduleDecorator(ISchedule decoratedJob) {
+    public SimpleDecorator(ISchedule decoratedJob) {
         super(decoratedJob);
     }
 

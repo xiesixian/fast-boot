@@ -4,7 +4,7 @@ import com.xiesx.fastboot.support.license.LicenseVerify;
 import com.xiesx.fastboot.support.license.cfg.LicenseProperties;
 import com.xiesx.fastboot.support.scheduler.ScheduleHelper;
 import com.xiesx.fastboot.support.scheduler.decorator.ISchedule;
-import com.xiesx.fastboot.support.scheduler.decorator.ScheduleDecorator;
+import com.xiesx.fastboot.support.scheduler.decorator.SimpleDecorator;
 import com.xiesx.fastboot.utils.RuntimeUtils;
 
 import lombok.extern.slf4j.Slf4j;
@@ -92,7 +92,7 @@ public class SpringStartup {
         try {
             // 默认实现
             // 默认装饰追加
-            ISchedule job2 = new ScheduleDecorator();
+            ISchedule job2 = new SimpleDecorator();
             // 开始初始化....
             job2.init();
             log.info("Startup Scheduler {} job completed.", ScheduleHelper.queryAllJob().size());

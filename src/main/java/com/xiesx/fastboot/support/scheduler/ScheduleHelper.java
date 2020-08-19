@@ -21,14 +21,28 @@ public class ScheduleHelper {
     // ============================
 
     /**
-     * 增加
+     * 增加SimpleJob
      *
-     * @param jobClass 任务实现类
+     * @param job 任务名称
+     * @param cls 任务实现类
+     * @param interval 时间表达式 (这是每隔多少秒为一次任务)
+     * @param repeat 运行的次数 （<0:表示不限次数）
+     */
+    public static void addJob(String job, Class<? extends Job> cls, int interval, int repeat) {
+        // 创建
+        addJob(job, cls, interval, repeat, null);
+    }
+
+    /**
+     * 增加SimpleJob
+     *
+     * @param job 任务名称
+     * @param cls 任务实现类
      * @param interval 时间表达式 (这是每隔多少秒为一次任务)
      * @param repeat 运行的次数 （<0:表示不限次数）
      * @param data 参数
      */
-    public static void addJob(String jobName, Class<? extends Job> jobClass, int interval, int repeat,
+    public static void addJob(String job, Class<? extends Job> cls, int interval, int repeat,
             Map<? extends String, ? extends Object> data) {
         // 构建SimpleScheduleBuilder规则
         SimpleScheduleBuilder simpleScheduleBuilder = SimpleScheduleBuilder.simpleSchedule() // 几秒钟重复执行
@@ -40,34 +54,20 @@ public class ScheduleHelper {
         // 一直执行
         simpleScheduleBuilder.repeatForever();
         // 创建
-        createJob(jobName, jobClass, simpleScheduleBuilder, data);
+        createJob(job, cls, simpleScheduleBuilder, data);
     }
 
     /**
-     * 增加
+     * 增加SimpleJob
      *
-     * @param jobClass 任务实现类
-     * @param cron 时间表达式 （如：0/5 * * * * ? ）
-     * @param data 参数
-     */
-    public static void addJob(String jobName, Class<? extends Job> jobClass, String cron, Map<? extends String, ? extends Object> data) {
-        // 构建CronScheduleBuilder规则
-        CronScheduleBuilder cronScheduleBuilder = CronScheduleBuilder.cronSchedule(cron);
-        // 创建
-        createJob(jobName, jobClass, cronScheduleBuilder, data);
-    }
-
-    /**
-     * 增加
-     *
-     * @param jobName 任务名称
-     * @param jobGroupName 任务组名
-     * @param jobClass 任务实现类
+     * @param job 任务名称
+     * @param group 任务组名
+     * @param cls 任务实现类
      * @param interval 时间表达式 (这是每隔多少秒为一次任务)
      * @param repeat 运行的次数 （<0:表示不限次数）
      * @param data 参数
      */
-    public static void addJob(String jobName, String jobGroupName, Class<? extends Job> jobClass, int interval, int repeat,
+    public static void addJob(String job, String group, Class<? extends Job> cls, int interval, int repeat,
             Map<? extends String, ? extends Object> data) {
         // 构建SimpleScheduleBuilder规则
         SimpleScheduleBuilder simpleScheduleBuilder = SimpleScheduleBuilder.simpleSchedule()
@@ -80,24 +80,51 @@ public class ScheduleHelper {
         // 一直执行
         simpleScheduleBuilder.repeatForever();
         // 创建
-        createJob(jobName, jobGroupName, jobClass, simpleScheduleBuilder, data);
+        createJob(job, group, cls, simpleScheduleBuilder, data);
+    }
+
+
+    /**
+     * 增加CronJob
+     *
+     * @param job 任务名称
+     * @param cls 任务实现类
+     * @param cron 时间表达式 （如：0/5 * * * * ? ）
+     */
+    public static void addJob(String job, Class<? extends Job> cls, String cron) {
+        addJob(job, cls, cron, null);
     }
 
     /**
-     * 增加
+     * 增加CronJob
      *
-     * @param jobName 任务名称
-     * @param jobGroupName 任务组名
-     * @param jobClass 任务实现类
+     * @param job 任务名称
+     * @param cls 任务实现类
      * @param cron 时间表达式 （如：0/5 * * * * ? ）
      * @param data 参数
      */
-    public static void addJob(String jobName, String jobGroupName, Class<? extends Job> jobClass, String cron,
+    public static void addJob(String job, Class<? extends Job> cls, String cron, Map<? extends String, ? extends Object> data) {
+        // 构建CronScheduleBuilder规则
+        CronScheduleBuilder cronScheduleBuilder = CronScheduleBuilder.cronSchedule(cron);
+        // 创建
+        createJob(job, cls, cronScheduleBuilder, data);
+    }
+
+    /**
+     * 增加CronJob
+     *
+     * @param job 任务名称
+     * @param group 任务组名
+     * @param cls 任务实现类
+     * @param cron 时间表达式 （如：0/5 * * * * ? ）
+     * @param data 参数
+     */
+    public static void addJob(String job, String group, Class<? extends Job> cls, String cron,
             Map<? extends String, ? extends Object> data) {
         // 构建CronScheduleBuilder规则
         CronScheduleBuilder cronScheduleBuilder = CronScheduleBuilder.cronSchedule(cron);
         // 创建
-        createJob(jobName, jobGroupName, jobClass, cronScheduleBuilder, data);
+        createJob(job, group, cls, cronScheduleBuilder, data);
     }
 
 
@@ -106,36 +133,36 @@ public class ScheduleHelper {
     /**
      * 创建
      *
-     * @param jobClass 任务实现类
+     * @param cls 任务实现类
      * @param ScheduleBuilder 时间表达式 (这是每隔多少秒为一次任务)
      * @param data 参数
      */
-    public static void createJob(String jobName, Class<? extends Job> jobClass, ScheduleBuilder<? extends Trigger> ScheduleBuilder,
+    public static void createJob(String job, Class<? extends Job> cls, ScheduleBuilder<? extends Trigger> ScheduleBuilder,
             Map<? extends String, ? extends Object> data) {
-        createJob(jobName, JOB_GROUP_NAME, jobClass, ScheduleBuilder, data);
+        createJob(job, JOB_GROUP_NAME, cls, ScheduleBuilder, data);
     }
 
     /**
      * 创建
      *
-     * @param jobName 任务名称
-     * @param jobGroupName 任务组名
-     * @param jobClass 任务实现类
+     * @param job 任务名称
+     * @param group 任务组名
+     * @param cls 任务实现类
      * @param interval 时间表达式 (这是每隔多少秒为一次任务)
      * @param repeat 运行的次数 （<0:表示不限次数）
      * @param data 参数
      */
-    public static void createJob(String jobName, String jobGroupName, Class<? extends Job> jobClass,
-            ScheduleBuilder<? extends Trigger> ScheduleBuilder, Map<? extends String, ? extends Object> data) {
+    public static void createJob(String job, String group, Class<? extends Job> cls, ScheduleBuilder<? extends Trigger> ScheduleBuilder,
+            Map<? extends String, ? extends Object> data) {
         try {
             // 构建实例
-            JobDetail jobDetail = JobBuilder.newJob(jobClass).withIdentity(jobName, jobGroupName).build();
+            JobDetail jobDetail = JobBuilder.newJob(cls).withIdentity(job, group).build();
             // 设置参数
             if (data != null && data.size() > 0) {
                 jobDetail.getJobDataMap().putAll(data);
             }
             // 构建触发器
-            TriggerBuilder<Trigger> triggerBuilder = TriggerBuilder.newTrigger().withIdentity(jobName, jobGroupName);
+            TriggerBuilder<Trigger> triggerBuilder = TriggerBuilder.newTrigger().withIdentity(job, group);
             triggerBuilder.withSchedule(ScheduleBuilder);
             triggerBuilder.startNow();
             scheduler.scheduleJob(jobDetail, triggerBuilder.build());
@@ -151,8 +178,8 @@ public class ScheduleHelper {
      *
      * @param cron
      */
-    public static void updateJob(String jobName, int interval, int repeat) {
-        updateJob(jobName, JOB_GROUP_NAME, interval, repeat);
+    public static void updateJob(String job, int interval, int repeat) {
+        updateJob(job, JOB_GROUP_NAME, interval, repeat);
     }
 
     /**
@@ -160,20 +187,20 @@ public class ScheduleHelper {
      *
      * @param cron
      */
-    public static void updateJob(String jobName, String cron) {
-        updateJob(jobName, JOB_GROUP_NAME, cron);
+    public static void updateJob(String job, String cron) {
+        updateJob(job, JOB_GROUP_NAME, cron);
     }
 
     /**
      * 修改
      *
-     * @param jobName
-     * @param jobGroupName
+     * @param job
+     * @param group
      * @param cron
      */
-    public static void updateJob(String jobName, String jobGroupName, int interval, int repeat) {
+    public static void updateJob(String job, String group, int interval, int repeat) {
         try {
-            TriggerKey triggerKey = TriggerKey.triggerKey(jobName, jobGroupName);
+            TriggerKey triggerKey = TriggerKey.triggerKey(job, group);
             SimpleTrigger trigger = (SimpleTrigger) scheduler.getTrigger(triggerKey);
             //
             SimpleScheduleBuilder simpleScheduleBuilder = SimpleScheduleBuilder.simpleSchedule() // 几秒钟重复执行
@@ -195,13 +222,13 @@ public class ScheduleHelper {
     /**
      * 修改
      *
-     * @param jobName
-     * @param jobGroupName
+     * @param job
+     * @param group
      * @param cron
      */
-    public static void updateJob(String jobName, String jobGroupName, String cron) {
+    public static void updateJob(String job, String group, String cron) {
         try {
-            TriggerKey triggerKey = TriggerKey.triggerKey(jobName, jobGroupName);
+            TriggerKey triggerKey = TriggerKey.triggerKey(job, group);
             CronTrigger trigger = (CronTrigger) scheduler.getTrigger(triggerKey);
             //
             trigger = trigger.getTriggerBuilder().withIdentity(triggerKey).withSchedule(CronScheduleBuilder.cronSchedule(cron)).build();
@@ -217,19 +244,19 @@ public class ScheduleHelper {
     /**
      * 删除
      */
-    public static void deleteJob(String jobName) {
-        deleteJob(jobName, JOB_GROUP_NAME);
+    public static void deleteJob(String job) {
+        deleteJob(job, JOB_GROUP_NAME);
     }
 
     /**
      * 删除
      *
-     * @param jobName 任务名称
-     * @param jobGroupName 任务组名
+     * @param job 任务名称
+     * @param group 任务组名
      */
-    public static void deleteJob(String jobName, String jobGroupName) {
+    public static void deleteJob(String job, String group) {
         try {
-            scheduler.deleteJob(new JobKey(jobName, jobGroupName));
+            scheduler.deleteJob(new JobKey(job, group));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -240,19 +267,19 @@ public class ScheduleHelper {
     /**
      * 暂停
      */
-    public static void pauseJob(String jobName) {
-        pauseJob(jobName, JOB_GROUP_NAME);
+    public static void pauseJob(String job) {
+        pauseJob(job, JOB_GROUP_NAME);
     }
 
     /**
      * 暂停
      *
-     * @param jobName
-     * @param jobGroupName
+     * @param job
+     * @param group
      */
-    public static void pauseJob(String jobName, String jobGroupName) {
+    public static void pauseJob(String job, String group) {
         try {
-            JobKey jobKey = JobKey.jobKey(jobName, jobGroupName);
+            JobKey jobKey = JobKey.jobKey(job, group);
             scheduler.pauseJob(jobKey);
         } catch (SchedulerException e) {
             e.printStackTrace();
@@ -264,19 +291,19 @@ public class ScheduleHelper {
     /**
      * 恢复
      */
-    public static void resumeJob(String jobName) {
-        resumeJob(jobName, JOB_GROUP_NAME);
+    public static void resumeJob(String job) {
+        resumeJob(job, JOB_GROUP_NAME);
     }
 
     /**
      * 恢复
      *
-     * @param jobName
-     * @param jobGroupName
+     * @param job
+     * @param group
      */
-    public static void resumeJob(String jobName, String jobGroupName) {
+    public static void resumeJob(String job, String group) {
         try {
-            JobKey jobKey = JobKey.jobKey(jobName, jobGroupName);
+            JobKey jobKey = JobKey.jobKey(job, group);
             scheduler.resumeJob(jobKey);
         } catch (SchedulerException e) {
             e.printStackTrace();
@@ -289,19 +316,19 @@ public class ScheduleHelper {
      * 立即执行
      *
      */
-    public static void runAJobNow(String jobName) {
-        resumeJob(jobName, JOB_GROUP_NAME);
+    public static void runAJobNow(String job) {
+        resumeJob(job, JOB_GROUP_NAME);
     }
 
     /**
      * 立即执行
      *
-     * @param jobName
-     * @param jobGroupName
+     * @param job
+     * @param group
      */
-    public static void runAJobNow(String jobName, String jobGroupName) {
+    public static void runAJobNow(String job, String group) {
         try {
-            JobKey jobKey = JobKey.jobKey(jobName, jobGroupName);
+            JobKey jobKey = JobKey.jobKey(job, group);
             scheduler.triggerJob(jobKey);
         } catch (SchedulerException e) {
             e.printStackTrace();
@@ -353,11 +380,11 @@ public class ScheduleHelper {
                 List<? extends Trigger> triggers = scheduler.getTriggersOfJob(jobKey);
                 for (Trigger trigger : triggers) {
                     Map<String, Object> map = Maps.newHashMap();
-                    map.put("jobName", jobKey.getName());
-                    map.put("jobGroupName", jobKey.getGroup());
-                    map.put("description", "触发器:" + trigger.getKey());
+                    map.put("key", trigger.getKey());
+                    map.put("job", jobKey.getName());
+                    map.put("group", jobKey.getGroup());
                     Trigger.TriggerState triggerState = scheduler.getTriggerState(trigger.getKey());
-                    map.put("jobStatus", triggerState.name());
+                    map.put("status", triggerState.name());
                     if (trigger instanceof CronTrigger) {
                         CronTrigger cronTrigger = (CronTrigger) trigger;
                         String cronExpression = cronTrigger.getCronExpression();
@@ -387,11 +414,11 @@ public class ScheduleHelper {
                 JobDetail jobDetail = executingJob.getJobDetail();
                 JobKey jobKey = jobDetail.getKey();
                 Trigger trigger = executingJob.getTrigger();
-                map.put("jobName", jobKey.getName());
-                map.put("jobGroupName", jobKey.getGroup());
-                map.put("description", "触发器:" + trigger.getKey());
+                map.put("key", trigger.getKey());
+                map.put("job", jobKey.getName());
+                map.put("group", jobKey.getGroup());
                 Trigger.TriggerState triggerState = scheduler.getTriggerState(trigger.getKey());
-                map.put("jobStatus", triggerState.name());
+                map.put("status", triggerState.name());
                 if (trigger instanceof CronTrigger) {
                     CronTrigger cronTrigger = (CronTrigger) trigger;
                     String cronExpression = cronTrigger.getCronExpression();

@@ -29,12 +29,12 @@ public class ExecutorHelper {
         }
         return service;
     }
-
-    public static <T> ListenableFuture<T> submit(DefaultTask<T> task) {
-        return submit(task, task);
+ 
+    public static ListenableFuture<?> submit(Runnable task) {
+        return service.submit(task);
     }
 
-    public static ListenableFuture<?> submit(Runnable task) {
+    public static <T> ListenableFuture<T> submit(Callable<T> task) {
         return service.submit(task);
     }
 
@@ -44,6 +44,10 @@ public class ExecutorHelper {
             Futures.addCallback(future, callback, MoreExecutors.directExecutor());
         }
         return future;
+    }
+
+    public static <T> ListenableFuture<T> submit(DefaultTask<T> task) {
+        return submit(task, task);
     }
 
     public static <T> List<Future<T>> invokeAll(List<DefaultTask<T>> tasks) {

@@ -1,12 +1,10 @@
 package com.xiesx.fastboot.support.executor;
 
-import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.junit.jupiter.api.Test;
 
-import com.google.common.base.Function;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
@@ -25,26 +23,12 @@ public class ExecutorHelperTest {
         // 执行任务,不监听结果
         ExecutorHelper.submit(new MyRunnable("1"));
         // 执行任务,监听结果
-        ExecutorHelper.submit(new Callable<BaseResult>() {
-
-            @Override
-            public BaseResult call() throws Exception {
-                // 这里进行耗时异步运算
-                return R.succ("2");
-            }
-
-        }, new MyFutureCallback());
+        ExecutorHelper.submit(() -> R.succ("2"), new MyFutureCallback());
         // 执行任务,监听结果
         ExecutorHelper.submit(new MyTask("3"));
         // 执行任务,返回结果
         ListenableFuture<String> future1 = ExecutorHelper.submit(() -> "4");
-        ListenableFuture<String> future2 = Futures.transform(future1, new Function<String, String>() {
-
-            @Override
-            public String apply(String input) {
-                return input + " transform";
-            }
-        }, MoreExecutors.directExecutor());
+        ListenableFuture<String> future2 = Futures.transform(future1, input -> input + " transform", MoreExecutors.directExecutor());
         Futures.addCallback(future2, new FutureCallback<String>() {
 
             @Override

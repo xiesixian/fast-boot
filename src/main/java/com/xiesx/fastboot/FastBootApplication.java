@@ -1,5 +1,8 @@
 package com.xiesx.fastboot;
 
+import org.springframework.boot.Banner;
+import org.springframework.boot.SpringApplication;
+
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -14,9 +17,9 @@ import lombok.extern.slf4j.Slf4j;
 public class FastBootApplication {
 
     public static void main(String[] args) {
-        // SpringApplication app = new SpringApplication(FastBootApplication.class);
-        // app.setBannerMode(Banner.Mode.CONSOLE);
-        // app.run(args);
+        SpringApplication app = new SpringApplication(FastBootApplication.class);
+        app.setBannerMode(Banner.Mode.CONSOLE);
+        app.run(args);
         log.info("Started FastBootApplication 启动成功");
     }
 }

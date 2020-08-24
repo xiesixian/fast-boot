@@ -21,7 +21,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import com.google.common.collect.Maps;
 import com.xiesx.fastboot.core.exception.RunExc;
 import com.xiesx.fastboot.core.exception.RunException;
-import com.xiesx.fastboot.core.sign.annotation.GoSignal;
+import com.xiesx.fastboot.core.sign.annotation.GoSign;
 import com.xiesx.fastboot.core.sign.cfg.SignalProperties;
 
 import lombok.extern.slf4j.Slf4j;
@@ -49,7 +49,7 @@ public class SignalAspect {
 
     private String secret;
 
-    @Pointcut("@annotation(com.xiesx.fastboot.core.sign.annotation.GoSignal)")
+    @Pointcut("@annotation(com.xiesx.fastboot.core.sign.annotation.GoSign)")
     public void signPointcut() {
         log.debug("signPointcut=====");
     }
@@ -63,7 +63,7 @@ public class SignalAspect {
         MethodSignature signature = (MethodSignature) pjp.getSignature();
         Method method = signature.getMethod();
         // 获取注解信息
-        GoSignal annotation = method.getAnnotation(GoSignal.class);
+        GoSign annotation = method.getAnnotation(GoSign.class);
         Boolean isIgnore = annotation == null ? false : !annotation.ignore();
         // 获取请求信息
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
@@ -81,11 +81,11 @@ public class SignalAspect {
             String headerSign = request.getHeader(key);
             // sign为空
             if (StringUtils.isEmpty(headerSign)) {
-                throw new RunException(RunExc.SIGNA, "非法请求");
+                throw new RunException(RunExc.SIGN, "非法请求");
             }
             // sign错误
             if (!getSignature(parms, secret).equals(headerSign)) {
-                throw new RunException(RunExc.SIGNA, "验签失败");
+                throw new RunException(RunExc.SIGN, "验签失败");
             }
         }
         return pjp.proceed();

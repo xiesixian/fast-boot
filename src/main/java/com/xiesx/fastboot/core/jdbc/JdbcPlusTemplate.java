@@ -181,7 +181,7 @@ public class JdbcPlusTemplate {
      * @param clazz
      * @return
      */
-    public <T> List<T> queryForLists(String sql, Class<T> clazz) {
+    public <T> List<T> queryForListObj(String sql, Class<T> clazz) {
         try {
             return result(queryForList(sql, Maps.newLinkedHashMap()), clazz);
         } catch (Exception e) {
@@ -190,7 +190,7 @@ public class JdbcPlusTemplate {
         }
     }
 
-    public <T> List<T> queryForLists(String sql, Class<?> dto, Class<T> clazz) {
+    public <T> List<T> queryForListObj(String sql, Class<?> dto, Class<T> clazz) {
         try {
             return result(queryForList(sql, dto), clazz);
         } catch (Exception e) {
@@ -199,7 +199,7 @@ public class JdbcPlusTemplate {
         }
     }
 
-    public <T> List<T> queryForLists(String sql, Map<String, ?> paramMap, Class<T> clazz) {
+    public <T> List<T> queryForListObj(String sql, Map<String, ?> paramMap, Class<T> clazz) {
         try {
             return result(queryForList(sql, paramMap), clazz);
         } catch (Exception e) {
@@ -208,7 +208,7 @@ public class JdbcPlusTemplate {
         }
     }
 
-    public <T> List<T> queryForLists(String sql, Object[] args, Class<T> clazz) {
+    public <T> List<T> queryForListObj(String sql, Object[] args, Class<T> clazz) {
         try {
             return result(queryForList(sql, args), clazz);
         } catch (Exception e) {

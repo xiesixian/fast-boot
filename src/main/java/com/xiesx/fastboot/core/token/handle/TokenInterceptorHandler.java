@@ -71,7 +71,7 @@ public class TokenInterceptorHandler extends HandlerInterceptorAdapter {
                         } catch (Exception e) {
                             log.error("jwt token error", e);
                             if (e instanceof ExpiredJwtException) {
-                                throw new RunException(RunExc.TOKEN, "已失效");
+                                throw new RunException(RunExc.TOKEN, "失效");
                             } else {
                                 throw new RunException(RunExc.TOKEN);
                             }

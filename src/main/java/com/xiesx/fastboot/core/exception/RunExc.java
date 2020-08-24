@@ -21,7 +21,7 @@ public enum RunExc {
 
     TOKEN(5000, "令牌错误"), // --> TokenInterceptorHandler
 
-    SIGNA(6000, "签名错误"), // --> SignAspect
+    SIGN(6000, "签名错误"), // --> SignAspect
 
     RETRY(7000, "重试失败"), // --> HttpRetryer
 

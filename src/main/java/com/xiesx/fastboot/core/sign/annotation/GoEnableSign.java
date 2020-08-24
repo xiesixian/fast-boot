@@ -12,5 +12,5 @@ import com.xiesx.fastboot.core.sign.cfg.SignalCfg;
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Import({SignalCfg.class})
-public @interface GoEnableSignal {
+public @interface GoEnableSign {
 }

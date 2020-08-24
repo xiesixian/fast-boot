@@ -5,12 +5,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.commons.lang3.ObjectUtils;
 import org.quartz.*;
 import org.quartz.impl.matchers.GroupMatcher;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.xiesx.fastboot.SpringHelper;
+import com.xiesx.fastboot.core.exception.RunExc;
+import com.xiesx.fastboot.core.exception.RunException;
 
 public class ScheduleHelper {
 
@@ -199,6 +202,9 @@ public class ScheduleHelper {
      * @param cron
      */
     public static void updateJob(String job, String group, int interval, int repeat) {
+        if (ObjectUtils.isEmpty(scheduler)) {
+            throw new RunException(RunExc.RUNTIME, "please check pom.xml -> spring-boot-starter-quartz");
+        }
         try {
             TriggerKey triggerKey = TriggerKey.triggerKey(job, group);
             SimpleTrigger trigger = (SimpleTrigger) scheduler.getTrigger(triggerKey);
@@ -227,6 +233,9 @@ public class ScheduleHelper {
      * @param cron
      */
     public static void updateJob(String job, String group, String cron) {
+        if (ObjectUtils.isEmpty(scheduler)) {
+            throw new RunException(RunExc.RUNTIME, "please check pom.xml -> spring-boot-starter-quartz");
+        }
         try {
             TriggerKey triggerKey = TriggerKey.triggerKey(job, group);
             CronTrigger trigger = (CronTrigger) scheduler.getTrigger(triggerKey);
@@ -255,6 +264,9 @@ public class ScheduleHelper {
      * @param group 任务组名
      */
     public static void deleteJob(String job, String group) {
+        if (ObjectUtils.isEmpty(scheduler)) {
+            throw new RunException(RunExc.RUNTIME, "please check pom.xml -> spring-boot-starter-quartz");
+        }
         try {
             scheduler.deleteJob(new JobKey(job, group));
         } catch (Exception e) {
@@ -278,6 +290,9 @@ public class ScheduleHelper {
      * @param group
      */
     public static void pauseJob(String job, String group) {
+        if (ObjectUtils.isEmpty(scheduler)) {
+            throw new RunException(RunExc.RUNTIME, "please check pom.xml -> spring-boot-starter-quartz");
+        }
         try {
             JobKey jobKey = JobKey.jobKey(job, group);
             scheduler.pauseJob(jobKey);
@@ -302,6 +317,9 @@ public class ScheduleHelper {
      * @param group
      */
     public static void resumeJob(String job, String group) {
+        if (ObjectUtils.isEmpty(scheduler)) {
+            throw new RunException(RunExc.RUNTIME, "please check pom.xml -> spring-boot-starter-quartz");
+        }
         try {
             JobKey jobKey = JobKey.jobKey(job, group);
             scheduler.resumeJob(jobKey);
@@ -327,6 +345,9 @@ public class ScheduleHelper {
      * @param group
      */
     public static void runAJobNow(String job, String group) {
+        if (ObjectUtils.isEmpty(scheduler)) {
+            throw new RunException(RunExc.RUNTIME, "please check pom.xml -> spring-boot-starter-quartz");
+        }
         try {
             JobKey jobKey = JobKey.jobKey(job, group);
             scheduler.triggerJob(jobKey);
@@ -343,6 +364,9 @@ public class ScheduleHelper {
      * @throws SchedulerException
      */
     public static void startJobs() {
+        if (ObjectUtils.isEmpty(scheduler)) {
+            throw new RunException(RunExc.RUNTIME, "please check pom.xml -> spring-boot-starter-quartz");
+        }
         try {
             scheduler.start();
         } catch (SchedulerException e) {
@@ -356,6 +380,9 @@ public class ScheduleHelper {
      * @throws SchedulerException
      */
     public static void shutdownJobs() {
+        if (ObjectUtils.isEmpty(scheduler)) {
+            throw new RunException(RunExc.RUNTIME, "please check pom.xml -> spring-boot-starter-quartz");
+        }
         try {
             if (!scheduler.isShutdown()) {
                 scheduler.shutdown();
@@ -371,6 +398,9 @@ public class ScheduleHelper {
      * @return
      */
     public static List<Map<String, Object>> queryAllJob() {
+        if (ObjectUtils.isEmpty(scheduler)) {
+            throw new RunException(RunExc.RUNTIME, "please check pom.xml -> spring-boot-starter-quartz");
+        }
         List<Map<String, Object>> jobList = null;
         try {
             GroupMatcher<JobKey> matcher = GroupMatcher.anyJobGroup();
@@ -405,6 +435,9 @@ public class ScheduleHelper {
      * @return
      */
     public static List<Map<String, Object>> queryRunJob() {
+        if (ObjectUtils.isEmpty(scheduler)) {
+            throw new RunException(RunExc.RUNTIME, "please check pom.xml -> spring-boot-starter-quartz");
+        }
         List<Map<String, Object>> jobList = null;
         try {
             List<JobExecutionContext> executingJobs = scheduler.getCurrentlyExecutingJobs();

@@ -42,7 +42,7 @@ public class LicenseParams implements Serializable {
     /**
      * 私钥密码（需要妥善保管，不能让使用者知道）
      */
-    private String keyPass;
+    private String privatePass;
 
     /**
      * 证书路径

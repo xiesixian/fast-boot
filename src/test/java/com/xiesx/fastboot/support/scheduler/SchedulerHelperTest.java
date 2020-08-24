@@ -23,7 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 @SpringBootTest(classes = FastBootApplication.class)
 public class SchedulerHelperTest {
 
-    String job = "job";
+    String job = "job_test";
 
     @Test
     public void scheduler_simple() throws InterruptedException {
@@ -39,7 +39,7 @@ public class SchedulerHelperTest {
         ScheduleHelper.updateJob(job, 2, 0);
         Thread.sleep(6000);
 
-        log.info("【移除A】.");
+        log.info("【移除A】");
         ScheduleHelper.deleteJob(job);
         Thread.sleep(6000);
 
@@ -74,7 +74,7 @@ public class SchedulerHelperTest {
         ScheduleHelper.updateJob(job, "0/2 * * * * ?");
         Thread.sleep(6000);
 
-        log.info("【移除A】.");
+        log.info("【移除A】");
         ScheduleHelper.deleteJob(job);
         Thread.sleep(6000);
 
@@ -90,13 +90,13 @@ public class SchedulerHelperTest {
         ScheduleHelper.resumeJob(job);
         Thread.sleep(6000);
 
-        log.info("【移除B】.");
+        log.info("【移除B】");
         ScheduleHelper.deleteJob(job);
         Thread.sleep(6000);
     }
 
     @Test
-    public void scheduler3() throws InterruptedException {
+    public void scheduler() throws InterruptedException {
         ScheduleHelper.startJobs();
         Thread.sleep(60 * 1000);
         ScheduleHelper.shutdownJobs();

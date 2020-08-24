@@ -17,7 +17,7 @@ public enum RunExc {
 
     VALI(3000, "效验错误"), // --> BaseRestExceptionAdvice --> validatorException
 
-    JDBC(4000, "数据错误"), // --> BaseRestExceptionAdvice --> jdbcException
+    DBASE(4000, "数据错误"), // --> BaseRestExceptionAdvice --> jdbcException
 
     TOKEN(5000, "令牌错误"), // --> TokenInterceptorHandler
 
@@ -25,7 +25,9 @@ public enum RunExc {
 
     RETRY(7000, "重试失败"), // --> HttpRetryer
 
-    LIMITER(8000, "请求限流"); // --> LimiterAspect
+    LIMITER(8000, "请求限流"), // --> LimiterAspect
+
+    UNKNOWN(-4, "未知"); // --> LimiterAspect
 
     private Integer errorCode;
 

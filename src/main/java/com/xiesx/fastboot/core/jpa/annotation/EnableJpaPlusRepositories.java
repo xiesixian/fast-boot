@@ -5,8 +5,10 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
+import com.xiesx.fastboot.core.jpa.cfg.JpaPlusCfg;
 import com.xiesx.fastboot.core.jpa.factory.JpaPlusRepositoryFactoryBean;
 
 /**
@@ -18,5 +20,6 @@ import com.xiesx.fastboot.core.jpa.factory.JpaPlusRepositoryFactoryBean;
 @EnableJpaRepositories(repositoryFactoryBeanClass = JpaPlusRepositoryFactoryBean.class)
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
+@Import({JpaPlusCfg.class})
 public @interface EnableJpaPlusRepositories {
 }

@@ -16,7 +16,7 @@ public class LicenseProperties {
     private String subject;
 
     /**
-     * 公钥库存储路径
+     * 公钥路径
      */
     private String publicStorePath;
 
@@ -26,7 +26,7 @@ public class LicenseProperties {
     private String publicAlias;
 
     /**
-     * 密钥库的密码
+     * 密钥库密码
      */
     private String storePass;
 

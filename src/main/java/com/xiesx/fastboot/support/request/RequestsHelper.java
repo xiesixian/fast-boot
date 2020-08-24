@@ -6,7 +6,6 @@ import com.xiesx.fastboot.support.retry.*;
 
 import net.dongliu.requests.RawResponse;
 import net.dongliu.requests.RequestBuilder;
-import net.dongliu.requests.Requests;
 
 /**
  * @title HttpHelper.java
@@ -14,7 +13,7 @@ import net.dongliu.requests.Requests;
  * @author Sixian.xie
  * @date 2020-8-11 8:50:53
  */
-public class RequestsHelper extends Requests {
+public class RequestsHelper {
 
     static Retryer<RawResponse> retry;
 

@@ -24,7 +24,7 @@ public class LicenseHelperTest {
     public static String storepass = "136305973@qq.com";
 
     // 私钥密码
-    public static String keypass = "xiesx@888";
+    public static String privatepass = "xiesx@888";
 
     @Test
     public void creator() {
@@ -47,7 +47,7 @@ public class LicenseHelperTest {
                 // 私钥别称
                 .setPrivateAlias("privateKey")
                 // 私钥密码
-                .setKeyPass(keypass)
+                .setPrivatePass(privatepass)
                 // 证书生成路径
                 .setLicensePath(LicenseHelperTest.class.getResource("license.lic").getPath())
                 // 证书生效时间

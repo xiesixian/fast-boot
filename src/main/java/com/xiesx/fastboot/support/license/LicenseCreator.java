@@ -49,7 +49,7 @@ public class LicenseCreator {
         // 设置对证书内容加密的秘钥
         CipherParam cipherParam = new DefaultCipherParam(param.getStorePass());
         KeyStoreParam privateStoreParam = new LicenseKeyStoreParam(LicenseCreator.class, param.getPrivateKeysStorePath(),
-                param.getPrivateAlias(), param.getStorePass(), param.getKeyPass());
+                param.getPrivateAlias(), param.getStorePass(), param.getPrivatePass());
         return new DefaultLicenseParam(param.getSubject(), preferences, privateStoreParam, cipherParam);
     }
 

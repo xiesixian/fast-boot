@@ -1,5 +1,6 @@
 package com.xiesx.fastboot.support.executor;
 
+import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 
 import org.checkerframework.checker.nullness.qual.Nullable;
@@ -21,13 +22,21 @@ public class ExecutorHelperTest {
 
     @Test
     public void executor() throws InterruptedException, ExecutionException {
-        // 执行任务,不返回结果（方式1）
+        // 执行任务,不监听结果
         ExecutorHelper.submit(new MyRunnable("1"));
-        // 执行任务,监听结果（方式2）
-        ExecutorHelper.submit(() -> R.succ("2"), new MyFutureCallback());
-        // 执行任务,监听结果（方式3）
+        // 执行任务,监听结果
+        ExecutorHelper.submit(new Callable<BaseResult>() {
+
+            @Override
+            public BaseResult call() throws Exception {
+                // 这里进行耗时异步运算
+                return R.succ("2");
+            }
+
+        }, new MyFutureCallback());
+        // 执行任务,监听结果
         ExecutorHelper.submit(new MyTask("3"));
-        // 执行任务,返回结果（方式4）
+        // 执行任务,返回结果
         ListenableFuture<String> future1 = ExecutorHelper.submit(() -> "4");
         ListenableFuture<String> future2 = Futures.transform(future1, new Function<String, String>() {
 
@@ -36,7 +45,6 @@ public class ExecutorHelperTest {
                 return input + " transform";
             }
         }, MoreExecutors.directExecutor());
-
         Futures.addCallback(future2, new FutureCallback<String>() {
 
             @Override
@@ -53,16 +61,16 @@ public class ExecutorHelperTest {
 
     public static class MyRunnable implements Runnable {
 
-        public String val;
+        public String result;
 
-        public MyRunnable(String val) {
-            this.val = val;
+        public MyRunnable(String result) {
+            this.result = result;
         }
 
         @Override
         public void run() {
-            // xxx
-            log.info(val);
+            // 这里进行耗时异步运算
+            log.info(result);
         }
     }
 
@@ -86,7 +94,7 @@ public class ExecutorHelperTest {
 
         @Override
         public BaseResult call() throws Exception {
-            // xxx
+            // 这里进行耗时异步运算
             return R.succ(keyword);
         }
 
@@ -100,5 +108,4 @@ public class ExecutorHelperTest {
             log.info(t.getMessage());
         }
     }
-
 }

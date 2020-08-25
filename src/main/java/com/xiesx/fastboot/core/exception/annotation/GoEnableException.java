@@ -12,5 +12,5 @@ import com.xiesx.fastboot.core.exception.GlobalExceptionAdvice;
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Import({GlobalExceptionAdvice.class})
-public @interface GoEnableRestExcAdvice {
+public @interface GoEnableException {
 }

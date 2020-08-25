@@ -12,5 +12,5 @@ import com.xiesx.fastboot.core.body.GlobalBodyAdvice;
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Import({GlobalBodyAdvice.class})
-public @interface GoEnableBodyAdvice {
+public @interface GoEnableBody {
 }

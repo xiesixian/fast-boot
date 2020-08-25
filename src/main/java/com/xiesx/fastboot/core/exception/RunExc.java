@@ -27,7 +27,7 @@ public enum RunExc {
 
     LIMITER(8000, "请求限流"), // --> LimiterAspect
 
-    UNKNOWN(-4, "未知"); // --> LimiterAspect
+    UNKNOWN(9999, "未知");
 
     private Integer errorCode;
 

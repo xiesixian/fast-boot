@@ -27,7 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 // https://blog.csdn.net/hbtj_1216/article/details/100532763?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-1.3f686c96b88b49ab&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-1.3f686c96b88b49ab
 @Slf4j
 @Component
-public class JdbcPlusTemplate {
+public class JdbcTemplatePlus {
 
     /** 持久对象 */
     @Autowired

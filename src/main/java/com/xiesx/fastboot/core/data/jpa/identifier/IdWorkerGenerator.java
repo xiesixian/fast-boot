@@ -1,4 +1,4 @@
-package com.xiesx.fastboot.core.jpa.identifier;
+package com.xiesx.fastboot.core.data.jpa.identifier;
 
 import java.io.Serializable;
 import java.util.Properties;

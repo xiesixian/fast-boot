@@ -1,4 +1,4 @@
-package com.xiesx.fastboot.core.jpa.entity;
+package com.xiesx.fastboot.core.data.jpa.entity;
 
 import java.io.Serializable;
 

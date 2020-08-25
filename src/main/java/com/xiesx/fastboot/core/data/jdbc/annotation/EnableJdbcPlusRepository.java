@@ -1,4 +1,4 @@
-package com.xiesx.fastboot.core.jdbc.annotation;
+package com.xiesx.fastboot.core.data.jdbc.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,7 +7,7 @@ import java.lang.annotation.Target;
 
 import org.springframework.data.jdbc.repository.config.EnableJdbcRepositories;
 
-import com.xiesx.fastboot.core.jdbc.factory.JdbcPlusRepositoryFactoryBean;
+import com.xiesx.fastboot.core.data.jdbc.factory.JdbcPlusRepositoryFactoryBean;
 
 /**
  * @title EnableJdbcPlusRepository.java

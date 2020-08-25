@@ -1,4 +1,4 @@
-package com.xiesx.fastboot.core.jpa.cfg;
+package com.xiesx.fastboot.core.data.jpa.cfg;
 
 import javax.persistence.EntityManager;
 

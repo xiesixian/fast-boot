@@ -1,4 +1,4 @@
-package com.xiesx.fastboot.core.jdbc.factory;
+package com.xiesx.fastboot.core.data.jdbc.factory;
 
 import java.lang.reflect.Field;
 import java.util.Map;
@@ -28,8 +28,8 @@ import com.querydsl.core.types.Projections;
 import com.querydsl.sql.RelationalPath;
 import com.querydsl.sql.RelationalPathBase;
 import com.querydsl.sql.SQLQueryFactory;
-import com.xiesx.fastboot.core.jdbc.JdbcPlusRepository;
-import com.xiesx.fastboot.core.jdbc.JdbcPlusRepositoryExecutor;
+import com.xiesx.fastboot.core.data.jdbc.JdbcPlusRepository;
+import com.xiesx.fastboot.core.data.jdbc.JdbcPlusRepositoryExecutor;
 
 public class JdbcPlusRepositoryFactory extends JdbcRepositoryFactory {
 

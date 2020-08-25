@@ -1,4 +1,4 @@
-package com.xiesx.fastboot.core.jpa.factory;
+package com.xiesx.fastboot.core.data.jpa.factory;
 
 import javax.persistence.EntityManager;
 
@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.support.JpaRepositoryImplementati
 import org.springframework.data.repository.core.RepositoryInformation;
 import org.springframework.data.repository.core.RepositoryMetadata;
 
-import com.xiesx.fastboot.core.jpa.JpaPlusRepositoryExecutor;
+import com.xiesx.fastboot.core.data.jpa.JpaPlusRepositoryExecutor;
 
 public class JpaPlusRepositoryFactory extends JpaRepositoryFactory {
 

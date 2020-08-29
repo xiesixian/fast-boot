@@ -9,6 +9,7 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Length;
 
@@ -28,6 +29,8 @@ import org.hibernate.validator.constraints.Length;
 @NotEmpty(message = "{fb.empty}")
 // 定义长度验证
 @Length(min = 11, max = 11, message = "{fb.mobile}")
+// 验证手机号（第1为：1） + （第2位：3、4、5、6、7、8、9） + （第3-11位：0-9）+ （第11位：0-9数字结尾）
+@Pattern(regexp = "/^[1][3、4、5、6、7、8、9][0-9]{9}$/")
 public @interface VMobile {
 
     String message() default "";// 错误提示信息默认值，可以使用el表达式。

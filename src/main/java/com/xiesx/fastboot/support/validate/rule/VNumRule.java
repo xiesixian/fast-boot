@@ -7,7 +7,7 @@ import javax.validation.ConstraintValidatorContext;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.xiesx.fastboot.support.validate.annotation.VNumber;
+import com.xiesx.fastboot.support.validate.annotation.VNum;
 
 /**
  * @title VNumberRule.java
@@ -15,12 +15,12 @@ import com.xiesx.fastboot.support.validate.annotation.VNumber;
  * @author Sixian.xie
  * @date 2020-7-21 22:45:00
  */
-public class VNumberRule implements ConstraintValidator<VNumber, String> {
+public class VNumRule implements ConstraintValidator<VNum, String> {
 
     private final Pattern pattern = Pattern.compile("^[0-9]*$");
 
     @Override
-    public void initialize(VNumber number) {}
+    public void initialize(VNum number) {}
 
     @Override
     public boolean isValid(String s, ConstraintValidatorContext constraintValidatorContext) {

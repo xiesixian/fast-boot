@@ -1,10 +1,8 @@
 package com.xiesx.fastboot.core.exception;
 
 import java.util.List;
-import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import javax.validation.ValidationException;
 
@@ -94,8 +92,7 @@ public class GlobalExceptionAdvice {
         }
         // 这里走的是Hibernate Violation 验证 --> Java Violation，这里有ConstraintViolationException接收
         if (e instanceof ConstraintViolationException) {
-            Set<ConstraintViolation<?>> violations = ((ConstraintViolationException) e).getConstraintViolations();
-            errorMsg.addAll(ValidatorHelper.extractPropertyAndMessageAsList(violations));
+            errorMsg.addAll(ValidatorHelper.extractPropertyAndMessageAsList(((ConstraintViolationException) e)));
         }
         return R.error(RunExc.VALI.getErrorCode(), RunExc.VALI.getErrorMsg(), errorMsg);
     }

@@ -10,7 +10,7 @@ import javax.validation.Constraint;
 import javax.validation.Payload;
 import javax.validation.constraints.NotEmpty;
 
-import com.xiesx.fastboot.support.validate.rule.VNumberRule;
+import com.xiesx.fastboot.support.validate.rule.VNumRule;
 
 /**
  * @title VNumber.java
@@ -23,10 +23,10 @@ import com.xiesx.fastboot.support.validate.rule.VNumberRule;
 // 运行时机
 @Retention(RUNTIME)
 // 定义对应的校验器,自定义注解必须指定
-@Constraint(validatedBy = {VNumberRule.class})
+@Constraint(validatedBy = {VNumRule.class})
 // 附带不能为空
 @NotEmpty(message = "{fb.empty}")
-public @interface VNumber {
+public @interface VNum {
 
     String message() default "{fb.number}";// 错误提示信息默认值，可以使用el表达式。
 

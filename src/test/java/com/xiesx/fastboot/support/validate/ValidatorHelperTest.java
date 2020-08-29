@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import javax.annotation.Resource;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import javax.validation.Validator;
@@ -12,12 +11,14 @@ import javax.validation.groups.Default;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.alibaba.fastjson.JSON;
 import com.xiesx.fastboot.FastBootApplication;
 import com.xiesx.fastboot.base.TestVo;
+import com.xiesx.fastboot.base.result.R;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -26,7 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 @SpringBootTest(classes = FastBootApplication.class)
 public class ValidatorHelperTest {
 
-    @Resource
+    @Autowired
     Validator validator;
 
     @Test
@@ -34,7 +35,7 @@ public class ValidatorHelperTest {
         TestVo vo = new TestVo();
         Set<ConstraintViolation<TestVo>> violations = validator.validate(vo, Default.class);
         List<String> message = ValidatorHelper.extractMessage(violations);
-        log.info(JSON.toJSONString(message));
+        log.info(JSON.toJSONString(R.succ(message)));
     }
 
     @Test
@@ -44,16 +45,16 @@ public class ValidatorHelperTest {
             ValidatorHelper.validate(vo);
         } catch (ConstraintViolationException e) {
             // 打印 messgae
-            List<String> message = ValidatorHelper.extractMessage(e);
-            log.info(JSON.toJSONString(message));
+            List<String> message1 = ValidatorHelper.extractMessage(e);
+            log.info(JSON.toJSONString(R.succ(message1)));
 
             // 打印property + messgae
             Map<String, String> message2 = ValidatorHelper.extractPropertyAndMessage(e);
-            log.info(JSON.toJSONString(message2));
+            log.info(JSON.toJSONString(R.succ(message2)));
 
             // 打印property + messgae
             List<String> message3 = ValidatorHelper.extractPropertyAndMessageAsList(e);
-            log.info(JSON.toJSONString(message3));
+            log.info(JSON.toJSONString(R.succ(message3)));
         }
     }
 }

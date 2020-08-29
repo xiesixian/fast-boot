@@ -38,20 +38,6 @@ public class ValidatorHelper {
         }
     }
 
-    public static void validate(Validator validator, Object object) throws ConstraintViolationException {
-        Set<? extends ConstraintViolation<?>> constraintViolations = validator.validate(object, Default.class);
-        if (!constraintViolations.isEmpty()) {
-            throw new ConstraintViolationException(constraintViolations);
-        }
-    }
-
-    public static void validate(Validator validator, Object object, Class<?>... groups) throws ConstraintViolationException {
-        Set<? extends ConstraintViolation<?>> constraintViolations = validator.validate(object, groups);
-        if (!constraintViolations.isEmpty()) {
-            throw new ConstraintViolationException(constraintViolations);
-        }
-    }
-
     // =============
 
     public static List<String> extractMessage(ConstraintViolationException e) {

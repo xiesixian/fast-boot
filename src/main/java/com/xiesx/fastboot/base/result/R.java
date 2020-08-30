@@ -97,6 +97,34 @@ public class R {
     }
 
     /**
+     * 重试
+     */
+    public static BaseResult retry() {
+        return BaseResult.builder().code(BaseResult.RETRY).msg(BaseResult.OP_MSG_FAI_TETRY).build();
+    }
+
+    public static BaseResult retry(@NonNull String msg) {
+        return BaseResult.builder().code(BaseResult.RETRY).msg(msg).build();
+    }
+
+    public static BaseResult retry(@NonNull Object data) {
+        return BaseResult.builder().code(BaseResult.RETRY).msg(BaseResult.OP_MSG_FAI_TETRY).data(data).build();
+    }
+
+    public static BaseResult retry(@NonNull String msg, Object data) {
+        return BaseResult.builder().code(BaseResult.RETRY).msg(msg).data(data).build();
+    }
+
+    public static BaseResult retry(@NonNull Integer code, @NonNull String msg) {
+        return BaseResult.builder().code(code).msg(msg).build();
+    }
+
+    public static BaseResult retry(@NonNull Integer code, @NonNull String msg, Object data) {
+        return BaseResult.builder().code(code).msg(msg).data(data).build();
+    }
+
+
+    /**
      * str 转 jsonObject
      */
     public static <T> T parseObject(String text, Class<T> clazz) {

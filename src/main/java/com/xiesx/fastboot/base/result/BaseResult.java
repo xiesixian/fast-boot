@@ -19,6 +19,8 @@ public class BaseResult {
 
     public static String OP_MSG_FAIL = "操作失败";
 
+    public static String OP_MSG_FAI_TETRY = "重试失败";
+
     // 返回值
     public static Integer SUCCESS = 0; // 成功
 

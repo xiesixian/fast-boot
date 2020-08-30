@@ -15,7 +15,7 @@ public enum RunExc {
 
     REQUEST(2000, "请求失败"), // --> BaseRestExceptionAdvice --> requestException
 
-    VALI(3000, "效验错误"), // --> BaseRestExceptionAdvice --> validatorException
+    VALIDATOR(3000, "校验错误"), // --> BaseRestExceptionAdvice --> validatorException
 
     DBASE(4000, "数据错误"), // --> BaseRestExceptionAdvice --> jdbcException
 

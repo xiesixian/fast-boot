@@ -13,6 +13,11 @@ public enum SensitiveTypeEnum {
     ID_CARD,
 
     /**
+     * 银行卡
+     */
+    BANK_CARD,
+
+    /**
      * 座机号
      */
     PHONE,
@@ -31,11 +36,6 @@ public enum SensitiveTypeEnum {
      * 电子邮件
      */
     EMAIL,
-
-    /**
-     * 银行卡
-     */
-    BANK_CARD,
 
     /**
      * 密码

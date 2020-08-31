@@ -33,10 +33,6 @@ public class JdbcTemplatePlus {
     @Autowired
     private NamedParameterJdbcTemplate mNamedParameterJdbcTemplate;
 
-    public NamedParameterJdbcTemplate getNamedParameterJdbcTemplate() {
-        return mNamedParameterJdbcTemplate;
-    }
-
     public JdbcTemplate getJdbcTemplate() {
         return mNamedParameterJdbcTemplate.getJdbcTemplate();
     }
@@ -50,16 +46,16 @@ public class JdbcTemplatePlus {
      */
     public Map<String, Object> queryForMap(String sql) {
         try {
-            return mNamedParameterJdbcTemplate.queryForMap(sql, Maps.newLinkedHashMap());
+            return mNamedParameterJdbcTemplate.queryForMap(sql, Maps.newHashMap());
         } catch (Exception e) {
             log.error("queryForMap error error", e);
             return null;
         }
     }
 
-    public Map<String, Object> queryForMap(String sql, Class<?> dto) {
+    public Map<String, Object> queryForMap(String sql, Object paramDto) {
         try {
-            return mNamedParameterJdbcTemplate.queryForMap(sql, new BeanPropertySqlParameterSource(dto));
+            return mNamedParameterJdbcTemplate.queryForMap(sql, new BeanPropertySqlParameterSource(paramDto));
         } catch (Exception e) {
             log.error("queryForMap error error", e);
             return null;
@@ -75,15 +71,6 @@ public class JdbcTemplatePlus {
         }
     }
 
-    public Map<String, Object> queryForMap(String sql, Object... args) {
-        try {
-            return mNamedParameterJdbcTemplate.getJdbcTemplate().queryForMap(sql, args);
-        } catch (Exception e) {
-            log.error("queryForMap error error", e);
-            return null;
-        }
-    }
-
     /**
      * 查询List<Map>
      *
@@ -93,16 +80,16 @@ public class JdbcTemplatePlus {
      */
     public List<Map<String, Object>> queryForList(String sql) {
         try {
-            return mNamedParameterJdbcTemplate.queryForList(sql, Maps.newLinkedHashMap());
+            return mNamedParameterJdbcTemplate.queryForList(sql, Maps.newHashMap());
         } catch (Exception e) {
             log.error("queryForList error", e);
             return null;
         }
     }
 
-    public List<Map<String, Object>> queryForList(String sql, Class<?> dto) {
+    public List<Map<String, Object>> queryForList(String sql, Object paramDto) {
         try {
-            return mNamedParameterJdbcTemplate.queryForList(sql, new BeanPropertySqlParameterSource(dto));
+            return mNamedParameterJdbcTemplate.queryForList(sql, new BeanPropertySqlParameterSource(paramDto));
         } catch (Exception e) {
             log.error("queryForMap error error", e);
             return null;
@@ -112,15 +99,6 @@ public class JdbcTemplatePlus {
     public List<Map<String, Object>> queryForList(String sql, Map<String, ?> paramMap) {
         try {
             return mNamedParameterJdbcTemplate.queryForList(sql, paramMap);
-        } catch (Exception e) {
-            log.error("queryForList error", e);
-            return null;
-        }
-    }
-
-    public List<Map<String, Object>> queryForList(String sql, Object... args) {
-        try {
-            return mNamedParameterJdbcTemplate.getJdbcTemplate().queryForList(sql, args);
         } catch (Exception e) {
             log.error("queryForList error", e);
             return null;
@@ -138,16 +116,16 @@ public class JdbcTemplatePlus {
      */
     public <T> T queryForObj(String sql, Class<T> clazz) {
         try {
-            return result(queryForMap(sql, Maps.newLinkedHashMap()), clazz);
+            return result(queryForMap(sql, Maps.newHashMap()), clazz);
         } catch (Exception e) {
             log.error("queryForMap error", e);
             return null;
         }
     }
 
-    public <T> T queryForObj(String sql, Class<?> dto, Class<T> clazz) {
+    public <T> T queryForObj(String sql, Object paramDto, Class<T> clazz) {
         try {
-            return result(queryForMap(sql, dto), clazz);
+            return result(queryForMap(sql, paramDto), clazz);
         } catch (Exception e) {
             log.error("queryForMap error", e);
             return null;
@@ -157,15 +135,6 @@ public class JdbcTemplatePlus {
     public <T> T queryForObj(String sql, Map<String, ?> paramMap, Class<T> clazz) {
         try {
             return result(queryForMap(sql, paramMap), clazz);
-        } catch (Exception e) {
-            log.error("queryForMap error", e);
-            return null;
-        }
-    }
-
-    public <T> T queryForObj(String sql, Object[] args, Class<T> clazz) {
-        try {
-            return result(queryForMap(sql, args), clazz);
         } catch (Exception e) {
             log.error("queryForMap error", e);
             return null;
@@ -183,16 +152,16 @@ public class JdbcTemplatePlus {
      */
     public <T> List<T> queryForListObj(String sql, Class<T> clazz) {
         try {
-            return result(queryForList(sql, Maps.newLinkedHashMap()), clazz);
+            return result(queryForList(sql, Maps.newHashMap()), clazz);
         } catch (Exception e) {
             log.error("queryForList error", e);
             return null;
         }
     }
 
-    public <T> List<T> queryForListObj(String sql, Class<?> dto, Class<T> clazz) {
+    public <T> List<T> queryForListObj(String sql, Object paramDto, Class<T> clazz) {
         try {
-            return result(queryForList(sql, dto), clazz);
+            return result(queryForList(sql, paramDto), clazz);
         } catch (Exception e) {
             log.error("queryForList error", e);
             return null;
@@ -208,15 +177,6 @@ public class JdbcTemplatePlus {
         }
     }
 
-    public <T> List<T> queryForListObj(String sql, Object[] args, Class<T> clazz) {
-        try {
-            return result(queryForList(sql, args), clazz);
-        } catch (Exception e) {
-            log.error("queryForList error", e);
-            return null;
-        }
-    }
-
     /**
      * 执行update
      *
@@ -226,7 +186,16 @@ public class JdbcTemplatePlus {
      */
     public int update(String sql) {
         try {
-            return mNamedParameterJdbcTemplate.update(sql, Maps.newLinkedHashMap());
+            return mNamedParameterJdbcTemplate.update(sql, Maps.newHashMap());
+        } catch (Exception e) {
+            log.error("update error", e);
+            return 0;
+        }
+    }
+
+    public int update(String sql, Object paramDto) {
+        try {
+            return mNamedParameterJdbcTemplate.update(sql, new BeanPropertySqlParameterSource(paramDto));
         } catch (Exception e) {
             log.error("update error", e);
             return 0;
@@ -236,15 +205,6 @@ public class JdbcTemplatePlus {
     public int update(String sql, Map<String, ?> paramMap) {
         try {
             return mNamedParameterJdbcTemplate.update(sql, paramMap);
-        } catch (Exception e) {
-            log.error("update error", e);
-            return 0;
-        }
-    }
-
-    public int update(String sql, Object... args) {
-        try {
-            return getJdbcTemplate().update(sql, args);
         } catch (Exception e) {
             log.error("update error", e);
             return 0;

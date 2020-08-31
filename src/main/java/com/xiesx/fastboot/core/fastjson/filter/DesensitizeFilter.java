@@ -10,7 +10,7 @@ import com.xiesx.fastboot.utils.DesensitizedUtils;
 /**
  * 在fastjson中使用此过滤器进行脱敏操作
  */
-public class ValueDesensitizeFilter implements ValueFilter {
+public class DesensitizeFilter implements ValueFilter {
 
     @Override
     public Object process(Object object, String name, Object value) {

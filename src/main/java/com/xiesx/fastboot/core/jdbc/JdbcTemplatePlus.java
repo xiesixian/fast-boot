@@ -71,8 +71,35 @@ public class JdbcTemplatePlus {
         }
     }
 
+    public <T> T queryForMap(String sql, Class<T> clazz) {
+        try {
+            return result(queryForMap(sql, Maps.newHashMap()), clazz);
+        } catch (Exception e) {
+            log.error("queryForMap error", e);
+            return null;
+        }
+    }
+
+    public <T> T queryForMap(String sql, Object paramDto, Class<T> clazz) {
+        try {
+            return result(queryForMap(sql, paramDto), clazz);
+        } catch (Exception e) {
+            log.error("queryForMap error", e);
+            return null;
+        }
+    }
+
+    public <T> T queryForMap(String sql, Map<String, ?> paramMap, Class<T> clazz) {
+        try {
+            return result(queryForMap(sql, paramMap), clazz);
+        } catch (Exception e) {
+            log.error("queryForMap error", e);
+            return null;
+        }
+    }
+
     /**
-     * 查询List<Map>
+     * 查询List
      *
      * @param sql
      * @param args
@@ -105,52 +132,7 @@ public class JdbcTemplatePlus {
         }
     }
 
-    /**
-     * 查询Obj
-     *
-     * @param <T>
-     * @param sql
-     * @param args
-     * @param clazz
-     * @return
-     */
-    public <T> T queryForObj(String sql, Class<T> clazz) {
-        try {
-            return result(queryForMap(sql, Maps.newHashMap()), clazz);
-        } catch (Exception e) {
-            log.error("queryForMap error", e);
-            return null;
-        }
-    }
-
-    public <T> T queryForObj(String sql, Object paramDto, Class<T> clazz) {
-        try {
-            return result(queryForMap(sql, paramDto), clazz);
-        } catch (Exception e) {
-            log.error("queryForMap error", e);
-            return null;
-        }
-    }
-
-    public <T> T queryForObj(String sql, Map<String, ?> paramMap, Class<T> clazz) {
-        try {
-            return result(queryForMap(sql, paramMap), clazz);
-        } catch (Exception e) {
-            log.error("queryForMap error", e);
-            return null;
-        }
-    }
-
-    /**
-     * 查询List<Obj>
-     *
-     * @param <T>
-     * @param sql
-     * @param args
-     * @param clazz
-     * @return
-     */
-    public <T> List<T> queryForListObj(String sql, Class<T> clazz) {
+    public <T> List<T> queryForList(String sql, Class<T> clazz) {
         try {
             return result(queryForList(sql, Maps.newHashMap()), clazz);
         } catch (Exception e) {
@@ -159,7 +141,7 @@ public class JdbcTemplatePlus {
         }
     }
 
-    public <T> List<T> queryForListObj(String sql, Object paramDto, Class<T> clazz) {
+    public <T> List<T> queryForList(String sql, Object paramDto, Class<T> clazz) {
         try {
             return result(queryForList(sql, paramDto), clazz);
         } catch (Exception e) {
@@ -168,7 +150,7 @@ public class JdbcTemplatePlus {
         }
     }
 
-    public <T> List<T> queryForListObj(String sql, Map<String, ?> paramMap, Class<T> clazz) {
+    public <T> List<T> queryForList(String sql, Map<String, ?> paramMap, Class<T> clazz) {
         try {
             return result(queryForList(sql, paramMap), clazz);
         } catch (Exception e) {
@@ -178,7 +160,7 @@ public class JdbcTemplatePlus {
     }
 
     /**
-     * 执行update
+     * 更新update
      *
      * @param sql
      * @param args
@@ -219,20 +201,14 @@ public class JdbcTemplatePlus {
      * @param map
      * @return
      */
-    protected <T> T result(Map<String, Object> map, Class<T> clazz) {
+    private <T> T result(Map<String, Object> map, Class<T> clazz) {
         if (ObjectUtils.isEmpty(map)) {
             return null;
         }
         return JSON.toJavaObject(new JSONObject(map), clazz);
     }
 
-    /**
-     * 数据填充
-     *
-     * @param list
-     * @return
-     */
-    protected <T> List<T> result(List<Map<String, Object>> list, Class<T> clazz) {
+    private <T> List<T> result(List<Map<String, Object>> list, Class<T> clazz) {
         List<T> data = Lists.newArrayList();
         for (Map<String, Object> map : list) {
             data.add(result(map, clazz));

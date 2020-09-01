@@ -12,9 +12,9 @@ import lombok.extern.slf4j.Slf4j;
  * @date 2020年1月6日下午2:06:58
  */
 @Slf4j
-//@SpringBootApplication(exclude = ValidationAutoConfiguration.class)
-//public class FastBootApplication extends SpringBootServletInitializer {
-     public class FastBootApplication {
+// @SpringBootApplication(exclude = ValidationAutoConfiguration.class)
+// public class FastBootApplication extends SpringBootServletInitializer {
+public class FastBootApplication {
 
     public static void main(String[] args) {
         SpringApplication app = new SpringApplication(FastBootApplication.class);

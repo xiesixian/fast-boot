@@ -2,9 +2,6 @@ package com.xiesx.fastboot;
 
 import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.validation.ValidationAutoConfiguration;
-import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -15,9 +12,9 @@ import lombok.extern.slf4j.Slf4j;
  * @date 2020年1月6日下午2:06:58
  */
 @Slf4j
-@SpringBootApplication(exclude = ValidationAutoConfiguration.class)
-public class FastBootApplication extends SpringBootServletInitializer {
-    // public class FastBootApplication {
+//@SpringBootApplication(exclude = ValidationAutoConfiguration.class)
+//public class FastBootApplication extends SpringBootServletInitializer {
+     public class FastBootApplication {
 
     public static void main(String[] args) {
         SpringApplication app = new SpringApplication(FastBootApplication.class);

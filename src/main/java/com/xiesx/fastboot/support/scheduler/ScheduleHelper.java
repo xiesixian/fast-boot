@@ -334,7 +334,7 @@ public class ScheduleHelper {
      * 立即执行
      *
      */
-    public static void runAJobNow(String job) {
+    public static void runJobNow(String job) {
         resumeJob(job, JOB_GROUP_NAME);
     }
 
@@ -344,7 +344,7 @@ public class ScheduleHelper {
      * @param job
      * @param group
      */
-    public static void runAJobNow(String job, String group) {
+    public static void runJobNow(String job, String group) {
         if (ObjectUtils.isEmpty(scheduler)) {
             throw new RunException(RunExc.RUNTIME, "please check pom.xml -> spring-boot-starter-quartz");
         }

@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.method.HandlerMethod;
+import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.xiesx.fastboot.SpringHelper;
 import com.xiesx.fastboot.core.exception.RunExc;
@@ -30,7 +30,7 @@ import lombok.extern.slf4j.Slf4j;
  * @date 2020-7-21 22:37:38
  */
 @Slf4j
-public class TokenInterceptorHandler extends HandlerInterceptorAdapter {
+public class TokenInterceptorHandler implements HandlerInterceptor {
 
     private static final String TOKEN_KEY = "token";
 
@@ -80,7 +80,7 @@ public class TokenInterceptorHandler extends HandlerInterceptorAdapter {
                 }
             }
         }
-        return super.preHandle(request, response, handler);
+        return true;
     }
 
     /**

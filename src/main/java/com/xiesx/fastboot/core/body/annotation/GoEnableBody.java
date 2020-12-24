@@ -8,9 +8,10 @@ import java.lang.annotation.Target;
 import org.springframework.context.annotation.Import;
 
 import com.xiesx.fastboot.core.body.GlobalBodyAdvice;
+import com.xiesx.fastboot.core.body.cfg.HeaderCfg;
 
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-@Import({GlobalBodyAdvice.class})
+@Import({HeaderCfg.class, GlobalBodyAdvice.class})
 public @interface GoEnableBody {
 }

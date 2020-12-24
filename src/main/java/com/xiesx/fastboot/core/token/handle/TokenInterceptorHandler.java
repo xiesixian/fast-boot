@@ -64,7 +64,7 @@ public class TokenInterceptorHandler implements HandlerInterceptor {
                         try {
                             // 获取token
                             Claims claims = JwtHelper.parser(token);
-                            // 设置requeest
+                            // 设置request
                             request.setAttribute(TokenCfg.USERID, claims.getOrDefault(TokenCfg.USERID, ""));
                             request.setAttribute(TokenCfg.USERNAME, claims.getOrDefault(TokenCfg.USERNAME, ""));
                             request.setAttribute(TokenCfg.NICKNAME, claims.getOrDefault(TokenCfg.NICKNAME, ""));

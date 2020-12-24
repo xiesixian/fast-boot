@@ -16,16 +16,16 @@ import lombok.Data;
 public class CurrentHeader {
 
     private String device;
-    
+
     private String osVersion;
-    
+
     private String apVersion;
-    
+
     private String apVersionCode;
 
     private String androidId;
-    
+
     private String psuedoUniqueId;
-    
+
     private String networkType;
 }

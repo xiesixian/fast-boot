@@ -30,7 +30,7 @@ public class HeaderCfg implements WebMvcConfigurer {
     public static final String PSUEDOUNIQUEID = "psuedoUniqueId";
 
     public static final String NETWORKTYPE = "networkType";
-    
+
     @Override
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
         resolvers.add(new HeaderArgumentResolver());

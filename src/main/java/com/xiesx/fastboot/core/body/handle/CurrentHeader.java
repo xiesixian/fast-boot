@@ -5,8 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * @title CurrentToken.java
- * @description 当前token附带信息
+ * @title CurrentHeader.java
+ * @description 请求头信息
  * @author Sixian.xie
  * @date 2020-7-21 22:37:08
  */

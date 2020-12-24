@@ -6,11 +6,15 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-// 申明注解的作用位置
+
+/**
+ * @title GoHeader.java
+ * @description 请求头信息
+ * @author Sixian.xie
+ * @date 2020-7-21 22:35:48
+ */
 @Target({PARAMETER})
-// 运行时机
 @Retention(RUNTIME)
 public @interface GoHeader {
 
-    boolean required() default true;
 }

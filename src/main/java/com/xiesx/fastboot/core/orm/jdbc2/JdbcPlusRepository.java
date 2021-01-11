@@ -1,4 +1,4 @@
-package com.xiesx.fastboot.core.data.jdbc;
+package com.xiesx.fastboot.core.orm.jdbc2;
 
 import java.util.List;
 import java.util.Optional;

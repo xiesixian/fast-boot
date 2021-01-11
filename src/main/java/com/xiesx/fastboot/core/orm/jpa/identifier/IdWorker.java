@@ -1,4 +1,4 @@
-package com.xiesx.fastboot.core.data.jpa.identifier;
+package com.xiesx.fastboot.core.orm.jpa.identifier;
 
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;

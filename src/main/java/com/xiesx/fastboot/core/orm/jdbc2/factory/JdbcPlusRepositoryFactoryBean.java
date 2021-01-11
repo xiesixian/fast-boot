@@ -1,4 +1,4 @@
-package com.xiesx.fastboot.core.data.jdbc.factory;
+package com.xiesx.fastboot.core.orm.jdbc2.factory;
 
 import java.io.Serializable;
 

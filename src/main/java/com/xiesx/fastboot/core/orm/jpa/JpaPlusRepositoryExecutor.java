@@ -1,4 +1,4 @@
-package com.xiesx.fastboot.core.data.jpa;
+package com.xiesx.fastboot.core.orm.jpa;
 
 import java.util.Arrays;
 import java.util.List;

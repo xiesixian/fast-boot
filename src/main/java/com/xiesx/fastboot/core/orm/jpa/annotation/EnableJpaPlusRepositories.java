@@ -1,4 +1,4 @@
-package com.xiesx.fastboot.core.data.jpa.annotation;
+package com.xiesx.fastboot.core.orm.jpa.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -8,8 +8,8 @@ import java.lang.annotation.Target;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-import com.xiesx.fastboot.core.data.jpa.cfg.JpaPlusCfg;
-import com.xiesx.fastboot.core.data.jpa.factory.JpaPlusRepositoryFactoryBean;
+import com.xiesx.fastboot.core.orm.jpa.cfg.JpaPlusCfg;
+import com.xiesx.fastboot.core.orm.jpa.factory.JpaPlusRepositoryFactoryBean;
 
 /**
  * @title EnableJpaPlusRepositories.java

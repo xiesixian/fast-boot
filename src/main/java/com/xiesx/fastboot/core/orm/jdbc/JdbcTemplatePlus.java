@@ -1,4 +1,4 @@
-package com.xiesx.fastboot.core.jdbc;
+package com.xiesx.fastboot.core.orm.jdbc;
 
 import java.util.List;
 import java.util.Map;

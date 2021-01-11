@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Maps;
 import com.xiesx.fastboot.FastBootApplication;
+import com.xiesx.fastboot.core.orm.jdbc.JdbcTemplatePlus;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;

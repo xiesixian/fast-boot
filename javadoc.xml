@@ -11,8 +11,7 @@
 			notree="false"
 			packagenames="com.xiesx.fastboot.*"
 			source="1.8"
-			sourcepath="
-						src/main/java;
+			sourcepath="src/main/java;
 						src/main/resources
 						src/test/java;"
 			splitindex="true" 

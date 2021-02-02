@@ -2,14 +2,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.github.xiesx8869</groupId>
+	<groupId>io.github.xiesixian</groupId>
 	<artifactId>fast-boot</artifactId>
 	<version>${project.version}</version>
 	<packaging>jar</packaging>
 
 	<!-- 信息 -->
 	<name>FastBoot</name>
-	<url>http://fast.go168.xyz</url>
+	<url>https://gitee.com/xisixian/fast-boot</url>
 	<description>fast boot</description>
 
 	<!-- 全局 -->
@@ -282,9 +282,9 @@
 	<!-- 仓库 -->
 	<scm>
 		<tag>master</tag>
-		<url>https://github.com/xiesx8869/fast-boot.git</url>
-		<connection>scm:git:https://github.com/xiesx8869/fast-boot.git</connection>
-		<developerConnection>scm:git@github.com:xiesx8869/fast-boot.git</developerConnection>
+		<url>https://github.com/xiesixian/fast-boot.git</url>
+		<connection>scm:git:https://github.com/xiesixian/fast-boot.git</connection>
+		<developerConnection>scm:git@github.com:xiesixian/fast-boot.git</developerConnection>
 	</scm>
 
 	<!-- 配置 -->
@@ -296,7 +296,7 @@
 			</properties>
 			<build>
 				<plugins>
-					<!-- staging -->
+					<!-- Staging -->
 					<plugin>
 						<groupId>org.sonatype.plugins</groupId>
 						<artifactId>nexus-staging-maven-plugin</artifactId>
@@ -307,6 +307,23 @@
 							<nexusUrl>https://oss.sonatype.org/</nexusUrl>
 							<autoReleaseAfterClose>false</autoReleaseAfterClose>
 						</configuration>
+					</plugin>
+					<!-- GPG -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<configuration>
+							<useAgent>false</useAgent>
+						</configuration>
+						<executions>
+							<execution>
+								<id>gpg</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+							</execution>
+						</executions>
 					</plugin>
 					<!-- 生成Source文档包 -->
 					<plugin>
@@ -340,23 +357,6 @@
 								<configuration>
 									<doclint>none</doclint>
 								</configuration>
-							</execution>
-						</executions>
-					</plugin>
-					<!-- GPG -->
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-gpg-plugin</artifactId>
-						<configuration>
-							<useAgent>false</useAgent>
-						</configuration>
-						<executions>
-							<execution>
-								<id>gpg</id>
-								<phase>verify</phase>
-								<goals>
-									<goal>sign</goal>
-								</goals>
 							</execution>
 						</executions>
 					</plugin>

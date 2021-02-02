@@ -1,14 +1,14 @@
 #!/bin/sh
  
-APP=gotv-admin
-APP_NAME=${APP}".jar"
+app=xxx
+appName=${app}".jar"
 JVM="-XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=128m -Xms1024m -Xmx1024m -Xmn256m -Xss256k -XX:SurvivorRatio=8 -XX:+UseConcMarkSweepGC"
 command=$1
  
 function start()
 {
   rm -f tpid
-  nohup java ${JVM} -jar ${APP_NAME} --spring.profiles.active=release --server.port=39001  > /dev/null 2>&1 &
+  nohup java ${JVM} -jar ${appName} --spring.profiles.active=release --server.port=39001  > /dev/null 2>&1 &
   echo $! > tpid
 
   check
@@ -16,14 +16,14 @@ function start()
  
 function stop()
 {
-  tpid=`ps -ef|grep $APP_NAME|grep -v grep|grep -v kill|awk '{print $2}'`
+  tpid=`ps -ef|grep $appName|grep -v grep|grep -v kill|awk '{print $2}'`
   if [ ${tpid} ]; then
      echo 'Stop Process...'
      kill -15 $tpid
    fi
  
    sleep 5
-   tpid=`ps -ef|grep $APP_NAME|grep -v grep|grep -v kill|awk '{print $2}'`
+   tpid=`ps -ef|grep $appName|grep -v grep|grep -v kill|awk '{print $2}'`
  
    if [ ${tpid} ]; then
       echo 'Kill Process!'
@@ -35,7 +35,7 @@ function stop()
  
 function check()
 {
-   tpid=`ps -ef|grep $APP_NAME|grep -v grep|grep -v kill|awk '{print $2}'`
+   tpid=`ps -ef|grep $appName|grep -v grep|grep -v kill|awk '{print $2}'`
    if [ ${tpid} ]; then
        echo 'App is running.'
    else
@@ -45,7 +45,7 @@ function check()
 
 function forcekill()
 {
-  tpid=`ps -ef|grep $APP_NAME|grep -v grep|grep -v kill|awk '{print $2}'`
+  tpid=`ps -ef|grep $appName|grep -v grep|grep -v kill|awk '{print $2}'`
  
   if [ ${tpid} ]; then
      echo 'Kill Process!'

@@ -2,18 +2,28 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<!-- 不解释 -->
-	<groupId>com.xiesx.fast</groupId>
+	<groupId>com.github.xiesx8869</groupId>
 	<artifactId>fast-boot</artifactId>
-	<version>2.2.1</version>
-
-	<!-- 打包类型 -->
+	<version>${project.version}</version>
 	<packaging>jar</packaging>
 
-	<!-- 基础信息(非必须) -->
+	<!-- 信息 -->
 	<name>FastBoot</name>
 	<url>http://fast.go168.xyz</url>
 	<description>fast boot</description>
+
+	<!-- 全局 -->
+	<properties>
+		<!-- 版本 -->
+		<fastboot.version>2.2.1</fastboot.version>
+		<project.version>${fastboot.version}-SNAPSHOT</project.version><!-- 快照版本 -->
+		<!-- 编码 -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<maven.compiler.encoding>UTF-8</maven.compiler.encoding>
+		<!-- java -->
+		<java.version>1.8</java.version>
+	</properties>
 
 	<!-- 父类 -->
 	<parent>
@@ -23,18 +33,7 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
-	<!-- 配置 -->
-	<properties>
-		<!-- 文件拷贝时的编码 -->
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<!-- 编译时的编码 -->
-		<maven.compiler.encoding>UTF-8</maven.compiler.encoding>
-		<!-- JAVA版本 -->
-		<java.version>1.8</java.version>
-	</properties>
-
-	<!-- 版本管理，会引入jar -->
+	<!-- 依赖，会引入jar -->
 	<dependencies>
 		<!-- lombok -->
 		<dependency>
@@ -201,7 +200,7 @@
 		</dependency>
 	</dependencies>
 
-	<!-- 版本管理，不会引入jar -->
+	<!-- 依赖 -->
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -216,14 +215,7 @@
 
 	<!-- 编译 -->
 	<build>
-		<!-- 这里使用spring boot 打包，包含了maven几个处理过程， -->
-		<!-- 1、追加cla， build-helper-maven-plugin:3.0.0 -->
-		<!-- 2、处理res， maven-resources-plugin:2.6 -->
-		<!-- 3、文件编译， maven-compiler-plugin:3.1 -->
-		<!-- 4、单元测试 ，maven-surefire-plugin:2.18.1 -->
-		<!-- 5、打jar包， maven-jar-plugin:2.6:jar -->
-		<!-- 6、repackage，spring-boot-maven-plugin:1.5.13 -->
-		<finalName>gotv-core</finalName>
+		<finalName>${project.artifactId}</finalName>
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
@@ -234,12 +226,28 @@
 			</resource>
 		</resources>
 		<plugins>
-			<!-- 追加外部源文件 -->
-			<!-- <plugin> <groupId>org.codehaus.mojo</groupId> <artifactId>build-helper-maven-plugin</artifactId> <version>3.0.0</version>$NO-MVN-MAN-VER$使用3.0.0版本，默认的1.10需要对lifecycle做配置，不然没发在上述第1步工作 
-				<executions> <execution> <id>add-source</id> <phase>generate-sources</phase> <goals> <goal>add-source</goal> </goals> <configuration> <sources> <source>${gtgjxcom.path.dev}</source> 
-				</sources> </configuration> </execution> </executions> </plugin> -->
-			<!-- 打包方式 1 <plugin> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-maven-plugin</artifactId> </plugin> -->
-			<!-- 打包方式 2 -->
+			<!-- 追加 -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>3.2.0</version><!-- $NO-MVN-MAN-VER$使用3.2.0版本，默认的1.10需要对lifecycle做配置，不然没发在上述第1步工作 -->
+				<executions>
+					<execution>
+						<id>add-source</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<!-- 追加 -->
+							</sources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- 打包 <plugin> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-maven-plugin</artifactId> </plugin> -->
+			<!-- 打包 -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
@@ -251,9 +259,15 @@
 					</archive>
 				</configuration>
 			</plugin>
-			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-compiler-plugin</artifactId> <configuration> <source>${java.version}</source> <target>${java.version}</target> 
-				<compilerArguments> <verbose /> ${path.separator}这个分隔符，在Windows系统下是“;”分号，在Linux下是“:”冒号 <bootclasspath>${java.home}/lib/rt.jar${path.separator}${java.home}/lib/jce.jar </bootclasspath> 
-				</compilerArguments> </configuration> </plugin> -->
+			<!-- 编译 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
 			<!-- 测试 -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -265,33 +279,42 @@
 		</plugins>
 	</build>
 
-	<!-- 开发者(非必须) -->
-	<developers>
-		<developer>
-			<name>136305973</name>
-			<email>136305973@qq.com</email>
-		</developer>
-	</developers>
+	<!-- 仓库 -->
+	<scm>
+		<tag>master</tag>
+		<url>https://github.com/xiesx8869/fast-boot.git</url>
+		<connection>scm:git:https://github.com/xiesx8869/fast-boot.git</connection>
+		<developerConnection>scm:git@github.com:xiesx8869/fast-boot.git</developerConnection>
+	</scm>
 
-	<!-- 授权(非必须) -->
-	<licenses>
-		<license>
-			<name>GNU General Public License version 3</name>
-			<url>https://opensource.org/licenses/GPL-3.0</url>
-		</license>
-	</licenses>
-
-
+	<!-- 配置 -->
 	<profiles>
 		<profile>
 			<id>release</id>
+			<properties>
+				<project.version>${fastboot.version}</project.version><!-- 正式 -->
+			</properties>
 			<build>
 				<plugins>
-					<!-- Source -->
+					<!-- staging -->
+					<plugin>
+						<groupId>org.sonatype.plugins</groupId>
+						<artifactId>nexus-staging-maven-plugin</artifactId>
+						<version>1.6.7</version>
+						<extensions>true</extensions>
+						<configuration>
+							<serverId>oss-release</serverId>
+							<nexusUrl>https://oss.sonatype.org/</nexusUrl>
+							<autoReleaseAfterClose>false</autoReleaseAfterClose>
+						</configuration>
+					</plugin>
+					<!-- 生成Source文档包 -->
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-source-plugin</artifactId>
-						<version>${maven-source-plugin.version}</version>
+						<configuration>
+							<attach>true</attach>
+						</configuration>
 						<executions>
 							<execution>
 								<phase>package</phase>
@@ -301,11 +324,13 @@
 							</execution>
 						</executions>
 					</plugin>
-					<!-- Javadoc -->
+					<!-- 生成Doc文档包 -->
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-javadoc-plugin</artifactId>
-						<version>${maven-javadoc-plugin.version}</version>
+						<configuration>
+							<aggregate>true</aggregate>
+						</configuration>
 						<executions>
 							<execution>
 								<phase>package</phase>
@@ -322,12 +347,12 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-gpg-plugin</artifactId>
-						<version>${maven-gpg-plugin.version}</version>
 						<configuration>
 							<useAgent>false</useAgent>
 						</configuration>
 						<executions>
 							<execution>
+								<id>gpg</id>
 								<phase>verify</phase>
 								<goals>
 									<goal>sign</goal>
@@ -337,16 +362,38 @@
 					</plugin>
 				</plugins>
 			</build>
-			<distributionManagement>
-				<snapshotRepository>
-					<id>oss</id>
-					<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-				</snapshotRepository>
-				<repository>
-					<id>oss</id>
-					<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-				</repository>
-			</distributionManagement>
 		</profile>
 	</profiles>
+
+	<!-- 仓库 -->
+	<distributionManagement>
+		<!-- 正式仓库 -->
+		<repository>
+			<id>oss-release</id>
+			<name>Sonatype Nexus Release</name>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
+		<!-- 快照仓库 -->
+		<snapshotRepository>
+			<id>oss-snapshot</id>
+			<name>Sonatype Nexus Snapshot</name>
+			<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+	<!-- 授权 -->
+	<licenses>
+		<license>
+			<name>GNU General Public License version 3</name>
+			<url>https://opensource.org/licenses/GPL-3.0</url>
+		</license>
+	</licenses>
+
+	<!-- 开发者 -->
+	<developers>
+		<developer>
+			<name>xiesx</name>
+			<email>136305973@qq.com</email>
+		</developer>
+	</developers>
 </project>

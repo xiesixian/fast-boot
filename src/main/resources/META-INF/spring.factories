@@ -1,5 +1,5 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 com.xiesx.fastboot.SpringContextAware,\
-com.xiesx.fastboot.core.jdbc.cfg.JdbcTemplatePlusCfg,\
+com.xiesx.fastboot.core.orm.jdbc.cfg.JdbcTemplatePlusCfg,\
 com.xiesx.fastboot.support.license.cfg.LicenseCfg,\
 com.xiesx.fastboot.support.validate.cfg.ValidatorCfg

@@ -15,8 +15,8 @@
 	<!-- 全局 -->
 	<properties>
 		<!-- 版本 -->
-		<fastboot.version>2.2.1</fastboot.version>
-		<project.version>${fastboot.version}-SNAPSHOT</project.version><!-- 快照版本 -->
+		<fastboot.version>2.2.2</fastboot.version>
+		<project.version>${fastboot.version}-SNAPSHOT</project.version>
 		<!-- 编码 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -29,7 +29,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.4.2</version>
+		<version>2.4.3</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
@@ -39,6 +39,7 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
+			<optional>true</optional>
 		</dependency>
 
 		<!-- ==========================spring-boot========================== -->
@@ -105,7 +106,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<scope>provided</scope>
+			<scope>runtime</scope>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/p6spy/p6spy -->
 		<dependency>
@@ -137,7 +138,7 @@
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
-			<version>29.0-jre</version>
+			<version>30.1-jre</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/de.schlichtherle.truelicense/truelicense-core -->
 		<dependency>
@@ -287,6 +288,38 @@
 		<developerConnection>scm:git@github.com:xiesixian/fast-boot.git</developerConnection>
 	</scm>
 
+	<!-- 发布 -->
+	<distributionManagement>
+		<!-- 正式仓库 -->
+		<repository>
+			<id>oss-release</id>
+			<name>Sonatype Nexus Release</name>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
+		<!-- 快照仓库 -->
+		<snapshotRepository>
+			<id>oss-snapshots</id>
+			<name>Sonatype Nexus Snapshots</name>
+			<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+	<!-- 授权 -->
+	<licenses>
+		<license>
+			<name>GNU General Public License version 3</name>
+			<url>https://opensource.org/licenses/GPL-3.0</url>
+		</license>
+	</licenses>
+
+	<!-- 开发者 -->
+	<developers>
+		<developer>
+			<name>xiesx</name>
+			<email>136305973@qq.com</email>
+		</developer>
+	</developers>
+
 	<!-- 配置 -->
 	<profiles>
 		<profile>
@@ -364,36 +397,4 @@
 			</build>
 		</profile>
 	</profiles>
-
-	<!-- 仓库 -->
-	<distributionManagement>
-		<!-- 正式仓库 -->
-		<repository>
-			<id>oss-release</id>
-			<name>Sonatype Nexus Release</name>
-			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-		</repository>
-		<!-- 快照仓库 -->
-		<snapshotRepository>
-			<id>oss-snapshot</id>
-			<name>Sonatype Nexus Snapshot</name>
-			<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-		</snapshotRepository>
-	</distributionManagement>
-
-	<!-- 授权 -->
-	<licenses>
-		<license>
-			<name>GNU General Public License version 3</name>
-			<url>https://opensource.org/licenses/GPL-3.0</url>
-		</license>
-	</licenses>
-
-	<!-- 开发者 -->
-	<developers>
-		<developer>
-			<name>xiesx</name>
-			<email>136305973@qq.com</email>
-		</developer>
-	</developers>
 </project>

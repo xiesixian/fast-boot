@@ -1,75 +1,87 @@
 #!/bin/sh
- 
-app=xxx
-appName=${app}".jar"
-JVM="-XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=128m -Xms1024m -Xmx1024m -Xmn256m -Xss256k -XX:SurvivorRatio=8 -XX:+UseConcMarkSweepGC"
+#手动执行、守护服务、自动化均需要使用此脚本，误删
+
+# 名称
+appName=xxxx
+# jar包
+jarName=${appName}".jar"
+# 启动参数
+jvmOpti="-XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=128m -Xms1024m -Xmx1024m -Xmn256m -Xss256k -XX:SurvivorRatio=8 -XX:+UseConcMarkSweepGC"
+# 附加参数
 command=$1
- 
+
+#启动方法
 function start()
 {
-  rm -f tpid
-  nohup java ${JVM} -jar ${appName} --spring.profiles.active=release --server.port=39001  > /dev/null 2>&1 &
-  echo $! > tpid
+  pid=`ps -ef|grep $jarName|grep -v grep|awk '{print $2}'`
+  #info=`ps -ef|grep $jarName|grep -v grep|grep -v kill|awk "{print $2}"`
+  if [ "$pid" ]; then
+    echo "$appName is already running. pid is ${pid}"
 
-  check
+  else
+    nohup java ${jvmOpti} -jar ${jarName} --spring.profiles.active=release --server.port=9091 > ${appName}.log 2>&1 &
+    #nohup java ${jvmOpti} -jar ${jarName} --spring.profiles.active=release --server.port=9091 > /dev/null 2>&1 &
+    #echo $! > ${appName}.pid
+    sleep 5
+    status
+    
+   fi
 }
- 
+
+#停止方法
 function stop()
 {
-  tpid=`ps -ef|grep $appName|grep -v grep|grep -v kill|awk '{print $2}'`
-  if [ ${tpid} ]; then
-     echo 'Stop Process...'
-     kill -15 $tpid
+   
+   # 先停止
+   pid=`ps -ef|grep $jarName|grep -v grep|awk '{print $2}'`
+   if [ "$pid" ]; then
+      kill -15 $pid
+      echo "Pid:$pid Stopped"
    fi
- 
-   sleep 5
-   tpid=`ps -ef|grep $appName|grep -v grep|grep -v kill|awk '{print $2}'`
- 
-   if [ ${tpid} ]; then
-      echo 'Kill Process!'
-      kill -9 $tpid
-    else
-      echo 'Stop Success!'
-    fi
-}
- 
-function check()
-{
-   tpid=`ps -ef|grep $appName|grep -v grep|grep -v kill|awk '{print $2}'`
-   if [ ${tpid} ]; then
-       echo 'App is running.'
+    
+    #杀进程
+   pid=`ps -ef|grep $jarName|grep -v grep|awk '{print $2}'`
+   if [ "$pid" ]; then
+      kill -9 $pid
+      echo "Pid:$pid Killed"
    else
-       echo 'App is NOT running.'
+      echo "$appName Stop Success!"
+   fi
+}
+ 
+#运行状态
+function status()
+{
+   pid=`ps -ef|grep $jarName|grep -v grep|awk '{print $2}'`
+   info=`ps -ef|grep $jarName|grep -v grep|grep -v kill|awk "{print $2}"`
+   if [ "$pid" ]; then
+       echo "============>"
+       echo "$appName is running. pid is ${pid}"
+       echo "------------"
+       echo "${info}"
+       echo "============>"
+   else
+       echo "$appName is NOT running."
    fi
 }
 
-function forcekill()
-{
-  tpid=`ps -ef|grep $appName|grep -v grep|grep -v kill|awk '{print $2}'`
  
-  if [ ${tpid} ]; then
-     echo 'Kill Process!'
-     kill -9 $tpid
- 
-  fi
- }
-
- 
-if [ "${command}" ==  "start" ]; then
+  if [ "${command}" ==  "start" ]; then
      start
  
 elif [ "${command}" ==  "stop" ]; then
      stop
 	 
-elif [ "${command}" ==  "rest" ]; then
+elif [ "${command}" ==  "restart" ]; then
 	 stop
+	 sleep 5
 	 start
  
-elif [ "${command}" ==  "check" ]; then
-     check
- 
-elif [ "${command}" ==  "kill" ]; then
-     forcekill
+elif [ "${command}" ==  "status" ]; then
+     status
+
 else
-    echo "Unknow argument...."
+    echo "Usage:{start|stop|restart|status}"
 fi
+
+exit 0

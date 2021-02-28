@@ -12,7 +12,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.xiesx.fastboot.core.token.handle.TokenArgumentResolver;
 import com.xiesx.fastboot.core.token.handle.TokenInterceptorHandler;
-import com.xiesx.fastboot.utils.ArrayUtils;
+
+import cn.hutool.core.collection.ListUtil;
 
 /**
  * @title TokenCfg.java
@@ -38,12 +39,12 @@ public class TokenCfg implements WebMvcConfigurer {
         // 添加处理器
         InterceptorRegistration in = registry.addInterceptor(new TokenInterceptorHandler());
         // 处理url
-        List<String> paths = ArrayUtils.arrayToList(mTokenProperties.getIncludePaths());
+        List<String> paths = ListUtil.toList(mTokenProperties.getIncludePaths());
         if (!paths.isEmpty()) {
             in.addPathPatterns(paths);
         }
         // 排除处理url
-        List<String> excludePaths = ArrayUtils.arrayToList(mTokenProperties.getExcludePaths());
+        List<String> excludePaths = ListUtil.toList(mTokenProperties.getExcludePaths());
         if (!excludePaths.isEmpty()) {
             in.excludePathPatterns(excludePaths);
         }

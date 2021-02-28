@@ -5,7 +5,7 @@ import java.lang.reflect.Field;
 import com.alibaba.fastjson.serializer.ValueFilter;
 import com.xiesx.fastboot.core.fastjson.annotation.GoDesensitized;
 import com.xiesx.fastboot.core.fastjson.desensitized.SensitiveTypeEnum;
-import com.xiesx.fastboot.utils.DesensitizedUtils;
+import com.xiesx.fastboot.core.fastjson.utils.DesensitizedUtils;
 
 /**
  * 在fastjson中使用此过滤器进行脱敏操作

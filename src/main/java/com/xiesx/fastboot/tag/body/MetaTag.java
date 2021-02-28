@@ -6,8 +6,8 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import com.xiesx.fastboot.tag.TagUtils;
 import com.xiesx.fastboot.tag.ui.BaseUITag;
-import com.xiesx.fastboot.utils.RuntimeUtils;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -44,7 +44,7 @@ public class MetaTag extends BodyTagSupport {
                 this.bodyContent.clearBody();
             }
         } catch (Exception e) {
-            throw new JspException(RuntimeUtils.unwrapThrow(e));
+            throw new JspException(TagUtils.unwrapThrow(e));
         }
         return super.doAfterBody();
     }

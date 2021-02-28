@@ -1,12 +1,10 @@
 package com.xiesx.fastboot.core.fastjson.serializer;
 
-import java.text.DecimalFormat;
-
 import com.alibaba.fastjson.serializer.*;
 
-public class CustomerBigDecimalCodec extends BigDecimalCodec implements ContextObjectSerializer {
+import cn.hutool.core.util.NumberUtil;
 
-    public final static CustomerBigDecimalCodec instance = new CustomerBigDecimalCodec();
+public class CustomerBigDecimalCodec extends BigDecimalCodec implements ContextObjectSerializer {
 
     /**
      * 当BigDecimal类型的属性上有@JSONFiled注解，且该注解中的format有值时，使用该方法进行序列化，否则使用fastjson的
@@ -19,9 +17,6 @@ public class CustomerBigDecimalCodec extends BigDecimalCodec implements ContextO
             out.writeString("");
             return;
         }
-        String format = context.getFormat();
-        DecimalFormat decimalFormat = new DecimalFormat(format);
-        out.writeString(decimalFormat.format(object));
+        out.writeString(NumberUtil.decimalFormat(context.getFormat(),object));
     }
-
 }

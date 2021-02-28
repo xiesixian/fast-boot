@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.alibaba.fastjson.JSON;
 import com.xiesx.fastboot.core.logger.annotation.GoLog;
 
+import cn.hutool.core.date.TimeInterval;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -31,6 +32,8 @@ import lombok.extern.slf4j.Slf4j;
 @Aspect
 @Order(-100)
 public class LoggerAspect {
+
+    private TimeInterval interval = new TimeInterval();
 
     @Pointcut("@annotation(org.springframework.web.bind.annotation.GetMapping) || @annotation(org.springframework.web.bind.annotation.PostMapping) || @annotation(org.springframework.web.bind.annotation.RequestMapping)")
     public void logPointcut() {
@@ -70,20 +73,15 @@ public class LoggerAspect {
             }
         }
         // 记录开始时间
-        long beginTime = System.currentTimeMillis();
         if (isPrint) {
-            log.info("| request {} {} {}ms", methodName, Long.valueOf(beginTime), req);
+            log.info("| request {} {} {}", methodName, req, interval.start());
         }
         // 执行方法
         Object ret = pjp.proceed();
-        // 记录结束时间
-        long endTime = System.currentTimeMillis();
-        // 执行时间
-        long t = System.currentTimeMillis() - beginTime;
         // 响应
         String res = JSON.toJSONString(ret, isPrettyFormat);
         if (isPrint) {
-            log.info("| response {} {} {} {}ms", methodName, Long.valueOf(endTime), res, Long.valueOf(t));
+            log.info("| response {} {} {}ms", methodName, res, interval.interval());
         }
         return ret;
     }

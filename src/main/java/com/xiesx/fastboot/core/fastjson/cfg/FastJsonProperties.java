@@ -1,6 +1,5 @@
 package com.xiesx.fastboot.core.fastjson.cfg;
 
-
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import lombok.Data;

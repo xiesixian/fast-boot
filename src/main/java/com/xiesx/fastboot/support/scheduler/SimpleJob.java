@@ -1,14 +1,11 @@
 package com.xiesx.fastboot.support.scheduler;
 
-import java.util.Date;
-
 import org.quartz.Job;
 import org.quartz.JobDataMap;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 
-import com.xiesx.fastboot.utils.DateUtils;
-
+import cn.hutool.core.date.DateUtil;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -20,14 +17,12 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class SimpleJob implements Job {
 
-    public final static String DATE_TIME_PATTERN = "yyyy-MM-dd HH:mm:ss";
-
     public static final String simple_job_name = "SimpleJob";
 
     @Override
     public void execute(JobExecutionContext context) throws JobExecutionException {
         JobDataMap map = context.getMergedJobDataMap();
-        log.info("simple job {} {}，当前任务{}个，正在运行 {}", map.getString("key"), DateUtils.format(new Date(), DATE_TIME_PATTERN),
-                ScheduleHelper.queryAllJob().size(), ScheduleHelper.queryRunJob().size());
+        log.info("simple job {} {}，当前任务{}个，正在运行 {}", map.getString("key"), DateUtil.now(), ScheduleHelper.queryAllJob().size(),
+                ScheduleHelper.queryRunJob().size());
     }
 }

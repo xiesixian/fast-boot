@@ -5,7 +5,7 @@ import javax.validation.ConstraintValidatorContext;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONValidator;
 import com.xiesx.fastboot.support.validate.annotation.VJson;
 
 /**
@@ -21,15 +21,9 @@ public class VJsonRule implements ConstraintValidator<VJson, String> {
 
     @Override
     public boolean isValid(String s, ConstraintValidatorContext constraintValidatorContext) {
-        try {
-            if (StringUtils.isEmpty(s)) {
-                return false;
-            }
-            // 判断是否是json（原理：利用fastjson中str-->jsonOject 如果报错则非不是，反正则是）
-            JSON.parseObject(s);
-            return true;
-        } catch (Exception e) {
+        if (StringUtils.isEmpty(s)) {
             return false;
         }
+        return JSONValidator.from(s).validate();
     }
 }

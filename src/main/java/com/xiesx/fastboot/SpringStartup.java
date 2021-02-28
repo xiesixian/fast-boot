@@ -14,14 +14,10 @@ public class SpringStartup {
 
     public static String classUrl;
 
-    /** 由于是分布式环境，该名字为每个tomcat的目录名（在部署时必须唯一） */
+    /** 分布式环境，该名字为每个tomcat的目录名（在部署时必须唯一） */
     public static String servername;
 
     public static String serverpath;
-
-    // D:/Projects/gotv/fastboot/target/classes/
-    // www/wwwroot/go168.xyz/WEB-INF
-    // www/wwwroot/gotv-api/webapps
 
     public static void init() {
         classUrl = RuntimeUtils.getRootPath().toLowerCase();

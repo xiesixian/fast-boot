@@ -18,7 +18,6 @@ import lombok.Data;
 @SpringBootTest(classes = FastBootApplication.class)
 public class FastJsonTest {
 
-
     @Test
     public void fastjson() {}
 

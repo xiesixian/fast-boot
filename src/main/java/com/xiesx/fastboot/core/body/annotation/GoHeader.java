@@ -6,7 +6,6 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-
 /**
  * @title GoHeader.java
  * @description 请求头信息

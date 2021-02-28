@@ -1,6 +1,5 @@
 package com.xiesx.fastboot.core.body.handle;
 
-import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.core.MethodParameter;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
@@ -10,6 +9,8 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 import com.xiesx.fastboot.core.body.annotation.GoHeader;
 import com.xiesx.fastboot.core.body.cfg.HeaderCfg;
 import com.xiesx.fastboot.core.body.handle.CurrentHeader.CurrentHeaderBuilder;
+
+import cn.hutool.core.util.StrUtil;
 
 /**
  * @title HeaderArgumentResolver.java
@@ -31,31 +32,31 @@ public class HeaderArgumentResolver implements HandlerMethodArgumentResolver {
         CurrentHeaderBuilder builder = CurrentHeader.builder();
         // 获取设备信息
         String device = request.getHeader(HeaderCfg.DEVICE);
-        if (ObjectUtils.isNotEmpty(device)) {
+        if (StrUtil.isNotBlank(device)) {
             builder.device(device);
         }
         String osVersion = request.getHeader(HeaderCfg.OSVERSION);
-        if (ObjectUtils.isNotEmpty(osVersion)) {
+        if (StrUtil.isNotBlank(osVersion)) {
             builder.osVersion(osVersion);
         }
         String apVersion = request.getHeader(HeaderCfg.APVERSION);
-        if (ObjectUtils.isNotEmpty(apVersion)) {
+        if (StrUtil.isNotBlank(apVersion)) {
             builder.apVersion(apVersion);
         }
         String apVersionCode = request.getHeader(HeaderCfg.APVERSIONCODE);
-        if (ObjectUtils.isNotEmpty(apVersionCode)) {
+        if (StrUtil.isNotBlank(apVersionCode)) {
             builder.apVersionCode(apVersionCode);
         }
         String androidId = request.getHeader(HeaderCfg.ANDROIDID);
-        if (ObjectUtils.isNotEmpty(androidId)) {
+        if (StrUtil.isNotBlank(androidId)) {
             builder.androidId(androidId);
         }
         String psuedoUniqueId = request.getHeader(HeaderCfg.PSUEDOUNIQUEID);
-        if (ObjectUtils.isNotEmpty(psuedoUniqueId)) {
+        if (StrUtil.isNotBlank(psuedoUniqueId)) {
             builder.psuedoUniqueId(psuedoUniqueId);
         }
         String networkType = request.getHeader(HeaderCfg.NETWORKTYPE);
-        if (ObjectUtils.isNotEmpty(networkType)) {
+        if (StrUtil.isNotBlank(networkType)) {
             builder.networkType(networkType);
         }
         return builder.build();

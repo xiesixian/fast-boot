@@ -8,7 +8,6 @@ import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.xiesx.fastboot.tag.TagUtils;
-import com.xiesx.fastboot.utils.RuntimeUtils;
 
 public class UITag extends BaseUITag {
 
@@ -31,7 +30,7 @@ public class UITag extends BaseUITag {
                 this.pageContext.setAttribute(UITag.class.getName(), this);
             }
         } catch (Exception e) {
-            throw new JspException(RuntimeUtils.unwrapThrow(e));
+            throw new JspException(TagUtils.unwrapThrow(e));
         }
         return super.doStartTag();
     }
@@ -43,7 +42,7 @@ public class UITag extends BaseUITag {
                 this.bodyContent.clearBody();
             }
         } catch (Exception e) {
-            throw new JspException(RuntimeUtils.unwrapThrow(e));
+            throw new JspException(TagUtils.unwrapThrow(e));
         }
         return super.doAfterBody();
     }
@@ -61,7 +60,7 @@ public class UITag extends BaseUITag {
                 __tmplContent = this.mergeContent(StringUtils.defaultIfEmpty(__tmplContent, "@{body}"));
                 this.pageContext.getOut().write(!isCleanup() ? __tmplContent : TagUtils.replaceRegClear(__tmplContent));
             } catch (Exception e) {
-                throw new JspException(RuntimeUtils.unwrapThrow(e));
+                throw new JspException(TagUtils.unwrapThrow(e));
             }
         }
         this.__isCurrentUI = false;

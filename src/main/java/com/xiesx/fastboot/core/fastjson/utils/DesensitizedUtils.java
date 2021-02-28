@@ -1,4 +1,4 @@
-package com.xiesx.fastboot.utils;
+package com.xiesx.fastboot.core.fastjson.utils;
 
 import org.apache.commons.lang3.StringUtils;
 

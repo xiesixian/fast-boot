@@ -10,5 +10,4 @@ import com.xiesx.fastboot.core.logger.LoggerAspect;
 public class LoggerCfg {
 
     public static final String NICKNAME = "nickname";
-
 }

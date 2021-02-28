@@ -11,8 +11,8 @@ import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang3.ObjectUtils;
 
 import com.google.common.collect.Maps;
-import com.xiesx.fastboot.utils.DateUtils;
 
+import cn.hutool.core.date.DateUtil;
 import io.jsonwebtoken.*;
 
 /**
@@ -153,8 +153,8 @@ public class JwtHelper {
         System.out.println("iss签发者：" + c.getIssuer());
         System.out.println("aud接收者：" + c.getAudience());
 
-        System.out.println("iat登录时间：" + DateUtils.format(c.getIssuedAt()));
-        System.out.println("exp过期时间：" + DateUtils.format(c.getExpiration()));
+        System.out.println("iat登录时间：" + DateUtil.formatDateTime(c.getIssuedAt()));
+        System.out.println("exp过期时间：" + DateUtil.formatDateTime(c.getExpiration()));
         //
         System.out.println("exp是否过期时间：" + isExpired(c.getExpiration()));
         //

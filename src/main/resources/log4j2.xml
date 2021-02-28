@@ -17,7 +17,7 @@
 		<!-- 存放目录(本地) -->
 		<Property name="path">../logs</Property>
 		<!-- 输出格式 -->
-		<Property name="log_pattern">[FBOOT][%5p][%-d{MM-dd HH:mm:ss}]-->[%t:%5r][%M(%F:%L)] | - %m%n</Property>
+		<Property name="log_pattern">[FASTBOOT][%5p][%-d{MM-dd HH:mm:ss}]-->[%t:%5r][%M(%F:%L)] | - %m%n</Property>
 	</Properties>
 
 	<!-- 追加 -->

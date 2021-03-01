@@ -10,7 +10,7 @@ import java.util.List;
 import de.schlichtherle.license.*;
 import de.schlichtherle.xml.GenericCertificate;
 import de.schlichtherle.xml.XMLConstants;
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j2;
 
 /**
  * @title LicenseManagerLocal.java
@@ -18,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
  * @author Sixian.xie
  * @date 2020-7-21 22:34:24
  */
-@Slf4j
+@Log4j2
 public class LicenseManagerLocal extends LicenseManager {
 
     public LicenseManagerLocal(LicenseParam param) {

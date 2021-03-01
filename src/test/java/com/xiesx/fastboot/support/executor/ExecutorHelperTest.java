@@ -13,9 +13,9 @@ import com.xiesx.fastboot.base.result.BaseResult;
 import com.xiesx.fastboot.base.result.R;
 
 import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j2;
 
-@Slf4j
+@Log4j2
 public class ExecutorHelperTest {
 
     @Test

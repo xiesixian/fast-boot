@@ -20,9 +20,9 @@ import com.xiesx.fastboot.FastBootApplication;
 import com.xiesx.fastboot.base.TestVo;
 import com.xiesx.fastboot.base.result.R;
 
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j2;
 
-@Slf4j
+@Log4j2
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = FastBootApplication.class)
 public class ValidatorHelperTest {

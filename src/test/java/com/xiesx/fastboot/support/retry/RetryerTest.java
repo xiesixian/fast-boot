@@ -15,7 +15,7 @@ import com.xiesx.fastboot.core.exception.RunExc;
 import com.xiesx.fastboot.core.exception.RunException;
 import com.xiesx.fastboot.support.request.RequestsHelper;
 
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j2;
 import net.dongliu.requests.Parameter;
 import net.dongliu.requests.RawResponse;
 import net.dongliu.requests.RequestBuilder;
@@ -27,7 +27,7 @@ import net.dongliu.requests.Requests;
  * @author Sixian.xie
  * @date 2020-8-15 14:09:29
  */
-@Slf4j
+@Log4j2
 public class RetryerTest {
 
     public final static String url = "https://api.go168.xyz/api/appConfig";

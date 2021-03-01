@@ -8,7 +8,7 @@ import java.util.prefs.Preferences;
 import de.schlichtherle.license.*;
 import lombok.Data;
 import lombok.experimental.Accessors;
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j2;
 
 /**
  * @title LicenseVerify.java
@@ -16,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
  * @author Sixian.xie
  * @date 2020-7-21 22:34:31
  */
-@Slf4j
+@Log4j2
 @Data
 @Accessors(chain = true)
 public class LicenseVerify {

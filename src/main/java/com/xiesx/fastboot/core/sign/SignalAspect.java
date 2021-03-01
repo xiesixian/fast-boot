@@ -24,7 +24,7 @@ import com.xiesx.fastboot.core.exception.RunException;
 import com.xiesx.fastboot.core.sign.annotation.GoSign;
 import com.xiesx.fastboot.core.sign.cfg.SignalProperties;
 
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j2;
 
 /**
  * @title SignalAspect.java
@@ -32,7 +32,7 @@ import lombok.extern.slf4j.Slf4j;
  * @author Sixian.xie
  * @date 2020-7-21 22:35:39
  */
-@Slf4j
+@Log4j2
 @Component
 @Aspect
 @Order(-98)

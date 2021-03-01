@@ -8,7 +8,7 @@ import javax.security.auth.x500.X500Principal;
 import de.schlichtherle.license.*;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j2;
 
 /**
  * @title LicenseCreator.java
@@ -16,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
  * @author Sixian.xie
  * @date 2020-7-21 22:33:56
  */
-@Slf4j
+@Log4j2
 @RequiredArgsConstructor
 public class LicenseCreator {
 

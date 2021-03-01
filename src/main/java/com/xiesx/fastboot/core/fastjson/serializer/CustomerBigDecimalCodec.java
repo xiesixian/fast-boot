@@ -17,6 +17,6 @@ public class CustomerBigDecimalCodec extends BigDecimalCodec implements ContextO
             out.writeString("");
             return;
         }
-        out.writeString(NumberUtil.decimalFormat(context.getFormat(),object));
+        out.writeString(NumberUtil.decimalFormat(context.getFormat(), object));
     }
 }

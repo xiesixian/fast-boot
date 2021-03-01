@@ -15,9 +15,9 @@ import com.xiesx.fastboot.FastBootApplication;
 import com.xiesx.fastboot.core.orm.jdbc.JdbcTemplatePlus;
 
 import lombok.Data;
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j2;
 
-@Slf4j
+@Log4j2
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = FastBootApplication.class)
 public class JdbcTemplatePlusTest {

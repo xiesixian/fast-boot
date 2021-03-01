@@ -23,7 +23,7 @@ import com.xiesx.fastboot.base.result.BaseResult;
 import com.xiesx.fastboot.base.result.R;
 import com.xiesx.fastboot.support.validate.ValidatorHelper;
 
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j2;
 
 /**
  * @title GlobalExceptionAdvice.java
@@ -31,7 +31,7 @@ import lombok.extern.slf4j.Slf4j;
  * @author Sixian.xie
  * @date 2020-7-21 22:30:43
  */
-@Slf4j
+@Log4j2
 @RestControllerAdvice
 public class GlobalExceptionAdvice {
 

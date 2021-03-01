@@ -4,7 +4,7 @@ import java.util.concurrent.Callable;
 
 import com.google.common.util.concurrent.FutureCallback;
 
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j2;
 
 /**
  * @title DefaultTask.java
@@ -12,7 +12,7 @@ import lombok.extern.slf4j.Slf4j;
  * @author Sixian.xie
  * @date 2020-7-21 22:39:54
  */
-@Slf4j
+@Log4j2
 public class DefaultTask<T> implements Callable<T>, FutureCallback<T> {
 
     /**

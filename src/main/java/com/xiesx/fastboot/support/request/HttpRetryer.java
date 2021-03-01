@@ -10,7 +10,7 @@ import com.xiesx.fastboot.support.retry.RetryException;
 import com.xiesx.fastboot.support.retry.RetryListener;
 import com.xiesx.fastboot.support.retry.Retryer;
 
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j2;
 import net.dongliu.requests.RawResponse;
 import net.dongliu.requests.RequestBuilder;
 
@@ -20,7 +20,7 @@ import net.dongliu.requests.RequestBuilder;
  * @author Sixian.xie
  * @date 2020-7-21 22:42:34
  */
-@Slf4j
+@Log4j2
 public class HttpRetryer {
 
     /**

@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.validation.ValidationAutoConfiguration;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j2;
 
 /**
  * @title GotvApplication
@@ -14,7 +14,7 @@ import lombok.extern.slf4j.Slf4j;
  * @author XIE
  * @date 2020年1月6日下午2:06:58
  */
-@Slf4j
+@Log4j2
 @SpringBootApplication(exclude = ValidationAutoConfiguration.class)
 public class FastBootApplication extends SpringBootServletInitializer {
     // public class FastBootApplication {

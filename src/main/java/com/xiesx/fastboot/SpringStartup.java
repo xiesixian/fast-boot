@@ -7,9 +7,9 @@ import com.xiesx.fastboot.support.scheduler.decorator.ISchedule;
 import com.xiesx.fastboot.support.scheduler.decorator.SimpleDecorator;
 import com.xiesx.fastboot.utils.RuntimeUtils;
 
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j2;
 
-@Slf4j
+@Log4j2
 public class SpringStartup {
 
     public static String classUrl;

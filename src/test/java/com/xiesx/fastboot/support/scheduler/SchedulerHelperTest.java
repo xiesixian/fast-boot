@@ -10,7 +10,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.google.common.collect.Maps;
 import com.xiesx.fastboot.FastBootApplication;
 
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j2;
 
 /**
  * @title SimpleTest.java
@@ -18,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
  * @author Sixian.xie
  * @date 2018年12月21日 下午6:16:35
  */
-@Slf4j
+@Log4j2
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = FastBootApplication.class)
 public class SchedulerHelperTest {

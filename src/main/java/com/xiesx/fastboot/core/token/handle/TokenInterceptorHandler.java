@@ -21,7 +21,7 @@ import com.xiesx.fastboot.core.token.cfg.TokenProperties;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j2;
 
 /**
  * @title TokenInterceptorHandler.java
@@ -29,7 +29,7 @@ import lombok.extern.slf4j.Slf4j;
  * @author Sixian.xie
  * @date 2020-7-21 22:37:38
  */
-@Slf4j
+@Log4j2
 public class TokenInterceptorHandler implements HandlerInterceptor {
 
     private static final String TOKEN_KEY = "token";
